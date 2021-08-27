@@ -1,0 +1,137 @@
+// Define variable defaults
+
+
+$theme-colors: (
+  "dark": #000,
+  "subtle-grey": #F8F8F8,
+ );
+$border-radius: 0;
+
+// Then import Bootstrap an BootstrapVue SCSS files (order is important)
+@import 'node_modules/bootstrap/scss/bootstrap.scss';
+@import 'node_modules/bootstrap-vue/src/index.scss';
+
+
+
+//
+html,body{font-size: 15px; font-family: 'newtransport-regular';}
+h1,h2,h3,h4,h5{font-family: "newtransport-medium";}
+.fnormal{font-family: 'newtransport-regular';}
+.fbold{font-family: 'newtransport-medium';}
+a{cursor: pointer;}
+
+h5{font-size: 16px;}
+.hero-pad{padding: 10vw 0;}
+.pad-right{ padding-right: 4rem;}
+.subtle-grey{}
+.fullscreen-modal{background: white; position: fixed; top:0; left:0; right:0; bottom:0;}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: black;
+  opacity: 1; /* Firefox */
+}
+input.form-control{border:0; border-bottom: 1px solid black;}
+/**
+* Hind Light
+*/
+@font-face {
+  font-family: "hind-light";
+  font-style: normal;
+  font-weight: normal;
+  src: url("assets/fonts/hind-light.woff") format("woff");
+  src: url("assets/fonts/hind-light.ttf") format("truetype");
+}
+
+/**
+* Hind Regular
+*/
+@font-face {
+  font-family: "hind-regular";
+  font-style: normal;
+  font-weight: normal;
+  src: url("assets/fonts/hind-regular.woff") format("woff");
+  src: url("assets/fonts/hind-regular.ttf") format("truetype");
+}
+
+/**
+* Hind Medium
+*/
+@font-face {
+  font-family: "hind-medium";
+  font-style: normal;
+  font-weight: normal;
+  src: url("assets/fonts/hind-medium.woff") format("woff");
+  src: url("assets/fonts/hind-medium.ttf") format("truetype");
+}
+
+/**
+* Hind Semibold
+*/
+@font-face {
+  font-family: "hind-semibold";
+  font-style: normal;
+  font-weight: normal;
+  src: url("assets/fonts/hind-semibold.woff") format("woff");
+  src: url("assets/fonts/hind-semibold.ttf") format("truetype");
+}
+
+/**
+* Hind Medium
+*/
+@font-face {
+  font-family: "hind-bold";
+  font-style: normal;
+  font-weight: normal;
+  src: url("assets/fonts/hind-bold.woff") format("woff");
+  src: url("assets/fonts/hind-bold.ttf") format("truetype");
+}
+
+/**
+* NewTransport Regular
+*/
+@font-face {
+  font-family: "newtransport-regular";
+  font-style: normal;
+  font-weight: normal;
+  src: url("assets/fonts/newtransport/newtransport-regular.woff2") format("woff2");
+}
+
+/**
+* NewTransport Medium
+*/
+@font-face {
+  font-family: "newtransport-medium";
+  font-style: normal;
+  font-weight: normal;
+  src: url("assets/fonts/newtransport/newtransport-medium.woff2") format("woff2");
+}
+
+/**
+* Garamond Regular
+*/
+@font-face {
+  font-family: "garamond-regular";
+  font-style: normal;
+  font-weight: normal;
+  src: url("assets/fonts/garamond/garamond-regular.woff2") format("woff2");
+}
+
+/**
+* Garamond Regular
+*/
+@font-face {
+  font-family: "garamond-medium";
+  font-style: normal;
+  font-weight: normal;
+  src: url("assets/fonts/garamond/garamond-medium.woff2") format("woff2");
+}
+
+/**
+* Garamond Regular
+*/
+@font-face {
+  font-family: "garamond-semibold";
+  font-style: normal;
+  font-weight: normal;
+  src: url("assets/fonts/garamond/garamond-semibold.woff2") format("woff2");
+}
