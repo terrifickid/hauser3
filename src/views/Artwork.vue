@@ -16,7 +16,7 @@
               <div class="p-3">
 
                 <Lottie v-if="artwork.acf.hero_3d_" :url="artwork.acf.hero_3d_"></Lottie>
-                <img v-if="!artwork.acf.hero_image.url" :src="artwork.acf.hero_image.url" class="img-fluid">
+                <img v-if="!artwork.acf.hero_3d_" :src="artwork.acf.hero_image.url" class="img-fluid">
               </div>
             </div>
 
@@ -55,16 +55,16 @@
 
 </div>
 
-<div class="container">
+<div v-if="artwork.acf.about_the_artwork_description || artwork.acf.details.length" class="container">
   <div class="row pb-5" >
     <div class="d-none d-md-block col-1" style="border-right: 1px solid black;"></div>
     <div class="col-md-8 offset-md-1" >
       <div style="padding: 3rem 0">
-      <h3 class="mb-4">Details & features</h3>
+      <h3 v-if="artwork.acf.details.length" class="mb-4">Details & features</h3>
       <div class="row mb-2" v-for="detail in artwork.acf.details" :key="detail.title">
         <div class="col-3">{{detail.title}}:</div><div class="col">{{detail.description}}</div>
       </div><!-- end row -->
-      <h3 class="mb-4 mt-5">About the artwork</h3>
+      <h3 v-if="artwork.acf.about_the_artwork_description" class="mb-4 mt-5">About the artwork</h3>
       <p v-html="artwork.acf.about_the_artwork_description"></p>
     </div>
     </div>
@@ -134,7 +134,7 @@
 
 </div>
 
-<div class="container">
+<div v-if="artwork.acf.other_artworks.length" class="container">
   <div class="row">
     <div class="col">
       <h3>Explore Other Artworks</h3>

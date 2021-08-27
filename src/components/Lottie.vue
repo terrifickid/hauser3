@@ -1,23 +1,51 @@
 <template>
-  <div ref="lotEntry"></div><!-- -->
+  <div id="heroArtwork">
+  <lottie-player
+  autoplay
+  loop
+  mode="normal"
+  v-bind:src="url"
+  id="testp"
+  ref="lottiePlayer"
+></lottie-player>
+
+</div>
 </template>
 
 <script>
+import LottiePlayer from "@lottiefiles/lottie-player";
+import { create } from '@lottiefiles/lottie-interactivity';
 export default {
   name: 'Lottie',
+  components:{
+    LottiePlayer
+  },
   props: {
     url: String
   },
   mounted: function(){
-    console.log(this.url);
-    console.log(this.$refs.lotEntry);
-    window.lottie.loadAnimation({
-      container: this.$refs.lotEntry,
-      renderer: 'svg',
-      loop: true,
-      autoplay: true,
-      path: this.url
-    })
+
+    this.$refs.lottiePlayer.addEventListener('load', function () {
+    console.log('loaded!');
+
+    create({
+      mode: 'scroll',
+      player: '#testp',
+      actions: [
+        {
+          visibility: [0, 1],
+          type: 'seek',
+          frames: [0, 100],
+        },
+      ],
+    });
+
+
+    });
+
+
+
+
   }
 }
 </script>
