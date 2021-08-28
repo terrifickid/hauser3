@@ -21,7 +21,9 @@ export default {
       scroll: null,
       loaded: false,
       lottie: null,
-      show: true
+      show: true,
+      frame: 1,
+      duration: 0,
     }
   },
   methods:{
@@ -31,6 +33,13 @@ export default {
     },
     hide(){
       this.show = false;
+    },
+    nextFrame(mod){
+      this.frame = this.frame + mod;
+      if(this.frame >= this.duration) this.frame = 1;
+      if(this.frame <= 0) this.frame = this.duration;
+      this.lottie.goToAndStop(this.frame, true);
+      
     },
     resize(){
       console.log('resize');
@@ -67,6 +76,8 @@ export default {
       console.log('loaded');
       this.resize();
       this.resize();
+      this.lottie = lot;
+      this.duration = lot.getDuration(true);
     });
 
 

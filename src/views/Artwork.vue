@@ -23,7 +23,7 @@
 
             <div class="col-lg-4 col-xl-3">
               <div ref="heightSetter" style="padding: 6rem 0 100vh 0;">
-                  {{lotShow}}
+
               <h4>{{artwork.artist.name}}</h4>
               <p>{{artwork.title.rendered}}</p>
               <p v-html="artwork.acf.hero_content"></p>
@@ -171,28 +171,21 @@ export default{
   },
   methods:{
     resize(){
-      console.log('resize');
 
-      console.log(this.$refs.heroCont.offsetWidth);
       //this.$refs.lottie.style.left = rect.x+'px';
     },
     onScroll(){
-      console.log('scroll!');
+
       window.scrollTo(0, 0);
       this.$refs.lottie.reveal();
-      //console.log(this.$refs.scroller.scrollTop, this.$refs.scroller.clientHeight);
 
-      /*
-      if(window.scrollY > oldScrollY) mod = 1;
-      if(window.scrollY < oldScrollY) mod = -1;
-      oldScrollY = window.scrollY;
-      frame = frame + mod;
-      if(frame >= duration) frame = 1;
-      if(frame <= 0) frame = duration;
-      lot.goToAndStop(frame, true);
-      console.log(frame);
-      */
-
+      var mod = 0;
+      this.scrollY = this.$refs.scroller.scrollTop;
+      console.log(this.scrollY, this.oldScrollY)
+      if(this.scrollY > this.oldScrollY) mod = 1;
+      if(this.scrollY < this.oldScrollY) mod = -1;
+      this.oldScrollY = this.scrollY;
+      this.$refs.lottie.nextFrame(mod);
     }
   },
   componentDidMount: function(){
@@ -219,7 +212,9 @@ export default{
   data: function() {
     return {
       artwork: null,
-      lotShow: true
+      lotShow: true,
+      oldScrollY: 0,
+      scrollY: 0,
     }
   }
 }
