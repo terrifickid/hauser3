@@ -1,27 +1,29 @@
 <template>
-  <div  id="Artwork">
-    <div v-if="artwork">
-    <div class="bg-subtle-grey" style="position: sticky; top:0; z-index: 1000;" >
+  <div id="Artwork" class="">
+      <Header :mode="1"></Header>
 
-        <Header :mode="1"></Header>
+    <div v-if="artwork">
+    <div class="bg-subtle-grey page" ref="scroller" v-on:scroll.passive="onScroll" style="height: 100vh; overflow: scroll;" >
+
+<div style="height: 4rem;"></div>
         <div  class="container pb-5 pt-5">
-          <div   class="row d-flex align-items-center">
+          <div   class="row">
             <div class="d-none d-xl-block col-3 align-self-end ">
               <div class="row d-flex align-items-center">
                 <div class="col-2"><a class="avatar" v-bind:style="{'background-image': 'url('+artwork.acf.hero_audio_avatar.url+')'}"></a></div>
-                <div class="col"><div class="ml-1">{{artwork.artist.name}} on {{artwork.title.rendered}}</div></div>
+                <div class="col"><div class="ml-1">{{artwork.artist.name}} on {{artwork.title.rged}}</div></div>
               </div>
             </div>
 
-            <div class="col-10 offset-1 col-lg-8 col-xl-6 offset-lg-0 offset-xl-0">
-              <div class="p-3">
+            <div  id="heroCont" style="position: relative; z-index: 1000;" ref="heroCont" class="col-10 offset-1 col-lg-8 col-xl-6 offset-lg-0 offset-xl-0">
 
-                <Lottie v-if="artwork.acf.hero_3d_" :url="artwork.acf.hero_3d_"></Lottie>
                 <img v-if="!artwork.acf.hero_3d_" :src="artwork.acf.hero_image.url" class="img-fluid">
-              </div>
             </div>
+              <Lottie ref="lottie" style="position: relative; z-index: 500" class="d-none d-lg-block" v-if="artwork.acf.hero_3d_" :url="artwork.acf.hero_3d_"></Lottie>
 
             <div class="col-lg-4 col-xl-3">
+              <div ref="heightSetter" style="padding: 6rem 0 100vh 0;">
+                  {{lotShow}}
               <h4>{{artwork.artist.name}}</h4>
               <p>{{artwork.title.rendered}}</p>
               <p v-html="artwork.acf.hero_content"></p>
@@ -36,14 +38,15 @@
               <div style="padding-top: 5rem;">
                 <a class="circlelink mr-3"><b-icon  icon="heart"/></a><a class="circlelink"><b-icon  icon="share"/></a>
               </div>
+              <div ref="ender"></div>
             </div>
           </div>
+        </div>
         </div><!-- end container -->
 
 
 </div>
 
-<div style="height: 1000px;"></div>
 <div class="artwork_images">
   <div class="container">
 <div class="d-none d-sm-block artwork col-8 offset-2" v-for="artwork in artwork.acf.artwork_images" :key="artwork.ID">
@@ -166,12 +169,48 @@ export default{
     Footer,
     Lottie
   },
+  methods:{
+    resize(){
+      console.log('resize');
+
+      console.log(this.$refs.heroCont.offsetWidth);
+      //this.$refs.lottie.style.left = rect.x+'px';
+    },
+    onScroll(){
+      console.log('scroll!');
+      window.scrollTo(0, 0);
+      this.$refs.lottie.reveal();
+      //console.log(this.$refs.scroller.scrollTop, this.$refs.scroller.clientHeight);
+
+      /*
+      if(window.scrollY > oldScrollY) mod = 1;
+      if(window.scrollY < oldScrollY) mod = -1;
+      oldScrollY = window.scrollY;
+      frame = frame + mod;
+      if(frame >= duration) frame = 1;
+      if(frame <= 0) frame = duration;
+      lot.goToAndStop(frame, true);
+      console.log(frame);
+      */
+
+    }
+  },
+  componentDidMount: function(){
+      this.resize();
+  },
   mounted: async function() {
+    var scope = this;
+
+    window.addEventListener('resize', function() {
+      scope.resize();
+   }, true);
+
 
 
   try {
         const resp = await axios.get(process.env.VUE_APP_URI+'wp-json/wp/v2/hauser_artworks/'+this.$route.params.id);
         this.artwork = resp.data;
+
     } catch (err) {
         // Handle Error Here
         console.error(err);
@@ -180,12 +219,14 @@ export default{
   data: function() {
     return {
       artwork: null,
+      lotShow: true
     }
   }
 }
 </script>
 <style scoped lang="scss">
 a, a:hover{color: black}
+#positioner{border: 1px solid blue; position: fixed; left: 0;}
 .artwork{margin-bottom: 6rem;}
 .artwork_images{margin: 4rem 0;}
 .avatar{width: 40px; height: 40px; background-color: red; display: inline-block; background-size: cover; border-radius: 10rem;}

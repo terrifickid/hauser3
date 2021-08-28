@@ -12,9 +12,14 @@ Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 import './app.scss';
 
+import VueSticky  from 'vue-sticky'; // Es6 module
+
 
 new Vue({
   router,
   store,
+  directives: {
+  'sticky': VueSticky,
+},
   render: function (h) { return h(App) }
 }).$mount('#app')

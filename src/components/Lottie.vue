@@ -1,62 +1,79 @@
 <template>
   <div id="heroArtwork">
-    <div ref="lottie"></div>
-<div style="position: fixed: top: 0">D{{scroll}}</div>
+
+    <div v-show="show" style="position: fixed; left: 0; width: 100%; border: 1px solid transparent;" ref="lottie"></div>
+
 </div>
 </template>
 
 <script>
-//import LottiePlayer from "@lottiefiles/lottie-player";
-//import { create } from '@lottiefiles/lottie-interactivity';
 export default {
   name: 'Lottie',
   components:{
     //LottiePlayer
   },
   props: {
-    url: String
+    url: String,
+
   },
   data: function(){
     return{
       scroll: null,
-      loaded: false
+      loaded: false,
+      lottie: null,
+      show: true
     }
   },
   methods:{
+    reveal(){
+      console.log('ran!');
+      this.show = true;
+    },
+    hide(){
+      this.show = false;
+    },
+    resize(){
+      console.log('resize');
+      var tpos = (window.innerHeight/2) - (this.$refs.lottie.offsetHeight/2);
+      //console.log(this.$refs.heroCont.offsetWidth);
+      this.$refs.lottie.style.left = document.getElementById('heroCont').getBoundingClientRect().x+'px';
+      this.$refs.lottie.style.top = tpos+'px';
+      this.$refs.lottie.style.width = document.getElementById('heroCont').clientWidth+'px';
+
+    },
     handleScroll(){
         console.log('scroll');
     },
-    play(lot){
-      lot.play();
+    play(){
+      this.lottie.play();
     }
   },
   mounted: function(){
+
+
+    window.addEventListener('resize', () => {
+      this.resize();
+   }, true);
 
     var lot = window.lottie.loadAnimation({
       container: this.$refs.lottie, // the dom element that will contain the animation
       renderer: 'svg',
       loop: true,
-      autoplay: false,
+      autoplay: true,
       path: this.url// the path to the animation json
     });
 
-  lot.addEventListener('data_ready', function () {
-    console.log('loaded');
-    var frame = 1;
-    var duration = lot.getDuration(true);
-    var oldScrollY = window.scrollY;
-    var mod = 0;
-    document.addEventListener('scroll', function() {
-      if(window.scrollY > oldScrollY) mod = 1;
-      if(window.scrollY < oldScrollY) mod = -1;
-      oldScrollY = window.scrollY;
-      console.log( duration );
-      lot.goToAndStop(frame, true);
-      frame = frame + mod;
-      if(frame == duration) frame = 0;
-      if(frame == 0) frame = duration;
+    lot.addEventListener('DOMLoaded', () => {
+      console.log('loaded');
+      this.resize();
+      this.resize();
     });
-  });
+
+
+    document.addEventListener('scroll', () => {
+      console.log('Done Scroll!');
+      this.hide();
+    });
 
 
 
