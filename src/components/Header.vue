@@ -1,17 +1,17 @@
 <template>
   <div>
-  <div v-bind:class="{ 'invert': mode }" id="hauser_header" v-ani="{class:'fade-in-top', delay: 0}">
+  <div  id="hauser_header" >
     <div class="container">
       <div class="row pt-5">
-        <div class="col"><a href="/"><img id="hlogo" class="img-fluid" src="../assets/hauser-logo.svg"></a></div><!-- end col -->
+        <div v-ani="{class:'fade-in-top', delay: 0}" class="col"><a href="/"><img id="hlogo" class="img-fluid" src="../assets/hauser-logo.svg"></a></div><!-- end col -->
         <div class="d-none d-xl-block col-6 text-center">
-          <ul id="desktopMenu">
+          <ul v-ani="{class:'fade-in-top', delay: 0}" id="desktopMenu">
             <li><a href="#">Featured</a></li>
             <li><a href="#">All Artworks</a></li>
             <li><a href="#">About gallery</a></li>
           </ul>
         </div><!-- end col -->
-        <div class="col icons text-right">
+        <div v-ani="{class:'fade-in-top', delay: 0}" class="col icons text-right">
           <a herf="#"><img src="../assets/heart.svg"></a>
           <a herf="#"><img src="../assets/person.svg"></a>
           <a @click="menuModal = !menuModal"><img src="../assets/menu.svg"></a>
