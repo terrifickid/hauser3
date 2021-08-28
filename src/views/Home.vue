@@ -3,16 +3,26 @@
   <div class="home">
     <div id="hauser_home">
 
-      <div id="bg">
+      <div v-ani="{class:'blur-in-center', delay: 0}"  id="bg">
       <Header></Header>
+
+
+      <iframe style="position: absolute;
+    top: 0;
+    left: -25%;
+    width: 150%;
+    height: 100%;
+    background: #222;
+    border:0;
+    " border=0 frameborder=0 src="https://player.vimeo.com/video/569446269?dnt=1&amp;app_id=122963&amp;h=5cd36b5e4f&amp;controls=0&amp;hd=1&amp;fs=1&amp;rel=0&amp;modestbranding=1&amp;autoplay=1&amp;muted=1&amp;autopause=0&amp;loop=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen=""></iframe>
 
       <div class="hauser-hero mt-4">
         <div class="container">
           <div class="pad">
             <div class="col-12 col-md-10 offset-md-1">
-            <h2 v-ani="{class:'fade-in-bottom', delay: 600}" class="fnormal mb-5">13 — 26 September, 2021</h2>
-            <h1 v-ani="{class:'fade-in-bottom', delay: 700}">Hauser & Wirth<br>at Art Basel</h1>
-            <h2 v-ani="{class:'fade-in-bottom', delay: 800}"><a href="#"><b-icon class="mr-1" icon="play-circle"/> Join us at Basel</a></h2>
+            <h2 v-ani="{class:'fade-in-bottom', delay: 800}" class="fnormal mb-5">13 — 26 September, 2021</h2>
+            <h1 v-ani="{class:'fade-in-bottom', delay: 900}">Hauser & Wirth<br>at Art Basel</h1>
+            <h2 v-ani="{class:'fade-in-bottom', delay: 1000}"><a href="#"><b-icon class="mr-1" icon="play-circle"/> Join us at Basel</a></h2>
           </div>
           </div>
         </div>
@@ -54,13 +64,15 @@ export default {
 }
 </script>
 <style scoped lang="scss">
+.hauser-hero{}
 h2{font-size: 1.25rem;}
 h1{font-size: 5rem;}
   #bg{
     color: white;
     background-image: url("../assets/home1.jpg");
+    background-color: black;
     background-size: cover;
-    min-height: 30vw;
+    height: 100vh;
   }
   a, a:hover{color: white;}
 .pad{padding: 4rem 0 8rem 0;}

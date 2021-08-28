@@ -31,8 +31,8 @@ Vue.directive('ani', {
 
         // Get the bounding client rectangle position in the viewport
         var bounding = el.getBoundingClientRect();
-            
-        if (bounding.bottom > 0 && bounding.top < window.innerHeight) {
+
+        if (bounding.bottom > -10 && bounding.top < window.innerHeight) {
             console.log('In the viewport! :)');
             setTimeout(()=>{
               el.classList.add(binding.value.class);
