@@ -39,7 +39,7 @@ export default {
       if(this.frame >= this.duration) this.frame = 1;
       if(this.frame <= 0) this.frame = this.duration;
       this.lottie.goToAndStop(this.frame, true);
-      
+
     },
     resize(){
       console.log('resize');
@@ -68,7 +68,7 @@ export default {
       container: this.$refs.lottie, // the dom element that will contain the animation
       renderer: 'svg',
       loop: true,
-      autoplay: true,
+      autoplay: false,
       path: this.url// the path to the animation json
     });
 
