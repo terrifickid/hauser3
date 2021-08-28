@@ -5,14 +5,14 @@
 
       <div id="bg">
       <Header></Header>
-      <div style="height: 4rem;"></div>
+
       <div class="hauser-hero mt-4">
         <div class="container">
           <div class="pad">
             <div class="col-12 col-md-10 offset-md-1">
-            <h2 class="fnormal mb-5">13 — 26 September, 2021</h2>
-            <h1>Hauser & Wirth<br>at Art Basel</h1>
-            <h2><a href="#"><b-icon class="mr-1" icon="play-circle"/> Join us at Basel</a></h2>
+            <h2 v-ani="{class:'fade-in-bottom', delay: 600}" class="fnormal mb-5">13 — 26 September, 2021</h2>
+            <h1 v-ani="{class:'fade-in-bottom', delay: 700}">Hauser & Wirth<br>at Art Basel</h1>
+            <h2 v-ani="{class:'fade-in-bottom', delay: 800}"><a href="#"><b-icon class="mr-1" icon="play-circle"/> Join us at Basel</a></h2>
           </div>
           </div>
         </div>

@@ -9,7 +9,7 @@
         </div></div>
     </div><!-- end row -->
     <div class="row mt-5">
-      <div class="d-none d-lg-block col-3 col-xl-2">
+      <div v-ani="{class:'fade-in-bottom', delay: 0}"  class="d-none d-lg-block col-3 col-xl-2">
         <ul>
           <li>
             <a v-b-toggle.p-1 >
@@ -63,7 +63,7 @@
 
       </div><!-- end col -->
 
-      <div v-if="artworks.length" class="col">
+      <div v-ani="{class:'fade-in-bottom', delay: 0}" v-if="artworks.length" class="col">
         <div class="row">
           <div v-for="artwork in artworks" :key="artwork.id" class="col-6 col-md-4  col-xl-3">
             <a class="artwork" :href="'/artwork/'+artwork.id">
@@ -79,7 +79,7 @@
 
         </div>
       </div><!-- end col -->
-      <div class="d-none d-lg-block col-3 col-xl-2">
+      <div v-ani="{class:'fade-in-bottom', delay: 0}"  class="d-none d-lg-block col-3 col-xl-2">
         <div class="form-group mb-5">
           <input type="text" placeholder="Search" class="form-control">
         </div>

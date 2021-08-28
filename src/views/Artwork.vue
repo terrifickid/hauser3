@@ -1,11 +1,11 @@
 <template>
   <div id="Artwork" class="">
-      <Header :mode="1"></Header>
+
 
     <div v-if="artwork">
     <div class="bg-subtle-grey page" ref="scroller" v-on:scroll.passive="onScroll" style="height: 100vh; overflow: scroll;" >
+<Header :mode="1"></Header>
 
-<div style="height: 4rem;"></div>
         <div  class="container pb-5 pt-5">
           <div   class="row">
             <div class="d-none d-xl-block col-3 align-self-end ">
@@ -49,7 +49,7 @@
 
 <div class="artwork_images">
   <div class="container">
-<div class="d-none d-sm-block artwork col-8 offset-2" v-for="artwork in artwork.acf.artwork_images" :key="artwork.ID">
+<div class="d-none d-sm-block artwork col-6 offset-3" v-for="artwork in artwork.acf.artwork_images" :key="artwork.ID">
   <img :src="artwork.url" class="img-fluid">
 </div>
 </div>

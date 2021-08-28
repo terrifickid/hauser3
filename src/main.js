@@ -12,14 +12,49 @@ Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 import './app.scss';
 
-import VueSticky  from 'vue-sticky'; // Es6 module
+
+import VueAnimate from 'vue-animate-scroll'
+
+Vue.use(VueAnimate)
+
+
+
+// Register a global custom directive called `v-focus`
+Vue.directive('ani', {
+  // When the bound element is inserted into the DOM...
+  inserted: function (el,binding) {
+
+  el.style.visibility = 'hidden';
+
+
+      let isInViewPort = function() {
+
+        // Get the bounding client rectangle position in the viewport
+        var bounding = el.getBoundingClientRect();
+            
+        if (bounding.bottom > 0 && bounding.top < window.innerHeight) {
+            console.log('In the viewport! :)');
+            setTimeout(()=>{
+              el.classList.add(binding.value.class);
+              el.style.visibility = 'visible';
+            }, binding.value.delay);
+
+            return true;
+        } else {
+            console.log('Not in the viewport. :(');
+            el.classList.remove(binding.value.class);
+            el.style.visibility = 'hidden';
+            return false;
+        }
+      }
+      window.addEventListener("scroll", isInViewPort);
+      isInViewPort();
+  }
+})
 
 
 new Vue({
   router,
   store,
-  directives: {
-  'sticky': VueSticky,
-},
   render: function (h) { return h(App) }
 }).$mount('#app')

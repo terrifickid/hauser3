@@ -5,15 +5,15 @@
       <div style="padding:8vw 0 1rem 0">
       <div class="row d-flex align-items-center">
         <div class="col-sm-6 col-lg-3 d-none d-md-block">
-          <div class="pad-right">
+          <div v-ani="{class:'fade-in-bottom', delay: 500}" class="pad-right">
           <h3 class="mb-5">David Smith</h3>
           <p>Zig I</p>
           <p>A beautiful sculpture one of the foremost artists of the twentieth century</p>
             <button class="btn btn-outline-dark btn-block">View details</button>
           </div>
         </div>
-        <div class="col"><img class="img-fluid" src="../assets/ap1.png"></div>
-        <div class="col-3 d-none d-lg-block text-right thumb">
+        <div v-ani="{class:'scale-up-center', delay: 0}" class="col"><img class="img-fluid" src="../assets/ap1.png"></div>
+        <div v-ani="{class:'fade-in-bottom', delay: 600}" class="col-3 d-none d-lg-block text-right thumb">
           <img src="../assets/ap5.jpg" class="img-fluid"><br>
           <img src="../assets/ap5.jpg" class="img-fluid"><br>
           <img src="../assets/ap5.jpg" class="img-fluid"><br>
@@ -50,7 +50,7 @@
 export default {
   name: 'FeaturedArtworks',
   components: {
-  
+
   }
 }
 </script>

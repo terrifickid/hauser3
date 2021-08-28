@@ -1,6 +1,6 @@
 <template>
   <div>
-  <div v-bind:class="{ 'invert': mode }" id="hauser_header">
+  <div v-bind:class="{ 'invert': mode }" id="hauser_header" v-ani="{class:'fade-in-top', delay: 0}">
     <div class="container">
       <div class="row pt-5">
         <div class="col"><a href="/"><img id="hlogo" class="img-fluid" src="../assets/hauser-logo.svg"></a></div><!-- end col -->
@@ -63,9 +63,9 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+<!-- Add "scoped" attribute to limit CSS to this component only #hauser_header{position: fixed; width: 100%; z-index: 3000;} s-->
 <style scoped lang="scss">
-#hauser_header{position: fixed; width: 100%; z-index: 3000;}
+#hauser_header{position: relative; z-index: 2000;}
 ul{list-style:  none; margin:0; padding:0;}
 li{display: inline-block; margin: 0 2rem;}
 a{color: white;}

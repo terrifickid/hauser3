@@ -1,12 +1,12 @@
 <template>
-  <div>
-    <h1 class="text-center" style="padding: 16rem 0">Featured artworks</h1>
+  <div style="padding: 16rem 0">
+    <h1 v-ani="{class:'fade-in-bottom', delay: 0}" class="text-center" ><span >Featured artworks</span></h1>
   </div><!-- -->
 </template>
 
 <script>
 export default {
-  name: 'Featured Artwork',
+  name: 'FeaturedArtwork',
 }
 </script>
 
