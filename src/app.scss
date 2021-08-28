@@ -19,13 +19,19 @@ h1,h2,h3,h4,h5{font-family: "newtransport-medium";}
 .fnormal{font-family: 'newtransport-regular';}
 .fbold{font-family: 'newtransport-medium';}
 a{cursor: pointer;}
-
+.btn{border-radius: 0!important; font-family: 'newtransport-regular' !important; font-weight: normal !important;}
+.btn-md{padding:0.75rem 0 0.5rem 0;}
+.btn-outline-dark:hover{color: white !important;}
+.btn-outline-dark:hover img{filter: invert(100%);}
+.btniconfix{position: relative; top: -2px;}
 h5{font-size: 16px;}
 .hero-pad{padding: 10vw 0;}
 .pad-right{ padding-right: 4rem;}
 .subtle-grey{}
 .fullscreen-modal{background: white; position: fixed; top:0; left:0; right:0; bottom:0;}
 
+.circlelink{background: #ececec; border-radius: 200px; padding: 14px 14px 13px 14px; font-size: 16px;}
+.circlelink *{position: relative; top: 2px;}
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: black;
   opacity: 1; /* Firefox */

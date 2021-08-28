@@ -1,48 +1,62 @@
 <template>
   <div id="heroArtwork">
-  <lottie-player
-  autoplay
-  loop
-  mode="normal"
-  v-bind:src="url"
-  id="testp"
-  ref="lottiePlayer"
-></lottie-player>
-
+    <div ref="lottie"></div>
+<div style="position: fixed: top: 0">D{{scroll}}</div>
 </div>
 </template>
 
 <script>
-import LottiePlayer from "@lottiefiles/lottie-player";
-import { create } from '@lottiefiles/lottie-interactivity';
+//import LottiePlayer from "@lottiefiles/lottie-player";
+//import { create } from '@lottiefiles/lottie-interactivity';
 export default {
   name: 'Lottie',
   components:{
-    LottiePlayer
+    //LottiePlayer
   },
   props: {
     url: String
   },
+  data: function(){
+    return{
+      scroll: null,
+      loaded: false
+    }
+  },
+  methods:{
+    handleScroll(){
+        console.log('scroll');
+    },
+    play(lot){
+      lot.play();
+    }
+  },
   mounted: function(){
 
-    this.$refs.lottiePlayer.addEventListener('load', function () {
-    console.log('loaded!');
-
-    create({
-      mode: 'scroll',
-      player: '#testp',
-      actions: [
-        {
-          visibility: [0, 1],
-          type: 'seek',
-          frames: [0, 100],
-        },
-      ],
+    var lot = window.lottie.loadAnimation({
+      container: this.$refs.lottie, // the dom element that will contain the animation
+      renderer: 'svg',
+      loop: true,
+      autoplay: false,
+      path: this.url// the path to the animation json
     });
 
-
+  lot.addEventListener('data_ready', function () {
+    console.log('loaded');
+    var frame = 1;
+    var duration = lot.getDuration(true);
+    var oldScrollY = window.scrollY;
+    var mod = 0;
+    document.addEventListener('scroll', function() {
+      if(window.scrollY > oldScrollY) mod = 1;
+      if(window.scrollY < oldScrollY) mod = -1;
+      oldScrollY = window.scrollY;
+      console.log( duration );
+      lot.goToAndStop(frame, true);
+      frame = frame + mod;
+      if(frame == duration) frame = 0;
+      if(frame == 0) frame = duration;
     });
-
+  });
 
 
 

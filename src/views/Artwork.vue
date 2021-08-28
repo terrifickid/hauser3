@@ -1,10 +1,11 @@
 <template>
   <div  id="Artwork">
     <div v-if="artwork">
-    <div class="bg-subtle-grey">
+    <div class="bg-subtle-grey" style="position: sticky; top:0; z-index: 1000;" >
+
         <Header :mode="1"></Header>
-        <div   class="container pb-5 pt-5">
-          <div class="row d-flex align-items-center">
+        <div  class="container pb-5 pt-5">
+          <div   class="row d-flex align-items-center">
             <div class="d-none d-xl-block col-3 align-self-end ">
               <div class="row d-flex align-items-center">
                 <div class="col-2"><a class="avatar" v-bind:style="{'background-image': 'url('+artwork.acf.hero_audio_avatar.url+')'}"></a></div>
@@ -42,6 +43,7 @@
 
 </div>
 
+<div style="height: 1000px;"></div>
 <div class="artwork_images">
   <div class="container">
 <div class="d-none d-sm-block artwork col-8 offset-2" v-for="artwork in artwork.acf.artwork_images" :key="artwork.ID">
@@ -165,6 +167,8 @@ export default{
     Lottie
   },
   mounted: async function() {
+
+
   try {
         const resp = await axios.get(process.env.VUE_APP_URI+'wp-json/wp/v2/hauser_artworks/'+this.$route.params.id);
         this.artwork = resp.data;
@@ -175,7 +179,7 @@ export default{
   },
   data: function() {
     return {
-      artwork: null
+      artwork: null,
     }
   }
 }
