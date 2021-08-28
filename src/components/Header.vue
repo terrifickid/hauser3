@@ -1,6 +1,6 @@
 <template>
   <div>
-  <div  id="hauser_header" >
+  <div v-bind:class="{invert: mode}" id="hauser_header" >
     <div class="container">
       <div class="row pt-5">
         <div v-ani="{class:'fade-in-top', delay: 0}" class="col"><a href="/"><img id="hlogo" class="img-fluid" src="../assets/hauser-logo.svg"></a></div><!-- end col -->
@@ -77,5 +77,5 @@ a{color: white;}
 .menu-modal ul a{color: black;}
 .menu-modal ul li{display: block; margin:1rem 0; font-size: 2rem;}
 #desktopMenu a:hover{color: white;}
-.invert #hlogo, .invert #desktopMenu, .invert .icons{filter: brightness(0%);}
+.invert #hlogo, .invert #desktopMenu, .invert .icons a{filter: brightness(0%);}
 </style>

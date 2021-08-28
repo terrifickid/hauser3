@@ -1,10 +1,12 @@
 <template>
   <div>
     <div class="hero-pad bg-subtle-grey">
-      <div class="container">
+      <div class="container" style="position: relative;">
+        <div v-ani="{class:'grow-in-top', delay: 0}" style="position: absolute; left: 50%; min-height:100%; border-left: 1px solid black;"></div>
       <div class="row">
-      <div class="col-12 col-md-6"><h1 >About<br class="d-none d-md-inline"> Hauser & Wirth</h1><div class="mb-4 d-md-none"></div></div>
-      <div class="col">
+      <div v-ani="{class:'slide-in-left', delay: 0}" class="col-12 col-md-5"><h1 >About<br class="d-none d-md-inline"> Hauser & Wirth</h1><div class="mb-4 d-md-none"></div></div>
+      <div class="col-2"></div>
+      <div v-ani="{class:'slide-in-right', delay: 0}" class="col-5">
   <p>Hauser & Wirth was founded in 1992 in Zurich by Iwan Wirth, Manuela Wirth and Ursula Hauser, who were joined in 2000 by Partner and President Marc Payot. A family business with a global outlook, Hauser & Wirth has expanded over the past 27 years to include outposts in Hong Kong, London, New York, Los Angeles, Somerset, Gstaad and St. Moritz.</p>
   <p>The gallery represents over 75 artists and estates who have been instrumental in shaping its identity over the past quarter century, and who are the inspiration for Hauser & Wirth’s diverse range of activities that engage with art, education, conservation and sustainability.</p>
   </div>

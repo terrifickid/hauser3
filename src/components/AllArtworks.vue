@@ -1,15 +1,15 @@
 <template>
   <div class="hero-pad">
     <div class="container">
-    <div class="row mb-4">
-      <div class="col"><h4>All artworks</h4></div>
-      <div class="d-lg-none col text-right"><img src="../assets/sliders.svg"></div>
-      <div class="col-12 d-lg-none">  <div class="form-group mt-4">
-          <input type="text" placeholder="Search" class="form-control">
-        </div></div>
+    <div v-ani="{class:'fade-in-bottom', delay: 0}"   class="row mb-4 d-flex align-items-top">
+      <div class="col-6 col-lg-9 col-xl-10"><h4>All artworks</h4></div>
+      <div class="col-6 d-lg-none text-right"><img class="d-lg-none" src="../assets/sliders.svg"></div>
+      <div class="col-12 col-lg-3 col-xl-2"><input type="text" placeholder="Search" class="form-control"></div>
+
+
     </div><!-- end row -->
     <div class="row mt-5">
-      <div v-ani="{class:'fade-in-bottom', delay: 0}"  class="d-none d-lg-block col-3 col-xl-2">
+      <div v-ani="{class:'fade-in-bottom', delay: 100}"  class="d-none d-lg-block col-3 col-xl-2">
         <ul>
           <li>
             <a v-b-toggle.p-1 >
@@ -63,9 +63,9 @@
 
       </div><!-- end col -->
 
-      <div v-ani="{class:'fade-in-bottom', delay: 0}" v-if="artworks.length" class="col">
+      <div v-ani="{class:'fade-in-bottom', delay: 100}"  v-if="artworks.length" class="col">
         <div class="row">
-          <div v-for="artwork in artworks" :key="artwork.id" class="col-6 col-md-4  col-xl-3">
+          <div v-for="artwork in artworks" :key="artwork.id" class="col-6 col-md-4   col-xl-3">
             <a class="artwork" :href="'/artwork/'+artwork.id">
             <img class="img-fluid mb-4" :src="artwork.acf.hero_image.url">
             <p class="fbold">{{artwork.artist.name}}</p>
@@ -79,10 +79,8 @@
 
         </div>
       </div><!-- end col -->
-      <div v-ani="{class:'fade-in-bottom', delay: 0}"  class="d-none d-lg-block col-3 col-xl-2">
-        <div class="form-group mb-5">
-          <input type="text" placeholder="Search" class="form-control">
-        </div>
+      <div v-ani="{class:'fade-in-bottom', delay: 100}"  class="d-none d-lg-block col-3 col-xl-2">
+
         <ul>
         <li><a v-b-toggle.p-3 >
           <b-icon v-show="!p3" icon="plus"/>
@@ -99,6 +97,8 @@
         </ul>
       </div><!-- end col -->
     </div><!-- end row -->
+    <div class="row"><div class="col text-center"><a class="btn btn-md btn-outline-dark">Load 20 more</a></div></div><!-- end row -->
+
   </div>
   </div><!-- -->
 </template>

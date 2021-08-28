@@ -20,9 +20,10 @@
         <div class="container">
           <div class="pad">
             <div class="col-12 col-md-10 offset-md-1">
-            <h2 v-ani="{class:'fade-in-bottom', delay: 800}" class="fnormal mb-5">13 — 26 September, 2021</h2>
-            <h1 v-ani="{class:'fade-in-bottom', delay: 900}">Hauser & Wirth<br>at Art Basel</h1>
-            <h2 v-ani="{class:'fade-in-bottom', delay: 1000}"><a href="#"><b-icon class="mr-1" icon="play-circle"/> Join us at Basel</a></h2>
+            <h2 v-ani="{class:'fade-in-bottom', delay: 1000}" class="fnormal mb-5">13 — 26 September, 2021</h2>
+            <h1 v-ani="{class:'fade-in-bottom', delay: 1200}">Hauser & Wirth</h1>
+            <h1 v-ani="{class:'fade-in-bottom', delay: 1400}">at Art Basel</h1>
+            <h2 v-ani="{class:'fade-in-bottom', delay: 2000}"><a href="#"><b-icon class="mr-1" icon="play-circle"/> Join us at Basel</a></h2>
           </div>
           </div>
         </div>
@@ -34,6 +35,7 @@
       <FeaturedArtworks></FeaturedArtworks>
       <AllArtworks></AllArtworks>
       <AboutHauser></AboutHauser>
+
 
 <Footer></Footer>
     </div><!-- end hauser_home -->
@@ -73,6 +75,8 @@ h1{font-size: 5rem;}
     background-color: black;
     background-size: cover;
     height: 100vh;
+    width: 100%;
+    overflow: hidden;
   }
   a, a:hover{color: white;}
 .pad{padding: 4rem 0 8rem 0;}

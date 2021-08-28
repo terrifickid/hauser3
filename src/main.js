@@ -13,11 +13,6 @@ Vue.use(IconsPlugin);
 import './app.scss';
 
 
-import VueAnimate from 'vue-animate-scroll'
-
-Vue.use(VueAnimate)
-
-
 
 // Register a global custom directive called `v-focus`
 Vue.directive('ani', {
@@ -32,8 +27,8 @@ Vue.directive('ani', {
         // Get the bounding client rectangle position in the viewport
         var bounding = el.getBoundingClientRect();
 
-        if (bounding.bottom > -10 && bounding.top < window.innerHeight) {
-            console.log('In the viewport! :)');
+        if (bounding.bottom > -10 && bounding.top < window.innerHeight - 100 || bounding.bottom < 0) {
+            //console.log('In the viewport! :)');
             setTimeout(()=>{
               el.classList.add(binding.value.class);
               el.style.visibility = 'visible';
@@ -41,9 +36,9 @@ Vue.directive('ani', {
 
             return true;
         } else {
-            console.log('Not in the viewport. :(');
-            el.classList.remove(binding.value.class);
-            el.style.visibility = 'hidden';
+            //console.log('Not in the viewport. :(');
+            //el.classList.remove(binding.value.class);
+            //el.style.visibility = 'hidden';
             return false;
         }
       }
