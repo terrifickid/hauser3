@@ -15,6 +15,7 @@
 
   </div><!-- end hero-ad -->
   <div class="d-md-none">
+
     <img src="../assets/ap3.jpg" class="img-fluid">
     <div class="container">
       <div class="col-10 offset-1">
@@ -24,12 +25,24 @@
   </div>
   <div class="hero-pad">
 
-    <div class="container">
-      <div class="row">
-
-        <div class="d-none d-md-block col-md-10 offset-md-1">
-          <img src="../assets/ap3.jpg" class="img-fluid">
-          <h3 style="margin-top: 4rem; margin-bottom: 6rem;" class="font-bold">Hauser & Wirth is a leading international contemporary and modern art gallery with spaces in Zurich, London, Somerset, New York, Los Angeles, Hong Kong, Gstaad and St. Moritz.</h3>
+    <div class="container-fluid">
+      <div class="row d-flex align-items-center">
+        <div class="d-none d-md-block col-md-8 offset-2">
+          <template v-for="(video, index) in master.video" >
+              <div  v-ani="{class:'scale-up-center', delay: 0}"  v-show="selVid == index" :key="index">
+                <h2 class="mb-4" >{{video.title}}</h2>
+                <div  class=" embed-responsive embed-responsive-16by9">
+                  <iframe class="embed-responsive-item" :src="video.video_url"></iframe>
+                </div>
+                <p class="pt-4">{{video.caption}}</p>
+              </div>
+          </template>
+        </div>
+        <div class="col text-right">
+          <a v-bind:class="{selected: selVid == index }" @click="selVid = index" v-for="(video, index) in master.video" :key="index" class="mb-2" style="display: inline-block; height: 75px; width: 100px; background: #eee">link</a>
+        </div>
+        <div v-ani="{class:'fade-in-bottom', delay: 0}" class="col-12 col-md-8 offset-2">
+            <h3 style="margin-top: 4rem; margin-bottom: 6rem;" class="font-bold">Hauser & Wirth is a leading international contemporary and modern art gallery with spaces in Zurich, London, Somerset, New York, Los Angeles, Hong Kong, Gstaad and St. Moritz.</h3>
         </div>
       </div><!-- end row-->
 
@@ -59,7 +72,17 @@
 
 <script>
 export default{
-  name:'AboutHauser'
+  name:'AboutHauser',
+  data: function(){
+    return{
+      selVid: 0
+    }
+  },
+  computed:{
+    master () {
+      return this.$store.state.master;
+    },
+  }
 
 }
 </script>

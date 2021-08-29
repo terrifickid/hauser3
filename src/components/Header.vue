@@ -12,9 +12,9 @@
           </ul>
         </div><!-- end col -->
         <div v-ani="{class:'fade-in-top', delay: 0}" class="col icons text-right">
-          <a herf="#"><img src="../assets/heart.svg"></a>
+          <a href="#"><img src="../assets/heart.svg"></a>
           <a herf="#"><img src="../assets/person.svg"></a>
-          <a @click="menuModal = !menuModal"><img src="../assets/menu.svg"></a>
+          <a  @click="menuModal = !menuModal"><img src="../assets/menu.svg"></a>
 
         </div><!-- end col -->
       </div><!-- end row -->
@@ -30,9 +30,9 @@
         <div class="row" >
           <div class="col" style="position: relative;">
             <ul style="position: absolute; top: 25vh;">
-              <li><a class="fbold" href="#">Featured</a></li>
-              <li><a class="fbold" href="#">All Artworks</a></li>
-              <li><a class="fbold"  href="#">About gallery</a></li>
+              <li><a class="fbold" @click="navigate('#featured')">Featured</a></li>
+              <li><a class="fbold" @click="navigate('#allartworks')">All Artworks</a></li>
+              <li><a class="fbold" @click="navigate('#aboutgallery')" >About gallery</a></li>
             </ul>
 
 
@@ -64,6 +64,7 @@ export default {
     navigate(t){
 
       if(this.currentRouteName == 'Home'){
+          this.menuModal = false;
         document.querySelector(t).scrollIntoView({
             behavior: 'smooth'
         });
@@ -79,7 +80,7 @@ export default {
     }
   },
   mounted(){
-  
+
     document.querySelectorAll('a[href^="/#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -97,9 +98,8 @@ export default {
 ul{list-style:  none; margin:0; padding:0;}
 li{display: inline-block; margin: 0 2rem;}
 a{color: white;}
-.icons img{padding-right: 1rem; }
-.fullscreen-modal{z-index: 100; overflow: hidden; height:0; visibility: hidden;  transition:  height 0.25s ease, visibility 0.25s, opacity 0.25s ease;}
-.active{visibility: visible; height: 100%; opacity: 1; }
+.icons img{padding-left: 1rem; }
+
 .menu-modal{color: black; }
 .menu-modal ul{}
 .menu-modal ul a{color: black;}

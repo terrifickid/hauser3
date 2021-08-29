@@ -5,12 +5,11 @@
     <div v-ani="{class:'fade-in-bottom', delay: 0}"   class="row mb-4 d-flex align-items-top">
       <div class="col-6 col-lg-9 col-xl-10"><h4>All artworks</h4></div>
       <div class="col-6 d-lg-none text-right"><img class="d-lg-none" src="../assets/sliders.svg"></div>
-      <div class="col-12 col-lg-3 col-xl-2"><input type="text" placeholder="Search" class="form-control"></div>
+      <div class="col-12 col-lg-3 col-xl-2"><input type="text" v-model="searchFilter" placeholder="Search" class="form-control"></div>
 
 
     </div><!-- end row -->
 
-  
     <div class="row mt-5">
       <div v-ani="{class:'fade-in-bottom', delay: 100}"  class="d-none d-lg-block col-3 col-xl-2">
         <ul>
@@ -56,11 +55,12 @@
               </ul>
             </b-collapse></li>
         </ul>
-
+        <a @click="clearFilters()" v-show="priceFilter.length || artistFilter.length || mediumFilter.length"><b-icon  icon="x"/> Clear</a>
       </div><!-- end col -->
 
       <div v-ani="{class:'fade-in-bottom', delay: 100}"  v-if="artworks.length" class="col">
         <div class="row">
+          <p v-if="!filteredArtworks.length">Nothing found.</p>
           <div v-for="artwork in filteredArtworks" :key="artwork.id" class="col-6 col-md-4   col-xl-3">
             <a class="artwork" :href="'/artwork/'+artwork.id">
             <img class="img-fluid mb-4" :src="artwork.acf.hero_image.url">
@@ -78,19 +78,22 @@
       <div v-ani="{class:'fade-in-bottom', delay: 100}"  class="d-none d-lg-block col-3 col-xl-2">
 
         <ul>
-        <li><a v-b-toggle.p-3 >
-          <b-icon v-show="!p3" icon="plus"/>
-          <b-icon v-show="p3" icon="dash"/>
+        <li><a v-b-toggle.p-sort >
+          <b-icon v-show="!psort" icon="plus"/>
+          <b-icon v-show="psort" icon="dash"/>
           Sort by</a>
           <b-collapse id="p-sort" v-model="psort"   class="mt-2">
             <ul class="child">
-              <li><a>Price: High to low</a></li>
-              <li><a @click="sortBy[0] = priceLow">Price: Low to high</a></li>
-              <li><a @click="sortBy[0] = alphaA">Alphabetically A — Z</a></li>
-              <li><a @click="sortBy[0] = alphaZ">Alphabetically Z — A</a></li>
+              <li><a v-bind:class="{selected: sortBy == 'priceHigh'}" @click="sortBy = 'priceHigh'">Price: High to low</a></li>
+              <li><a v-bind:class="{selected: sortBy == 'priceLow'}" @click="sortBy = 'priceLow'">Price: Low to high</a></li>
+              <li><a v-bind:class="{selected: sortBy == 'alphaA'}" @click="sortBy = 'alphaA'">Alphabetically A — Z</a></li>
+              <li><a v-bind:class="{selected: sortBy == 'alphaZ'}" @click="sortBy = 'alphaZ'">Alphabetically Z — A</a></li>
             </ul>
           </b-collapse></li>
         </ul>
+
+          <a @click="clearSort()" v-show="sortBy"><b-icon  icon="x"/> Clear</a>
+
       </div><!-- end col -->
     </div><!-- end row -->
     <div class="row"><div class="col text-center"><a class="btn btn-md btn-outline-dark">Load 20 more</a></div></div><!-- end row -->
@@ -103,6 +106,21 @@
 export default {
   name: 'AllArtworks',
   methods:{
+    clearFilters(){
+      this.priceFilter = [];
+      this.artistFilter = [];
+      this.mediumFilter = [];
+      this.searchFilter = '';
+      this.p1 = false;
+      this.p2 = false;
+      this.p3 = false;
+    },
+    clearSort(){
+      this.sortBy = false;
+
+      this.psort = false;
+
+    },
     addPriceRange(range){
       this.priceFilter = [];
       range.forEach((num) => {
@@ -143,9 +161,37 @@ export default {
         if(!this.mediumFilter.length)return true;
         if(this.mediumFilter.includes(artwork.hauser_mediums[0]))return true;
         return false;
+      }).filter((artwork) => {
+        console.log(artwork.title.rendered.search(this.searchFilter), this.searchFilter, artwork.title.rendered);
+        if(!this.searchFilter) return true;
+        if(artwork.title.rendered.toLowerCase().search(this.searchFilter.toLowerCase()) > -1) return true;
+        if(artwork.artist.name.toLowerCase().search(this.searchFilter.toLowerCase()) > -1) return true;
+        return false;
       });
 
-
+      if(this.sortBy) return filtered.sort((a, b) => {
+        var calc = 0;
+        switch(this.sortBy){
+          case 'priceHigh':
+            calc = b.acf.price - a.acf.price;
+          break;
+          case 'priceLow':
+            calc = a.acf.price - b.acf.price;
+          break;
+          case 'alphaA':
+            calc = 0;
+            if(a.title.rendered < b.title.rendered) { calc = -1; }
+            if(a.title.rendered > b.title.rendered) { calc = 1; }
+          break;
+          case 'alphaZ':
+            calc = 0;
+            if(a.title.rendered < b.title.rendered) { calc = 1; }
+            if(a.title.rendered > b.title.rendered) { calc = -1; }
+          break;
+        }
+        console.log(a, calc);
+        return calc;
+      });
 
       return filtered;
 
@@ -159,11 +205,13 @@ export default {
       artistFilter: [],
       priceFilter: [],
       mediumFilter: [],
-      sortBy: [],
+      searchFilter: null,
+      sortBy: false,
       p1: true,
       p2: false,
       p3: false,
-      psort: true
+      psort: true,
+
     }
   }
 
@@ -175,6 +223,7 @@ export default {
 <style scoped lang="scss">
 a.selected{text-decoration: underline !important;}
 a, a:hover{color: black;}
+a.artwork{text-decoration: none;}
 ul{list-style: none; padding:0; }
 ul.child{margin:0 0 1rem 19px;}
 .artwork{margin-bottom: 2rem; display: block;}

@@ -28,7 +28,21 @@ h5{font-size: 16px;}
 .hero-pad{padding: 10vw 0;}
 .pad-right{ padding-right: 4rem;}
 .subtle-grey{}
-.fullscreen-modal{background: white; position: fixed; top:0; left:0; right:0; bottom:0;}
+
+.fullscreen-modal{
+  background: white;
+  position: fixed;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index: 100;
+  overflow: hidden;
+  height:0;
+  visibility: hidden;
+  transition:  height 0.25s ease, visibility 0.25s, opacity 0.25s ease;
+}
+.fullscreen-modal.active{visibility: visible; height: 100%; opacity: 1; }
 
 .circlelink{background: #ececec; border-radius: 200px; padding: 14px 14px 13px 14px; font-size: 16px;}
 .circlelink *{position: relative; top: 2px;}
