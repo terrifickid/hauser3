@@ -6,9 +6,9 @@
         <div v-ani="{class:'fade-in-top', delay: 0}" class="col"><a href="/"><img id="hlogo" class="img-fluid" src="../assets/hauser-logo.svg"></a></div><!-- end col -->
         <div class="d-none d-xl-block col-6 text-center">
           <ul v-ani="{class:'fade-in-top', delay: 0}" id="desktopMenu">
-            <li><a href="#">Featured</a></li>
-            <li><a href="#">All Artworks</a></li>
-            <li><a href="#">About gallery</a></li>
+            <li><a @click="navigate('#featured')">Featured</a></li>
+            <li><a  @click="navigate('#allartworks')">All Artworks</a></li>
+            <li><a @click="navigate('#aboutgallery')" >About gallery</a></li>
           </ul>
         </div><!-- end col -->
         <div v-ani="{class:'fade-in-top', delay: 0}" class="col icons text-right">
@@ -59,6 +59,34 @@ export default {
     return {
       menuModal: false
     }
+  },
+  methods:{
+    navigate(t){
+
+      if(this.currentRouteName == 'Home'){
+        document.querySelector(t).scrollIntoView({
+            behavior: 'smooth'
+        });
+      }else{
+        window.location = '/'+t;
+      }
+
+    }
+  },
+  computed: {
+    currentRouteName() {
+        return this.$route.name;
+    }
+  },
+  mounted(){
+  
+    document.querySelectorAll('a[href^="/#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+
+    });
+});
   }
 }
 </script>
@@ -77,5 +105,5 @@ a{color: white;}
 .menu-modal ul a{color: black;}
 .menu-modal ul li{display: block; margin:1rem 0; font-size: 2rem;}
 #desktopMenu a:hover{color: white;}
-.invert #hlogo, .invert #desktopMenu, .invert .icons a{filter: brightness(0%);}
+.invert #hlogo, .invert #desktopMenu a, .invert .icons a{filter: brightness(0%);}
 </style>

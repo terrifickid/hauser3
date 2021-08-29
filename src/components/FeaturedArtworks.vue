@@ -1,55 +1,70 @@
 <template>
   <div>
-  <div class="bg-subtle-grey">
+<div >
+
+</div>
+
+  <div style="padding: 4rem 0 2rem 0" id="featured" class="bg-subtle-grey">
     <div class="container">
-      <div style="padding:8vw 0 1rem 0">
+
       <div class="row d-flex align-items-center">
-        <div class="col-sm-6 col-lg-3 d-none d-md-block">
-          <div v-ani="{class:'slide-in-left', delay: 600}" class="pad-right">
-          <h3 class="mb-5">David Smith</h3>
-          <p>Zig I</p>
-          <p>A beautiful sculpture one of the foremost artists of the twentieth century</p>
-            <button class="btn btn-outline-dark btn-block">View details</button>
-          </div>
+        <div style="height: 35rem;" class="col">
+          <template v-for="artwork in featuredArtworks" >
+            <FeaturedArtworkItem v-if="checkShow(artwork.id)" :key="artwork.id" :artwork="artwork"></FeaturedArtworkItem>
+          </template>
         </div>
-        <div v-ani="{class:'blur-in-center', delay: 0}" class="col"><img class="img-fluid" src="../assets/ap1.png"></div>
-        <div v-ani="{class:'fade-in-bottom', delay: 625}" class="col-3 d-none d-lg-block text-right thumb">
-          <img src="../assets/ap5.jpg" class="img-fluid"><br>
-          <img src="../assets/ap5.jpg" class="img-fluid"><br>
-          <img src="../assets/ap5.jpg" class="img-fluid"><br>
-          <img src="../assets/ap5.jpg" class="img-fluid"><br>
-
+        <div v-ani="{class:'fade-in-bottom', delay: 600}" class="col-3 d-none d-lg-block text-right thumb">
+          <ul>
+          <li  v-for="artwork in featuredArtworks" :ref="'l'+artwork.id" :key="artwork.id"><a @click="selId = artwork.id" ><img v-bind:class="{'selected': selId == artwork.id}" :src="artwork.acf.hero_image.sizes.thumbnail" width="64"></a></li>
+          </ul>
         </div>
 
       </div>
-    </div>
+
     </div>
 
   </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-12 d-md-none">
-        <h4 class="mb-3 mt-5">David Smith</h4>
-      </div>
-    </div>
-    <div class="row mb-5">
-      <div class="col-6 d-md-none">  <p>Zig I</p></div>
-      <div class="col-6 d-md-none text-right">  <p><a href="#">Explore <b-icon class="ml-2" icon="arrow-right"/></a></p></div>
-      <div class="col-12 d-md-none mobilethumb text-right">
-        <img src="../assets/ap5.jpg" class="img-fluid">
-        <img src="../assets/ap5.jpg" class="img-fluid">
-        <img src="../assets/ap5.jpg" class="img-fluid">
-        <img src="../assets/ap5.jpg" class="img-fluid">
-      </div>
-    </div>
-  </div>
+
 </div>
 </template>
 
 <script>
+import FeaturedArtworkItem from '@/components/FeaturedArtworkItem.vue';
 export default {
   name: 'FeaturedArtworks',
   components: {
+    FeaturedArtworkItem
+  },
+  props:{
+  
+  },
+  data: function(){
+    return{
+      selId: 0
+    }
+  },
+  computed:{
+    artworks () {
+      return this.$store.state.artworks;
+    },
+    featuredArtworks(){
+      if(this.artworks.length){
+        return this.artworks.filter(function(artwork){
+          if(artwork.acf.featured)   return true;
+        });
+      }
+      return [];
+    }
+  },
+  methods:{
+    checkShow(id){
+      if(!this.selId) this.selId = id;
+      if(this.selId == id) return true;
+      return false;
+
+    }
+  },
+  mounted(){
 
   }
 }
@@ -57,7 +72,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+.selected{border: 1px solid black; }
 a, a:hover{color: black;}
 .thumb img{margin-bottom: 1rem;}
 .mobilethumb img{margin-left: 1rem;}
+ul{list-style: none; margin:0; padding:0;}
+li{margin-bottom: 1rem;}
 </style>

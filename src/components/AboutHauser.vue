@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="aboutgallery">
     <div class="hero-pad bg-subtle-grey">
       <div class="container" style="position: relative;">
         <div v-ani="{class:'grow-in-top', delay: 0}" style="position: absolute; left: 50%; min-height:100%; border-left: 1px solid black;"></div>

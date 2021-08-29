@@ -47,6 +47,7 @@
 
 </style>
 <script>
+//import axios from 'axios';
 import Header from '@/components/Header.vue';
 import FeaturedArtworks from '@/components/FeaturedArtworks.vue';
 import FeaturedArtwork from '@/components/FeaturedArtwork.vue';
@@ -62,6 +63,40 @@ export default {
     AllArtworks,
     AboutHauser,
     Footer
+  },
+  data: function(){
+    return{
+      artworks: {},
+      master: {}
+    }
+  },
+  mounted: async function(){
+    /*
+    //Load Artworks
+    try {
+          const res = await axios.get(process.env.VUE_APP_URI+'wp-json/wp/v2/hauser_artworks/');
+          this.artworks = res.data;
+          console.log(this.artworks);
+      } catch (err) {
+          // Handle Error Here
+          console.error(err);
+      }
+
+    //Load Master
+    try {
+          const res = await axios.get(process.env.VUE_APP_URI+'wp-json/hauser/v1/master');
+          this.master = res.data;
+          console.log(this.master);
+      } catch (err) {
+          // Handle Error Here
+          console.error(err);
+      }
+      */
+
+
+
+
+
   }
 }
 </script>

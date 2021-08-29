@@ -1,8 +1,21 @@
 <template>
-  <div>
-    <div v-show="show" ref="lottie"></div>
+  <div style="min-height: 35rem;" class="row d-flex align-items-center">
+    <div class="col-4 d-none d-md-block">
+      <div v-ani="{class:'slide-in-left', delay: 600}" class="pad-right">
+
+      <h3 class="mb-5">{{artwork.artist.name}}</h3>
+      <p>{{artwork.title.rendered}}</p>
+      <p>{{artwork.acf.hero_description}}</p>
+        <a :href="'artwork/'+artwork.id" class="btn btn-md btn-outline-dark btn-block">View details</a>
+      </div>
+    </div>
+    <div  v-ani="{class:'blur-in-center', delay: 0}" class="col">
+      <div v-show="show">
+        <div  ref="lottie"></div>
+      </div>
+    </div>
+
   </div>
-</div>
 </template>
 
 <script>
@@ -11,7 +24,7 @@ export default {
   components:{
   },
   props: {
-    url: String,
+    artwork: {},
 
   },
   data: function(){
@@ -33,7 +46,7 @@ export default {
       renderer: 'svg',
       loop: true,
       autoplay: true,
-      path: this.url// the path to the animation json
+      path: this.artwork.acf.hero_3d_// the path to the animation json
     });
 
     lot.addEventListener('DOMLoaded', () => {

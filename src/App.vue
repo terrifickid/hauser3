@@ -7,7 +7,14 @@
     <router-view/>
   </div>
 </template>
-
+<script>
+export default{
+  mounted(){
+    this.$store.dispatch('loadArtworks');
+    this.$store.dispatch('loadMaster');
+  }
+}
+</script>
 <style lang="scss">
 
 </style>
