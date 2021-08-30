@@ -1,15 +1,15 @@
 <template>
   <div style="min-height: 35rem;" class="row d-flex align-items-center">
-    <div class="col-4 d-none d-md-block">
-      <div v-ani="{class:'slide-in-left', delay: 600}" class="pad-right">
-
+    <div class="col-12 order-last order-md-first col-md-4  d-md-block">
+      <div v-ani="{class:'slide-in-left', delay: 600}">
+        <div style="height: 2rem;" class="d-md-none"></div>
       <h3 class="mb-5">{{artwork.artist.name}}</h3>
       <p>{{artwork.title.rendered}}</p>
       <p>{{artwork.acf.hero_description}}</p>
         <a :href="'artwork/'+artwork.id" class="btn btn-md btn-outline-dark btn-block">View details</a>
       </div>
     </div>
-    <div  v-ani="{class:'blur-in-center', delay: 0}" class="col">
+    <div  v-ani="{class:'blur-in-center', delay: 0}" class="col ">
       <div v-show="show">
         <div  ref="lottie"></div>
       </div>

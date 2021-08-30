@@ -6,18 +6,16 @@
       <div v-bind:class="{ 'active': videoModal }" class="fullscreen-modal menu-modal">
         <div class="container">
           <div class="row d-flex align-items-center text-center" style="position: relative; height: 100vh;" >
-                <div style="position: absolute; right:0; top:2rem;"><div class="col"><a  @click="videoModal = !videoModal">Close</a></div></div>
+            <div style="position: absolute; right:0; top:2rem;">
+              <div class="col"><a  @click="videoModal = !videoModal">Close</a></div>
+            </div>
             <div class="col-12 col-md-10 offset-md-1" style="position: relative;">
-
-
-                <div class="embed-responsive embed-responsive-16by9">
-                  <iframe v-if="videoModal" class="embed-responsive-item" src="https://player.vimeo.com/video/587045806?badge=0&autopause=1&player_id=1&app_id=58479&h=b8d67fb774&controls=1&hd=1&fs=1&rel=0&modestbranding=1&autoplay=1&muted=1&loop=1" allowfullscreen></iframe>
-
+              <div class="embed-responsive embed-responsive-16by9">
+                <iframe v-if="videoModal" class="embed-responsive-item" :src="master.link_url" allowfullscreen></iframe>
               </div>
             </div>
           </div>
         </div>
-
       </div>
 
       <div v-ani="{class:'blur-in-center', delay: 0}"  id="bg">
@@ -29,7 +27,7 @@
     left: -25%;
     width: 150%;
     height: 100%;
-    background: #222;
+    background: black;
     border:0;
     " border=0 frameborder=0 src="https://player.vimeo.com/video/569446269?dnt=1&amp;app_id=122963&amp;h=5cd36b5e4f&amp;controls=0&amp;hd=1&amp;fs=1&amp;rel=0&amp;modestbranding=1&amp;autoplay=1&amp;muted=1&amp;autopause=0&amp;loop=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen=""></iframe>
 
@@ -37,10 +35,14 @@
         <div class="container">
           <div class="pad">
             <div class="col-12 col-md-10 offset-md-1">
-            <h2 v-ani="{class:'fade-in-bottom', delay: 1000}" class="fnormal mb-5">13 — 26 September, 2021</h2>
-            <h1 v-ani="{class:'fade-in-bottom', delay: 1200}">Hauser & Wirth</h1>
-            <h1 v-ani="{class:'fade-in-bottom', delay: 1400}">at Art Basel</h1>
-            <h2 v-ani="{class:'fade-in-bottom', delay: 2000}"><a @click="videoModal = !videoModal"><b-icon class="mr-1" icon="play-circle"/> Join us at Basel</a></h2>
+
+            <h2 v-ani="{class:'fade-in-bottom', delay: 1000}" class="fnormal mb-5">{{master.heading_1}}</h2>
+            <h1 v-ani="{class:'fade-in-bottom', delay: 1200}">{{master.heading_2}}</h1>
+            <h1 v-ani="{class:'fade-in-bottom', delay: 1400}">{{master.heading_3}}</h1>
+            <h2 v-ani="{class:'fade-in-bottom', delay: 2000}">
+              <a v-if="master.link_type == 'Video'" @click="videoModal = !videoModal"><b-icon class="mr-1" icon="play-circle"/> {{master.link_text}}</a>
+              <a v-if="master.link_type == 'Anchor'" @click="scrollTo(master.link_url)">{{master.link_text}}</a>
+            </h2>
           </div>
           </div>
         </div>
@@ -84,10 +86,22 @@ export default {
   },
   data: function(){
     return{
-      artworks: {},
-      master: {},
       videoModal: false,
     }
+  },
+  methods:{
+    scrollTo(t){
+
+        document.querySelector(t).scrollIntoView({
+            behavior: 'smooth'
+        });
+
+      }
+  },
+  computed:{
+    master () {
+      return this.$store.state.master;
+    },
   },
   mounted: async function(){
     /*

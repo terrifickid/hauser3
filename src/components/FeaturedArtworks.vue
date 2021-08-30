@@ -8,14 +8,16 @@
     <div class="container">
 
       <div class="row d-flex align-items-center">
-        <div style="height: 35rem;" class="col">
+
+        <div style="min-height: 35rem;" class="col-12 col-lg-9">
           <template v-for="artwork in featuredArtworks" >
             <FeaturedArtworkItem v-if="checkShow(artwork.id)" :key="artwork.id" :artwork="artwork"></FeaturedArtworkItem>
           </template>
         </div>
-        <div v-ani="{class:'fade-in-bottom', delay: 600}" class="col-3 d-none d-lg-block text-right thumb">
+
+        <div v-ani="{class:'fade-in-bottom', delay: 600}" class="d-none col-12 col-lg-3 d-lg-block text-right thumb">
           <ul>
-          <li  v-for="artwork in featuredArtworks" :ref="'l'+artwork.id" :key="artwork.id"><a @click="selId = artwork.id" ><img v-bind:class="{'selected': selId == artwork.id}" :src="artwork.acf.hero_image.sizes.thumbnail" width="64"></a></li>
+          <li v-for="artwork in featuredArtworks" :ref="'l'+artwork.id" :key="artwork.id"><a @click="selId = artwork.id" ><img v-bind:class="{'selected': selId == artwork.id}" :src="artwork.acf.hero_image.sizes.thumbnail" width="64"></a></li>
           </ul>
         </div>
 
@@ -36,7 +38,7 @@ export default {
     FeaturedArtworkItem
   },
   props:{
-  
+
   },
   data: function(){
     return{

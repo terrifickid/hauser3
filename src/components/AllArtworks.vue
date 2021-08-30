@@ -1,10 +1,61 @@
 <template>
   <div id="allartworks" class="hero-pad">
 
+    <div v-bind:class="{ 'active': filtersModal }" class="fullscreen-modal">
+      <div class="container" style="padding-top: 3rem; padding-bottom: 3rem;">
+        <div class="row"  >
+          <div class="col">  <h4 class="mb-4">Filters</h4></div>
+          <div class="col text-right"><a  @click="filtersModal = !filtersModal">Close</a></div>
+          <div class="col-12">
+            <ul>
+              <li>
+
+                  <b class="fbold pb-3">Artist</b>
+
+                  <ul class="child">
+                    <li><a  v-bind:class="{selected: !artistFilter.length}" @click="artistFilter = []">All</a></li>
+                    <li v-for="artist in master.artists" :key="artist.term_id"><a v-bind:class="{selected: artistFilter.includes(artist.term_id)}" @click="toggleArrayItem(artistFilter, artist.term_id)">{{artist.name}}</a></li>
+
+                  </ul>
+
+              </li>
+              <li>
+
+                  <b class="fbold pb-3">Price</b>
+
+                  <ul class="child">
+                    <li><a  v-bind:class="{selected: !priceFilter.length}" @click="priceFilter = []">All</a></li>
+                    <li><a v-bind:class="{selected: Math.max(...this.priceFilter) == 15000}" @click="addPriceRange([0, 15000])">Under $15,000</a></li>
+                    <li><a v-bind:class="{selected:  Math.max(...this.priceFilter) == 50000}" @click="addPriceRange([15000, 50000])">$15,000-50,000</a></li>
+                    <li><a v-bind:class="{selected:  Math.max(...this.priceFilter) == 100000}" @click="addPriceRange([50001, 100000])">$50,001-100,000</a></li>
+                    <li><a v-bind:class="{selected:  Math.max(...this.priceFilter) == 250000}" @click="addPriceRange([100001, 250000])">$100,001-250,000</a></li>
+                    <li><a v-bind:class="{selected:  Math.max(...this.priceFilter) == 500000}" @click="addPriceRange([250001, 500000])">$250,001-500,000</a></li>
+                    <li><a v-bind:class="{selected:  Math.max(...this.priceFilter) == 1000000}" @click="addPriceRange([500001, 1000000])">$500,001-1,000,000</a></li>
+                    <li><a v-bind:class="{selected:  Math.max(...this.priceFilter) == 1000001}" @click="addPriceRange([1000001, 99999999999])">Above $1,000,000</a></li>
+                  </ul>
+              </li>
+              <li>
+
+                <b class="fbold pb-3">Medium</b>
+
+                  <ul class="child">
+                    <li v-for="medium in master.mediums" :key="medium.term_id">
+                      <a v-bind:class="{selected: mediumFilter.includes(medium.term_id)}" @click="toggleArrayItem(mediumFilter, medium.term_id)">{{medium.name}}</a>
+                    </li>
+                  </ul>
+              </li>
+            </ul>
+          </div>
+        </div><!-- end row -->
+
+      </div>
+    </div>
+
+
     <div class="container">
     <div v-ani="{class:'fade-in-bottom', delay: 0}"   class="row mb-4 d-flex align-items-top">
       <div class="col-6 col-lg-9 col-xl-10"><h4>All artworks</h4></div>
-      <div class="col-6 d-lg-none text-right"><img class="d-lg-none" src="../assets/sliders.svg"></div>
+      <div class="col-6 d-lg-none text-right"><a @click="filtersModal = !filtersModal"><img class="d-lg-none" src="../assets/sliders.svg"></a></div>
       <div class="col-12 col-lg-3 col-xl-2"><input type="text" v-model="searchFilter" placeholder="Search" class="form-control"></div>
 
 
@@ -60,7 +111,7 @@
 
       <div v-ani="{class:'fade-in-bottom', delay: 100}"  v-if="artworks.length" class="col">
         <div class="row">
-          <p v-if="!filteredArtworks.length">Nothing found.</p>
+          <div v-if="!filteredArtworks.length" class="col-6 col-md-4 col-xl-3"><p>Nothing found.</p></div>
           <div v-for="artwork in filteredArtworks" :key="artwork.id" class="col-6 col-md-4   col-xl-3">
             <a class="artwork" :href="'/artwork/'+artwork.id">
             <img class="img-fluid mb-4" :src="artwork.acf.hero_image.url">
@@ -68,8 +119,10 @@
             <p>{{artwork.title.rendered}}<br>
 
               ${{artwork.acf.price}}</p>
-              <p><a href="#">  <b-icon  icon="heart"/></a></p>
+
             </a>
+
+            <p><a @click="toggleFavorite(artwork.id)"><img v-show="!favorites.includes(artwork.id)" src="../assets/favoriteIcon.svg"><img v-show="favorites.includes(artwork.id)" src="../assets/favoriteIconSel.svg"></a></p>
           </div>
 
 
@@ -127,6 +180,9 @@ export default {
         this.toggleArrayItem(this.priceFilter, num);
       });
     },
+    toggleFavorite(id){
+      this.$store.commit('toggleFavorite', id);
+    },
     toggleArrayItem(a, v) {
       var i = a.indexOf(v);
       if (i === -1)
@@ -141,6 +197,9 @@ export default {
 
   },
   computed:{
+    favorites () {
+      return this.$store.state.favorites;
+    },
     artworks () {
       return this.$store.state.artworks;
     },
@@ -211,7 +270,7 @@ export default {
       p2: false,
       p3: false,
       psort: true,
-
+      filtersModal: false,
     }
   }
 
@@ -226,5 +285,7 @@ a, a:hover{color: black;}
 a.artwork{text-decoration: none;}
 ul{list-style: none; padding:0; }
 ul.child{margin:0 0 1rem 19px;}
-.artwork{margin-bottom: 2rem; display: block;}
+.fullscreen-modal ul.child{margin: 0 0 1rem 0}
+.artwork{margin-bottom: 1rem; display: block;}
+.fullscreen-modal b.fbold{display: block;}
 </style>

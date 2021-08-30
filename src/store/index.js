@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     artworks: [],
     master: {},
+    favorites:[],
   },
   getters:{
     artworks: state => {
@@ -14,16 +15,32 @@ export default new Vuex.Store({
     },
     master: state => {
       return state.master;
+    },
+    favorites: state => {
+      return state.favorites;
     }
   },
   mutations: {
+    initialiseStore(state) {
+      if (localStorage.getItem('favorites')) {
+        state.favorites = JSON.parse(localStorage.getItem('favorites'));
+      }
+    },
     setArtworks (state, artworks) {
       state.artworks = artworks
     },
     setMaster (state, master) {
       state.master = master
+    },
+    toggleFavorite (state, id) {
+      var i = state.favorites.indexOf(id);
+      if (i === -1){
+        state.favorites.push(id);
+      }else{
+        state.favorites.splice(i,1);
+      }
+      localStorage.setItem('favorites', JSON.stringify(state.favorites));
     }
-
   },
   actions: {
     async loadArtworks({ commit }) {

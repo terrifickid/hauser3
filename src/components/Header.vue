@@ -12,7 +12,7 @@
           </ul>
         </div><!-- end col -->
         <div v-ani="{class:'fade-in-top', delay: 0}" class="col icons text-right">
-          <a href="#"><img src="../assets/heart.svg"></a>
+          <a href="/favorites"><img src="../assets/heart.svg"></a>
           <a herf="#"><img src="../assets/person.svg"></a>
           <a  @click="menuModal = !menuModal"><img src="../assets/menu.svg"></a>
 

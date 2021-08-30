@@ -25,7 +25,7 @@ a{cursor: pointer;}
 .btn-outline-dark:hover img{filter: invert(100%);}
 .btniconfix{position: relative; top: -2px;}
 h5{font-size: 16px;}
-.hero-pad{padding: 10vw 0;}
+.hero-pad{padding: 6rem 0;}
 .pad-right{ padding-right: 4rem;}
 .subtle-grey{}
 
@@ -36,7 +36,7 @@ h5{font-size: 16px;}
   left:0;
   right:0;
   bottom:0;
-  z-index: 100;
+  z-index: 3000;
   overflow: hidden;
   height:0;
   visibility: hidden;

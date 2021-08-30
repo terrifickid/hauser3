@@ -1,9 +1,7 @@
 <template>
   <div id="heroArtwork">
-
-    <div v-show="show" style="position: fixed; left: 0; width: 100%; border: 1px solid transparent;" ref="lottie"></div>
-
-</div>
+    <div v-bind:class="{showIt: show, 'fade-in-bottom': show}" style="position: fixed; visibility: hidden; left: 0; width: 100%; border: 1px solid transparent;" ref="lottie"></div>
+  </div>
 </template>
 
 <script>
@@ -21,7 +19,7 @@ export default {
       scroll: null,
       loaded: false,
       lottie: null,
-      show: true,
+      show: false,
       frame: 1,
       duration: 0,
     }
@@ -78,6 +76,7 @@ export default {
       this.resize();
       this.lottie = lot;
       this.duration = lot.getDuration(true);
+      this.show = true;
     });
 
 
@@ -94,5 +93,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-
+.showIt{visibility: visible !important;}
 </style>

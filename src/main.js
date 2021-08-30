@@ -11,6 +11,8 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 import './app.scss';
+import 'vue-inner-image-zoom/lib/vue-inner-image-zoom.css';
+
 
 
 
@@ -51,5 +53,6 @@ Vue.directive('ani', {
 new Vue({
   router,
   store,
+  beforeCreate() { this.$store.commit('initialiseStore');},
   render: function (h) { return h(App) }
 }).$mount('#app')

@@ -1,44 +1,72 @@
 <template>
   <div id="Artwork" class="">
 
+    <div v-bind:class="{ 'active': emailModal }" class="fullscreen-modal">
+      <div class="container">
+        <div class="row d-flex align-items-center text-left" style="position: relative; height: 100vh;" >
+          <div style="position: absolute; right:0; top:2rem;">
+            <div class="col"><a  @click="emailModal = !emailModal">Close</a></div>
+          </div>
+          <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3" style="position: relative;">
+            <h4 class="mb-4">Contact us for inquiries</h4>
+            <div class="row">
+              <div class="col-12"><input type="text" placeholder="First Name" class="form-control mb-4"></div><!-- end col -->
+              <div class="col-12"><input type="text" placeholder="Last Name" class="form-control mb-4"></div><!-- end col -->
+              <div class="col-12"><input type="text" placeholder="Email address" class="form-control mb-4"></div><!-- end col -->
+              <div class="col-12"><input type="text" placeholder="I am interested in learning about this peice." class="form-control mb-4"></div><!-- end col -->
+              <div class="col-12"><a class="mt-4 mb-5 btn btn-md btn-outline-dark btn-block">Submit</a></div>
+              <div class="col-12">
+                <p><small>*By submitting your email address, you consent to receive our Newsletter. Your consent is revocable at any time by clicking the unsubscribe link in our Newsletter. The Newsletter is sent in accordance with our Privacy Policy and to advertise products and services of Hauser & Wirth Ltd. and its affiliated companies.</small></p>
+              </div>
+            </div><!-- end row -->
+          </div>
+        </div>
+      </div>
+    </div>
+
 
     <div v-if="artwork">
-    <div class="bg-subtle-grey page" ref="scroller" v-on:scroll.passive="onScroll" style="height: 100vh; overflow: scroll;" >
-<Header :mode="1"></Header>
+    <div class="bg-subtle-grey page" ref="scroller" v-on:scroll.passive="onScroll" style="position: relative; height: 100vh; overflow: scroll;" >
 
+      <Header style="position: fixed; width: 100%; z-index: 3000" :mode="1"></Header>
+      <div style="height: 4rem;"></div>
         <div  class="container pb-5 pt-5">
+          <div ref="heightSetter" style="position: relative; height: 300vh; padding-top: 3rem;">
+              <div style="border: 1px solid transparent; position: absolute; bottom: 0; width: 100%; height 1px;" ref="offPoint"></div>
           <div   class="row">
-            <div class="d-none d-xl-block col-3 align-self-end ">
+            <div class="d-none d-xl-block col-3 ">
+
+              <div v-if="masterOn" v-ani="{class:'fade-in-bottom', delay: 1000}"  class="d-none d-xl-block col-3" style="position: fixed; bottom: 4rem;">
               <div class="row d-flex align-items-center">
-                <div class="col-2"><a class="avatar" v-bind:style="{'background-image': 'url('+artwork.acf.hero_audio_avatar.url+')'}"></a></div>
-                <div class="col"><div class="ml-1">{{artwork.artist.name}} on {{artwork.title.rged}}</div></div>
+                <div class="col-2"><a @click="clickAudio()" v-bind:class="{heartbeat: playAudio}" class="avatar" v-bind:style="{'background-image': 'url('+artwork.acf.hero_audio_avatar.url+')'}"></a></div>
+                <div class="col"><div class="ml-1">{{artwork.artist.name}} on {{artwork.title.rendered}}</div></div>
               </div>
+            </div>
             </div>
 
             <div  id="heroCont" style="position: relative; z-index: 1000;" ref="heroCont" class="col-10 offset-1 col-lg-8 col-xl-6 offset-lg-0 offset-xl-0">
-
-                <img v-if="!artwork.acf.hero_3d_" :src="artwork.acf.hero_image.url" class="img-fluid">
+              <img v-show="masterOn" v-if="!artwork.acf.hero_3d_" :src="artwork.acf.hero_image.url" class="img-fluid">
             </div>
-              <Lottie ref="lottie" style="position: relative; z-index: 500" class="d-none d-lg-block" v-if="artwork.acf.hero_3d_" :url="artwork.acf.hero_3d_"></Lottie>
+              <Lottie ref="lottie" style="position: relative; z-index: 500" class="" v-if="artwork.acf.hero_3d_" :url="artwork.acf.hero_3d_"></Lottie>
 
-            <div class="col-lg-4 col-xl-3">
-              <div ref="heightSetter" style="padding: 6rem 0 100vh 0;">
-
+            <div class="d-none d-lg-block col-lg-4 col-xl-3">
+              <div v-if="masterOn" v-ani="{class:'fade-in-bottom', delay: 800}"  class="col-lg-3 col-xl-2" style="position: fixed;">
               <h4>{{artwork.artist.name}}</h4>
               <p>{{artwork.title.rendered}}</p>
               <p v-html="artwork.acf.hero_content"></p>
               <p>${{artwork.acf.price}}</p>
-              <p class="mt-4"><a class="btn btn-block btn-md btn-outline-dark"><img class="btniconfix" src="../assets/whatsapp.svg"> Live Chat</a>
-              <a class="btn btn-block btn-md btn-outline-dark">Email Enquiry</a></p>
+              <p class="mt-4"><a href="https://wa.me/+447384525201" class="btn btn-block btn-md btn-outline-dark"><img class="btniconfix" src="../assets/whatsapp.svg"> Live Chat</a>
+              <a @click="emailModal = !emailModal" class="btn btn-block btn-md btn-outline-dark">Email Enquiry</a></p>
 
-              <p class="mt-5"><a href="#">Details & Features <b-icon class="ml-2" icon="arrow-right"/></a></p>
-              <p><a href="#">About the artwork <b-icon class="ml-2" icon="arrow-right"/></a></p>
-              <p><a href="#">About the artist <b-icon class="ml-2" icon="arrow-right"/></a></p>
+              <p class="mt-5"><a @click="scrollTo('#details')">Details & Features <b-icon class="ml-2" icon="arrow-right"/></a></p>
+              <p><a @click="scrollTo('#details')">About the artwork <b-icon class="ml-2" icon="arrow-right"/></a></p>
+              <p><a @click="scrollTo('#details')" href="#">About the artist <b-icon class="ml-2" icon="arrow-right"/></a></p>
 
               <div style="padding-top: 5rem;">
-                <a class="circlelink mr-3"><b-icon  icon="heart"/></a><a class="circlelink"><b-icon  icon="share"/></a>
+                <a class="mr-3"><img src="../assets/artworkheart.svg"></a><a><img src="../assets/artworkshare.svg"></a>
               </div>
               <div ref="ender"></div>
+            </div>
             </div>
           </div>
         </div>
@@ -49,8 +77,15 @@
 
 <div class="artwork_images">
   <div class="container">
-<div class="d-none d-sm-block artwork col-6 offset-3" v-for="artwork in artwork.acf.artwork_images" :key="artwork.ID">
-  <img :src="artwork.url" class="img-fluid">
+<div class="d-none d-sm-block artwork col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3" v-for="artwork in artwork.acf.artwork_images" :key="artwork.ID">
+    <inner-image-zoom
+      :hasSpacer="false"
+      :src="artwork.url"
+      :zoomSrc="artwork.url"
+      :zoomScale="1"
+      :hideHint="true"
+    />
+
 </div>
 </div>
 
@@ -60,7 +95,7 @@
 
 </div>
 
-<div v-if="artwork.acf.about_the_artwork_description || artwork.acf.details.length" class="container">
+<div id="details" v-if="artwork.acf.about_the_artwork_description || artwork.acf.details.length" class="container">
   <div class="row pb-5" >
     <div class="d-none d-md-block col-1" style="border-right: 1px solid black;"></div>
     <div class="col-md-8 offset-md-1" >
@@ -69,8 +104,14 @@
       <div class="row mb-2" v-for="detail in artwork.acf.details" :key="detail.title">
         <div class="col-3">{{detail.title}}:</div><div class="col">{{detail.description}}</div>
       </div><!-- end row -->
-      <h3 v-if="artwork.acf.about_the_artwork_description" class="mb-4 mt-5">About the artwork</h3>
-      <p v-html="artwork.acf.about_the_artwork_description"></p>
+      <div v-if="artwork.acf.short_description" >
+      <h3 class="mb-4 mt-5">About the artwork</h3>
+        <p v-html="artwork.acf.short_description"></p>
+        <p><a v-b-toggle.readmore>Read More +</a></p>
+          <b-collapse id="readmore"   class="mt-2">
+          <p v-html="artwork.acf.read_more_description"></p>
+        </b-collapse>
+      </div>
     </div>
     </div>
   </div>
@@ -82,10 +123,10 @@
     <div v-for="panel in artwork.acf.panels" :key="panel.title">
 
       <template v-if="panel.acf_fc_layout == 'left_image'">
-        <div class="d-md-none" style="height: 20rem; background-size: cover; background-position: center center;" v-bind:style="{'background-image': 'url('+panel.image.url+')'}"></div>
+        <div  class="d-md-none" style="height: 20rem; background-size: cover; background-position: center center;" v-bind:style="{'background-image': 'url('+panel.image.url+')'}"></div>
         <div class="container-fluid">
           <div class="row">
-          <div class="col-6 d-none d-md-block" style="background-size: cover; background-position: center center;" v-bind:style="{'background-image': 'url('+panel.image.url+')'}"></div>
+          <div  class="col-6 d-none d-md-block" style="overflow: hidden;"><div v-ani="{class:'kenburns-top', delay: 0}"  style="position: absolute; top: 0; left: 0; right:0; bottom:0; background-size: cover; background-position: center center;" v-bind:style="{'background-image': 'url('+panel.image.url+')'}"></div></div>
             <div class="col">
               <div style="padding: 8rem 4rem">
                 <h3>{{panel.title}}</h3>
@@ -107,7 +148,7 @@
                 {{panel.description}}
               </div>
             </div>
-            <div class="col-6 d-none d-md-block" style="background-size: cover; background-position: center center;" v-bind:style="{'background-image': 'url('+panel.image.url+')'}"></div>
+              <div  class="col-6 d-none d-md-block" style="overflow: hidden;"><div v-ani="{class:'kenburns-top', delay: 0}"  style="position: absolute; top: 0; left: 0; right:0; bottom:0; background-size: cover; background-position: center center;" v-bind:style="{'background-image': 'url('+panel.image.url+')'}"></div></div>
           </div>
         </div>
           <div class="d-none d-md-block" style="height: 8rem;"></div>
@@ -142,50 +183,87 @@
 <div v-if="artwork.acf.other_artworks.length" class="container">
   <div class="row">
     <div class="col">
-      <h3>Explore Other Artworks</h3>
+      <h2 class="mb-5">Explore Other Artworks</h2>
       <div class="row">
-        <div v-for="artwork in artwork.acf.other_artworks" :key="artwork.ID" class="col">
-              <pre>{{artwork}}</pre>
+        <div v-for="(artwork, index) in artwork.acf.other_artworks" v-ani="{class:'fade-in-bottom', delay: index*300}" :key="artwork.ID" class="col-6 col-md-4">
+              <ExploreArtworkItem :id="artwork.ID"></ExploreArtworkItem>
         </div>
       </div>
 
     </div>
   </div>
 </div>
-
+<div style="height: 6rem"></div>
 <Footer></Footer>
 
   </div>
 </div>
 </template>
 <script>
+import InnerImageZoom from 'vue-inner-image-zoom';
 import axios from 'axios';
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
 import Lottie from '@/components/Lottie.vue';
+import ExploreArtworkItem from '@/components/ExploreArtworkItem.vue';
 export default{
   components: {
     Header,
     Footer,
-    Lottie
+    Lottie,
+    ExploreArtworkItem,
+    'inner-image-zoom': InnerImageZoom
   },
   methods:{
+    isInViewPort(el) {
+      // Get the bounding client rectangle position in the viewport
+      var bounding = el.getBoundingClientRect();
+      if (bounding.bottom > -10 && bounding.top < window.innerHeight || bounding.bottom < 0) {
+        console.log('offPointAcivate!');
+          return true;
+      } else {
+        console.log('offPointNO!');
+          return false;
+      }
+    },
+    scrollTo(t){
+      document.querySelector(t).scrollIntoView({
+        behavior: 'smooth'
+      });
+    },
+    clickAudio(){
+      this.playAudio = !this.playAudio;
+      if(this.playAudio){
+        this.audio.play();
+      }else{
+        this.audio.pause();
+      }
+    },
     resize(){
 
       //this.$refs.lottie.style.left = rect.x+'px';
     },
     onScroll(){
+      //this.masterOn = true;
 
-      window.scrollTo(0, 0);
-      this.$refs.lottie.reveal();
-
+  window.scrollTo(0, 0);
       var mod = 0;
       this.scrollY = this.$refs.scroller.scrollTop;
-      console.log(this.scrollY, this.oldScrollY)
       if(this.scrollY > this.oldScrollY) mod = 1;
       if(this.scrollY < this.oldScrollY) mod = -1;
       this.oldScrollY = this.scrollY;
       this.$refs.lottie.nextFrame(mod);
+      if(this.isInViewPort(this.$refs.offPoint)){
+        this.$refs.lottie.hide();
+        this.masterOn = false;
+        document.body.style.overflow = "scroll";
+      }else{
+
+        this.$refs.lottie.reveal();
+        this.masterOn = true;
+        document.body.style.overflow = "hidden";
+      }
+
     }
   },
   componentDidMount: function(){
@@ -194,16 +272,31 @@ export default{
   mounted: async function() {
     var scope = this;
 
+    document.body.style.overflow = "hidden";
+
+
     window.addEventListener('resize', function() {
       scope.resize();
    }, true);
+
+   document.addEventListener('scroll', () => {
+     console.log('Done Scroll!');
+
+     console.log(this.masterOn);
+
+
+
+
+   });
+
 
 
 
   try {
         const resp = await axios.get(process.env.VUE_APP_URI+'wp-json/wp/v2/hauser_artworks/'+this.$route.params.id);
         this.artwork = resp.data;
-
+        console.log();
+        this.audio = new Audio(this.artwork.acf.hero_audio.url);
     } catch (err) {
         // Handle Error Here
         console.error(err);
@@ -215,11 +308,16 @@ export default{
       lotShow: true,
       oldScrollY: 0,
       scrollY: 0,
+      masterOn: true,
+      playAudio: false,
+      audio: null,
+      emailModal: false
     }
   }
 }
 </script>
 <style scoped lang="scss">
+.noscroll{ overflow: hidden !important;}
 a, a:hover{color: black}
 #positioner{border: 1px solid blue; position: fixed; left: 0;}
 .artwork{margin-bottom: 6rem;}
