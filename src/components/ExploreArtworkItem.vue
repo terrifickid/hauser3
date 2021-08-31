@@ -1,6 +1,6 @@
 <template>
   <div v-if="artwork" >
-      <a class="artwork" :href="'/artwork/'+artwork.id">
+      <a class="artwork" :href="'/artwork/'+artwork.slug">
      <img class="img-fluid mb-4" :src="artwork.acf.hero_image.url">
      <h6 class="fbold">{{artwork.artist.name}}</h6>
      <p>{{artwork.title.rendered}}</p>

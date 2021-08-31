@@ -1,6 +1,8 @@
 <template>
   <div id="heroArtwork">
+
     <div v-bind:class="{showIt: show}" class="lot" style="position: fixed;" ref="lottie"></div>
+
   </div>
 </template>
 
@@ -96,6 +98,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.showIt{visibility: visible !important;}
-.lot{visibility: hidden;}
+.showIt{opacity: 1 !important; filter: blur(0.25);}
+.lot{
+  opacity: 0;
+  filter: blur(0rem);
+   transition: opacity 0.1s, 
+ }
 </style>

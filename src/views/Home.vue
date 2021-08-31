@@ -98,12 +98,17 @@ export default {
 
       }
   },
+  disableVideoModal(){
+      console.log(this.videoModal);
+  },
   computed:{
     master () {
       return this.$store.state.master;
     },
   },
-  mounted: async function(){
+  mounted: function(){
+
+
     /*
     //Load Artworks
     try {

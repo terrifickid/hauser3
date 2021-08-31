@@ -30,20 +30,23 @@
         <div  class="container pb-5 pt-5">
             <div class="row">
                 <div  class="d-none col-xl-2 d-xl-block ">
-                  <div  v-bind:class="{hidden: !masterOn}" style="bottom: 3rem;" class="fixed">
-                  <div class="row d-flex align-items-center ">
-                    <div class="col-2"><a @click="clickAudio()" v-bind:class="{heartbeat: playAudio}" class="avatar" v-bind:style="{'background-image': 'url('+artwork.acf.hero_audio_avatar.url+')'}"></a></div>
+                  <div  style="bottom: 3rem;" class="fixed">
+                  <div v-bind:class="{'fade-in-bottom': masterOn}"  v-if="masterOn" class="row d-flex align-items-center ">
+                    <div class="col-2">
+                      <a @click="clickAudio()" v-bind:class="{heartbeat: playAudio}" class="avatar bg-subtle-grey" v-bind:style="{'background-image': 'url('+artwork.acf.hero_audio_avatar.url+')'}"></a>
+                    </div>
                     <div class="col"><div class="ml-2">{{artwork.artist.name}} on {{artwork.title.rendered}}</div></div>
                   </div>
                   </div>
                 </div><!-- end col -->
-                <div id="heroCont" class="col-10 offset-1 col-lg-6 offset-lg-1 col-xl-6 offset-xl-1">
+                <div id="heroCont" class="col-10 offset-1 col-lg-6 offset-lg-0 col-xl-6 offset-xl-1">
                   <div v-if="!artwork.acf.hero_3d_"  style="padding: 0 1rem 1rem 1rem;"><img :src="artwork.acf.hero_image.url" class="img-fluid"></div>
-                    <Lottie ref="lottie" v-if="artwork.acf.hero_3d_" :url="artwork.acf.hero_3d_"></Lottie>
+                    <Lottie ref="lottie" v-show="artwork.acf.hero_3d_" :url="artwork.acf.hero_3d_"></Lottie>
                 </div><!-- end col -->
-                <div class="d-none d-lg-block col-lg-3">
-                  <div v-ani="{class:'fade-in-bottom', delay: 800}" class="fixed rightCol">
-                    <div v-bind:class="{hidden: !masterOn}" class="pt-4"  >
+                <div class="d-none d-lg-block col-lg-3 offset-lg-1 offset-xl-0">
+                  <div class="fixed rightCol">
+                    <div  v-ani="{class:'fade-in-bottom', delay: 0}"  v-if="masterOn" class="pt-4"  >
+
                     <h4>{{artwork.artist.name}}</h4>
                     <p>{{artwork.title.rendered}}</p>
                     <p v-html="artwork.acf.hero_description"></p>
@@ -64,7 +67,7 @@
         </div>
       </div><!-- end container -->
     </div><!-- end grey -->
-    <div style="border: 1px solid transparent;" ref="breakPoint"></div>
+    <div style="border: 0px solid red; position: relative; top: -10rem;" ref="breakPoint"></div>
 
     <div class="container d-lg-none ">
       <div style="padding: 1rem 2rem;">
@@ -96,7 +99,7 @@
 
 <div class="artwork_images">
   <div class="container">
-    <div class=" artwork col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3" v-for="artwork in artwork.acf.artwork_images" :key="artwork.ID">
+    <div class=" artwork col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-0 offset-xl-3" v-for="artwork in artwork.acf.artwork_images" :key="artwork.ID">
         <inner-image-zoom
           :hasSpacer="false"
           :src="artwork.url"
@@ -231,9 +234,6 @@ export default{
     'inner-image-zoom': InnerImageZoom
   },
   methods:{
-    topView() {
-
-    },
     scrollTo(t){
       document.querySelector(t).scrollIntoView({
         behavior: 'smooth'
@@ -247,37 +247,27 @@ export default{
         this.audio.pause();
       }
     },
-    resize(){
+    reCalc(){
+      var toggleLottie = this.$refs.breakPoint.getBoundingClientRect().y - window.innerHeight;
+        if(toggleLottie < 0)this.$refs.lottie.hide();
+        if(toggleLottie > 0)this.$refs.lottie.reveal();
 
-      //this.$refs.lottie.style.left = rect.x+'px';
-    },
-    onScroll(){
+      var toggleContent = this.$refs.contentPoint.getBoundingClientRect().y - window.innerHeight;
+      console.log(toggleContent);
+        if(toggleContent < 0)this.masterOn = false;
+        if(toggleContent > 0)this.masterOn= true;
 
     }
   },
   mounted: async function() {
     this.slug = this.$route.params.slug;
-    document.addEventListener('scroll', () => {
-    var toggleLottie = this.$refs.breakPoint.getBoundingClientRect().y - window.innerHeight;
-      if(toggleLottie < 0)this.$refs.lottie.hide();
-      if(toggleLottie > 0)this.$refs.lottie.reveal();
-
-    var toggleContent= this.$refs.contentPoint.getBoundingClientRect().y - window.innerHeight;
-      if(toggleContent < 0)this.masterOn = false;
-      if(toggleContent > 0)this.masterOn= true;
-    });
-
-    try {
-      //  const resp = await axios.get(process.env.VUE_APP_URI+'wp-json/wp/v2/hauser_artworks/'+this.$route.params.id);
-    //    this.artwork = resp.data;
-    //    console.log();
-    //    this.audio = new Audio(this.artwork.acf.hero_audio.url);
-    } catch (err) {
-        // Handle Error Here
-      //  console.error(err);
-    }
+    document.addEventListener('scroll', () => { this.reCalc(); });
+    document.addEventListener('fullscreenchange', () => { this.reCalc();  });
   },
   computed:{
+    audio(){
+        return new Audio(this.artwork.acf.hero_audio.url);
+    },
     artworks() {
       return this.$store.state.artworks;
     },
@@ -297,7 +287,6 @@ export default{
       scrollY: 0,
       masterOn: true,
       playAudio: false,
-      audio: null,
       emailModal: false
     }
   }
@@ -310,7 +299,7 @@ a, a:hover{color: black}
 #positioner{border: 1px solid blue; position: fixed; left: 0;}
 .artwork{margin-bottom: 6rem;}
 .artwork_images{margin: 4rem 0;}
-.avatar{width: 40px; height: 40px; background-color: red; display: inline-block; background-size: cover; border-radius: 10rem;}
+.avatar{width: 40px; height: 40px; display: inline-block; background-size: cover; border-radius: 10rem;}
 
 .masterHeight{position: relative;  min-height: 100vh;}
 .scrollHeight{min-height: 1200vh !important;}

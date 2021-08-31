@@ -6,22 +6,25 @@
       <h3 class="mb-5">{{artwork.artist.name}}</h3>
       <p>{{artwork.title.rendered}}</p>
       <p>{{artwork.acf.hero_description}}</p>
-        <a :href="'artwork/'+artwork.id" class="btn btn-md btn-outline-dark btn-block">View details</a>
+        <a :href="'artwork/'+artwork.slug" class="btn btn-md btn-outline-dark btn-block">View details</a>
       </div>
     </div>
-    <div  v-ani="{class:'blur-in-center', delay: 0}" class="col ">
-      <div v-show="show">
+    <div   class="col d-flex align-items-center text-center">
+      <Loader v-show="!show"></Loader>
+      <div v-ani="{class:'blur-in-center', delay: 0}" v-show="show">
         <div  ref="lottie"></div>
       </div>
     </div>
-
+    <div class="col-12" style="height: 1px;" ref="toggler" ></div>
   </div>
 </template>
 
 <script>
+import Loader from '@/components/Loader.vue';
 export default {
   name: 'FeaturedArtWorkItem',
   components:{
+    Loader
   },
   props: {
     artwork: {},
@@ -44,14 +47,22 @@ export default {
     var lot = window.lottie.loadAnimation({
       container: this.$refs.lottie, // the dom element that will contain the animation
       renderer: 'svg',
-      loop: true,
-      autoplay: true,
+      loop: false,
+      autoplay: false,
       path: this.artwork.acf.hero_3d_// the path to the animation json
     });
 
     lot.addEventListener('DOMLoaded', () => {
-      this.show = true;
+
       this.duration = lot.getDuration(true);
+
+        document.addEventListener('scroll', () => {
+          var toggle = this.$refs.toggler.getBoundingClientRect().y - window.innerHeight;
+          if(toggle < 0){
+              this.show = true;
+              lot.play();
+          }
+        });
     });
 
   }
