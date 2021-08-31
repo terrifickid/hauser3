@@ -1,6 +1,7 @@
 <template>
   <div id="Artwork" class="">
-
+    Test!
+    {{artwork}}
     <div v-bind:class="{ 'active': emailModal }" class="fullscreen-modal">
       <div class="container">
         <div class="row d-flex align-items-center text-left" style="position: relative; height: 100vh">
