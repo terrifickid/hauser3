@@ -46,7 +46,7 @@ export default new Vuex.Store({
     async loadArtworks({ commit }) {
       //Load Artworks
       try {
-            const res = await axios.get(process.env.VUE_APP_URI+'wp-json/wp/v2/hauser_artworks/');
+            const res = await axios.get(process.env.VUE_APP_URI+'wp-json/wp/v2/hauser_artworks/?per_page=100');
             commit('setArtworks', res.data)
             console.log(res.data);
         } catch (err) {
