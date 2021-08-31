@@ -113,7 +113,7 @@
         <div class="row">
           <div v-if="!filteredArtworks.length" class="col-6 col-md-4 col-xl-3"><p>Nothing found.</p></div>
           <div v-for="artwork in filteredArtworks" :key="artwork.id" class="col-6 col-md-4   col-xl-3">
-            <a class="artwork" :href="'/artwork/'+artwork.id">
+            <a class="artwork" :href="'/artworks/'+artwork.slug">
             <img class="img-fluid mb-4" :src="artwork.acf.hero_image.url">
             <p class="fbold">{{artwork.artist.name}}</p>
             <p>{{artwork.title.rendered}}<br>
