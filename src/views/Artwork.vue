@@ -1,7 +1,5 @@
 <template>
   <div id="Artwork" class="">
-    Test!
-    {{artwork}}
     <div v-bind:class="{ 'active': emailModal }" class="fullscreen-modal">
       <div class="container">
         <div class="row d-flex align-items-center text-left" style="position: relative; height: 100vh">
@@ -219,7 +217,7 @@
 </template>
 <script>
 import InnerImageZoom from 'vue-inner-image-zoom';
-import axios from 'axios';
+//import axios from 'axios';
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
 import Lottie from '@/components/Lottie.vue';
@@ -258,6 +256,7 @@ export default{
     }
   },
   mounted: async function() {
+    this.slug = this.$route.params.slug;
     document.addEventListener('scroll', () => {
     var toggleLottie = this.$refs.breakPoint.getBoundingClientRect().y - window.innerHeight;
       if(toggleLottie < 0)this.$refs.lottie.hide();
@@ -267,20 +266,32 @@ export default{
       if(toggleContent < 0)this.masterOn = false;
       if(toggleContent > 0)this.masterOn= true;
     });
-    //var scope = this;
+
     try {
-        const resp = await axios.get(process.env.VUE_APP_URI+'wp-json/wp/v2/hauser_artworks/'+this.$route.params.id);
-        this.artwork = resp.data;
-        console.log();
-        this.audio = new Audio(this.artwork.acf.hero_audio.url);
+      //  const resp = await axios.get(process.env.VUE_APP_URI+'wp-json/wp/v2/hauser_artworks/'+this.$route.params.id);
+    //    this.artwork = resp.data;
+    //    console.log();
+    //    this.audio = new Audio(this.artwork.acf.hero_audio.url);
     } catch (err) {
         // Handle Error Here
-        console.error(err);
+      //  console.error(err);
+    }
+  },
+  computed:{
+    artworks() {
+      return this.$store.state.artworks;
+    },
+    artwork (){
+    var filtered = this.artworks.filter((artwork) => {
+      if(artwork.slug == this.$route.params.slug) return true;
+      return false;
+    });
+    return filtered[0];
     }
   },
   data: function() {
     return {
-      artwork: null,
+      slug:  false,
       lotShow: true,
       oldScrollY: 0,
       scrollY: 0,
