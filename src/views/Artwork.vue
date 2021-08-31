@@ -3,7 +3,7 @@
 
     <div v-bind:class="{ 'active': emailModal }" class="fullscreen-modal">
       <div class="container">
-        <div class="row d-flex align-items-center text-left" style="position: relative; height: 100vh;" >
+        <div class="row d-flex align-items-center text-left" style="position: relative; height: 100vh">
           <div style="position: absolute; right:0; top:2rem;">
             <div class="col"><a  @click="emailModal = !emailModal">Close</a></div>
           </div>
@@ -24,76 +24,68 @@
       </div>
     </div>
 
+      <div v-if="artwork">
 
-    <div v-if="artwork">
-    <div class="bg-subtle-grey page" ref="scroller" v-on:scroll.passive="onScroll" style="position: relative; height: 100vh; overflow: scroll;" >
-
-      <Header style="position: fixed; width: 100%; z-index: 3000" :mode="1"></Header>
-      <div style="height: 4rem;"></div>
+      <div class="bg-subtle-grey page masterHeight" v-bind:class="{scrollHeight: artwork.acf.hero_3d_}">
+        <Header :mode="1"></Header>
+        <div style="border: 1px solid transparent; position: absolute; bottom: 0; width: 100%; height 1px;" ref="offPoint"></div>
         <div  class="container pb-5 pt-5">
-          <div ref="heightSetter" style="position: relative; height: 300vh; padding-top: 3rem;">
-              <div style="border: 1px solid transparent; position: absolute; bottom: 0; width: 100%; height 1px;" ref="offPoint"></div>
-          <div   class="row">
-            <div class="d-none d-xl-block col-3 ">
+            <div class="row">
+                <div  class="d-none col-xl-2 d-xl-block ">
+                  <div style="bottom: 3rem;" class="fixed">
+                  <div class="row d-flex align-items-center ">
+                    <div class="col-2"><a @click="clickAudio()" v-bind:class="{heartbeat: playAudio}" class="avatar" v-bind:style="{'background-image': 'url('+artwork.acf.hero_audio_avatar.url+')'}"></a></div>
+                    <div class="col"><div class="ml-2">{{artwork.artist.name}} on {{artwork.title.rendered}}</div></div>
+                  </div>
+                  </div>
+                </div><!-- end col -->
+                <div id="heroCont" class="col-10 offset-1 col-lg-6 offset-lg-1 col-xl-6 offset-xl-1">
+                  <div v-if="!artwork.acf.hero_3d_"  style="padding: 0 2rem 2rem 2rem;"><img :src="artwork.acf.hero_image.url" class="img-fluid"></div>
+                    <Lottie ref="lottie" v-if="artwork.acf.hero_3d_" :url="artwork.acf.hero_3d_"></Lottie>
+                </div><!-- end col -->
+                <div class="d-none d-lg-block col-lg-3">
+                  <div class="fixed rightCol">
+                    <div class="pt-4" v-ani="{class:'fade-in-bottom', delay: 800}" >
+                    <h4>{{artwork.artist.name}}</h4>
+                    <p>{{artwork.title.rendered}}</p>
+                    <p v-html="artwork.acf.hero_content"></p>
+                    <p>${{artwork.acf.price}}</p>
+                    <p class="mt-4"><a href="https://wa.me/+447384525201" class="btn btn-block btn-md btn-outline-dark"><img class="btniconfix" src="../assets/whatsapp.svg"> Live Chat</a>
+                    <a @click="emailModal = !emailModal" class="btn btn-block btn-md btn-outline-dark">Email Enquiry</a></p>
 
-              <div v-if="masterOn" v-ani="{class:'fade-in-bottom', delay: 1000}"  class="d-none d-xl-block col-3" style="position: fixed; bottom: 4rem;">
-              <div class="row d-flex align-items-center">
-                <div class="col-2"><a @click="clickAudio()" v-bind:class="{heartbeat: playAudio}" class="avatar" v-bind:style="{'background-image': 'url('+artwork.acf.hero_audio_avatar.url+')'}"></a></div>
-                <div class="col"><div class="ml-1">{{artwork.artist.name}} on {{artwork.title.rendered}}</div></div>
-              </div>
-            </div>
-            </div>
+                    <p class="mt-5"><a @click="scrollTo('#details')">Details & Features <b-icon class="ml-2" icon="arrow-right"/></a></p>
+                    <p><a @click="scrollTo('#details')">About the artwork <b-icon class="ml-2" icon="arrow-right"/></a></p>
+                    <p><a @click="scrollTo('#details')" href="#">About the artist <b-icon class="ml-2" icon="arrow-right"/></a></p>
 
-            <div  id="heroCont" style="position: relative; z-index: 1000;" ref="heroCont" class="col-10 offset-1 col-lg-8 col-xl-6 offset-lg-0 offset-xl-0">
-              <img v-show="masterOn" v-if="!artwork.acf.hero_3d_" :src="artwork.acf.hero_image.url" class="img-fluid">
-            </div>
-              <Lottie ref="lottie" style="position: relative; z-index: 500" class="" v-if="artwork.acf.hero_3d_" :url="artwork.acf.hero_3d_"></Lottie>
-
-            <div class="d-none d-lg-block col-lg-4 col-xl-3">
-              <div v-if="masterOn" v-ani="{class:'fade-in-bottom', delay: 800}"  class="col-lg-3 col-xl-2" style="position: fixed;">
-              <h4>{{artwork.artist.name}}</h4>
-              <p>{{artwork.title.rendered}}</p>
-              <p v-html="artwork.acf.hero_content"></p>
-              <p>${{artwork.acf.price}}</p>
-              <p class="mt-4"><a href="https://wa.me/+447384525201" class="btn btn-block btn-md btn-outline-dark"><img class="btniconfix" src="../assets/whatsapp.svg"> Live Chat</a>
-              <a @click="emailModal = !emailModal" class="btn btn-block btn-md btn-outline-dark">Email Enquiry</a></p>
-
-              <p class="mt-5"><a @click="scrollTo('#details')">Details & Features <b-icon class="ml-2" icon="arrow-right"/></a></p>
-              <p><a @click="scrollTo('#details')">About the artwork <b-icon class="ml-2" icon="arrow-right"/></a></p>
-              <p><a @click="scrollTo('#details')" href="#">About the artist <b-icon class="ml-2" icon="arrow-right"/></a></p>
-
-              <div style="padding-top: 5rem;">
-                <a class="mr-3"><img src="../assets/artworkheart.svg"></a><a><img src="../assets/artworkshare.svg"></a>
-              </div>
-              <div ref="ender"></div>
-            </div>
-            </div>
-          </div>
-        </div>
+                    <div style="padding-top: 2rem;">
+                      <a class="mr-3"><img src="../assets/artworkheart.svg"></a><a><img src="../assets/artworkshare.svg"></a>
+                    </div>
+                  </div>
+                </div>
+            </div><!-- end row -->
         </div><!-- end container -->
+      </div><!-- end bg-grey -->
+    </div>
 
 
-</div>
 
 <div class="artwork_images">
   <div class="container">
-<div class="d-none d-sm-block artwork col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3" v-for="artwork in artwork.acf.artwork_images" :key="artwork.ID">
-    <inner-image-zoom
-      :hasSpacer="false"
-      :src="artwork.url"
-      :zoomSrc="artwork.url"
-      :zoomScale="1"
-      :hideHint="true"
-    />
+    <div class="d-none d-sm-block artwork col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3" v-for="artwork in artwork.acf.artwork_images" :key="artwork.ID">
+        <inner-image-zoom
+          :hasSpacer="false"
+          :src="artwork.url"
+          :zoomSrc="artwork.url"
+          :zoomScale="1"
+          :hideHint="true"
+        />
+      </div>
+    </div>
 
-</div>
-</div>
-
-<div class="d-sm-none artwork" v-for="artwork in artwork.acf.artwork_images" :key="artwork.ID">
-  <img :src="artwork.url" class="img-fluid">
-</div>
-
-</div>
+    <div class="d-sm-none artwork" v-for="artwork in artwork.acf.artwork_images" :key="artwork.ID">
+      <img :src="artwork.url" class="img-fluid">
+    </div>
+  </div><!-- en dcontainer -->
 
 <div id="details" v-if="artwork.acf.about_the_artwork_description || artwork.acf.details.length" class="container">
   <div class="row pb-5" >
@@ -193,11 +185,12 @@
     </div>
   </div>
 </div>
+</div>
 <div style="height: 6rem"></div>
 <Footer></Footer>
 
   </div>
-</div>
+
 </template>
 <script>
 import InnerImageZoom from 'vue-inner-image-zoom';
@@ -267,27 +260,12 @@ export default{
     }
   },
   componentDidMount: function(){
-      this.resize();
+      //this.resize();
   },
   mounted: async function() {
-    var scope = this;
+    //var scope = this;
 
-    document.body.style.overflow = "hidden";
-
-
-    window.addEventListener('resize', function() {
-      scope.resize();
-   }, true);
-
-   document.addEventListener('scroll', () => {
-     console.log('Done Scroll!');
-
-     console.log(this.masterOn);
-
-
-
-
-   });
+    //document.body.style.overflow = "hidden";
 
 
 
@@ -317,10 +295,34 @@ export default{
 }
 </script>
 <style scoped lang="scss">
-.noscroll{ overflow: hidden !important;}
+
 a, a:hover{color: black}
+.fixed{position: static; max-width:30rem;}
 #positioner{border: 1px solid blue; position: fixed; left: 0;}
 .artwork{margin-bottom: 6rem;}
 .artwork_images{margin: 4rem 0;}
 .avatar{width: 40px; height: 40px; background-color: red; display: inline-block; background-size: cover; border-radius: 10rem;}
+
+.masterHeight{position: relative;  min-height: 100vh;}
+.scrollHeight{min-height: 1200vh !important;}
+// Extra small devices (portrait phones, less than 576px)
+// No media query since this is the default in Bootstrap
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {   }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {   }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .fixed{position: fixed !important; max-width:inherit !important;}
+  .fixed.rightCol{width: 16rem;}
+ }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+
+}
+
 </style>

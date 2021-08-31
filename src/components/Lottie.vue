@@ -1,6 +1,6 @@
 <template>
   <div id="heroArtwork">
-    <div v-bind:class="{showIt: show, 'fade-in-bottom': show}" style="position: fixed; visibility: hidden; left: 0; width: 100%; border: 1px solid transparent;" ref="lottie"></div>
+    <div style="position: fixed;" ref="lottie"></div>
   </div>
 </template>
 
@@ -22,6 +22,8 @@ export default {
       show: false,
       frame: 1,
       duration: 0,
+      oldScrollY: 0,
+      scrollY: 0,
     }
   },
   methods:{
@@ -44,12 +46,10 @@ export default {
       var tpos = (window.innerHeight/2) - (this.$refs.lottie.offsetHeight/2);
       //console.log(this.$refs.heroCont.offsetWidth);
       this.$refs.lottie.style.left = document.getElementById('heroCont').getBoundingClientRect().x+'px';
+      console.log(this.$refs.lottie.style.left);
       this.$refs.lottie.style.top = tpos+'px';
       this.$refs.lottie.style.width = document.getElementById('heroCont').clientWidth+'px';
 
-    },
-    handleScroll(){
-        console.log('scroll');
     },
     play(){
       this.lottie.play();
@@ -57,10 +57,9 @@ export default {
   },
   mounted: function(){
 
-
     window.addEventListener('resize', () => {
       this.resize();
-   }, true);
+    }, true);
 
     var lot = window.lottie.loadAnimation({
       container: this.$refs.lottie, // the dom element that will contain the animation
@@ -77,13 +76,23 @@ export default {
       this.lottie = lot;
       this.duration = lot.getDuration(true);
       this.show = true;
+
+      document.addEventListener('scroll', () => {
+        console.log('scroll');
+        var mod = 0;
+        this.scrollY = window.scrollY;
+        if(this.scrollY > this.oldScrollY) mod = 1;
+        if(this.scrollY < this.oldScrollY) mod = -1;
+        this.oldScrollY = this.scrollY;
+        this.nextFrame(mod);
+      });
+
+
+
+
     });
 
 
-    document.addEventListener('scroll', () => {
-      console.log('Done Scroll!');
-      this.hide();
-    });
 
 
 
