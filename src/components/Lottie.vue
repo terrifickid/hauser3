@@ -1,6 +1,6 @@
 <template>
   <div id="heroArtwork">
-    <div style="position: fixed;" ref="lottie"></div>
+    <div v-bind:class="{showIt: show}" class="lot" style="position: fixed;" ref="lottie"></div>
   </div>
 </template>
 
@@ -76,9 +76,7 @@ export default {
       this.lottie = lot;
       this.duration = lot.getDuration(true);
       this.show = true;
-
       document.addEventListener('scroll', () => {
-        console.log('scroll');
         var mod = 0;
         this.scrollY = window.scrollY;
         if(this.scrollY > this.oldScrollY) mod = 1;
@@ -86,10 +84,6 @@ export default {
         this.oldScrollY = this.scrollY;
         this.nextFrame(mod);
       });
-
-
-
-
     });
 
 
@@ -103,4 +97,5 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .showIt{visibility: visible !important;}
+.lot{visibility: hidden;}
 </style>

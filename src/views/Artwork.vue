@@ -28,11 +28,10 @@
 
       <div class="bg-subtle-grey page masterHeight" v-bind:class="{scrollHeight: artwork.acf.hero_3d_}">
         <Header :mode="1"></Header>
-        <div style="border: 1px solid transparent; position: absolute; bottom: 0; width: 100%; height 1px;" ref="offPoint"></div>
         <div  class="container pb-5 pt-5">
             <div class="row">
                 <div  class="d-none col-xl-2 d-xl-block ">
-                  <div style="bottom: 3rem;" class="fixed">
+                  <div  v-bind:class="{hidden: !masterOn}" style="bottom: 3rem;" class="fixed">
                   <div class="row d-flex align-items-center ">
                     <div class="col-2"><a @click="clickAudio()" v-bind:class="{heartbeat: playAudio}" class="avatar" v-bind:style="{'background-image': 'url('+artwork.acf.hero_audio_avatar.url+')'}"></a></div>
                     <div class="col"><div class="ml-2">{{artwork.artist.name}} on {{artwork.title.rendered}}</div></div>
@@ -40,15 +39,15 @@
                   </div>
                 </div><!-- end col -->
                 <div id="heroCont" class="col-10 offset-1 col-lg-6 offset-lg-1 col-xl-6 offset-xl-1">
-                  <div v-if="!artwork.acf.hero_3d_"  style="padding: 0 2rem 2rem 2rem;"><img :src="artwork.acf.hero_image.url" class="img-fluid"></div>
+                  <div v-if="!artwork.acf.hero_3d_"  style="padding: 0 1rem 1rem 1rem;"><img :src="artwork.acf.hero_image.url" class="img-fluid"></div>
                     <Lottie ref="lottie" v-if="artwork.acf.hero_3d_" :url="artwork.acf.hero_3d_"></Lottie>
                 </div><!-- end col -->
                 <div class="d-none d-lg-block col-lg-3">
-                  <div class="fixed rightCol">
-                    <div class="pt-4" v-ani="{class:'fade-in-bottom', delay: 800}" >
+                  <div v-ani="{class:'fade-in-bottom', delay: 800}" class="fixed rightCol">
+                    <div v-bind:class="{hidden: !masterOn}" class="pt-4"  >
                     <h4>{{artwork.artist.name}}</h4>
                     <p>{{artwork.title.rendered}}</p>
-                    <p v-html="artwork.acf.hero_content"></p>
+                    <p v-html="artwork.acf.hero_description"></p>
                     <p>${{artwork.acf.price}}</p>
                     <p class="mt-4"><a href="https://wa.me/+447384525201" class="btn btn-block btn-md btn-outline-dark"><img class="btniconfix" src="../assets/whatsapp.svg"> Live Chat</a>
                     <a @click="emailModal = !emailModal" class="btn btn-block btn-md btn-outline-dark">Email Enquiry</a></p>
@@ -63,15 +62,42 @@
                   </div>
                 </div>
             </div><!-- end row -->
-        </div><!-- end container -->
-      </div><!-- end bg-grey -->
+        </div>
+      </div><!-- end container -->
+    </div><!-- end grey -->
+    <div style="border: 1px solid transparent;" ref="breakPoint"></div>
+
+    <div class="container d-lg-none ">
+      <div style="padding: 1rem 2rem;">
+    <div class="row pt-4 ">
+      <div class="col-6">
+        <p class="fbold">{{artwork.artist.name}}</p>
+      </div>
+      <div class="col-6 text-right">
+        <p>${{artwork.acf.price}}</p>
+      </div>
+      <div class="col-12">
+        <p>{{artwork.title.rendered}}</p>
+        <p v-html="artwork.acf.hero_description"></p>
+
+        <p class="mt-4"><a href="https://wa.me/+447384525201" class="btn btn-block btn-md btn-outline-dark"><img class="btniconfix" src="../assets/whatsapp.svg"> Live Chat</a>
+        <a @click="emailModal = !emailModal" class="btn btn-block btn-md btn-outline-dark">Email Enquiry</a></p>
+
+        <p class="mt-5"><a @click="scrollTo('#details')">Details & Features <b-icon class="ml-2" icon="arrow-right"/></a></p>
+        <p><a @click="scrollTo('#details')">About the artwork <b-icon class="ml-2" icon="arrow-right"/></a></p>
+        <p><a @click="scrollTo('#details')" href="#">About the artist <b-icon class="ml-2" icon="arrow-right"/></a></p>
+
+        <div style="padding-top: 2rem;">
+          <a class="mr-3"><img src="../assets/artworkheart.svg"></a><a><img src="../assets/artworkshare.svg"></a>
+        </div>
+      </div>
     </div>
-
-
+  </div>
+  </div>
 
 <div class="artwork_images">
   <div class="container">
-    <div class="d-none d-sm-block artwork col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3" v-for="artwork in artwork.acf.artwork_images" :key="artwork.ID">
+    <div class=" artwork col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3" v-for="artwork in artwork.acf.artwork_images" :key="artwork.ID">
         <inner-image-zoom
           :hasSpacer="false"
           :src="artwork.url"
@@ -81,11 +107,8 @@
         />
       </div>
     </div>
-
-    <div class="d-sm-none artwork" v-for="artwork in artwork.acf.artwork_images" :key="artwork.ID">
-      <img :src="artwork.url" class="img-fluid">
-    </div>
   </div><!-- en dcontainer -->
+<div style="border: 1px solid transparent;" ref="contentPoint"></div>
 
 <div id="details" v-if="artwork.acf.about_the_artwork_description || artwork.acf.details.length" class="container">
   <div class="row pb-5" >
@@ -108,6 +131,7 @@
     </div>
   </div>
 </div>
+
 
 <div style="height: 4rem;"></div>
 
@@ -208,16 +232,8 @@ export default{
     'inner-image-zoom': InnerImageZoom
   },
   methods:{
-    isInViewPort(el) {
-      // Get the bounding client rectangle position in the viewport
-      var bounding = el.getBoundingClientRect();
-      if (bounding.bottom > -10 && bounding.top < window.innerHeight || bounding.bottom < 0) {
-        console.log('offPointAcivate!');
-          return true;
-      } else {
-        console.log('offPointNO!');
-          return false;
-      }
+    topView() {
+
     },
     scrollTo(t){
       document.querySelector(t).scrollIntoView({
@@ -237,40 +253,21 @@ export default{
       //this.$refs.lottie.style.left = rect.x+'px';
     },
     onScroll(){
-      //this.masterOn = true;
-
-  window.scrollTo(0, 0);
-      var mod = 0;
-      this.scrollY = this.$refs.scroller.scrollTop;
-      if(this.scrollY > this.oldScrollY) mod = 1;
-      if(this.scrollY < this.oldScrollY) mod = -1;
-      this.oldScrollY = this.scrollY;
-      this.$refs.lottie.nextFrame(mod);
-      if(this.isInViewPort(this.$refs.offPoint)){
-        this.$refs.lottie.hide();
-        this.masterOn = false;
-        document.body.style.overflow = "scroll";
-      }else{
-
-        this.$refs.lottie.reveal();
-        this.masterOn = true;
-        document.body.style.overflow = "hidden";
-      }
 
     }
   },
-  componentDidMount: function(){
-      //this.resize();
-  },
   mounted: async function() {
+    document.addEventListener('scroll', () => {
+    var toggleLottie = this.$refs.breakPoint.getBoundingClientRect().y - window.innerHeight;
+      if(toggleLottie < 0)this.$refs.lottie.hide();
+      if(toggleLottie > 0)this.$refs.lottie.reveal();
+
+    var toggleContent= this.$refs.contentPoint.getBoundingClientRect().y - window.innerHeight;
+      if(toggleContent < 0)this.masterOn = false;
+      if(toggleContent > 0)this.masterOn= true;
+    });
     //var scope = this;
-
-    //document.body.style.overflow = "hidden";
-
-
-
-
-  try {
+    try {
         const resp = await axios.get(process.env.VUE_APP_URI+'wp-json/wp/v2/hauser_artworks/'+this.$route.params.id);
         this.artwork = resp.data;
         console.log();
@@ -305,6 +302,7 @@ a, a:hover{color: black}
 
 .masterHeight{position: relative;  min-height: 100vh;}
 .scrollHeight{min-height: 1200vh !important;}
+
 // Extra small devices (portrait phones, less than 576px)
 // No media query since this is the default in Bootstrap
 
@@ -316,6 +314,7 @@ a, a:hover{color: black}
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
+  .hidden{height:0px !important; overflow: hidden;}
   .fixed{position: fixed !important; max-width:inherit !important;}
   .fixed.rightCol{width: 16rem;}
  }
