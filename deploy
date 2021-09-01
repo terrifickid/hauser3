@@ -8,4 +8,5 @@ cp ~/hauser3/dist/index.html ~/hauser-and-wirth/wp-content/themes/hauser/index.p
 cd ~/hauser-and-wirth
 git add -A
 git commit -a -m autodeploy
+git pull origin master
 git push origin master
