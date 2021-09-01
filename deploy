@@ -4,6 +4,7 @@ git push origin master
 rm -rf ~/hauser-and-wirth/*.js
 npm run build
 cp -rf ~/hauser3/dist/* ~/hauser-and-wirth
+rm ~/hauser-and-wirth/index.html
 cp ~/hauser3/dist/index.html ~/hauser-and-wirth/wp-content/themes/hauser/index.php
 cd ~/hauser-and-wirth
 git add -A
