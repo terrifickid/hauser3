@@ -20,20 +20,13 @@
 
       <div v-ani="{class:'blur-in-center', delay: 0}"  id="bg">
       <Header></Header>
+        <div class="pad">
 
-
-      <iframe style="position: absolute;
-    top: 0;
-    left: -25%;
-    width: 150%;
-    height: 100%;
-    background: black;
-    border:0;
-    " border=0 frameborder=0 src="https://player.vimeo.com/video/569446269?dnt=1&amp;app_id=122963&amp;h=5cd36b5e4f&amp;controls=0&amp;hd=1&amp;fs=1&amp;rel=0&amp;modestbranding=1&amp;autoplay=1&amp;muted=1&amp;autopause=0&amp;loop=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen=""></iframe>
+      <iframe border=0 frameborder=0 src="https://player.vimeo.com/video/569446269?dnt=1&amp;app_id=122963&amp;h=5cd36b5e4f&amp;controls=0&amp;hd=1&amp;fs=1&amp;rel=0&amp;modestbranding=1&amp;autoplay=1&amp;muted=1&amp;autopause=0&amp;loop=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen=""></iframe>
 
       <div class="hauser-hero mt-4">
         <div class="container">
-          <div class="pad">
+
             <div class="col-12 col-md-10 offset-md-1">
 
             <h2 v-ani="{class:'fade-in-bottom', delay: 1000}" class="fnormal mb-5">{{master.heading_1}}</h2>
@@ -144,13 +137,24 @@ h2{font-size: 1.25rem;}
 h1{font-size: 5rem;}
   #bg{
     color: white;
-    background-image: url("../assets/home1.jpg");
+
     background-color: black;
     background-size: cover;
-    height: 100vh;
+    min-height: 100vh;
+
     width: 100%;
     overflow: hidden;
   }
+  #bg iframe{
+    width: 100vw;
+  height: 56.25vw; /* Given a 16:9 aspect ratio, 9/16*100 = 56.25 */
+  min-height: 100vh;
+  min-width: 220vh; /* Given a 16:9 aspect ratio, 16/9*100 = 177.77 */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  }
   a, a:hover{color: white;}
-.pad{padding: 4rem 0 8rem 0;}
+.pad{padding-top: 4rem;}
 </style>

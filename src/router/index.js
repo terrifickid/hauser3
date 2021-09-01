@@ -18,6 +18,13 @@ const routes = [
     }
   },
   {
+    path: '/favorites/share/:list',
+    name: 'Share',
+    component: function () {
+      return import(/* webpackChunkName: "Wishlist" */ '../views/Share.vue')
+    }
+  },
+  {
     path: '/artwork/:slug',
     name: 'Artwork',
     // route level code-splitting

@@ -54,9 +54,9 @@
                     <p class="mt-4"><a href="https://wa.me/+447384525201" class="btn btn-block btn-md btn-outline-dark"><img class="btniconfix" src="../assets/whatsapp.svg"> Live Chat</a>
                     <a @click="emailModal = !emailModal" class="btn btn-block btn-md btn-outline-dark">Email Enquiry</a></p>
 
-                    <p class="mt-5"><a @click="scrollTo('#details')">Details & Features <b-icon class="ml-2" icon="arrow-right"/></a></p>
-                    <p><a @click="scrollTo('#details')">About the artwork <b-icon class="ml-2" icon="arrow-right"/></a></p>
-                    <p><a @click="scrollTo('#details')" href="#">About the artist <b-icon class="ml-2" icon="arrow-right"/></a></p>
+                    <p class="mt-5"><a href="#details">Details & Features <b-icon class="ml-2" icon="arrow-right"/></a></p>
+                    <p><a href="#details">About the artwork <b-icon class="ml-2" icon="arrow-right"/></a></p>
+                    <p><a href="#details">About the artist <b-icon class="ml-2" icon="arrow-right"/></a></p>
 
                     <div style="padding-top: 2rem;">
                       <a class="mr-3"><img src="../assets/artworkheart.svg"></a><a><img src="../assets/artworkshare.svg"></a>
@@ -235,9 +235,14 @@ export default{
   },
   methods:{
     scrollTo(t){
+      this.manualTurnOff();
       document.querySelector(t).scrollIntoView({
         behavior: 'smooth'
       });
+    },
+    manualTurnOff(){
+      this.$refs.lottie.hide();
+      this.masterOn = false;
     },
     clickAudio(){
       this.playAudio = !this.playAudio;
@@ -287,7 +292,8 @@ export default{
       scrollY: 0,
       masterOn: true,
       playAudio: false,
-      emailModal: false
+      emailModal: false,
+      offOverride: false,
     }
   }
 }

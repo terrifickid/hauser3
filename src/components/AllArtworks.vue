@@ -12,7 +12,7 @@
 
                   <b class="fbold pb-3">Artist</b>
 
-                  <ul class="child">
+                  <ul class="child artistScroll">
                     <li><a  v-bind:class="{selected: !artistFilter.length}" @click="artistFilter = []">All</a></li>
                     <li v-for="artist in master.artists" :key="artist.term_id"><a v-bind:class="{selected: artistFilter.includes(artist.term_id)}" @click="toggleArrayItem(artistFilter, artist.term_id)">{{artist.name}}</a></li>
 
@@ -70,7 +70,7 @@
               <b-icon v-show="p1" icon="dash"/>
               Artist</a>
             <b-collapse id="p-1" v-model="p1"    class="mt-2">
-              <ul class="child">
+              <ul class="child artistScroll">
                 <li><a  v-bind:class="{selected: !artistFilter.length}" @click="artistFilter = []">All</a></li>
                 <li v-for="artist in master.artists" :key="artist.term_id"><a v-bind:class="{selected: artistFilter.includes(artist.term_id)}" @click="toggleArrayItem(artistFilter, artist.term_id)">{{artist.name}}</a></li>
 
@@ -288,4 +288,5 @@ ul.child{margin:0 0 1rem 19px;}
 .fullscreen-modal ul.child{margin: 0 0 1rem 0}
 .artwork{margin-bottom: 1rem; display: block;}
 .fullscreen-modal b.fbold{display: block;}
+.artistScroll{ max-height: 13rem; overflow: scroll;}
 </style>
