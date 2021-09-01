@@ -100,7 +100,8 @@ li{margin-bottom: 1rem;}
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
-  .thumb ul{max-height: 35rem; width: 10rem; text-align: right;}
+  .thumb{margin-top: 0 !important;}
+  .thumb ul{max-height: 29rem; width: 94px; float: right; text-align: right;}
   .thumb li{display: black;}
  }
 

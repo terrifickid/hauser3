@@ -39,7 +39,7 @@
                   </div>
                   </div>
                 </div><!-- end col -->
-                <div id="heroCont" class="col-10 offset-1 col-lg-6 offset-lg-0 col-xl-6 offset-xl-1">
+                <div id="heroCont" class="col-10 offset-1 col-lg-6 offset-lg-0 col-xl-6 offset-xl-1 d-flex align-items-center">
                   <div v-if="!artwork.acf.hero_3d_"  style="padding: 0 1rem 1rem 1rem;"><img :src="artwork.acf.hero_image.url" class="img-fluid"></div>
                     <Lottie ref="lottie" v-show="artwork.acf.hero_3d_" :url="artwork.acf.hero_3d_"></Lottie>
                 </div><!-- end col -->

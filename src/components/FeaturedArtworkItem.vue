@@ -5,9 +5,9 @@
         <div style="height: 2rem;" class="d-md-none"></div>
       <h3 class="mb-5">{{artwork.artist.name}}</h3>
       <p>{{artwork.title.rendered}}</p>
-      <p>{{artwork.acf.hero_description}}</p>
+      <p v-html="artwork.acf.hero_description"></p>
         <a :href="'artwork/'+artwork.slug" class="btn btn-md btn-outline-dark btn-block">View details</a>
- 
+
       </div>
 
     </div>
