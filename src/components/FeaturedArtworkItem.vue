@@ -42,6 +42,13 @@ export default {
     hide(){
       this.show = false;
     },
+    playCheck(){
+      var toggle = this.$refs.toggler.getBoundingClientRect().y - window.innerHeight;
+      if(toggle < 0){
+          this.show = true;
+          lot.play();
+      }
+    }
   },
   mounted: function(){
     var lot = window.lottie.loadAnimation({
@@ -53,16 +60,8 @@ export default {
     });
 
     lot.addEventListener('DOMLoaded', () => {
-
-      this.duration = lot.getDuration(true);
-
-        document.addEventListener('scroll', () => {
-          var toggle = this.$refs.toggler.getBoundingClientRect().y - window.innerHeight;
-          if(toggle < 0){
-              this.show = true;
-              lot.play();
-          }
-        });
+      this.playCheck();
+      document.addEventListener('scroll', () => { this.playCheck(); });
     });
 
   }
