@@ -221,7 +221,7 @@ export default {
         if(this.mediumFilter.includes(artwork.hauser_mediums[0]))return true;
         return false;
       }).filter((artwork) => {
-        console.log(artwork.title.rendered.search(this.searchFilter), this.searchFilter, artwork.title.rendered);
+
         if(!this.searchFilter) return true;
         if(artwork.title.rendered.toLowerCase().search(this.searchFilter.toLowerCase()) > -1) return true;
         if(artwork.artist.name.toLowerCase().search(this.searchFilter.toLowerCase()) > -1) return true;
@@ -248,7 +248,7 @@ export default {
             if(a.title.rendered > b.title.rendered) { calc = -1; }
           break;
         }
-        console.log(a, calc);
+      
         return calc;
       });
 

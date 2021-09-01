@@ -7,7 +7,9 @@
       <p>{{artwork.title.rendered}}</p>
       <p>{{artwork.acf.hero_description}}</p>
         <a :href="'artwork/'+artwork.slug" class="btn btn-md btn-outline-dark btn-block">View details</a>
+ 
       </div>
+
     </div>
     <div   class="col d-flex align-items-center text-center">
       <Loader v-show="!show"></Loader>
@@ -46,7 +48,7 @@ export default {
       var toggle = this.$refs.toggler.getBoundingClientRect().y - window.innerHeight;
       if(toggle < 0){
           this.show = true;
-          lot.play();
+          this.lot.play();
       }
     }
   },
@@ -60,6 +62,7 @@ export default {
     });
 
     lot.addEventListener('DOMLoaded', () => {
+      console.log('DomLoaded!');
       this.playCheck();
       document.addEventListener('scroll', () => { this.playCheck(); });
     });
