@@ -43,27 +43,16 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    async loadArtworks({ commit }) {
-      //Load Artworks
-      try {
-            const res = await axios.get(process.env.VUE_APP_URI+'wp-json/wp/v2/hauser_artworks/?per_page=100');
-            commit('setArtworks', res.data)
-            console.log(res.data);
-        } catch (err) {
-            // Handle Error Here
-            console.error(err);
-        }
-    },
-    async loadMaster({ commit }) {
-      //Load Master
-      try {
-            const res = await axios.get(process.env.VUE_APP_URI+'wp-json/hauser/v1/master');
-            commit('setMaster', res.data)
-            console.log(res.data);
-        } catch (err) {
-            // Handle Error Here
-            console.error(err);
-        }
+    async loadData({ commit }) {
+      //Load data
+          var res = await Promise.all([
+            axios.get(process.env.VUE_APP_URI+'wp-json/wp/v2/hauser_artworks/?per_page=500'),
+            axios.get(process.env.VUE_APP_URI+'wp-json/hauser/v1/master')
+          ]);
+          console.log('Loaded '+res[0].data.length+' Artworks!');
+          commit('setArtworks', res[0].data);
+          console.log('Master Data Loaded!');
+          commit('setMaster', res[1].data);
 
     }
   },

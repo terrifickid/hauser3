@@ -134,7 +134,7 @@ export default {
 <style scoped lang="scss">
 .hauser-hero{}
 h2{font-size: 1.25rem;}
-h1{font-size: 5rem;}
+h1{font-size: 4rem;}
   #bg{
     color: white;
 
@@ -157,4 +157,12 @@ h1{font-size: 5rem;}
   }
   a, a:hover{color: white;}
 .pad{padding-top: 4rem;}
+
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  h1{ font-size: 5rem !important;}
+   }
+
+
 </style>

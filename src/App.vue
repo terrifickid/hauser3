@@ -10,8 +10,7 @@
 <script>
 export default{
   mounted(){
-    this.$store.dispatch('loadArtworks');
-    this.$store.dispatch('loadMaster');
+    this.$store.dispatch('loadData');
   }
 }
 </script>

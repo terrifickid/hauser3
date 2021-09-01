@@ -114,7 +114,7 @@
           <div v-if="!filteredArtworks.length" class="col-6 col-md-4 col-xl-3"><p>Nothing found.</p></div>
           <div v-for="artwork in filteredArtworks" :key="artwork.id" class="col-6 col-md-4   col-xl-3">
             <a class="artwork" :href="'/artwork/'+artwork.slug">
-            <img class="img-fluid mb-4" :src="artwork.acf.hero_image.url">
+            <img class="img-fluid mb-4" :src="artwork.acf.hero_image.sizes.medium">
             <p class="fbold">{{artwork.artist.name}}</p>
             <p>{{artwork.title.rendered}}<br>
 
@@ -149,7 +149,7 @@
 
       </div><!-- end col -->
     </div><!-- end row -->
-    <div class="row"><div class="col text-center"><a class="btn btn-md btn-outline-dark">Load 20 more</a></div></div><!-- end row -->
+    <div class="row"><div class="col text-center"><a @click="perPage = perPage + 20;" class="btn btn-md btn-outline-dark">Load 20 more</a></div></div><!-- end row -->
 
   </div>
   </div><!-- -->
@@ -248,11 +248,11 @@ export default {
             if(a.title.rendered > b.title.rendered) { calc = -1; }
           break;
         }
-      
+
         return calc;
       });
 
-      return filtered;
+      return filtered.slice(0, this.perPage);
 
     },
     master () {
@@ -271,6 +271,7 @@ export default {
       p3: false,
       psort: true,
       filtersModal: false,
+      perPage: 20
     }
   }
 

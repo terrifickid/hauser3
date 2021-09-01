@@ -106,4 +106,5 @@ a{color: white;}
 .menu-modal ul li{display: block; margin:1rem 0; font-size: 2rem;}
 #desktopMenu a:hover{color: white;}
 .invert #hlogo, .invert #desktopMenu a, .invert .icons a{filter: brightness(0%);}
+
 </style>
