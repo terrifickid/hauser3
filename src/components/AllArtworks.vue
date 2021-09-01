@@ -109,10 +109,10 @@
         <a @click="clearFilters()" v-show="priceFilter.length || artistFilter.length || mediumFilter.length"><b-icon  icon="x"/> Clear</a>
       </div><!-- end col -->
 
-      <div v-ani="{class:'fade-in-bottom', delay: 100}"  v-if="artworks.length" class="col">
+      <div  v-if="artworks.length" class="col">
         <div class="row">
           <div v-if="!filteredArtworks.length" class="col-6 col-md-4 col-xl-3"><p>Nothing found.</p></div>
-          <div v-for="artwork in filteredArtworks" :key="artwork.id" class="col-6 col-md-4   col-xl-3">
+          <div v-for="(artwork, index) in filteredArtworks" :key="index"  class="col-6 col-md-4   col-xl-3">
             <a class="artwork" :href="'/artwork/'+artwork.slug">
             <img class="img-fluid mb-4" :src="artwork.acf.hero_image.sizes.medium">
             <p class="fbold">{{artwork.artist.name}}</p>
