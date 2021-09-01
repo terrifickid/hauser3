@@ -63,7 +63,7 @@ export default {
       this.playCheck();
       document.addEventListener('scroll', () => { this.playCheck(); });
     });
-
+    this.lot = lot;
   }
 }
 </script>
