@@ -1,5 +1,6 @@
 <template>
   <div id="Artwork" class="">
+    <ShareModal v-if="artwork" ref="shareModal" :artwork="artwork"></ShareModal>
     <div v-bind:class="{ 'active': emailModal }" class="fullscreen-modal">
       <div class="container">
         <div class="row d-flex align-items-center text-left" style="position: relative; height: 100vh">
@@ -31,11 +32,13 @@
             <div class="row">
                 <div  class="d-none col-xl-2 d-xl-block ">
                   <div  style="bottom: 3rem;" class="fixed">
-                  <div v-bind:class="{'fade-in-bottom': masterOn}"  v-if="masterOn" class="row d-flex align-items-center ">
-                    <div class="col-2">
-                      <a @click="clickAudio()" v-bind:class="{heartbeat: playAudio}" class="avatar bg-subtle-grey" v-bind:style="{'background-image': 'url('+artwork.acf.hero_audio_avatar.url+')'}"></a>
+                  <div v-bind:class="{'fade-in-bottom': masterOn}"  v-if="masterOn && this.artwork.acf.hero_audio.url" class="row d-flex align-items-center ">
+                    <div style="width: 40px; float: left; margin-left: 14px;">
+                      <a @click="clickAudio()" v-bind:class="{heartbeat: playAudio}" class="avatar bg-subtle-grey" v-bind:style="{'background-image': 'url('+artwork.acf.hero_audio_avatar.url+')'}">
+                        <div v-bind:class="{playBoxShow: playAudio}" class="playBox"><b-icon class="playIcon" icon="play-fill"/></div>
+                      </a>
                     </div>
-                    <div class="col"><div class="ml-2">{{artwork.artist.name}} on {{artwork.title.rendered}}</div></div>
+                    <div style="padding-left: 3px;" class="col"><div class="ml-2">{{artwork.artist.name}} on {{artwork.title.rendered}}</div></div>
                   </div>
                   </div>
                 </div><!-- end col -->
@@ -50,16 +53,19 @@
                     <h4>{{artwork.artist.name}}</h4>
                     <p>{{artwork.title.rendered}}</p>
                     <p v-html="artwork.acf.hero_description"></p>
-                    <p>${{artwork.acf.price}}</p>
+                    <p>
+                      <template v-if="artwork.acf.price_upon_inquiry">Price upon inquiry</template>
+                      <template v-if="!artwork.acf.price_upon_inquiry">${{artwork.acf.price}}</template>
+                    </p>
                     <p class="mt-4"><a href="https://wa.me/+447384525201" class="btn btn-block btn-md btn-outline-dark"><img class="btniconfix" src="../assets/whatsapp.svg"> Live Chat</a>
                     <a @click="emailModal = !emailModal" class="btn btn-block btn-md btn-outline-dark">Email Enquiry</a></p>
 
                     <p class="mt-5"><a href="#details">Details & Features <b-icon class="ml-2" icon="arrow-right"/></a></p>
                     <p><a href="#details">About the artwork <b-icon class="ml-2" icon="arrow-right"/></a></p>
-                    <p><a href="#details">About the artist <b-icon class="ml-2" icon="arrow-right"/></a></p>
+                    <p><a href="#panels">About the artist <b-icon class="ml-2" icon="arrow-right"/></a></p>
 
                     <div style="padding-top: 2rem;">
-                      <a class="mr-3"><img src="../assets/artworkheart.svg"></a><a><img src="../assets/artworkshare.svg"></a>
+                      <a @click="toggleFavorite(artwork.id)" class="mr-3 clink bg-subtle-grey"><img v-show="!favorites.includes(artwork.id)" src="../assets/favoriteIcon.svg"><img v-show="favorites.includes(artwork.id)" src="../assets/favoriteIconSel.svg"></a><a class="mr-3 clink bg-subtle-grey" @click="toggleShare()"><img src="../assets/share.svg"></a>
                     </div>
                   </div>
                 </div>
@@ -90,7 +96,7 @@
         <p><a @click="scrollTo('#details')" href="#">About the artist <b-icon class="ml-2" icon="arrow-right"/></a></p>
 
         <div style="padding-top: 2rem;">
-          <a class="mr-3"><img src="../assets/artworkheart.svg"></a><a><img src="../assets/artworkshare.svg"></a>
+          <a @click="toggleFavorite(artwork.id)" class="mr-3 clink bg-subtle-grey"><img v-show="!favorites.includes(artwork.id)" src="../assets/favoriteIcon.svg"><img v-show="favorites.includes(artwork.id)" src="../assets/favoriteIconSel.svg"></a><a class="mr-3 clink bg-subtle-grey" @click="toggleShare()"><img src="../assets/share.svg"></a>
         </div>
       </div>
     </div>
@@ -138,7 +144,7 @@
 <div style="height: 4rem;"></div>
 
 
-    <div v-for="panel in artwork.acf.panels" :key="panel.title">
+    <div id="panels" v-for="panel in artwork.acf.panels" :key="panel.title">
 
       <template v-if="panel.acf_fc_layout == 'left_image'">
         <div  class="d-md-none" style="height: 20rem; background-size: cover; background-position: center center;" v-bind:style="{'background-image': 'url('+panel.image.url+')'}"></div>
@@ -148,7 +154,7 @@
             <div class="col">
               <div style="padding: 8rem 4rem">
                 <h3>{{panel.title}}</h3>
-                {{panel.description}}
+                  <div v-html="panel.description"></div>
               </div>
             </div>
         </div>
@@ -163,7 +169,7 @@
             <div class="col">
               <div style="padding: 8rem 4rem">
                 <h3>{{panel.title}}</h3>
-                {{panel.description}}
+                <div v-html="panel.description"></div>
               </div>
             </div>
               <div  class="col-6 d-none d-md-block" style="overflow: hidden;"><div v-ani="{class:'kenburns-top', delay: 0}"  style="position: absolute; top: 0; left: 0; right:0; bottom:0; background-size: cover; background-position: center center;" v-bind:style="{'background-image': 'url('+panel.image.url+')'}"></div></div>
@@ -175,7 +181,7 @@
       <template v-if="panel.acf_fc_layout == 'quote'">
         <div class="col">
           <div v-bind:style="{'background-color': panel.background_color}" style="padding: 4rem 4rem 3rem 4rem;  color: white;" >
-            <h3>{{panel.description}}</h3>
+            <h3 v-html="panel.description"></h3>
             <p><b-icon class="ml-2" icon="dash"/> {{panel.author}}</p>
           </div>
         </div>
@@ -185,7 +191,7 @@
       <template v-if="panel.acf_fc_layout == 'small_print'">
         <div class="container">
           <div class="col">
-        <small>  {{panel.small_print}}</small>
+        <small>{{panel.small_print}}</small>
       </div>
       </div>
         <div style="height: 8rem;"></div>
@@ -224,12 +230,14 @@ import InnerImageZoom from 'vue-inner-image-zoom';
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
 import Lottie from '@/components/Lottie.vue';
+import ShareModal from '@/components/ShareModal.vue';
 import ExploreArtworkItem from '@/components/ExploreArtworkItem.vue';
 export default{
   components: {
     Header,
     Footer,
     Lottie,
+    ShareModal,
     ExploreArtworkItem,
     'inner-image-zoom': InnerImageZoom
   },
@@ -262,7 +270,13 @@ export default{
         if(toggleContent < 0)this.masterOn = false;
         if(toggleContent > 0)this.masterOn= true;
 
-    }
+    },
+    toggleShare(){
+      this.$refs.shareModal.toggle();
+    },
+    toggleFavorite(id){
+      this.$store.commit('toggleFavorite', id);
+    },
   },
   mounted: async function() {
     this.slug = this.$route.params.slug;
@@ -270,6 +284,9 @@ export default{
     document.addEventListener('fullscreenchange', () => { this.reCalc();  });
   },
   computed:{
+    favorites () {
+      return this.$store.state.favorites;
+    },
     audio(){
         return new Audio(this.artwork.acf.hero_audio.url);
     },
@@ -305,11 +322,23 @@ a, a:hover{color: black}
 #positioner{border: 1px solid blue; position: fixed; left: 0;}
 .artwork{margin-bottom: 6rem;}
 .artwork_images{margin: 4rem 0;}
-.avatar{width: 40px; height: 40px; display: inline-block; background-size: cover; border-radius: 10rem;}
+.avatar{display: inline-block; width: 40px; height: 40px; overflow: hidden; background-size: cover; border-radius: 10rem;}
 
 .masterHeight{position: relative;  min-height: 100vh;}
 .scrollHeight{min-height: 1200vh !important;}
+.clink{padding: 0.5rem 0rem; text-align: center; width: 2.5rem; display: inline-block; border-radius: 100px;}
 
+.playBox{
+  opacity: 0;
+  width: 60px; height: 60px;
+   position: relative; left: -10px; top: -10px;
+   background: rgba(0,0,0,1);
+   border-radius: 100px;
+}
+.avatar:hover .playBox, .playBoxShow{opacity: 1;}
+.playIcon{
+  position: absolute; top: 17px; left: 18px; width: 25px; height: 25px; color: white;
+}
 // Extra small devices (portrait phones, less than 576px)
 // No media query since this is the default in Bootstrap
 
