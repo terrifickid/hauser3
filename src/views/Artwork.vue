@@ -266,7 +266,7 @@ export default{
         if(toggleLottie > 0)this.$refs.lottie.reveal();
 
       var toggleContent = this.$refs.contentPoint.getBoundingClientRect().y - window.innerHeight;
-      console.log(toggleContent);
+
         if(toggleContent < 0)this.masterOn = false;
         if(toggleContent > 0)this.masterOn= true;
 
@@ -325,7 +325,7 @@ a, a:hover{color: black}
 .avatar{display: inline-block; width: 40px; height: 40px; overflow: hidden; background-size: cover; border-radius: 10rem;}
 
 .masterHeight{position: relative;  min-height: 100vh;}
-.scrollHeight{min-height: 1200vh !important;}
+.scrollHeight{min-height: 3200px !important;}
 .clink{padding: 0.5rem 0rem; text-align: center; width: 2.5rem; display: inline-block; border-radius: 100px;}
 
 .playBox{

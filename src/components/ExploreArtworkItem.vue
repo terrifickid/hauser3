@@ -1,7 +1,10 @@
 <template>
   <div v-if="artwork" >
       <a class="artwork" :href="'/artwork/'+artwork.slug">
-     <img class="img-fluid mb-4" :src="artwork.acf.hero_image.url">
+
+        <div class="bgCover mb-4" v-bind:style="{'background-image': 'url('+artwork.acf.hero_image.url+')'}">
+          <img style="width: 100%;" src="../assets/square.png">
+        </div>
      <h6 class="fbold">{{artwork.artist.name}}</h6>
      <p v-html="artwork.title.rendered"></p>
      </a>
@@ -37,4 +40,5 @@ export default {
 h5{font-size:32px;}
 h6{font-size: 24px;}
 a, a:hover{color: black; text-decoration: none;}
+.bgCover{background-position: center center; background-size: cover;}
 </style>

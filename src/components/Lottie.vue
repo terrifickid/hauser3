@@ -30,17 +30,16 @@ export default {
   },
   methods:{
     reveal(){
-      console.log('ran!');
       this.show = true;
     },
     hide(){
       this.show = false;
     },
-    nextFrame(mod){
-      this.frame = this.frame + mod;
-      if(this.frame >= this.duration) this.frame = 1;
-      if(this.frame <= 0) this.frame = this.duration;
-      this.lottie.goToAndStop(this.frame, true);
+    nextFrame(frame){
+      if(frame >= this.duration) frame = this.duration-1;
+      if(frame <= 1) frame = 1;
+      console.log(frame, window.scrollY);
+      this.lottie.goToAndStop(frame, true);
 
     },
     resize(){
@@ -48,7 +47,7 @@ export default {
       var tpos = (window.innerHeight/2) - (this.$refs.lottie.offsetHeight/2);
       //console.log(this.$refs.heroCont.offsetWidth);
       this.$refs.lottie.style.left = document.getElementById('heroCont').getBoundingClientRect().x+'px';
-      console.log(this.$refs.lottie.style.left);
+
       this.$refs.lottie.style.top = tpos+'px';
       this.$refs.lottie.style.width = document.getElementById('heroCont').clientWidth+'px';
 
@@ -66,7 +65,7 @@ export default {
     var lot = window.lottie.loadAnimation({
       container: this.$refs.lottie, // the dom element that will contain the animation
       renderer: 'svg',
-      loop: true,
+      loop: false,
       autoplay: false,
       path: this.url// the path to the animation json
     });
@@ -79,12 +78,9 @@ export default {
       this.duration = lot.getDuration(true);
       this.show = true;
       document.addEventListener('scroll', () => {
-        var mod = 0;
         this.scrollY = window.scrollY;
-        if(this.scrollY > this.oldScrollY) mod = 1;
-        if(this.scrollY < this.oldScrollY) mod = -1;
-        this.oldScrollY = this.scrollY;
-        this.nextFrame(mod);
+        var frame = Math.round(this.scrollY/15,0);
+        this.nextFrame(frame);
       });
     });
 
@@ -102,6 +98,6 @@ export default {
 .lot{
   opacity: 0;
   filter: blur(0rem);
-   transition: opacity 0.1s, 
+   transition: opacity 0.1s,
  }
 </style>
