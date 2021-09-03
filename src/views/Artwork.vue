@@ -40,7 +40,7 @@
                         <div v-bind:class="{playBoxShow: playAudio}" class="playBox"><b-icon class="playIcon" icon="play-fill"/></div>
                       </a>
                     </div>
-                    <div style="padding-left: 3px;" class="col"><div class="ml-2">{{artwork.artist.name}} on {{artwork.title.rendered}}</div></div>
+                    <div style="padding-left: 3px;" class="col"><div class="ml-2" v-html="artwork.acf.hero_audio_caption"></div></div>
                   </div>
                   </div>
                 </div><!-- end col -->
@@ -53,7 +53,7 @@
                     <div  v-ani="{class:'fade-in-bottom', delay: 0}"  v-if="masterOn" class="pt-4"  >
 
                     <h4>{{artwork.artist.name}}</h4>
-                    <p>{{artwork.title.rendered}}</p>
+                    <p v-html="artwork.title.rendered"></p>
                     <p v-html="artwork.acf.hero_description"></p>
                     <p>
                       <template v-if="artwork.acf.price_upon_inquiry">Price upon inquiry</template>
@@ -87,7 +87,7 @@
         <p>${{artwork.acf.price}}</p>
       </div>
       <div class="col-12">
-        <p>{{artwork.title.rendered}}</p>
+        <p v-html="artwork.title.rendered"></p>
         <p v-html="artwork.acf.hero_description"></p>
 
         <p class="mt-4"><a href="https://wa.me/+447384525201" class="btn btn-block btn-md btn-outline-dark"><img class="btniconfix" src="../assets/whatsapp.svg"> Live Chat</a>
@@ -127,7 +127,7 @@
       <div style="padding: 3rem 0">
       <h3 v-if="artwork.acf.details.length" class="mb-4">Details & features</h3>
       <div class="row mb-2" v-for="detail in artwork.acf.details" :key="detail.title">
-        <div class="col-12 col-md-3">{{detail.title}}:</div><div class="col">{{detail.description}}</div>
+        <div class="col-12 col-md-3">{{detail.title}}:</div><div class="col" v-html="detail.description"></div>
       </div><!-- end row -->
       <div v-if="artwork.acf.short_description" >
       <h3 class="mb-4 mt-5">About the artwork</h3>
