@@ -32,12 +32,14 @@
         <div  class="container">
             <div class="row" style="min-height: 100vh;">
 
-                <div  class="d-none col-xl-2 d-xl-block ">
-                  <div  style="bottom: 3rem;" class="fixed">
-                  <div v-bind:class="{'fade-in-bottom': masterOn}"  v-if="masterOn && this.artwork.acf.hero_audio.url" class="row d-flex align-items-center ">
+                <div   class="d-none col-xl-2 d-xl-block ">
+
+                  <div  style="bottom: 3rem; " class="fixed">
+
+                  <div v-bind:class="{'fade-in-bottom': masterOn}"  v-if="masterOn && artwork.acf.hero_audio.url" class="row d-flex align-items-center ">
                     <div style="width: 40px; float: left; margin-left: 14px;">
-                      <a @click="clickAudio()" v-bind:class="{heartbeat: playAudio}" class="avatar bg-subtle-grey" v-bind:style="{'background-image': 'url('+artwork.acf.hero_audio_avatar.url+')'}">
-                        <div v-bind:class="{playBoxShow: playAudio}" class="playBox"><b-icon class="playIcon" icon="play-fill"/></div>
+                      <a @click="clickAudio()" v-bind:class="{heartbeat: playAudio}" class="avatar" v-bind:style="{'background-image': 'url('+artwork.acf.hero_audio_avatar.url+')'}">
+                        <div v-bind:class="{playBoxShow: playAudio}" class="playBox"><b-icon v-show="!playAudio" class="playIcon" icon="play-fill"/></div>
                       </a>
                     </div>
                     <div style="padding-left: 3px;" class="col"><div class="ml-2" v-html="artwork.acf.hero_audio_caption"></div></div>
@@ -336,15 +338,18 @@ a, a:hover{color: black}
 .clink{padding: 0.5rem 0rem; text-align: center; width: 2.5rem; display: inline-block; border-radius: 100px;}
 
 .playBox{
-  opacity: 0;
+  opacity: 1;
   width: 60px; height: 60px;
    position: relative; left: -10px; top: -10px;
-   background: rgba(0,0,0,1);
+   background-color: #e0e0e0;
    border-radius: 100px;
 }
+.playBox.playBoxShow{background-color: transparent;}
+.playBox:hover{   background: rgba(0,0,0,1);}
+.playBox.playBoxShow:hover{ background: none !important;}
 .avatar:hover .playBox, .playBoxShow{opacity: 1;}
 .playIcon{
-  position: absolute; top: 17px; left: 18px; width: 25px; height: 25px; color: white;
+  position: absolute; top: 17px; left: 19px; width: 25px; height: 25px; color: white;
 }
 .sizer{min-height: 75vh;}
 // Extra small devices (portrait phones, less than 576px)
