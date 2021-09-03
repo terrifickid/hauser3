@@ -13,7 +13,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 // Medium devices (tablets, 768px and up)
-  .mobile{transform: scale(0.9);}
+  .mobile{transform: scale(0.8);}
 @media (min-width: 768px) {
   .mobile{transform: scale(1);}
   .pad{padding-top: 4rem;}

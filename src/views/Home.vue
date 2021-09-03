@@ -1,6 +1,7 @@
 
 <template>
   <div class="home">
+      <Header :mode="0"></Header>
     <div id="hauser_home">
 
       <div v-bind:class="{ 'active': videoModal }" class="fullscreen-modal menu-modal">
@@ -19,14 +20,11 @@
       </div>
 
       <div v-ani="{class:'blur-in-center', delay: 0}"  id="bg">
-      <Header></Header>
-        <div class="pad">
+        <iframe border=0 frameborder=0 src="https://player.vimeo.com/video/569446269?dnt=1&amp;app_id=122963&amp;h=5cd36b5e4f&amp;controls=0&amp;hd=1&amp;fs=1&amp;rel=0&amp;modestbranding=1&amp;autoplay=1&amp;muted=1&amp;autopause=0&amp;loop=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen=""></iframe>
 
-      <iframe border=0 frameborder=0 src="https://player.vimeo.com/video/569446269?dnt=1&amp;app_id=122963&amp;h=5cd36b5e4f&amp;controls=0&amp;hd=1&amp;fs=1&amp;rel=0&amp;modestbranding=1&amp;autoplay=1&amp;muted=1&amp;autopause=0&amp;loop=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen=""></iframe>
-
-      <div class="hauser-hero mt-4">
+      <div class="hauser-hero">
         <div class="container">
-
+          <div class="row d-flex align-items-center" style="min-height: 100vh;">
             <div class="col-12 col-md-10 offset-md-1">
 
             <h2 v-ani="{class:'fade-in-bottom', delay: 1000}" class="fnormal mb-5">{{master.heading_1}}</h2>
@@ -39,6 +37,7 @@
           </div>
           </div>
         </div>
+
       </div><!-- end hauser-hero -->
     </div><!-- end bg -->
 
@@ -160,7 +159,7 @@ h1{font-size: 5rem;}
 
 
 .pad{padding-top: 2rem;}
-.hauser-hero{transform: scale(0.9);}
+.hauser-hero{transform: scale(0.8);}
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
   .hauser-hero{transform: scale(1);}

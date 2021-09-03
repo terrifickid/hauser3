@@ -5,7 +5,7 @@
         <div class="bgCover mb-4" v-bind:style="{'background-image': 'url('+artwork.acf.hero_image.url+')'}">
           <img style="width: 100%;" src="../assets/square.png">
         </div>
-     <h6 class="fbold">{{artwork.artist.name}}</h6>
+     <h4 class="fbold">{{artwork.artist.name}}</h4>
      <p v-html="artwork.title.rendered"></p>
      </a>
     </div><!-- -->
@@ -37,8 +37,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-h5{font-size:32px;}
-h6{font-size: 24px;}
 a, a:hover{color: black; text-decoration: none;}
 .bgCover{background-position: center center; background-size: cover;}
 </style>

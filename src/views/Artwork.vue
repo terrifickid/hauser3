@@ -1,5 +1,6 @@
 <template>
   <div id="Artwork" class="">
+    <Header :mode="1"></Header>
     <ShareModal v-if="artwork" ref="shareModal" :artwork="artwork"></ShareModal>
     <div v-bind:class="{ 'active': emailModal }" class="fullscreen-modal">
       <div class="container">
@@ -26,10 +27,11 @@
 
       <div v-if="artwork">
 
-      <div class="bg-subtle-grey page masterHeight" v-bind:class="{scrollHeight: artwork.acf.hero_3d_}">
-        <Header :mode="1"></Header>
-        <div  class="container pb-5 pt-5">
-            <div class="row">
+      <div class="bg-subtle-grey page" v-bind:class="{scrollHeight: artwork.acf.hero_3d_}">
+
+        <div  class="container">
+            <div class="row" style="min-height: 100vh;">
+
                 <div  class="d-none col-xl-2 d-xl-block ">
                   <div  style="bottom: 3rem;" class="fixed">
                   <div v-bind:class="{'fade-in-bottom': masterOn}"  v-if="masterOn && this.artwork.acf.hero_audio.url" class="row d-flex align-items-center ">
@@ -43,7 +45,7 @@
                   </div>
                 </div><!-- end col -->
                 <div id="heroCont" class="col-10 offset-1 col-lg-6 offset-lg-0 col-xl-6 offset-xl-1 d-flex align-items-center">
-                  <div v-if="!artwork.acf.hero_3d_"  style="padding: 0 1rem 1rem 1rem;"><img :src="artwork.acf.hero_image.url" class="img-fluid"></div>
+                  <div v-if="!artwork.acf.hero_3d_"  style="padding: 0 1rem 0rem 1rem;"><img :src="artwork.acf.hero_image.url" class="img-fluid"></div>
                     <Lottie ref="lottie" v-show="artwork.acf.hero_3d_" :url="artwork.acf.hero_3d_"></Lottie>
                 </div><!-- end col -->
                 <div class="d-none d-lg-block col-lg-3 offset-lg-1 offset-xl-0">
@@ -125,7 +127,7 @@
       <div style="padding: 3rem 0">
       <h3 v-if="artwork.acf.details.length" class="mb-4">Details & features</h3>
       <div class="row mb-2" v-for="detail in artwork.acf.details" :key="detail.title">
-        <div class="col-3">{{detail.title}}:</div><div class="col">{{detail.description}}</div>
+        <div class="col-12 col-md-3">{{detail.title}}:</div><div class="col">{{detail.description}}</div>
       </div><!-- end row -->
       <div v-if="artwork.acf.short_description" >
       <h3 class="mb-4 mt-5">About the artwork</h3>
@@ -149,10 +151,10 @@
       <template v-if="panel.acf_fc_layout == 'left_image'">
         <div  class="d-md-none" style="height: 20rem; background-size: cover; background-position: center center;" v-bind:style="{'background-image': 'url('+panel.image.url+')'}"></div>
         <div class="container-fluid">
-          <div class="row">
-          <div  class="col-6 d-none d-md-block" style="overflow: hidden;"><div v-ani="{class:'kenburns-top', delay: 0}"  style="position: absolute; top: 0; left: 0; right:0; bottom:0; background-size: cover; background-position: center center;" v-bind:style="{'background-image': 'url('+panel.image.url+')'}"></div></div>
+          <div class="row d-flex align-items-center sizer ">
+          <div  class="col-6 d-none d-md-block sizer" style="position: relative; overflow: hidden;"><div v-ani="{class:'kenburns-top', delay: 0}"  style="position: absolute; top: 0; left: 0; right:0; bottom:0; background-size: cover; background-position: center center;" v-bind:style="{'background-image': 'url('+panel.image.url+')'}"></div></div>
             <div class="col">
-              <div style="padding: 8rem 4rem">
+              <div class="mt-5 mb-5 col-10 offset-1 ">
                 <h3>{{panel.title}}</h3>
                   <div v-html="panel.description"></div>
               </div>
@@ -165,14 +167,16 @@
       <template v-if="panel.acf_fc_layout == 'right_image'">
           <div class="d-md-none" style="height: 20rem;  background-size: cover; background-position: center center;" v-bind:style="{'background-image': 'url('+panel.image.url+')'}"></div>
         <div class="container-fluid">
-          <div class="row">
+            <div class="row d-flex align-items-center sizer ">
             <div class="col">
-              <div style="padding: 8rem 4rem">
+              <div class="mt-5 mb-5 col-10 offset-1">
+
                 <h3>{{panel.title}}</h3>
                 <div v-html="panel.description"></div>
+
               </div>
             </div>
-              <div  class="col-6 d-none d-md-block" style="overflow: hidden;"><div v-ani="{class:'kenburns-top', delay: 0}"  style="position: absolute; top: 0; left: 0; right:0; bottom:0; background-size: cover; background-position: center center;" v-bind:style="{'background-image': 'url('+panel.image.url+')'}"></div></div>
+              <div  class="col-6 d-none d-md-block sizer" style="overflow: hidden;"><div v-ani="{class:'kenburns-top', delay: 0}"  style="position: absolute; top: 0; left: 0; right:0; bottom:0; background-size: cover; background-position: center center;" v-bind:style="{'background-image': 'url('+panel.image.url+')'}"></div></div>
           </div>
         </div>
           <div class="d-none d-md-block" style="height: 8rem;"></div>
@@ -182,7 +186,7 @@
         <div class="col">
           <div v-bind:style="{'background-color': panel.background_color}" style="padding: 4rem 4rem 3rem 4rem;  color: white;" >
             <h3 v-html="panel.description"></h3>
-            <p><b-icon class="ml-2" icon="dash"/> {{panel.author}}</p>
+            <p v-if="panel.author"><b-icon class="ml-2" icon="dash"/> {{panel.author}}</p>
           </div>
         </div>
           <div  style="height: 8rem;"></div>
@@ -203,13 +207,13 @@
 
 
 </div>
-
+  <div style="height: 6rem;"></div>
 <div v-if="artwork.acf.other_artworks.length" class="container">
   <div class="row">
     <div class="col">
-      <h2 class="mb-5">Explore Other Artworks</h2>
+      <h3 class="mb-5">Explore Other Artworks</h3>
       <div class="row">
-        <div v-for="(artwork, index) in artwork.acf.other_artworks" v-ani="{class:'fade-in-bottom', delay: index*300}" :key="artwork.ID" class="col-6 col-md-4">
+        <div v-for="(artwork, index) in artwork.acf.other_artworks" v-ani="{class:'fade-in-bottom', delay: index*300}" :key="artwork.ID" class="col-6 col-md-4 mb-5 ">
               <ExploreArtworkItem :id="artwork.ID"></ExploreArtworkItem>
         </div>
       </div>
@@ -264,12 +268,9 @@ export default{
       var toggleLottie = this.$refs.breakPoint.getBoundingClientRect().y - window.innerHeight;
         if(toggleLottie < 0)this.$refs.lottie.hide();
         if(toggleLottie > 0)this.$refs.lottie.reveal();
-
       var toggleContent = this.$refs.contentPoint.getBoundingClientRect().y - window.innerHeight;
-
         if(toggleContent < 0)this.masterOn = false;
         if(toggleContent > 0)this.masterOn= true;
-
     },
     toggleShare(){
       this.$refs.shareModal.toggle();
@@ -339,6 +340,7 @@ a, a:hover{color: black}
 .playIcon{
   position: absolute; top: 17px; left: 18px; width: 25px; height: 25px; color: white;
 }
+.sizer{min-height: 75vh;}
 // Extra small devices (portrait phones, less than 576px)
 // No media query since this is the default in Bootstrap
 
@@ -352,7 +354,7 @@ a, a:hover{color: black}
 @media (min-width: 992px) {
   .hidden{height:0px !important; overflow: hidden;}
   .fixed{position: fixed !important; max-width:inherit !important;}
-  .fixed.rightCol{width: 16rem;}
+  .fixed.rightCol{width: 16rem; top: 6rem;}
  }
 
 // Extra large devices (large desktops, 1200px and up)

@@ -4,12 +4,12 @@
     <div style="height: 6rem"></div>
     <div class="container">
       <div class="row">
-        <div class="col-10 offset-1">
+        <div class="col-md-10 offset-md-1">
           <div class="row mb-5">
             <div class="col">
-              <h3>Favorites ({{favorites.length}})</h3>
+              <h4>Favorites ({{favorites.length}})</h4>
             </div>
-          
+
           </div><!-- end row -->
           <div class="row">
             <div v-if="!favorites.length" class="col-12">Nothing Found</div>

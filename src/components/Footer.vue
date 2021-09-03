@@ -4,8 +4,8 @@
       <h5 class="text-center mb-5">Be the first to receive updates</h5>
       <div class="col-10 offset-1 col-md-8 offset-md-2">
       <div class="row">
-        <div class="col-6 col-lg-4"><input type="text" placeholder="Name" class="form-control mb-4"></div>
-        <div class="col-6 col-lg-4"><input type="text" placeholder="Email Address" class="form-control mb-4"></div>
+        <div class="col-md-6 col-lg-4"><input type="text" placeholder="Name" class="form-control mb-4"></div>
+        <div class="col-md-6 col-lg-4"><input type="text" placeholder="Email Address" class="form-control mb-4"></div>
         <div class="col-12 col-lg-4"><a class="btn btn-md btn-outline-dark btn-block">Submit</a></div>
       </div>
       </div><!-- end row -->
@@ -32,6 +32,6 @@ name: 'Footer'
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 a, a:hover{color: black;}
-#social img{padding: 0 1rem;}
+#social img{padding: 0 0.75rem;}
 #social{margin: 6rem 0 4rem 0;}
 </style>

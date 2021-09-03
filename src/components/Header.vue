@@ -1,6 +1,6 @@
 <template>
-  <div>
-  <div v-bind:class="{invert: mode}" id="hauser_header" >
+  <div  style="position: fixed; z-index: 2000; width: 100%;" >
+  <div v-bind:class="{invert: mode}" v-show="showHeader" id="hauser_header" >
     <div class="container">
       <div class="row pt-5">
         <div v-ani="{class:'fade-in-top', delay: 0}" class="col"><a href="/"><img id="hlogo" class="img-fluid" src="../assets/hauser-logo.svg"></a></div><!-- end col -->
@@ -19,7 +19,6 @@
       </div><!-- end row -->
     </div><!-- end containr -->
 
-
     <div v-bind:class="{ 'active': menuModal }" class="fullscreen-modal menu-modal">
       <div class="container">
         <div class="row pt-5">
@@ -33,35 +32,44 @@
               <li><a class="fbold" @click="navigate('#allartworks')">All Artworks</a></li>
               <li><a class="fbold" @click="navigate('#aboutgallery')" >About gallery</a></li>
             </ul>
-
-
           </div>
         </div>
       </div>
-
     </div>
-
-
-
   </div><!-- end hauser_header -->
-
-</div>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'Header',
   props: {
-    mode: Number
+    mode: Number,
   },
   data: function() {
     return {
-      menuModal: false
+      menuModal: false,
+      oldScrollY: 0,
+      showHeader: true
     }
   },
   methods:{
+    headerScroll(){
+      var mod = 0;
+      var scrollY = window.scrollY;
+      if(scrollY > this.oldScrollY) mod = 1;
+      if(scrollY < this.oldScrollY) mod = -1;
+      this.oldScrollY = scrollY;
+      if(mod > 0) this.hide();
+      if(mod < 0) this.reveal();
+    },
+    hide(){
+      this.showHeader = false;
+    },
+    reveal(){
+      this.showHeader = true;
+    },
     navigate(t){
-
       if(this.currentRouteName == 'Home'){
           this.menuModal = false;
         document.querySelector(t).scrollIntoView({
@@ -70,7 +78,6 @@ export default {
       }else{
         window.location = '/'+t;
       }
-
     }
   },
   computed: {
@@ -79,14 +86,12 @@ export default {
     }
   },
   mounted(){
-
+      document.addEventListener('scroll', () => { this.headerScroll(); });
     document.querySelectorAll('a[href^="/#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-
-
+      });
     });
-});
   }
 }
 </script>
@@ -103,6 +108,7 @@ a{color: white;}
 .menu-modal ul{}
 .menu-modal ul a{color: black;}
 .menu-modal ul li{display: block; margin:1rem 0; font-size: 2rem;}
+#desktopMenu a{color: white;}
 #desktopMenu a:hover{color: white;}
 .invert #hlogo, .invert #desktopMenu a, .invert .icons a{filter: brightness(0%);}
 

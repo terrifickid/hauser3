@@ -3,8 +3,8 @@
     <div class="col-12 order-last order-md-first col-md-4  d-md-block">
       <div v-ani="{class:'slide-in-left', delay: 600}">
         <div style="height: 2rem;" class="d-md-none"></div>
-      <h3 class="mb-5">{{artwork.artist.name}}</h3>
-      <div class="row"><div class="col"><p v-html="artwork.title.rendered"></p></div><div class="col d-md-none text-right">Explore <b-icon class="ml-2" icon="arrow-right"/></div></div>
+      <h4 class="mb-4">{{artwork.artist.name}}</h4>
+      <div class="row"><div class="col"><p v-html="artwork.title.rendered"></p></div><div class="col d-md-none text-right"><div class="mr-4">Explore <b-icon class="ml-2" icon="arrow-right"/></div></div></div>
       <p class="d-none d-md-block" v-html="artwork.acf.hero_description"></p>
         <a :href="'artwork/'+artwork.slug" class="d-none d-lg-block btn btn-md btn-outline-dark btn-block">View details</a>
       </div>
