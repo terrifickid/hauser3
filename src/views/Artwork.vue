@@ -325,6 +325,12 @@ a, a:hover{color: black}
 .artwork_images{margin: 4rem 0;}
 .avatar{display: inline-block; width: 40px; height: 40px; overflow: hidden; background-size: cover; border-radius: 10rem;}
 
+.iiz, .iiz *{
+  cursor: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg filter='url(%23filter0_b)'%3E%3Crect width='40' height='40' rx='20' fill='%23222222'/%3E%3C/g%3E%3Cpath d='M12 20L28.9706 20' stroke='white' stroke-linejoin='round'/%3E%3Cpath d='M20.4854 11.5148L20.4854 28.4853' stroke='white' stroke-linejoin='round'/%3E%3Cdefs%3E%3Cfilter id='filter0_b' x='-4' y='-4' width='48' height='48' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BackgroundImageFix'/%3E%3CfeGaussianBlur in='BackgroundImage' stdDeviation='2'/%3E%3CfeComposite in2='SourceAlpha' operator='in' result='effect1_backgroundBlur'/%3E%3CfeBlend mode='normal' in='SourceGraphic' in2='effect1_backgroundBlur' result='shape'/%3E%3C/filter%3E%3C/defs%3E%3C/svg%3E%0A") 32 32, pointer !important;
+}
+
+
+
 .masterHeight{position: relative;  min-height: 100vh;}
 .scrollHeight{min-height: 3200px !important;}
 .clink{padding: 0.5rem 0rem; text-align: center; width: 2.5rem; display: inline-block; border-radius: 100px;}
