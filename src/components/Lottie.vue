@@ -38,7 +38,7 @@ export default {
     nextFrame(frame){
       if(frame >= this.duration) frame = this.duration-1;
       if(frame <= 1) frame = 1;
-      console.log(frame, window.scrollY);
+    
       this.lottie.goToAndStop(frame, true);
 
     },

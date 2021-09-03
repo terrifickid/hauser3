@@ -1,25 +1,6 @@
 <template>
-  <div  style="position: fixed; z-index: 2000; width: 100%;" >
-  <div v-bind:class="{invert: mode}" v-show="showHeader" id="hauser_header" >
-    <div class="container">
-      <div class="row pt-5">
-        <div v-ani="{class:'fade-in-top', delay: 0}" class="col"><a href="/"><img id="hlogo" class="img-fluid" src="../assets/hauser-logo.svg"></a></div><!-- end col -->
-        <div class="d-none d-xl-block col-6 text-center">
-          <ul v-ani="{class:'fade-in-top', delay: 0}" id="desktopMenu">
-            <li><a @click="navigate('#featured')">Featured</a></li>
-            <li><a  @click="navigate('#allartworks')">All Artworks</a></li>
-            <li><a @click="navigate('#aboutgallery')" >About gallery</a></li>
-          </ul>
-        </div><!-- end col -->
-        <div v-ani="{class:'fade-in-top', delay: 0}" class="col icons text-right">
-          <a href="/favorites"><img src="../assets/heart.svg"></a>
-          <a  @click="menuModal = !menuModal"><img src="../assets/menu.svg"></a>
-
-        </div><!-- end col -->
-      </div><!-- end row -->
-    </div><!-- end containr -->
-
-    <div v-bind:class="{ 'active': menuModal }" class="fullscreen-modal menu-modal">
+  <div>
+    <div v-bind:class="{ 'active': menuModal}" class="fullscreen-modal menu-modal">
       <div class="container">
         <div class="row pt-5">
           <div class="col"><a href="/"><img style="filter: brightness(0%);" class="img-fluid" src="../assets/hauser-logo.svg"></a></div><!-- end col -->
@@ -36,8 +17,30 @@
         </div>
       </div>
     </div>
+  <div style="position: fixed; z-index: 2000; width: 100%;" >
+  <div v-bind:class="{invert: mode || belowFold, 'fade-in-top': showHeader, wbg: belowFold }" id="hauser_header" >
+    <div class="container">
+      <div class="row pt-5">
+        <div class="col"><a href="/"><img id="hlogo" class="img-fluid" src="../assets/hauser-logo.svg"></a></div><!-- end col -->
+        <div class="d-none d-xl-block col-6 text-center">
+          <ul  id="desktopMenu">
+            <li><a @click="navigate('#featured')">Featured</a></li>
+            <li><a  @click="navigate('#allartworks')">All Artworks</a></li>
+            <li><a @click="navigate('#aboutgallery')" >About gallery</a></li>
+          </ul>
+        </div><!-- end col -->
+        <div class="col icons text-right">
+          <a href="/favorites"><img src="../assets/heart.svg"></a>
+          <a  @click="menuModal = !menuModal"><img src="../assets/menu.svg"></a>
+
+        </div><!-- end col -->
+      </div><!-- end row -->
+    </div><!-- end containr -->
+
+
   </div><!-- end hauser_header -->
   </div>
+</div>
 </template>
 
 <script>
@@ -50,10 +53,24 @@ export default {
     return {
       menuModal: false,
       oldScrollY: 0,
-      showHeader: true
+      showHeader: true,
+      belowFold: false
     }
   },
   methods:{
+    headerResize(){
+
+      var height = window.innerHeight;
+
+      if( window.scrollY > height ){
+        this.belowFold = true;
+      }else{
+        this.belowFold = false;
+      }
+      //console.log(window.scrollY, height, this.belowFold)
+
+
+    },
     headerScroll(){
       var mod = 0;
       var scrollY = window.scrollY;
@@ -86,7 +103,8 @@ export default {
     }
   },
   mounted(){
-      document.addEventListener('scroll', () => { this.headerScroll(); });
+    window.addEventListener('resize', () => { this.headerResize(); });
+    document.addEventListener('scroll', () => { this.headerScroll(); this.headerResize(); });
     document.querySelectorAll('a[href^="/#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -98,7 +116,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only #hauser_header{position: fixed; width: 100%; z-index: 3000;} s-->
 <style scoped lang="scss">
-#hauser_header{position: relative; z-index: 2000;}
+#hauser_header{position: relative; z-index: 2000; padding-bottom: 2.5rem; visibility: hidden;}
+.wbg{background: white;}
 ul{list-style:  none; margin:0; padding:0;}
 li{display: inline-block; margin: 0 2rem;}
 a{color: white;}
@@ -111,5 +130,5 @@ a{color: white;}
 #desktopMenu a{color: white;}
 #desktopMenu a:hover{color: white;}
 .invert #hlogo, .invert #desktopMenu a, .invert .icons a{filter: brightness(0%);}
-
+#hauser_header.fade-in-top{visibility: visible;}
 </style>
