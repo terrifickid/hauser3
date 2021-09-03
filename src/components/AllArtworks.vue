@@ -122,7 +122,7 @@
 
             <div>
               <template v-if="artwork.acf.price_upon_inquiry">Price upon inquiry</template>
-            <template v-if="!artwork.acf.price_upon_inquiry">${{artwork.acf.price}}</template>
+            <template v-if="!artwork.acf.price_upon_inquiry">{{artwork.acf.price | toCurrency}}</template>
           </div>
 
             </a>

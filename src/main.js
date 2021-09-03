@@ -15,6 +15,15 @@ import 'vue-inner-image-zoom/lib/vue-inner-image-zoom.css';
 
 
 
+Vue.filter('toCurrency', function (value) {
+    var formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 0
+    });
+    return formatter.format(value);
+});
+
 
 // Register a global custom directive called `v-focus`
 Vue.directive('ani', {

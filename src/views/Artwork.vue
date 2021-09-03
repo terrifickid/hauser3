@@ -59,7 +59,7 @@
                     <p v-html="artwork.acf.hero_description"></p>
                     <p>
                       <template v-if="artwork.acf.price_upon_inquiry">Price upon inquiry</template>
-                      <template v-if="!artwork.acf.price_upon_inquiry">${{artwork.acf.price}}</template>
+                      <template v-if="!artwork.acf.price_upon_inquiry">{{artwork.acf.price | toCurrency}}</template>
                     </p>
                     <p class="mt-4"><a href="https://wa.me/+447384525201" class="btn btn-block btn-md btn-outline-dark"><img class="btniconfix" src="../assets/whatsapp.svg"> Live Chat</a>
                     <a @click="emailModal = !emailModal" class="btn btn-block btn-md btn-outline-dark">Email Enquiry</a></p>

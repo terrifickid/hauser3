@@ -19,7 +19,7 @@
               <p class="fbold">{{artwork.artist.name}}</p>
               <p>{{artwork.title.rendered}}<br>
 
-                ${{artwork.acf.price}}</p>
+                {{artwork.acf.price | toCurrency}}</p>
 
               </a>
 
