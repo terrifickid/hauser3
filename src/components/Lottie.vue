@@ -1,8 +1,8 @@
 <template>
+
   <div id="heroArtwork">
 
-    <div v-bind:class="{showIt: show}" class="lot" style="position: fixed;" ref="lottie"></div>
-
+    <div v-bind:class="{showIt: show, fixed: fixed, finalPos: !fixed}" class="lot" ref="lottie"></div>
   </div>
 </template>
 
@@ -19,7 +19,7 @@ export default {
   data: function(){
     return{
       scroll: null,
-      loaded: false,
+      fixed: true,
       lottie: null,
       show: false,
       frame: 1,
@@ -35,33 +35,36 @@ export default {
     hide(){
       this.show = false;
     },
-    nextFrame(frame){
-      if(frame >= this.duration) frame = this.duration-1;
-      if(frame <= 1) frame = 1;
-    
-      this.lottie.goToAndStop(frame, true);
-
+    fix(){
+      this.fixed = true;
+      this.resize();
+    },
+    unfix(){
+      this.fixed = false;
+      this.$refs.lottie.style.left = 0;
+      this.$refs.lottie.style.top = 2400+'px';
+    },
+    nextFrame(){
+      if(this.frame >= this.duration) this.frame = this.duration-1;
+      if(this.frame <= 1) this.frame = 1;
+      this.lottie.goToAndStop(this.frame, true);
     },
     resize(){
       console.log('resize');
       var tpos = (window.innerHeight/2) - (this.$refs.lottie.offsetHeight/2);
       //console.log(this.$refs.heroCont.offsetWidth);
       this.$refs.lottie.style.left = document.getElementById('heroCont').getBoundingClientRect().x+'px';
-
       this.$refs.lottie.style.top = tpos+'px';
       this.$refs.lottie.style.width = document.getElementById('heroCont').clientWidth+'px';
-
     },
     play(){
       this.lottie.play();
     }
   },
   mounted: function(){
-
     window.addEventListener('resize', () => {
       this.resize();
     }, true);
-
     var lot = window.lottie.loadAnimation({
       container: this.$refs.lottie, // the dom element that will contain the animation
       renderer: 'svg',
@@ -69,7 +72,6 @@ export default {
       autoplay: false,
       path: this.url// the path to the animation json
     });
-
     lot.addEventListener('DOMLoaded', () => {
       console.log('loaded');
       this.resize();
@@ -78,16 +80,12 @@ export default {
       this.duration = lot.getDuration(true);
       this.show = true;
       document.addEventListener('scroll', () => {
+        console.log(this.fixed);
         this.scrollY = window.scrollY;
-        var frame = Math.round(this.scrollY/15,0);
-        this.nextFrame(frame);
+        this.frame = Math.round(this.scrollY/15,0);
+        this.nextFrame();
       });
     });
-
-
-
-
-
   }
 }
 </script>
@@ -95,9 +93,11 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .showIt{opacity: 1 !important; filter: blur(0.25);}
+.fixed{position: fixed;}
 .lot{
   opacity: 0;
   filter: blur(0rem);
    transition: opacity 0.1s,
  }
+ .finalPos{position: absolute; top: 2500px;}
 </style>

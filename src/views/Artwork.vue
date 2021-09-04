@@ -31,10 +31,9 @@
 
         <div  class="container">
             <div class="row" style="min-height: 100vh;">
+              <div class="d-none col-xl-2 d-xl-block ">
 
-                <div   class="d-none col-xl-2 d-xl-block ">
-
-                  <div  style="bottom: 3rem; " class="fixed">
+                  <div style="bottom: 3rem; " class="fixed">
 
                   <div v-bind:class="{'fade-in-bottom': masterOn}"  v-if="masterOn && artwork.acf.hero_audio.url" class="row d-flex align-items-center ">
                     <div style="width: 40px; float: left; margin-left: 14px;">
@@ -135,7 +134,7 @@
       <h3 class="mb-4 mt-5">About the artwork</h3>
         <p v-html="artwork.acf.short_description"></p>
         <p><a v-b-toggle.readmore>Read More +</a></p>
-          <b-collapse id="readmore"   class="mt-2">
+          <b-collapse id="readmore" class="mt-2">
           <p v-html="artwork.acf.read_more_description"></p>
         </b-collapse>
       </div>
@@ -146,10 +145,7 @@
 
 
 <div style="height: 4rem;"></div>
-
-
     <div id="panels" v-for="panel in artwork.acf.panels" :key="panel.title">
-
       <template v-if="panel.acf_fc_layout == 'left_image'">
         <div  class="d-md-none" style="height: 20rem; background-size: cover; background-position: center center;" v-bind:style="{'background-image': 'url('+panel.image.url+')'}"></div>
         <div class="container-fluid">
@@ -165,7 +161,6 @@
         </div>
         <div class="d-none d-md-block" style="height: 8rem;"></div>
       </template>
-
       <template v-if="panel.acf_fc_layout == 'right_image'">
           <div class="d-md-none" style="height: 20rem;  background-size: cover; background-position: center center;" v-bind:style="{'background-image': 'url('+panel.image.url+')'}"></div>
         <div class="container-fluid">
@@ -183,7 +178,6 @@
         </div>
           <div class="d-none d-md-block" style="height: 8rem;"></div>
       </template>
-
       <template v-if="panel.acf_fc_layout == 'quote'">
         <div class="col">
           <div v-bind:style="{'background-color': panel.background_color}" style="padding: 4rem 4rem 3rem 4rem;  color: white;" >
@@ -193,7 +187,6 @@
         </div>
           <div  style="height: 8rem;"></div>
       </template>
-
       <template v-if="panel.acf_fc_layout == 'small_print'">
         <div class="container">
           <div class="col">
@@ -202,13 +195,7 @@
       </div>
         <div style="height: 8rem;"></div>
       </template>
-
-
-
-
-
-
-</div>
+    </div>
   <div style="height: 6rem;"></div>
 <div v-if="artwork.acf.other_artworks.length" class="container">
   <div class="row">
@@ -268,8 +255,8 @@ export default{
     },
     reCalc(){
       var toggleLottie = this.$refs.breakPoint.getBoundingClientRect().y - window.innerHeight;
-        if(toggleLottie < 0)this.$refs.lottie.hide();
-        if(toggleLottie > 0)this.$refs.lottie.reveal();
+        if(toggleLottie < 0)this.$refs.lottie.unfix();
+        if(toggleLottie > 0)this.$refs.lottie.fix();
       var toggleContent = this.$refs.contentPoint.getBoundingClientRect().y - window.innerHeight;
         if(toggleContent < 0)this.masterOn = false;
         if(toggleContent > 0)this.masterOn= true;
