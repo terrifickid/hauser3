@@ -10,11 +10,17 @@ Vue.config.productionTip = false
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
-import './app.scss';
+
+//Image Zooom
 import 'vue-inner-image-zoom/lib/vue-inner-image-zoom.css';
 
 
+//Custom CSS
+import './app.scss';
 
+
+
+//Currency Filter
 Vue.filter('toCurrency', function (value) {
     var formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
@@ -25,7 +31,7 @@ Vue.filter('toCurrency', function (value) {
 });
 
 
-// Register a global custom directive called `v-focus`
+//Animation directive
 Vue.directive('ani', {
   // When the bound element is inserted into the DOM...
   inserted: function (el,binding) {
@@ -58,7 +64,7 @@ Vue.directive('ani', {
   }
 })
 
-
+//Loap APP
 new Vue({
   router,
   store,

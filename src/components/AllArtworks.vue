@@ -1,7 +1,7 @@
 <template>
   <div id="allartworks" class="hero-pad">
 
-    <div v-bind:class="{ 'active': filtersModal }" class="fullscreen-modal">
+    <div v-bind:class="{ 'active': filtersModal }" style="overflow-y: scroll" class="fullscreen-modal">
       <div class="container" style="padding-top: 3rem; padding-bottom: 3rem;">
         <div class="row"  >
           <div class="col">  <h4 class="mb-4">Filters</h4></div>
@@ -71,6 +71,7 @@
               Artist</a>
             <b-collapse id="p-1" v-model="p1"    class="mt-2">
               <ul class="child artistScroll">
+
                 <li><a  v-bind:class="{selected: !artistFilter.length}" @click="artistFilter = []">All</a></li>
                 <li v-for="artist in master.artists" :key="artist.term_id"><a v-bind:class="{selected: artistFilter.includes(artist.term_id)}" @click="toggleArrayItem(artistFilter, artist.term_id)">{{artist.name}}</a></li>
 
@@ -154,13 +155,15 @@
 
       </div><!-- end col -->
     </div><!-- end row -->
-    <div class="row"><div class="col text-center"><a @click="perPage = perPage + 20;" class="btn btn-md btn-outline-dark">Load 20 more</a></div></div><!-- end row -->
+
+    <div v-if="perPage <= artworks.length" class="row"><div class="col text-center"><a @click="perPage = perPage + 20;" class="btn btn-md btn-outline-dark">Load 20 more</a></div></div><!-- end row -->
 
   </div>
   </div><!-- -->
 </template>
 
 <script>
+
 export default {
   name: 'AllArtworks',
   methods:{
@@ -294,5 +297,21 @@ ul.child{margin:0 0 1rem 19px;}
 .fullscreen-modal ul.child{margin: 0 0 1rem 0}
 .artwork{margin-bottom: 1rem; display: block;}
 .fullscreen-modal b.fbold{display: block;}
-.artistScroll{ max-height: 13rem; overflow: scroll;}
+.artistScroll{ max-height: 13rem; overflow-y: scroll;}
+
+//custom scrollbar
+.artistScroll::-webkit-scrollbar {
+  width: 1px;
+}
+.artistScroll::-webkit-scrollbar-track {
+  box-shadow: none;
+  background: #E0E0E0;
+
+}
+
+.artistScroll::-webkit-scrollbar-thumb {
+  background-color: black;
+  outline: 0px solid slategrey;
+
+}
 </style>

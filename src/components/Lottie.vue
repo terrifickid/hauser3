@@ -1,16 +1,16 @@
 <template>
-
-  <div id="heroArtwork">
-
+  <div id="heroArtwork" class="text-center d-flex align-items-center" style=" width: 100%;">
+    <Loader v-if="!loaded"></Loader>
     <div v-bind:class="{showIt: show, fixed: fixed, finalPos: !fixed}" class="lot" ref="lottie"></div>
   </div>
 </template>
 
 <script>
+import Loader from '@/components/Loader.vue';
 export default {
   name: 'Lottie',
   components:{
-    //LottiePlayer
+  Loader
   },
   props: {
     url: String,
@@ -18,6 +18,7 @@ export default {
   },
   data: function(){
     return{
+      loaded: false,
       scroll: null,
       fixed: true,
       lottie: null,
@@ -43,6 +44,7 @@ export default {
       this.fixed = false;
       this.$refs.lottie.style.left = 0;
       this.$refs.lottie.style.top = 2400+'px';
+      console.log();
     },
     nextFrame(){
       if(this.frame >= this.duration) this.frame = this.duration-1;
@@ -78,6 +80,7 @@ export default {
       this.resize();
       this.lottie = lot;
       this.duration = lot.getDuration(true);
+      this.loaded = true;
       this.show = true;
       document.addEventListener('scroll', () => {
         console.log(this.fixed);

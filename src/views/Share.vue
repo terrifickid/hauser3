@@ -1,7 +1,7 @@
 <template>
   <div class="share">
     <Header :mode="1"></Header>
-    <div style="height: 6rem"></div>
+    <div style="height: 8rem"></div>
     <div class="container">
       <div class="row">
         <div class="col-10 offset-1">

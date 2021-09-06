@@ -27,8 +27,8 @@
 
       <div v-if="artwork">
 
-      <div class="bg-subtle-grey page" v-bind:class="{scrollHeight: artwork.acf.hero_3d_}">
-
+      <div class="bg-subtle-grey page" style="position: relative;" v-bind:class="{scrollHeight: artwork.acf.hero_3d_}">
+        <div ref="fixMarker" style=" position: absolute; bottom: 50vh; width: 100%"></div>
         <div  class="container">
             <div class="row" style="min-height: 100vh;">
               <div class="d-none col-xl-2 d-xl-block ">
@@ -47,8 +47,8 @@
                 </div><!-- end col -->
                 <div id="heroCont" class="col-10 offset-1 col-lg-6 offset-lg-0 col-xl-6 offset-xl-1 d-flex align-items-center">
                   <div v-if="!artwork.acf.hero_3d_"  style="padding: 0 1rem 0rem 1rem; margin: auto;"><img :src="artwork.acf.hero_image.url" style="max-height: 70vh; margin: auto;" class="img-fluid"></div>
-                    <Lottie ref="lottie" v-show="artwork.acf.hero_3d_" :url="artwork.acf.hero_3d_"></Lottie>
-                </div><!-- end col -->
+                  <Lottie ref="lottie" v-if="artwork.acf.hero_3d_" :url="artwork.acf.hero_3d_"></Lottie>
+                </div><!-- enffd col -->
                 <div class="d-none d-lg-block col-lg-3 offset-lg-1 offset-xl-0">
                   <div class="fixed rightCol">
                     <div  v-ani="{class:'fade-in-bottom', delay: 0}"  v-if="masterOn" class="pt-4"  >
@@ -254,9 +254,11 @@ export default{
       }
     },
     reCalc(){
+        console.log('fixMarker',this.$refs.fixMarker.getBoundingClientRect());
       var toggleLottie = this.$refs.breakPoint.getBoundingClientRect().y - window.innerHeight;
-        if(toggleLottie < 0)this.$refs.lottie.unfix();
-        if(toggleLottie > 0)this.$refs.lottie.fix();
+
+        if(toggleLottie < 0 && this.$refs.lottie)this.$refs.lottie.unfix();
+        if(toggleLottie > 0 && this.$refs.lottie)this.$refs.lottie.fix();
       var toggleContent = this.$refs.contentPoint.getBoundingClientRect().y - window.innerHeight;
         if(toggleContent < 0)this.masterOn = false;
         if(toggleContent > 0)this.masterOn= true;

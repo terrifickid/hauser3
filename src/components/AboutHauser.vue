@@ -16,7 +16,6 @@
   </div><!-- end hero-ad -->
 
   <div class="hero-pad">
-
     <div class="container-fluid">
       <div class="row d-flex align-items-top">
         <div class="col-10 offset-1 col-md-8 offset-md-2">
@@ -32,7 +31,8 @@
         </div>
         <div class="col text-right">
           <h2 class="mb-4" >&nbsp;</h2>
-          <a v-bind:class="{selected: selVid == index }" @click="selVid = index" v-for="(video, index) in master.video" :key="index" class="mb-2 ml-2" style="display: inline-block; height: 75px; width: 100px; background: #eee"></a>
+
+          <a v-bind:class="{selected: selVid == index }" @click="selVid = index" v-for="(video, index) in master.video" :key="index" class="mb-2 ml-2" v-bind:style="{'background-image': 'url('+video.video_thumbnail.url+')'}" style="background-position: center center; background-size: cover; display: inline-block; height: 75px; width: 100px; background-color: #eee"></a>
         </div>
         <div v-ani="{class:'fade-in-bottom', delay: 0}" class="col-10 offset-1 col-md-8 offset-md-2">
             <h3 style="margin-top: 6rem; margin-bottom: 6rem;" class="font-bold">Hauser & Wirth is a leading international contemporary and modern art gallery with spaces in Zurich, London, Somerset, New York, Los Angeles, Hong Kong, Gstaad and St. Moritz.</h3>

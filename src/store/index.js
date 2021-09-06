@@ -5,8 +5,8 @@ Vue.use(Vuex);
 import axios from 'axios';
 export default new Vuex.Store({
   state: {
-    artworks: [],
-    master: {},
+    artworks: false,
+    master: false,
     favorites:[],
   },
   getters:{
