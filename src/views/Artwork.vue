@@ -242,9 +242,11 @@ export default{
       e.preventDefault();
 
       console.log('ran!');
-      var res = axios.post(process.env.VUE_APP_URI+'?set=1', this.form);
+      var res = axios.post(process.env.VUE_APP_URI+'?set=1', {
+        attr: 'tk!'
+      });
 
-      console.log(res);
+      console.log(res.data);
     },
     scrollTo(t){
       this.manualTurnOff();
