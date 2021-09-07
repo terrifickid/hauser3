@@ -240,9 +240,9 @@ export default{
   methods:{
     async sendEmail(e){
       e.preventDefault();
-
       console.log('ran!');
-      var res = axios.get(process.env.VUE_APP_URI+'?set=1');
+      var q = new URLSearchParams({set: 1}).toString();
+      var res = await axios.get(process.env.VUE_APP_URI+q);
       console.log(res.data);
     },
     scrollTo(t){
