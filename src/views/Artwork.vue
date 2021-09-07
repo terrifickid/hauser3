@@ -244,7 +244,10 @@ export default{
 
       var q = new URLSearchParams({
         set: 1,
-        attr: 'tk!'
+        firstName: this.form.firstName,
+        lastName: this.form.lastName,
+        emailAddress: this.form.emailAddress,
+        note: this.form.note
       }).toString();
       var res = await axios.get(process.env.VUE_APP_URI+'?'+q);
       console.log(res.data);
@@ -268,7 +271,7 @@ export default{
       }
     },
     reCalc(){
-        console.log('fixMarker',this.$refs.fixMarker.getBoundingClientRect());
+        //console.log('fixMarker',this.$refs.fixMarker.getBoundingClientRect());
       var toggleLottie = this.$refs.breakPoint.getBoundingClientRect().y - window.innerHeight;
 
         if(toggleLottie < 0 && this.$refs.lottie)this.$refs.lottie.unfix();
