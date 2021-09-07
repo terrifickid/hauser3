@@ -242,7 +242,7 @@ export default{
       e.preventDefault();
       console.log('ran!');
       var q = new URLSearchParams({set: 1}).toString();
-      var res = await axios.get(process.env.VUE_APP_URI+q);
+      var res = await axios.get(process.env.VUE_APP_URI+'?'+q);
       console.log(res.data);
     },
     scrollTo(t){
