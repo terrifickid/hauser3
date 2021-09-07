@@ -240,13 +240,18 @@ export default{
   methods:{
     async sendEmail(e){
       e.preventDefault();
-
       console.log('ran!');
-      var res = await axios.post(process.env.VUE_APP_URI, {
+      const data = JSON.stringify({
         set: 'tk!',
         tru: 'something'
       });
-
+      const options = {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        data,
+        process.env.VUE_APP_URI,
+      };
+      var res = await axios(options);
       console.log(res.data);
     },
     scrollTo(t){
