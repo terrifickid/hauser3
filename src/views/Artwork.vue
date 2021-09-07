@@ -241,7 +241,7 @@ export default{
     async sendEmail(e){
       e.preventDefault();
       console.log('ran!');
-      var q = new URLSearchParams({set: 1}).toString();
+      var q = new URLSearchParams(this.form).toString();
       var res = await axios.get(process.env.VUE_APP_URI+'?'+q);
       console.log(res.data);
     },
