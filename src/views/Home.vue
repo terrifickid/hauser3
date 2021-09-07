@@ -1,10 +1,10 @@
 
 <template>
-  <div class="home">
+  <div tabindex="0" @keydown.esc="videoModal = false" ref="home" class="home">
       <Header :mode="0"></Header>
     <div id="hauser_home">
 
-      <div tabindex="0" @keydown.esc="videoModal = false" v-bind:class="{ 'active': videoModal }" class="fullscreen-modal menu-modal">
+      <div ref="videoModalRef"   @keydown.esc="videoModal = false" v-bind:class="{ 'active': videoModal }" class="fullscreen-modal menu-modal">
         <div class="container">
           <div class="row d-flex align-items-center text-center" style="position: relative; height: 100vh;" >
             <div style="position: absolute; right:0; top:2rem;">
@@ -30,7 +30,7 @@
             <h1 v-ani="{class:'fade-in-bottom', delay: 1200}">{{master.heading_2}}</h1>
             <h1 v-ani="{class:'fade-in-bottom', delay: 1400}">{{master.heading_3}}</h1>
             <h2 v-ani="{class:'fade-in-bottom', delay: 2000}">
-              <a v-if="master.link_type == 'Video'" @click="videoModal = !videoModal"><b-icon class="mr-1" icon="play-circle"/> {{master.link_text}}</a>
+              <a v-if="master.link_type == 'Video'" @click="videoModalOpen()"><b-icon class="mr-1" icon="play-circle"/> {{master.link_text}}</a>
               <a v-if="master.link_type == 'Anchor'" @click="scrollTo(master.link_url)">{{master.link_text}}</a>
             </h2>
           </div>
@@ -81,6 +81,12 @@ export default {
     }
   },
   methods:{
+    videoModalOpen(){
+      console.log('run!');
+      this.videoModal = true;
+      this.$refs.home.focus();
+
+    },
     scrollTo(t){
 
         document.querySelector(t).scrollIntoView({
