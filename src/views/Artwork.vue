@@ -87,7 +87,10 @@
         <p class="fbold">{{artwork.artist.name}}</p>
       </div>
       <div class="col-6 text-right">
-        <p>${{artwork.acf.price}}</p>
+        <p>
+          <template v-if="artwork.acf.price_upon_inquiry">Price upon inquiry</template>
+          <template v-if="!artwork.acf.price_upon_inquiry">{{artwork.acf.price | toCurrency}}</template>
+        </p>
       </div>
       <div class="col-12">
         <p v-html="artwork.title.rendered"></p>
