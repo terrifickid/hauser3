@@ -19,14 +19,13 @@
         </div>
       </div>
 
-      <div v-ani="{class:'blur-in-center', delay: 0}"  id="bg">
-        <iframe border=0 frameborder=0 src="https://player.vimeo.com/video/569446269?dnt=1&amp;app_id=122963&amp;h=5cd36b5e4f&amp;controls=0&amp;hd=1&amp;fs=1&amp;rel=0&amp;modestbranding=1&amp;autoplay=1&amp;muted=1&amp;autopause=0&amp;loop=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen=""></iframe>
+      <div v-ani="{class:'blur-in-center', delay: 0}" v-bind:style="{'background-image': 'url('+master.hero_image.url+')'}" id="bg">
+        <iframe v-if="master.hero_video" border=0 frameborder=0 :src="master.hero_video" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen=""></iframe>
 
       <div class="hauser-hero">
         <div class="container">
           <div class="row d-flex align-items-center" style="min-height: 100vh;">
             <div class="col-12 col-md-10 offset-md-1">
-
             <h2 v-ani="{class:'fade-in-bottom', delay: 1000}" class="fnormal mb-5">{{master.heading_1}}</h2>
             <h1 v-ani="{class:'fade-in-bottom', delay: 1200}">{{master.heading_2}}</h1>
             <h1 v-ani="{class:'fade-in-bottom', delay: 1400}">{{master.heading_3}}</h1>

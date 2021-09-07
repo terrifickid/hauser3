@@ -121,6 +121,19 @@
       </div>
     </div>
   </div><!-- en dcontainer -->
+
+  <div class="container">
+  <template v-for="(video, index) in artwork.acf.artwork_videos" >
+      <div class=" artwork col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-0 offset-xl-3"  :key="index">
+        <div  class=" embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" :src="video.video_url"></iframe>
+        </div>
+
+      </div>
+  </template>
+</div>
+
+
 <div style="border: 1px solid transparent;" ref="contentPoint"></div>
 
 <div id="details" v-if="artwork.acf.about_the_artwork_description || artwork.acf.details.length" class="container">

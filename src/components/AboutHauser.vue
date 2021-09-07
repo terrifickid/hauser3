@@ -15,7 +15,7 @@
 
   </div><!-- end hero-ad -->
 
-  <div class="hero-pad">
+  <div id="videos" class="hero-pad">
     <div class="container-fluid">
       <div class="row d-flex align-items-top">
         <div class="col-10 offset-1 col-md-8 offset-md-2">
