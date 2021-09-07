@@ -44,7 +44,7 @@ export default {
       this.fixed = false;
       this.$refs.lottie.style.left = 0;
       this.$refs.lottie.style.top = 2400+'px';
-      console.log();
+
     },
     nextFrame(){
       if(this.frame >= this.duration) this.frame = this.duration-1;
@@ -83,7 +83,7 @@ export default {
       this.loaded = true;
       this.show = true;
       document.addEventListener('scroll', () => {
-        console.log(this.fixed);
+        //console.log(this.fixed);
         this.scrollY = window.scrollY;
         this.frame = Math.round(this.scrollY/15,0);
         this.nextFrame();

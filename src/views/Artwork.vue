@@ -267,7 +267,7 @@ export default{
       }
     },
     reCalc(){
-        console.log('fixMarker',this.$refs.fixMarker.getBoundingClientRect());
+      //  console.log('fixMarker',this.$refs.fixMarker.getBoundingClientRect());
       var toggleLottie = this.$refs.breakPoint.getBoundingClientRect().y - window.innerHeight;
 
         if(toggleLottie < 0 && this.$refs.lottie)this.$refs.lottie.unfix();
