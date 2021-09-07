@@ -4,7 +4,7 @@
       <Header :mode="0"></Header>
     <div id="hauser_home">
 
-      <div v-bind:class="{ 'active': videoModal }" class="fullscreen-modal menu-modal">
+      <div tabindex="0" @keydown.esc="videoModal = false" v-bind:class="{ 'active': videoModal }" class="fullscreen-modal menu-modal">
         <div class="container">
           <div class="row d-flex align-items-center text-center" style="position: relative; height: 100vh;" >
             <div style="position: absolute; right:0; top:2rem;">
@@ -19,7 +19,7 @@
         </div>
       </div>
 
-      <div v-ani="{class:'blur-in-center', delay: 0}" v-bind:style="{'background-image': 'url('+master.hero_image.url+')'}" id="bg">
+      <div v-ani="{class:'blur-in-center', delay: 0}" v-bind:style="[master.hero_image ? {'background-image': 'url('+master.hero_image.url+')'} : {}]" id="bg">
         <iframe v-if="master.hero_video" border=0 frameborder=0 :src="master.hero_video" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen=""></iframe>
 
       <div class="hauser-hero">
