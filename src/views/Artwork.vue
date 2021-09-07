@@ -240,19 +240,9 @@ export default{
   methods:{
     async sendEmail(e){
       e.preventDefault();
+
       console.log('ran!');
-      const data = JSON.stringify({
-        set: 'tk!',
-        tru: 'something'
-      });
-      var url = process.env.VUE_APP_URI;
-      const options = {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        data,
-        url,
-      };
-      var res = await axios(options);
+      var res = axios.get(process.env.VUE_APP_URI+'?set=1');
       console.log(res.data);
     },
     scrollTo(t){
@@ -274,7 +264,7 @@ export default{
       }
     },
     reCalc(){
-      //  console.log('fixMarker',this.$refs.fixMarker.getBoundingClientRect());
+        console.log('fixMarker',this.$refs.fixMarker.getBoundingClientRect());
       var toggleLottie = this.$refs.breakPoint.getBoundingClientRect().y - window.innerHeight;
 
         if(toggleLottie < 0 && this.$refs.lottie)this.$refs.lottie.unfix();
