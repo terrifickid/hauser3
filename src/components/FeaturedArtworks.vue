@@ -16,7 +16,7 @@
         </div>
 
         <div v-ani="{class:'fade-in-bottom', delay: 600}" class="col-12 col-lg-3 d-lg-block thumb">
-          <ul class="hscroll">
+          <ul class="hscroll scrollfix">
           <li v-for="artwork in featuredArtworks" :ref="'l'+artwork.id" :key="artwork.id"><a @click="selId = artwork.id" ><img v-bind:class="{'selected': selId == artwork.id}" :src="artwork.acf.hero_image.sizes.thumbnail" width="64"></a></li>
           </ul>
         </div>
@@ -92,6 +92,7 @@ li{margin-bottom: 1rem;}
 .thumb ul{max-height: 10rem; width: 100rem; overflow: scroll;}
 .thumb li{display: inline-block; margin-right: 1rem;}
 
+.hscroll.scrollfix{overflow-y: hidden;}
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {   }
 
@@ -100,6 +101,7 @@ li{margin-bottom: 1rem;}
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
+  .hscroll.scrollfix{overflow-x: hidden !important; overflow-y: scroll !important;}
   .thumb{margin-top: 0 !important;}
   .thumb ul{max-height: 29rem; width: 94px; float: right; text-align: right;}
   .thumb li{display: black;}

@@ -56,19 +56,19 @@ input.form-control{border:0; border-bottom: 1px solid black;}
 //Custom Scrollbar
 
 //custom scrollbar
-.hscroll::-webkit-scrollbar {
+.hscroll::-webkit-scrollbar, .hscroll::-webkit-scrollbar:horizontal {
   width: 1px;
+  height: 1px;
 }
-.hscroll::-webkit-scrollbar-track {
+.hscroll::-webkit-scrollbar-track, .hscroll::-webkit-scrollbar-track:horizontal {
   box-shadow: none;
   background: #E0E0E0;
 
 }
 
-.hscroll::-webkit-scrollbar-thumb {
+.hscroll::-webkit-scrollbar-thumb, .hscroll::-webkit-scrollbar-thumb:horizontal {
   background-color: black;
   outline: 0px solid slategrey;
-
 }
 
 
