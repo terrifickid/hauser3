@@ -16,7 +16,7 @@
         </div>
 
         <div v-ani="{class:'fade-in-bottom', delay: 600}" class="col-12 col-lg-3 d-lg-block thumb">
-          <ul >
+          <ul class="hscroll">
           <li v-for="artwork in featuredArtworks" :ref="'l'+artwork.id" :key="artwork.id"><a @click="selId = artwork.id" ><img v-bind:class="{'selected': selId == artwork.id}" :src="artwork.acf.hero_image.sizes.thumbnail" width="64"></a></li>
           </ul>
         </div>

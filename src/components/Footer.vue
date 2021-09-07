@@ -3,11 +3,13 @@
     <div class="container">
       <h5 class="text-center mb-5">Be the first to receive updates</h5>
       <div class="col-10 offset-1 col-md-8 offset-md-2">
-      <div class="row">
-        <div class="col-md-6 col-lg-4"><input type="text" placeholder="Name" class="form-control mb-4"></div>
-        <div class="col-md-6 col-lg-4"><input type="text" placeholder="Email Address" class="form-control mb-4"></div>
-        <div class="col-12 col-lg-4"><a class="btn btn-md btn-outline-dark btn-block">Submit</a></div>
-      </div>
+      <form action="https://hauserwirth.us14.list-manage.com/subscribe/post?u=4f151f95a189c32d4d5205374&amp;id=c951207a70" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+        <div class="row">
+          <div class="col-md-6 col-lg-4"><input type="text" name="FNAME" placeholder="Name" class="form-control mb-4"></div>
+          <div class="col-md-6 col-lg-4"><input type="text" name="EMAIL" placeholder="Email Address" class="form-control mb-4"></div>
+          <div class="col-12 col-lg-4"><button type="submit" class="btn btn-md btn-outline-dark btn-block">Submit</button></div>
+        </div>
+      </form>
       </div><!-- end row -->
       <div id="social" class="text-center">
       <a href="https://www.facebook.com/hauserwirth/"><img src="../assets/ab/facebook.svg"></a>

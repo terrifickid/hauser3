@@ -11,14 +11,16 @@
           <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3" style="position: relative;">
             <h4 class="mb-4">Contact us for inquiries</h4>
             <div class="row">
-              <div class="col-12"><input type="text" placeholder="First Name" class="form-control mb-4"></div><!-- end col -->
-              <div class="col-12"><input type="text" placeholder="Last Name" class="form-control mb-4"></div><!-- end col -->
-              <div class="col-12"><input type="text" placeholder="Email address" class="form-control mb-4"></div><!-- end col -->
-              <div class="col-12"><input type="text" placeholder="I am interested in learning about this peice." class="form-control mb-4"></div><!-- end col -->
-              <div class="col-12"><a class="mt-4 mb-5 btn btn-md btn-outline-dark btn-block">Submit</a></div>
+              <form @submit="sendEmail">
+              <div class="col-12"><input type="text" required v-model="form.firstName" placeholder="First Name" class="form-control mb-4"></div><!-- end col -->
+              <div class="col-12"><input type="text" required v-model="form.lastName" placeholder="Last Name" class="form-control mb-4"></div><!-- end col -->
+              <div class="col-12"><input type="text" required v-model="form.emailAddress" placeholder="Email address" class="form-control mb-4"></div><!-- end col -->
+              <div class="col-12"><input type="text" required v-model="form.note"  placeholder="I am interested in learning about this peice." class="form-control mb-4"></div><!-- end col -->
+              <div class="col-12"><button type="submit" class="mt-4 mb-5 btn btn-md btn-outline-dark btn-block">Submit</button></div>
               <div class="col-12">
                 <p><small>*By submitting your email address, you consent to receive our Newsletter. Your consent is revocable at any time by clicking the unsubscribe link in our Newsletter. The Newsletter is sent in accordance with our Privacy Policy and to advertise products and services of Hauser & Wirth Ltd. and its affiliated companies.</small></p>
               </div>
+              </form>
             </div><!-- end row -->
           </div>
         </div>
@@ -218,6 +220,7 @@
 
 </template>
 <script>
+import axios from 'axios';
 import InnerImageZoom from 'vue-inner-image-zoom';
 //import axios from 'axios';
 import Header from '@/components/Header.vue';
@@ -235,6 +238,14 @@ export default{
     'inner-image-zoom': InnerImageZoom
   },
   methods:{
+    async sendEmail(e){
+      e.preventDefault();
+
+      console.log('ran!');
+      var res = axios.post(process.env.VUE_APP_URI+'?set=1', this.form);
+
+      console.log(res);
+    },
     scrollTo(t){
       this.manualTurnOff();
       document.querySelector(t).scrollIntoView({
@@ -303,6 +314,12 @@ export default{
       playAudio: false,
       emailModal: false,
       offOverride: false,
+      form:{
+        firstName: '',
+        lastName: '',
+        emailAddress:'',
+        note:''
+      }
     }
   }
 }
