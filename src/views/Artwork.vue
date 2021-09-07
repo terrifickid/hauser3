@@ -245,11 +245,12 @@ export default{
         set: 'tk!',
         tru: 'something'
       });
+      var url = process.env.VUE_APP_URI;
       const options = {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         data,
-        process.env.VUE_APP_URI,
+        url,
       };
       var res = await axios(options);
       console.log(res.data);
