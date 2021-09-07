@@ -242,8 +242,9 @@ export default{
       e.preventDefault();
 
       console.log('ran!');
-      var res = await axios.post(process.env.VUE_APP_URI+'?set=1', {
-        attr: 'tk!'
+      var res = await axios.post(process.env.VUE_APP_URI, {
+        set: 'tk!',
+        tru: 'something'
       });
 
       console.log(res.data);
