@@ -270,6 +270,7 @@ export default{
         note: this.form.note
       }).toString();
       var res = await axios.get(process.env.VUE_APP_URI+'?'+q);
+      console.log(res.data);
       if(res.data){
         this.sent = true;
         this.sending = false;
