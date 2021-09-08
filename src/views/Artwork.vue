@@ -264,10 +264,12 @@ export default{
       this.sending = true;
       var q = new URLSearchParams({
         set: 1,
+        title: this.artwork.title.rendered,
         firstName: this.form.firstName,
         lastName: this.form.lastName,
         emailAddress: this.form.emailAddress,
-        note: this.form.note
+        note: this.form.note,
+        url: window.location.href
       }).toString();
       var res = await axios.get(process.env.VUE_APP_URI+'?'+q);
       console.log(res.data);
