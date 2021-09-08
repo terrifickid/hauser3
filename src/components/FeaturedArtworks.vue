@@ -16,7 +16,7 @@
         </div>
 
         <div v-ani="{class:'fade-in-bottom', delay: 600}" class="col-12 col-lg-3 d-lg-block thumb">
-          <ul class="hscroll scrollfix">
+          <ul class="hscroll hscrollhz scrollfix">
           <li v-for="artwork in featuredArtworks" :ref="'l'+artwork.id" :key="artwork.id"><a @click="selId = artwork.id" ><img v-bind:class="{'selected': selId == artwork.id}" :src="artwork.acf.hero_image.sizes.thumbnail" width="64"></a></li>
           </ul>
         </div>
@@ -89,18 +89,19 @@ li{margin-bottom: 1rem;}
 // Extra small devices (portrait phones, less than 576px)
 // No media query since this is the default in Bootstrap
 .thumb{ text-align: left; margin-top: 2rem;}
-.thumb ul{max-height: 10rem; width: 100rem; overflow: scroll;}
+.thumb ul{max-height: 6rem;}
 .thumb li{display: inline-block; margin-right: 1rem;}
 
+.hscrollhz{overflow-x: scroll !important; }
 .hscroll.scrollfix{overflow-y: hidden;}
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {   }
-
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {   }
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
+
   .hscroll.scrollfix{overflow-x: hidden !important; overflow-y: scroll !important;}
   .thumb{margin-top: 0 !important;}
   .thumb ul{max-height: 29rem; width: 94px; float: right; text-align: right;}

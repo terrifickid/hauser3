@@ -8,7 +8,9 @@
           <div style="position: absolute; right:0; top:2rem;">
             <div class="col"><a  @click="emailModal = !emailModal">Close</a></div>
           </div>
-          <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3" style="position: relative;">
+          <div v-if="sending" class="col-12"><Loader></Loader></div>
+          <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 text-center" v-if="sent"><h2 class="mb-4">Thanks for contacting us!</h2><p class="mb-4">We will get in touch with you shortly.</p><button @click="emailModal = false;" class="mt-4 mb-5 btn btn-md btn-outline-dark">Done</button></div>
+          <div v-if="!sending && !sent" class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3" style="position: relative;">
             <h4 class="mb-4">Contact us for inquiries</h4>
             <div class="row">
               <form @submit="sendEmail">
@@ -237,6 +239,7 @@
 </template>
 <script>
 import axios from 'axios';
+import Loader from '@/components/Loader.vue';
 import InnerImageZoom from 'vue-inner-image-zoom';
 //import axios from 'axios';
 import Header from '@/components/Header.vue';
@@ -249,6 +252,7 @@ export default{
     Header,
     Footer,
     Lottie,
+    Loader,
     ShareModal,
     ExploreArtworkItem,
     'inner-image-zoom': InnerImageZoom
@@ -257,7 +261,9 @@ export default{
     async sendEmail(e){
       e.preventDefault();
       console.log('ran!');
+      //this.sending = true;
 
+      this.sent = true;
       var q = new URLSearchParams({
         set: 1,
         firstName: this.form.firstName,
@@ -266,7 +272,8 @@ export default{
         note: this.form.note
       }).toString();
       var res = await axios.get(process.env.VUE_APP_URI+'?'+q);
-      console.log(res.data);
+      if(res.data) this.sent = true;
+      this.sending = false;
     },
     scrollTo(t){
       this.manualTurnOff();
@@ -332,6 +339,8 @@ export default{
       lotShow: true,
       oldScrollY: 0,
       scrollY: 0,
+      sending: false,
+      sent: false,
       masterOn: true,
       playAudio: false,
       emailModal: false,

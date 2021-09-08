@@ -4,11 +4,10 @@
       <div class="container" style="position: relative;">
         <div class="d-none d-md-block" v-ani="{class:'grow-in-top', delay: 0}" style="position: absolute; left: 50%; min-height:100%; border-left: 1px solid black;"></div>
       <div class="row">
-      <div v-ani="{class:'slide-in-left', delay: 0}" class="col-12 col-md-5"><h1 >About<br class="d-none d-md-inline"> Hauser & Wirth</h1><div class="mb-4 d-md-none"></div></div>
+      <div v-ani="{class:'slide-in-left', delay: 0}" class="col-12 col-md-5"><h1 v-html="master.hauser_title"></h1><div class="mb-4 d-md-none"></div></div>
       <div class="col-2"></div>
-      <div v-ani="{class:'slide-in-right', delay: 0}" class="col-12 col-md-5">
-  <p>Hauser & Wirth was founded in 1992 in Zurich by Iwan Wirth, Manuela Wirth and Ursula Hauser, who were joined in 2000 by Partner and President Marc Payot. A family business with a global outlook, Hauser & Wirth has expanded over the past 27 years to include outposts in Hong Kong, London, New York, Los Angeles, Somerset, Gstaad and St. Moritz.</p>
-  <p>The gallery represents over 75 artists and estates who have been instrumental in shaping its identity over the past quarter century, and who are the inspiration for Hauser & Wirth’s diverse range of activities that engage with art, education, conservation and sustainability.</p>
+      <div v-ani="{class:'slide-in-right', delay: 0}" class="col-12 col-md-5" v-html="master.hauser_description">
+
   </div>
 </div>
   </div>
@@ -35,14 +34,14 @@
           <a v-bind:class="{selected: selVid == index }" @click="selVid = index" v-for="(video, index) in master.video" :key="index" class="mb-2 ml-2" v-bind:style="{'background-image': 'url('+video.video_thumbnail.url+')'}" style="background-position: center center; background-size: cover; display: inline-block; height: 75px; width: 100px; background-color: #eee"></a>
         </div>
         <div v-ani="{class:'fade-in-bottom', delay: 0}" class="col-10 offset-1 col-md-8 offset-md-2">
-            <h3 style="margin-top: 6rem; margin-bottom: 6rem;" class="font-bold">Hauser & Wirth is a leading international contemporary and modern art gallery with spaces in Zurich, London, Somerset, New York, Los Angeles, Hong Kong, Gstaad and St. Moritz.</h3>
+            <h3 style="margin-top: 6rem; margin-bottom: 6rem;" class="font-bold" v-html="master.hauser_synopsis"></h3>
         </div>
       </div><!-- end row-->
     </div><!-- end container -->
 
       <div class="d-md-none clearfix">
         <div>
-        <div v-for="(pane, index) in master.about_hauser" :key="index" class="col-8 mobilePane"><img class="img-fluid mb-3" :src="pane.image.url"><p><small v-html="pane.caption"></small></p></div>
+        <div v-for="(pane, index) in master.about_hauser" :key="index" class="col-8 mobilePane"><a :href="pane.link_url"><img class="img-fluid mb-3" :src="pane.image.url"></a><p><small v-html="pane.caption"></small></p></div>
       </div>
     </div>
 
@@ -50,7 +49,7 @@
 
       <div class="d-none d-md-block">
       <div class="row">
-        <div v-for="(pane, index) in master.about_hauser" :key="index" v-ani="{class:'fade-in-bottom', delay: index*300}" class="col-4" style="float: right !important;"><img class="img-fluid mb-3" :src="pane.image.url"><p><small v-html="pane.caption"></small></p></div>
+        <div v-for="(pane, index) in master.about_hauser" :key="index" v-ani="{class:'fade-in-bottom', delay: index*300}" class="col-4" style="float: right !important;"><a :href="pane.link_url"><img class="img-fluid mb-3" :src="pane.image.url"></a><p><small v-html="pane.caption"></small></p></div>
       </div><!-- end row -->
     </div>
     </div>

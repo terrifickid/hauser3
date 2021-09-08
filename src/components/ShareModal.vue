@@ -8,12 +8,14 @@
         <div class="col-12 col-md-8 offset-md-2" style="position: relative;">
         <h4 class="mb-5">Share via</h4>
         <div class="row">
-          <div class="col-6 pad"><a :href="'https://www.facebook.com/sharer/sharer.php?u='+url"><img class="ico" src="../assets/ab/facebook.svg">Share on Facebook</a></div>
-          <div class="col-6 pad"><a :href="'mailto:?subject=Id%20like%20to%20share%20a%20link%20with%20you&body='+url"><img  class="ico" src="../assets/email.svg">Share via Email</a></div>
-          <div class="col-6 pad"><a :href="'fb-messenger://share/?link=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fsharing%2Freference%2Fsend-dialog&app_id=123456789'"><img  class="ico" src="../assets/messenger.svg">Share on Messenger</a></div>
+          <div class="col-12 pad"><a :href="'https://www.facebook.com/sharer/sharer.php?u='+url"><img class="ico" src="../assets/ab/facebook.svg">Share on Facebook</a></div>
+          <div class="col-12 pad"><a :href="'mailto:?subject=Id%20like%20to%20share%20a%20link%20with%20you&body='+url"><img  class="ico" src="../assets/email.svg">Share via Email</a></div>
+          <div class="col-12 pad"><a :href="'fb-messenger://share/?link=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fsharing%2Freference%2Fsend-dialog&app_id=123456789'"><img  class="ico" src="../assets/messenger.svg">Share on Messenger</a></div>
+          <!--
           <div class="col-6 pad"><a :href="artwork.acf.pdf_download.url"><img class="ico" src="../assets/pdficon.svg">Download as PDF</a></div>
           <div class="col-6 pad"><a :href="'https://twitter.com/intent/tweet?text='+url"><img  class="ico" src="../assets/twitter.svg">Share on Twitter</a></div>
           <div class="col-6 pad"><a @click="copy()"><img  class="ico" src="../assets/copy.svg">Copy Link</a></div>
+        -->
         </div>
         </div>
       </div>
