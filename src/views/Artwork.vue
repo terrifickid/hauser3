@@ -261,9 +261,7 @@ export default{
     async sendEmail(e){
       e.preventDefault();
       console.log('ran!');
-      //this.sending = true;
-
-      this.sent = true;
+      this.sending = true;
       var q = new URLSearchParams({
         set: 1,
         firstName: this.form.firstName,
@@ -272,8 +270,12 @@ export default{
         note: this.form.note
       }).toString();
       var res = await axios.get(process.env.VUE_APP_URI+'?'+q);
-      if(res.data) this.sent = true;
-      this.sending = false;
+      if(res.data){
+        this.sent = true;
+        this.sending = false;
+      }
+
+
     },
     scrollTo(t){
       this.manualTurnOff();
