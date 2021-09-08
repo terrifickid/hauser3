@@ -271,7 +271,7 @@ export default{
         note: this.form.note,
         url: window.location.href
       }).toString();
-      var res = await axios.get(process.env.VUE_APP_URI+'?'+q);
+      var res = await axios.get(window.location.href+'?'+q);
       console.log(res.data);
       if(res.data){
         this.sent = true;
