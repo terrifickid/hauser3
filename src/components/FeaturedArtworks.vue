@@ -88,7 +88,7 @@ li{margin-bottom: 1rem;}
 
 // Extra small devices (portrait phones, less than 576px)
 // No media query since this is the default in Bootstrap
-.thumb{overflow: scroll; text-align: left; margin-top: 2rem;}
+.thumb{ text-align: left; margin-top: 2rem;}
 .thumb ul{max-height: 10rem; width: 100rem; overflow: scroll;}
 .thumb li{display: inline-block; margin-right: 1rem;}
 
