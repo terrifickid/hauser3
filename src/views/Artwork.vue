@@ -69,7 +69,7 @@
 
                     <p class="mt-5"><a href="#details">Details & Features <b-icon class="ml-2" icon="arrow-right"/></a></p>
                     <p><a href="#details">About the artwork <b-icon class="ml-2" icon="arrow-right"/></a></p>
-                    <p><a href="#panels">About the artist <b-icon class="ml-2" icon="arrow-right"/></a></p>
+                    <p><a href="#abouttheartist">About the artist <b-icon class="ml-2" icon="arrow-right"/></a></p>
 
                     <div style="padding-top: 2rem;">
                       <a @click="toggleFavorite(artwork.id)" class="mr-3 clink bg-subtle-grey"><img v-show="!favorites.includes(artwork.id)" src="../assets/favoriteIcon.svg"><img v-show="favorites.includes(artwork.id)" src="../assets/favoriteIconSel.svg"></a><a class="mr-3 clink bg-subtle-grey" @click="toggleShare()"><img src="../assets/share.svg"></a>
@@ -165,7 +165,8 @@
 
 
 <div style="height: 4rem;"></div>
-    <div id="panels" v-for="panel in artwork.acf.panels" :key="panel.title">
+    <div id="panels" v-for="(panel, index) in artwork.acf.panels" :key="index">
+      <a v-if="(index+1) == artwork.acf.panels.length" name="abouttheartist"></a>
       <template v-if="panel.acf_fc_layout == 'left_image'">
         <div  class="d-md-none" style="height: 20rem; background-size: cover; background-position: center center;" v-bind:style="{'background-image': 'url('+panel.image.url+')'}"></div>
         <div class="container-fluid">
