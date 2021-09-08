@@ -20,11 +20,12 @@
       </div>
 
       <div v-ani="{class:'blur-in-center', delay: 0}" v-bind:style="[master.hero_image ? {'background-image': 'url('+master.hero_image.url+')'} : {}]" id="bg">
-        <iframe v-if="master.hero_video" border=0 frameborder=0 :src="master.hero_video" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen=""></iframe>
 
+      <iframe v-if="master.hero_video" border=0 frameborder=0 :src="master.hero_video" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen=""></iframe>
+        <div style="background: rgba(0,0,0,0.15); z-index: 200; position: relative;">
       <div class="hauser-hero">
         <div class="container">
-          <div class="row d-flex align-items-center" style="min-height: 100vh;">
+          <div class="row d-flex align-items-center" style=" min-height: 100vh;">
             <div class="col-12 col-md-10 offset-md-1">
             <h2 v-ani="{class:'fade-in-bottom', delay: 1000}" class="fnormal mb-5">{{master.heading_1}}</h2>
             <h1 v-ani="{class:'fade-in-bottom', delay: 1200}">{{master.heading_2}}</h1>
@@ -36,7 +37,7 @@
           </div>
           </div>
         </div>
-
+      </div>
       </div><!-- end hauser-hero -->
     </div><!-- end bg -->
 
@@ -142,7 +143,7 @@ h1{font-size: 5rem;}
   #bg{
     color: white;
 
-    background-color: black;
+    background-color: white;
     background-size: cover;
     min-height: 100vh;
 
@@ -155,6 +156,7 @@ h1{font-size: 5rem;}
   min-height: 100vh;
   min-width: 220vh; /* Given a 16:9 aspect ratio, 16/9*100 = 177.77 */
   position: absolute;
+  z-index: 100;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
