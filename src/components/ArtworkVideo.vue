@@ -7,7 +7,7 @@
           <b-icon  style="margin: auto; font-size: 1.25rem;" icon="play-fill"/>
         </div>
       </div>
-      <iframe v-show="show" class="embed-responsive-item" :src="video.video_url+'?autoplay=1&mute=1'"></iframe>
+      <iframe allow=autoplay v-if="show" class="embed-responsive-item" :src="video.video_url+'?autoplay=1&mute=1'"></iframe>
     </a>
   </div>
 </template>
