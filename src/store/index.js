@@ -5,11 +5,15 @@ Vue.use(Vuex);
 import axios from 'axios';
 export default new Vuex.Store({
   state: {
+    gdpr: true,
     artworks: false,
     master: false,
     favorites:[],
   },
   getters:{
+    gdpr: state => {
+      return state.gdpr;
+    },
     artworks: state => {
       return state.artworks;
     },
@@ -25,6 +29,13 @@ export default new Vuex.Store({
       if (localStorage.getItem('favorites')) {
         state.favorites = JSON.parse(localStorage.getItem('favorites'));
       }
+      if (localStorage.getItem('gdpr')) {
+        state.gdpr = JSON.parse(localStorage.getItem('gdpr'));
+      }
+    },
+    setGDPR (state, gdpr) {
+      state.gdpr = gdpr;
+      localStorage.setItem('gdpr', JSON.stringify(state.gdpr));
     },
     setArtworks (state, artworks) {
       state.artworks = artworks
