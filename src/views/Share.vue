@@ -4,10 +4,10 @@
     <div style="height: 8rem"></div>
     <div class="container">
       <div class="row">
-        <div class="col-10 offset-1">
+        <div class="col-md-10 offset-md-1">
           <div class="row mb-5">
             <div class="col">
-              <h3>Shared Favorites ({{favorites.length}})</h3>
+              <h4>Shared Favorites ({{favorites.length}})</h4>
             </div>
 
           </div><!-- end row -->
@@ -19,7 +19,10 @@
               <p class="fbold">{{artwork.artist.name}}</p>
               <p>{{artwork.title.rendered}}<br>
 
-                {{artwork.acf.price | toCurrency}}</p>
+                <template v-if="artwork.acf.price_upon_inquiry">Price upon inquiry</template>
+                <template v-if="!artwork.acf.price_upon_inquiry">{{artwork.acf.price | toCurrency}}</template>
+
+              </p>
 
               </a>
 

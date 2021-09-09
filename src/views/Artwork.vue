@@ -82,7 +82,9 @@
     </div><!-- end grey -->
     <div style="border: 0px solid red; position: relative; top: -10rem;" ref="breakPoint"></div>
 
-    <div class="container d-lg-none ">
+
+    <!-- Mobile Text -->
+    <div style="position: fixed; background: white; bottom:0rem; z-index: 1000; width: 100%;" class="d-lg-none ">
       <div style="padding: 1rem 2rem;">
     <div class="row pt-4 ">
       <div class="col-6">
@@ -96,22 +98,19 @@
       </div>
       <div class="col-12">
         <p v-html="artwork.title.rendered"></p>
-        <p v-html="artwork.acf.hero_description"></p>
-
-        <p class="mt-4"><a href="https://wa.me/+447384525201" class="btn btn-block btn-md btn-outline-dark"><img class="btniconfix" src="../assets/whatsapp.svg"> Live Chat</a>
-        <a @click="emailModal = !emailModal" class="btn btn-block btn-md btn-outline-dark">Email Enquiry</a></p>
-
-        <p class="mt-5"><a @click="scrollTo('#details')">Details & Features <b-icon class="ml-2" icon="arrow-right"/></a></p>
-        <p><a @click="scrollTo('#details')">About the artwork <b-icon class="ml-2" icon="arrow-right"/></a></p>
-        <p><a @click="scrollTo('#details')" href="#">About the artist <b-icon class="ml-2" icon="arrow-right"/></a></p>
-
-        <div style="padding-top: 2rem;">
-          <a @click="toggleFavorite(artwork.id)" class="mr-3 clink bg-subtle-grey"><img v-show="!favorites.includes(artwork.id)" src="../assets/favoriteIcon.svg"><img v-show="favorites.includes(artwork.id)" src="../assets/favoriteIconSel.svg"></a><a class="mr-3 clink bg-subtle-grey" @click="toggleShare()"><img src="../assets/share.svg"></a>
-        </div>
+        
       </div>
+      <div class="col-6">
+        <a href="https://wa.me/+447384525201" class="btn btn-block btn-md btn-outline-dark"><img class="btniconfix" src="../assets/whatsapp.svg"> Live Chat</a>
+      </div>
+      <div class="col-6">
+        <a @click="emailModal = !emailModal" class="btn btn-block btn-md btn-outline-dark">Email Enquiry</a>
+      </div>
+
     </div>
   </div>
   </div>
+
 
 <div class="artwork_images">
   <div class="container">
