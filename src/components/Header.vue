@@ -9,9 +9,7 @@
         <div class="row" >
           <div class="col" style="position: relative;">
             <ul style="position: absolute; top: 25vh;">
-              <li><a class="fbold" @click="navigate('#featured')">Featured</a></li>
-              <li><a class="fbold" @click="navigate('#allartworks')">All Artworks</a></li>
-              <li><a class="fbold" @click="navigate('#aboutgallery')" >About gallery</a></li>
+            <li v-for="(link, index) in master.main_menu" :key="index"><a class="fbold" @click="navigate(link.link_url)">{{link.title}}</a></li>
             </ul>
           </div>
         </div>
@@ -24,9 +22,7 @@
         <div class="col"><a href="/"><img id="hlogo" class="img-fluid" src="../assets/hauser-logo.svg"></a></div><!-- end col -->
         <div class="d-none d-xl-block col-6 text-center">
           <ul  id="desktopMenu">
-            <li><a @click="navigate('#featured')">Featured</a></li>
-            <li><a  @click="navigate('#allartworks')">All Artworks</a></li>
-            <li><a @click="navigate('#aboutgallery')" >About gallery</a></li>
+            <li v-for="(link, index) in master.main_menu" :key="index"><a @click="navigate(link.link_url)">{{link.title}}</a></li>
           </ul>
         </div><!-- end col -->
         <div class="col icons text-right">
@@ -100,7 +96,10 @@ export default {
   computed: {
     currentRouteName() {
         return this.$route.name;
-    }
+    },
+    master () {
+      return this.$store.state.master;
+    },
   },
   mounted(){
     window.addEventListener('resize', () => { this.headerResize(); });
