@@ -64,7 +64,7 @@
                       <template v-if="artwork.acf.price_upon_inquiry">Price upon inquiry</template>
                       <template v-if="!artwork.acf.price_upon_inquiry">{{artwork.acf.price | toCurrency}}</template>
                     </p>
-                    <p class="mt-4"><a href="https://wa.me/442072872300?text=Hi+Hauser+%26+Wirth%21" class="btn btn-block btn-md btn-outline-dark"><img class="btniconfix" src="../assets/whatsapp.svg"> Live Chat</a>
+                    <p class="mt-4"><a target="_blank" href="https://wa.me/442072872300?text=Hi+Hauser+%26+Wirth%21" class="btn btn-block btn-md btn-outline-dark"><img class="btniconfix" src="../assets/whatsapp.svg"> Live Chat</a>
                     <a @click="emailModal = !emailModal" class="btn btn-block btn-md btn-outline-dark">Email Enquiry</a></p>
 
                     <p class="mt-5"><a href="#details">Details & Features <b-icon class="ml-2" icon="arrow-right"/></a></p>

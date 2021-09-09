@@ -15,11 +15,19 @@
           </template>
         </div>
 
-        <div v-ani="{class:'fade-in-bottom', delay: 600}" class="col-12 col-lg-3 d-lg-block thumb">
+        <div v-ani="{class:'fade-in-bottom', delay: 600}" class="d-none d-lg-block col-12 col-lg-3 d-lg-block thumb">
           <ul ref="scrolly">
-          <li v-for="(artwork, index) in featuredArtworks" :id="'l'+artwork.id" :ref="'l'+artwork.id" :key="artwork.id"><a @click="selId = artwork.id; scrollTo(index*100)" ><img v-bind:class="{'selected': selId == artwork.id}" :src="artwork.acf.hero_image.sizes.thumbnail" width="64"></a></li>
+          <li v-for="(artwork, index) in featuredArtworks" :id="'l'+artwork.id" :ref="'l'+artwork.id" :key="artwork.id"><a @click="selId = artwork.id; scrollToY(index*100)" ><img v-bind:class="{'selected': selId == artwork.id}" :src="artwork.acf.hero_image.sizes.thumbnail" width="64"></a></li>
           </ul>
         </div>
+
+        <div ref="scrollx" v-ani="{class:'fade-in-bottom', delay: 600}" class="d-lg-none col-12 col-lg-3 thumb">
+          <ul>
+          <li v-for="(artwork, index) in featuredArtworks" :id="'l'+artwork.id" :ref="'l'+artwork.id" :key="artwork.id"><a @click="selId = artwork.id; scrollToX(index*100)" ><img v-bind:class="{'selected': selId == artwork.id}" :src="artwork.acf.hero_image.sizes.thumbnail" width="64"></a></li>
+          </ul>
+        </div>
+
+
 
       </div>
 
@@ -59,10 +67,18 @@ export default {
     }
   },
   methods:{
-    scrollTo(t){
+    scrollToY(t){
       this.$refs.scrolly.scroll({
         top: t,
         left: 0,
+        behavior: 'smooth'
+      });
+    },
+    scrollToX(t){
+      console.log(t);
+      this.$refs.scrollx.scroll({
+        top: 0,
+        left: t,
         behavior: 'smooth'
       });
     },
@@ -95,12 +111,10 @@ li{margin-bottom: 1rem;}
 
 // Extra small devices (portrait phones, less than 576px)
 // No media query since this is the default in Bootstrap
-.thumb{}
-.thumb ul{ padding-left: 10rem; scroll-behavior: smooth; text-align: left; margin-top: 2rem; max-height: 6rem; overflow: hidden; }
+.thumb{ overflow: hidden;}
+.thumb ul{  width: 100rem; padding-left: 10rem; scroll-behavior: smooth; text-align: left; margin-top: 2rem; max-height: 6rem; overflow: hidden; }
 .thumb li{display: inline-block; margin-right: 1rem;}
 
-.hscrollhz{overflow-x: scroll !important; }
-.hscroll.scrollfix{overflow-y: hidden;}
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {   }
 // Medium devices (tablets, 768px and up)
