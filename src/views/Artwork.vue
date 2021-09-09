@@ -98,7 +98,7 @@
       </div>
       <div class="col-12">
         <p v-html="artwork.title.rendered"></p>
-        
+
       </div>
       <div class="col-6">
         <a href="https://wa.me/+447384525201" class="btn btn-block btn-md btn-outline-dark"><img class="btniconfix" src="../assets/whatsapp.svg"> Live Chat</a>
@@ -128,12 +128,7 @@
 
   <div class="container">
   <template v-for="(video, index) in artwork.acf.artwork_videos" >
-      <div class=" artwork col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-0 offset-xl-3"  :key="index">
-        <div  class=" embed-responsive embed-responsive-16by9">
-          <iframe class="embed-responsive-item" :src="video.video_url"></iframe>
-        </div>
-
-      </div>
+    <ArtworkVideo :video="video" :key="index"></ArtworkVideo>
   </template>
 </div>
 
@@ -247,6 +242,7 @@ import Footer from '@/components/Footer.vue';
 import Lottie from '@/components/Lottie.vue';
 import ShareModal from '@/components/ShareModal.vue';
 import ExploreArtworkItem from '@/components/ExploreArtworkItem.vue';
+import ArtworkVideo from '@/components/ArtworkVideo.vue';
 export default{
   components: {
     Header,
@@ -254,6 +250,7 @@ export default{
     Lottie,
     Loader,
     ShareModal,
+    ArtworkVideo,
     ExploreArtworkItem,
     'inner-image-zoom': InnerImageZoom
   },
@@ -393,6 +390,7 @@ a, a:hover{color: black}
 .playIcon{
   position: absolute; top: 17px; left: 19px; width: 25px; height: 25px; color: white;
 }
+
 .sizer{min-height: 75vh;}
 // Extra small devices (portrait phones, less than 576px)
 // No media query since this is the default in Bootstrap
