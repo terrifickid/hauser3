@@ -101,7 +101,7 @@
 
       </div>
       <div class="col-6">
-        <a href="https://wa.me/+447384525201" class="btn btn-block btn-md btn-outline-dark"><img class="btniconfix" src="../assets/whatsapp.svg"> Live Chat</a>
+        <a href="https://wa.me/442072872300?text=Hi+Hauser+%26+Wirth%21" class="btn btn-block btn-md btn-outline-dark"><img class="btniconfix" src="../assets/whatsapp.svg"> Live Chat</a>
       </div>
       <div class="col-6">
         <a @click="emailModal = !emailModal" class="btn btn-block btn-md btn-outline-dark">Email Enquiry</a>
