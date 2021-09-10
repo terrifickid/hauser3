@@ -24,7 +24,7 @@
 
               </a>
 
-              <p><a :href="artwork.acf.pdf_download.url"><img class="ico" src="../assets/pdficon.svg"></a><a @click="toggleFavorite(artwork.id)"><img v-show="!favorites.includes(artwork.id)" src="../assets/favoriteIcon.svg"><img v-show="favorites.includes(artwork.id)" src="../assets/favoriteIconSel.svg"></a></p>
+              <p><a v-if="artwork.acf.pdf_download.url" :href="artwork.acf.pdf_download.url"><img class="ico" src="../assets/pdficon.svg"></a><a @click="toggleFavorite(artwork.id)"><img v-show="!favorites.includes(artwork.id)" src="../assets/favoriteIcon.svg"><img v-show="favorites.includes(artwork.id)" src="../assets/favoriteIconSel.svg"></a></p>
             </div>
           </div><!-- end row -->
           <div class="row " style="height: 4rem;"></div>
