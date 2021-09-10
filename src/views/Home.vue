@@ -32,7 +32,7 @@
             <h1 v-ani="{class:'fade-in-bottom', delay: 1400}">{{master.heading_3}}</h1>
             <h2 v-ani="{class:'fade-in-bottom', delay: 2000}">
               <a v-if="master.link_type == 'Video'" @click="videoModalOpen()"><b-icon class="mr-1" icon="play-circle"/> {{master.link_text}}</a>
-              <a v-if="master.link_type == 'Anchor'" @click="scrollTo(master.link_url)">{{master.link_text}}</a>
+              <a v-if="master.link_type == 'Anchor'" class="btn btn-md btn-outline-light" @click="scrollTo(master.link_url)">{{master.link_text}}</a>
             </h2>
           </div>
           </div>

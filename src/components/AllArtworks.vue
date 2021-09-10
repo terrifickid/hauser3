@@ -19,7 +19,7 @@
                   </ul>
 
               </li>
-              <li>
+              <li v-if="0">
 
                   <b class="fbold pb-3">Price</b>
 
@@ -78,7 +78,7 @@
               </ul>
             </b-collapse>
           </li>
-          <li>
+          <li v-if="0">
             <a v-b-toggle.p-2 >
               <b-icon v-show="!p2" icon="plus"/>
               <b-icon v-show="p2" icon="dash"/>
