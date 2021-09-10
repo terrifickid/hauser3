@@ -7,7 +7,7 @@
           <b-icon  style="margin: auto; font-size: 1.25rem;" icon="play-fill"/>
         </div>
       </div>
-      <iframe allow=autoplay v-if="show" class="embed-responsive-item" :src="video.video_url+'?autoplay=1&mute=1'"></iframe>
+      <iframe ref="vimeoVideo" allow=autoplay v-if="show" class="embed-responsive-item" :src="video.video_url+'?autoplay=1&mute=1&controls=1&hd=1&fs=1&rel=0&modestbranding=1&autoplay=1&muted=1&autopause=0&loop=1'"></iframe>
     </a>
   </div>
 </template>
@@ -22,6 +22,9 @@ export default {
   },
   props:{
     video:{}
+  },
+  mounted(){
+
   }
 }
 </script>
