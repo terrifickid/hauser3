@@ -15,9 +15,9 @@
   </div><!-- end hero-ad -->
 
   <div id="videos" class="hero-pad">
-    <div class="container-fluid">
-      <div class="row d-flex align-items-top">
-        <div class="col-10 offset-1 col-md-8 offset-md-2">
+    <div  class="container-fluid">
+      <div v-if="master.video.length"  class="row d-flex align-items-top">
+        <div  class="col-10 offset-1 col-md-8 offset-md-2">
           <template v-for="(video, index) in master.video" >
               <div  v-ani="{class:'scale-up-center', delay: 0}"  v-show="selVid == index" :key="index">
                 <h2 class="mb-4" >{{video.title}}</h2>
@@ -33,6 +33,9 @@
 
           <a v-bind:class="{selected: selVid == index }" @click="selVid = index" v-for="(video, index) in master.video" :key="index" class="mb-2 ml-2" v-bind:style="{'background-image': 'url('+video.video_thumbnail.url+')'}" style="background-position: center center; background-size: cover; display: inline-block; height: 75px; width: 100px; background-color: #eee"></a>
         </div>
+      </div>
+      <div class="row">
+
         <div v-ani="{class:'fade-in-bottom', delay: 0}" class="col-10 offset-1 col-md-8 offset-md-2">
             <h3 style="margin-top: 6rem; margin-bottom: 6rem;" class="font-bold" v-html="master.hauser_synopsis"></h3>
         </div>
