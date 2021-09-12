@@ -146,8 +146,8 @@ h1{font-size: 5rem;}
     background-size: cover;
     min-height: 100vh;
     position: relative;
-    width: 100px;
-    border: 10px solid blue;
+    width: 100vw;
+    border: 0;
     overflow: hidden;
   }
   #bg iframe{
