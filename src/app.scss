@@ -14,7 +14,7 @@ $border-radius: 0;
 
 
 //
-html,body{font-size: 15px; font-family: 'newtransport-regular';}
+html,body{font-size: 15px; font-family: 'newtransport-regular'; width: 100vw; overflow-x: hidden !important;}
 h1,h2,h3,h4,h5{font-family: "newtransport-medium";}
 .fnormal{font-family: 'newtransport-regular';}
 .fbold{font-family: 'newtransport-medium';}
