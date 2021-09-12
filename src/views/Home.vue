@@ -20,9 +20,8 @@
       </div>
 
       <div v-ani="{class:'blur-in-center', delay: 0}" v-bind:style="[master.hero_image ? {'background-image': 'url('+master.hero_image.url+')'} : {}]" id="bg">
-
-      <iframe v-if="master.hero_video" border=0 frameborder=0 :src="master.hero_video" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen=""></iframe>
-        <div style="background: rgba(0,0,0,0.15); z-index: 200; position: relative;">
+      <iframe style="filter: brightness(0.85);" v-if="master.hero_video" border=0 frameborder=0 :src="master.hero_video" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen=""></iframe>
+      <div style=" z-index: 200; position: relative;">
       <div class="hauser-hero">
         <div class="container">
           <div class="row d-flex align-items-center" style=" min-height: 100vh;">
