@@ -67,7 +67,7 @@
                     <p class="mt-4"><a target="_blank" href="https://wa.me/442072872300?text=Hi+Hauser+%26+Wirth%21" class="btn btn-block btn-md btn-outline-dark"><img class="btniconfix" src="../assets/whatsapp.svg"> Live Chat</a>
                     <a @click="emailModal = !emailModal" class="btn btn-block btn-md btn-outline-dark">Email Enquiry</a></p>
 
-                    <p class="mt-5"><a href="#details">Details & Features <b-icon class="ml-2" icon="arrow-right"/></a></p>
+                    <p class="mt-5"><a href="#details">Details & features <b-icon class="ml-2" icon="arrow-right"/></a></p>
                     <p><a href="#details">About the artwork <b-icon class="ml-2" icon="arrow-right"/></a></p>
                     <p><a href="#abouttheartist">About the artist <b-icon class="ml-2" icon="arrow-right"/></a></p>
 

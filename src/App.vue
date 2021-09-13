@@ -7,8 +7,9 @@
     <div id="gdpr" v-if="gdpr" style="position: fixed; width: 100%; bottom:0; background: white; padding: 2rem 0;">
       <div class="container-fluid">
         <div class="row d-flex align-items-center">
-          <div class="col-8">By navigating, you accept the placement and use of cookies as described in our Privacy policy.</div>
-          <div class="col text-right"><a class="bnt btn-md" @click="closeGDPR()">Close</a></div>
+          <div class="col-8">This site uses cookies to improve user experience. By clicking 'Accept' or by continuing to use this site, you consent to our use of cookies. Click 'Learn more' for information on how we use cookies and how you can control them.</div>
+          <div class="col text-right"><a class="btn btn-md btn-outline-dark " @click="closeGDPR()">Accept</a> <a class="btn btn-md btn-outline-dark " href="https://www.hauserwirth.com/terms-and-conditions" target="_blank">Learn More</a></div>
+
         </div>
       </div>
     </div>
@@ -51,5 +52,5 @@ export default{
 }
 </script>
 <style lang="scss">
-#gdpr a, #gdpr a:hover{color: black !important;}
+
 </style>
