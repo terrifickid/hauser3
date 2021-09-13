@@ -85,30 +85,33 @@
 
     <!-- Mobile Text -->
     <div style="position: fixed; background: white; bottom:0rem; z-index: 1000; width: 100%;" class="d-lg-none ">
-      <div style="padding: 1rem 2rem;">
-    <div class="row pt-4 ">
+      <div style="padding: 1rem 2rem 0 2rem;">
+    <div class="row ">
       <div class="col-6">
-        <p class="fbold">{{artwork.artist.name}}</p>
+        <p   class="fbold mb-1">{{artwork.artist.name}}</p>
       </div>
       <div class="col-6 text-right">
-        <p>
+        <p class="mb-1" >
           <template v-if="artwork.acf.price_upon_inquiry">Price upon inquiry</template>
           <template v-if="!artwork.acf.price_upon_inquiry">{{artwork.acf.price | toCurrency}}</template>
         </p>
       </div>
       <div class="col-12">
-        <p v-html="artwork.title.rendered"></p>
+        <p class="mt-0" v-html="artwork.title.rendered"></p>
 
       </div>
-      <div class="col-6">
-        <a href="https://wa.me/442072872300?text=Hi+Hauser+%26+Wirth%21" class="btn btn-block btn-md btn-outline-dark"><img class="btniconfix" src="../assets/whatsapp.svg"> Live Chat</a>
-      </div>
-      <div class="col-6">
-        <a @click="emailModal = !emailModal" class="btn btn-block btn-md btn-outline-dark">Email Enquiry</a>
-      </div>
+
 
     </div>
   </div>
+  <div class="row" style="border-top: 1px solid black; padding: 1rem 0">
+  <div class="col-6 text-center" style="border-right: 1px solid black;">
+    <a href="https://wa.me/442072872300?text=Hi+Hauser+%26+Wirth%21" class=""><img class="btniconfix" src="../assets/whatsapp.svg"> Live Chat</a>
+  </div>
+  <div class="col-6 text-center">
+    <a @click="emailModal = !emailModal" class="">Email Enquiry</a>
+  </div>
+</div>
   </div>
 
 
