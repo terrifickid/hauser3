@@ -102,6 +102,12 @@ export default {
     },
   },
   mounted(){
+    var url = window.location.href;
+    var hash = url.split('#');
+    if(hash[1]) this.navigate('#'+hash[1]);
+    console.log(hash, url);
+
+
     window.addEventListener('resize', () => { this.headerResize(); });
     document.addEventListener('scroll', () => { this.headerScroll(); this.headerResize(); });
     document.querySelectorAll('a[href^="/#"]').forEach(anchor => {
