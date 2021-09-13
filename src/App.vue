@@ -4,7 +4,7 @@
       <Loader></Loader>
     </div>
     <router-view v-if="loaded"/>
-    <div id="gdpr" v-if="gdpr" style="position: fixed; width: 100%; bottom:0; background: white; padding: 2rem 0;">
+    <div id="gdpr" v-if="0" style="position: fixed; width: 100%; bottom:0; background: white; padding: 2rem 0;">
       <div class="container-fluid">
         <div class="row d-flex align-items-center">
           <div class="col-8">This site uses cookies to improve user experience. By clicking 'Accept' or by continuing to use this site, you consent to our use of cookies. Click 'Learn more' for information on how we use cookies and how you can control them.</div>
