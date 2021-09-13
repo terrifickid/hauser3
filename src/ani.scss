@@ -24,8 +24,8 @@
 }
 
  .fade-in-top {
-	-webkit-animation: fade-in-top 1s cubic-bezier(0.645, 0.045, 0.355, 1.000) both;
-	        animation: fade-in-top 1s cubic-bezier(0.645, 0.045, 0.355, 1.000) both;
+	-webkit-animation: fade-in-top 0.5s cubic-bezier(0.645, 0.045, 0.355, 1.000) both;
+	        animation: fade-in-top 0.5s cubic-bezier(0.645, 0.045, 0.355, 1.000) both;
 }
 .fade-in-bottom {
 	-webkit-animation: fade-in-bottom 0.75s cubic-bezier(0.645, 0.045, 0.355, 1.000) both;

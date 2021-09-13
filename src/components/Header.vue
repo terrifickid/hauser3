@@ -55,10 +55,7 @@ export default {
   },
   methods:{
     headerResize(){
-
-      var height = window.innerHeight;
-
-      if( window.scrollY > height ){
+      if( window.scrollY > 0 ){
         this.belowFold = true;
       }else{
         this.belowFold = false;
@@ -121,8 +118,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only #hauser_header{position: fixed; width: 100%; z-index: 3000;} s-->
 <style scoped lang="scss">
-#hauser_header{position: relative; z-index: 2000; padding-bottom: 2.5rem; visibility: hidden;}
-.wbg{background: white;}
+#hauser_header{background-color: transparent; position: relative; z-index: 2000; padding-bottom: 2.5rem; visibility: hidden;}
+.wbg{background-color: white !important;}
 ul{list-style:  none; margin:0; padding:0;}
 li{display: inline-block; margin: 0 2rem;}
 a{color: white;}
