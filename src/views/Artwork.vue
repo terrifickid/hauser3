@@ -64,7 +64,7 @@
                       <template v-if="artwork.acf.price_upon_inquiry">Price upon inquiry</template>
                       <template v-if="!artwork.acf.price_upon_inquiry">{{artwork.acf.price | toCurrency}}</template>
                     </p>
-                    <p class="mt-4"><a target="_blank" href="https://wa.me/442072872300?text=Hi+Hauser+%26+Wirth%21" class="btn btn-block btn-md btn-outline-dark"><img class="btniconfix" src="../assets/whatsapp.svg"> Live Chat</a>
+                    <p class="mt-4"><a target="_blank" href="https://wa.me/442072872300?text=Hello+Hauser+%26+Wirth" class="btn btn-block btn-md btn-outline-dark"><img class="btniconfix" src="../assets/whatsapp.svg"> Live Chat</a>
                     <a @click="emailModal = !emailModal" class="btn btn-block btn-md btn-outline-dark">Email Enquiry</a></p>
 
                     <p class="mt-5"><a href="#details">Details & features <b-icon class="ml-2" icon="arrow-right"/></a></p>
@@ -106,7 +106,7 @@
   </div>
   <div class="row" style="border-top: 1px solid black; padding: 1rem 0">
   <div class="col-6 text-center" style="border-right: 1px solid black;">
-    <a href="https://wa.me/442072872300?text=Hi+Hauser+%26+Wirth%21" class=""><img class="btniconfix" src="../assets/whatsapp.svg"> Live Chat</a>
+    <a href="https://wa.me/442072872300?text=Hello+Hauser+%26+Wirth" class=""><img class="btniconfix" src="../assets/whatsapp.svg"> Live Chat</a>
   </div>
   <div class="col-6 text-center">
     <a @click="emailModal = !emailModal" class="">Email Enquiry</a>
