@@ -115,8 +115,8 @@
 
           <div v-if="!filteredArtworks.length" class="col-6 col-md-4 col-xl-3"><p>Nothing found.</p></div>
           <div v-for="(artwork, index) in filteredArtworks" :key="index"  class="col-6 col-md-4   col-xl-3">
+            <router-link class="artwork" :to="{ path: '/artwork/'+artwork.slug+'#Artwork'}">
 
-            <a class="artwork" :href="'/artwork/'+artwork.slug">
             <img class="img-fluid mb-4" :src="artwork.acf.hero_image.sizes.medium">
             <p class="fbold">{{artwork.artist.name}}</p>
             <div v-html="artwork.title.rendered"></div>
@@ -126,7 +126,7 @@
               <template v-if="!artwork.acf.price_upon_inquiry">{{artwork.acf.price | toCurrency}}</template>
           </div>
 
-            </a>
+        </router-link>
 
             <p><a @click="toggleFavorite(artwork.id)"><img v-show="!favorites.includes(artwork.id)" src="../assets/favoriteIcon.svg"><img v-show="favorites.includes(artwork.id)" src="../assets/favoriteIconSel.svg"></a></p>
           </div>

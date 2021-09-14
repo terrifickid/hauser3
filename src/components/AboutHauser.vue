@@ -44,7 +44,7 @@
 
       <div class="d-md-none clearfix">
         <div>
-        <div v-for="(pane, index) in master.about_hauser" :key="index" class="col-8 mobilePane"><a :href="pane.link_url"><img class="img-fluid mb-3" :src="pane.image.url"></a><p><small v-html="pane.caption"></small></p></div>
+        <div v-for="(pane, index) in master.about_hauser" :key="index" class="col-8 mobilePane"><a target="_blank" :href="pane.link_url"><img class="img-fluid mb-3" :src="pane.image.url"></a><p><small v-html="pane.caption"></small></p></div>
       </div>
     </div>
 
@@ -52,7 +52,7 @@
 
       <div class="d-none d-md-block">
       <div class="row">
-        <div v-for="(pane, index) in master.about_hauser" :key="index" v-ani="{class:'fade-in-bottom', delay: index*300}" class="col-4" style="float: right !important;"><a :href="pane.link_url"><img class="img-fluid mb-3" :src="pane.image.url"></a><p><small v-html="pane.caption"></small></p></div>
+        <div v-for="(pane, index) in master.about_hauser" :key="index" v-ani="{class:'fade-in-bottom', delay: index*300}" class="col-4" style="float: right !important;"><a target="_blank" :href="pane.link_url"><img class="img-fluid mb-3" :src="pane.image.url"></a><p><small v-html="pane.caption"></small></p></div>
       </div><!-- end row -->
     </div>
     </div>

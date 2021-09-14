@@ -17,7 +17,7 @@
               <div class="col-12"><input type="text" required v-model="form.firstName" placeholder="First Name" class="form-control mb-4"></div><!-- end col -->
               <div class="col-12"><input type="text" required v-model="form.lastName" placeholder="Last Name" class="form-control mb-4"></div><!-- end col -->
               <div class="col-12"><input type="text" required v-model="form.emailAddress" placeholder="Email address" class="form-control mb-4"></div><!-- end col -->
-              <div class="col-12"><input type="text" required v-model="form.note"  placeholder="I am interested in learning about this peice." class="form-control mb-4"></div><!-- end col -->
+              <div class="col-12"><input type="text" required v-model="form.note"  placeholder="I am interested in learning about this piece." class="form-control mb-4"></div><!-- end col -->
               <div class="col-12"><button type="submit" class="mt-4 mb-5 btn btn-md btn-outline-dark btn-block">Submit</button></div>
               <div class="col-12">
                 <p><small>*By submitting your email address, you consent to receive our Newsletter. Your consent is revocable at any time by clicking the unsubscribe link in our Newsletter. The Newsletter is sent in accordance with our Privacy Policy and to advertise products and services of Hauser & Wirth Ltd. and its affiliated companies.</small></p>
@@ -316,6 +316,8 @@ export default{
     },
   },
   mounted: async function() {
+
+
     this.slug = this.$route.params.slug;
     document.addEventListener('scroll', () => { this.reCalc(); });
     document.addEventListener('fullscreenchange', () => { this.reCalc();  });

@@ -24,7 +24,7 @@
   <div v-bind:class="{invert: mode || belowFold, 'fade-in-top': showHeader, wbg: belowFold }" id="hauser_header" >
     <div class="container">
       <div class="row pt-5">
-        <div class="col"><a href="/"><img id="hlogo" class="img-fluid" src="../assets/hauser-logo.svg"></a></div><!-- end col -->
+        <div class="col">  <router-link :to="{ path: '/'}"><img id="hlogo" class="img-fluid" src="../assets/hauser-logo.svg"></router-link></div><!-- end col -->
         <div class="d-none d-xl-block col-6 text-center">
           <ul  id="desktopMenu">
             <li v-for="(link, index) in master.main_menu" :key="index">
@@ -94,8 +94,6 @@ export default {
         document.querySelector(t).scrollIntoView({
             behavior: 'smooth'
         });
-      }else{
-        window.location = '/'+t;
       }
     }
   },

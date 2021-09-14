@@ -1,6 +1,6 @@
 
 <template>
-  <div tabindex="0" @keydown.esc="videoModal = false" ref="home" class="home">
+  <div tabindex="0" @keydown.esc="videoModal = false" ref="home" class="home" id="top">
       <Header :mode="0"></Header>
     <div id="hauser_home">
 
