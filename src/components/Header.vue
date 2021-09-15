@@ -64,7 +64,7 @@ export default {
   },
   methods:{
     headerResize(){
-      if( window.scrollY > 0 ){
+      if( window.scrollY > 150 ){
         this.belowFold = true;
       }else{
         this.belowFold = false;
