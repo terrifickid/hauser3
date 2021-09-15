@@ -88,7 +88,7 @@
       <div style="padding: 1rem 2rem 0 2rem;">
     <div class="row ">
       <div class="col-6">
-        <p   class="fbold mb-1">{{artwork.artist.name}}</p>
+        <p class="fbold mb-1">{{artwork.artist.name}}</p>
       </div>
       <div class="col-6 text-right">
         <p class="mb-1" >
@@ -97,7 +97,8 @@
         </p>
       </div>
       <div class="col-12">
-        <p class="mt-0" v-html="artwork.title.rendered"></p>
+        <p class="mt-0 mb-0" v-html="artwork.title.rendered"></p>
+        <p class="mt-0" v-html="artwork.acf.hero_description"></p>
 
       </div>
 
