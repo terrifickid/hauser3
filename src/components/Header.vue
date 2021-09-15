@@ -35,7 +35,7 @@
           </ul>
         </div><!-- end col -->
         <div class="col icons text-right">
-          <a href="/favorites"><img src="../assets/heart.svg"></a>
+            <router-link :to="{ path: '/favorites'}"><img src="../assets/heart.svg"></router-link>
           <a  @click="menuModal = !menuModal"><img src="../assets/menu.svg"></a>
 
         </div><!-- end col -->

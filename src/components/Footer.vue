@@ -29,7 +29,7 @@
 
     <div class="text-center">
       <h4 class="mt-4">Follow us on WeChat</h4>
-      <img src="../assets/wechatqr.jpeg" class="img-fluid mt-4">
+      <img src="../assets/wechatqr.jpg" class="img-fluid mt-4">
       <p>Scan the image to begin</p>
 
 </div>

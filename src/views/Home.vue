@@ -12,7 +12,7 @@
             </div>
             <div class="col-12 col-md-10 offset-md-1" style="position: relative;">
               <div class="embed-responsive embed-responsive-16by9">
-                <iframe v-if="videoModal" class="embed-responsive-item" :src="master.link_url" allowfullscreen></iframe>
+                <iframe ref="frm"  v-if="videoModal" class="embed-responsive-item" :src="master.link_url+'&transparent=0'" allowfullscreen></iframe>
               </div>
             </div>
           </div>
@@ -20,7 +20,7 @@
       </div>
 
       <div v-ani="{class:'blur-in-center', delay: 0}" v-bind:style="[master.hero_image ? {'background-image': 'url('+master.hero_image.url+')'} : {}]" id="bg">
-      <iframe style="filter: brightness(0.85);" v-if="master.hero_video" border=0 frameborder=0 :src="master.hero_video" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen=""></iframe>
+      <iframe style="filter: brightness(0.85);" v-if="master.hero_video" border=0 frameborder=0 :src="master.hero_video+'&transparent=0'" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen=""></iframe>
       <div style=" z-index: 200; position: relative;">
       <div class="hauser-hero">
         <div class="container">
@@ -106,6 +106,7 @@ export default {
   mounted: function(){
 
 
+
     /*
     //Load Artworks
     try {
@@ -141,8 +142,6 @@ h2{font-size: 1.25rem;}
 h1{font-size: 5rem;}
   #bg{
     color: white;
-
-    background-color: white;
     background-size: cover;
     min-height: 100vh;
     position: relative;

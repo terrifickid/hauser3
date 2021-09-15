@@ -1,7 +1,7 @@
 <template>
   <div class="favorites">
     <Header :mode="1"></Header>
-    <div style="height: 8rem"></div>
+    <div style="height: 10rem"></div>
     <div class="container">
       <div class="row">
         <div class="col-md-10 offset-md-1">

@@ -4,9 +4,11 @@
       <div v-ani="{class:'slide-in-left', delay: 600}">
         <div style="height: 2rem;" class="d-md-none"></div>
       <h4 class="mb-4">{{artwork.artist.name}}</h4>
-      <div class="row"><div class="col"><p v-html="artwork.title.rendered"></p></div><div class="col d-md-none text-right"><div class="mr-4"><a style="color: black;" :href="'artwork/'+artwork.slug">Explore <b-icon class="ml-2" icon="arrow-right"/></a></div></div></div>
+      <div class="row"><div class="col"><p v-html="artwork.title.rendered"></p></div><div class="col d-md-none text-right"><div class="mr-4"><router-link style="color: black;" :href="'artwork/'+artwork.slug">Explore <b-icon class="ml-2" icon="arrow-right"/></router-link></div></div></div>
       <p class="d-none d-md-block" v-html="artwork.acf.hero_description"></p>
-        <a :href="'artwork/'+artwork.slug" class="d-none d-lg-block btn btn-md btn-outline-dark btn-block">View details</a>
+      <router-link class="d-none d-lg-block btn btn-md btn-outline-dark btn-block" :to="{ path: 'artwork/'+artwork.slug}">
+        View details
+      </router-link>
       </div>
 
     </div>
