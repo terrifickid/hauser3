@@ -115,7 +115,7 @@
 
           <div v-if="!filteredArtworks.length" class="col-6 col-md-4 col-xl-3"><p>Nothing found.</p></div>
           <div v-for="(artwork, index) in filteredArtworks" :key="index"  class="col-6 col-md-4   col-xl-3">
-            <router-link class="artwork" :to="{ path: '/artwork/'+artwork.slug+'#Artwork'}">
+            <router-link class="artwork" :to="{ path: '/artwork/'+artwork.slug}">
 
             <img class="img-fluid mb-4" :src="artwork.acf.hero_image.sizes.medium">
             <p class="fbold">{{artwork.artist.name}}</p>
