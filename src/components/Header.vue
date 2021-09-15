@@ -21,7 +21,7 @@
       </div>
     </div>
   <div style="position: fixed; z-index: 2000; width: 100%;" >
-  <div v-bind:class="{invert: mode || belowFold, 'fade-in-top': showHeader, wbg: belowFold }" id="hauser_header" >
+  <div v-bind:class="{invert: mode || belowFold, wbg: belowFold }" id="hauser_header" >
     <div class="container">
       <div class="row pt-5">
         <div class="col">  <router-link :to="{ path: '/'}"><img id="hlogo" class="img-fluid" src="../assets/hauser-logo.svg"></router-link></div><!-- end col -->
@@ -125,12 +125,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only #hauser_header{position: fixed; width: 100%; z-index: 3000;} s-->
 <style scoped lang="scss">
-#hauser_header{background-color: transparent; position: relative; z-index: 2000; padding-bottom: 2.5rem; visibility: hidden;}
+#hauser_header{background-color: transparent; position: relative; z-index: 2000; padding-bottom: 2.5rem; }
 .wbg{background-color: white !important;}
 ul{list-style:  none; margin:0; padding:0;}
 li{display: inline-block; margin: 0 2rem;}
 a{color: white;}
 .icons img{padding-left: 1rem; }
+
 
 .menu-modal{color: black; }
 .menu-modal ul{}
