@@ -238,6 +238,8 @@ export default {
 
       if(this.sortBy) return filtered.sort((a, b) => {
         var calc = 0;
+        var lastA = a.artist.name.split(' ').pop();
+        var lastB = b.artist.name.split(' ').pop();
         switch(this.sortBy){
           case 'priceHigh':
             calc = b.acf.price - a.acf.price;
@@ -246,14 +248,10 @@ export default {
             calc = a.acf.price - b.acf.price;
           break;
           case 'alphaA':
-            calc = 0;
-            if(a.title.rendered < b.title.rendered) { calc = -1; }
-            if(a.title.rendered > b.title.rendered) { calc = 1; }
+            calc = lastA.localeCompare(lastB);
           break;
           case 'alphaZ':
-            calc = 0;
-            if(a.title.rendered < b.title.rendered) { calc = 1; }
-            if(a.title.rendered > b.title.rendered) { calc = -1; }
+            calc = lastB.localeCompare(lastA);
           break;
         }
 
