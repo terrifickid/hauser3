@@ -21,7 +21,7 @@
       </div>
     </div>
   <div style="position: fixed; z-index: 2000; width: 100%;" >
-  <div v-bind:class="{invert: mode || belowFold, wbg: belowFold }" id="hauser_header" >
+  <div v-bind:class="{invert: mode || belowFold, wbg: belowFold }" v-show="showHeader" id="hauser_header" >
     <div class="container">
       <div class="row pt-5">
         <div class="col">  <router-link :to="{ path: '/'}"><img id="hlogo" class="img-fluid" src="../assets/hauser-logo.svg"></router-link></div><!-- end col -->
