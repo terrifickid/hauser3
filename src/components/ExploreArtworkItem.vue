@@ -1,6 +1,6 @@
 <template>
   <div v-if="artwork" >
-    <router-link class="artwork" :to="{ path: '/artwork/'+artwork.slug}">
+    <a class="artwork" :href="'/artwork/'+artwork.slug">
 
 
         <div class="bgCover mb-4" v-bind:style="{'background-image': 'url('+artwork.acf.hero_image.url+')'}">
@@ -8,7 +8,7 @@
         </div>
      <h4 class="fbold">{{artwork.artist.name}}</h4>
      <p v-html="artwork.title.rendered"></p>
-   </router-link>
+   </a>
     </div><!-- -->
 </template>
 

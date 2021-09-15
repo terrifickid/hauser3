@@ -317,11 +317,16 @@ export default{
     },
   },
   mounted: async function() {
-
-
-    this.slug = this.$route.params.slug;
+      this.slug = this.$route.params.slug;
+    console.log(this.slug);
     document.addEventListener('scroll', () => { this.reCalc(); });
     document.addEventListener('fullscreenchange', () => { this.reCalc();  });
+  },
+  watch: {
+    $route(to, from) {
+      console.log(to,from);
+      this.slug = this.$route.params.slug;
+    }
   },
   computed:{
     favorites () {
@@ -335,7 +340,7 @@ export default{
     },
     artwork (){
     var filtered = this.artworks.filter((artwork) => {
-      if(artwork.slug == this.$route.params.slug) return true;
+      if(artwork.slug == this.slug) return true;
       return false;
     });
     return filtered[0];
