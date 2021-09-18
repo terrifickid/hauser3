@@ -14,7 +14,7 @@
 
   </div><!-- end hero-ad -->
 
-  <div id="videos" class="hero-pad">
+  <div id="diaries" class="hero-pad">
     <div  class="container-fluid">
       <div v-if="master.video.length"  class="row d-flex align-items-top">
         <div  class="col-10 offset-1 col-md-8 offset-md-2">
@@ -22,15 +22,14 @@
               <div  v-ani="{class:'scale-up-center', delay: 0}"  v-show="selVid == index" :key="index">
                 <h2 class="mb-4" >{{video.title}}</h2>
                 <div  class=" embed-responsive embed-responsive-16by9">
-                  <iframe class="embed-responsive-item" :src="video.video_url"></iframe>
+                  <iframe class="embed-responsive-item" :src="video.video_url+'?controls=0&modestbranding=1&loop=1'"></iframe>
                 </div>
                 <p class="pt-4" v-html="video.caption"></p>
               </div>
           </template>
         </div>
-        <div class="col text-right">
+        <div v-if="master.video.length > 1" class="col text-left">
           <h2 class="mb-4" >&nbsp;</h2>
-
           <a v-bind:class="{selected: selVid == index }" @click="selVid = index" v-for="(video, index) in master.video" :key="index" class="mb-2 ml-2" v-bind:style="{'background-image': 'url('+video.video_thumbnail.url+')'}" style="background-position: center center; background-size: cover; display: inline-block; height: 75px; width: 100px; background-color: #eee"></a>
         </div>
       </div>
