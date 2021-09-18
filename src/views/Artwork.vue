@@ -319,9 +319,12 @@ export default{
   mounted: async function() {
       this.slug = this.$route.params.slug;
       this.id = this.$route.params.id;
-      if(this.id) this.preview = await axios.get(process.env.VUE_APP_URI+'wp-json/wp/v2/hauser_artworks?include[]='+this.id+'&post_status=any');
+      if(this.id){
+          var res = await axios.get(process.env.VUE_APP_URI+'wp-json/wp/v2/hauser_artworks?include[]='+this.id+'&post_status=any');
+          this.preview = res.data[0];
+      }
     console.log(this.slug);
-    console.log(this.id, this.$route.params);
+    console.log(this.id, this.preview);
     document.addEventListener('scroll', () => { this.reCalc(); });
     document.addEventListener('fullscreenchange', () => { this.reCalc();  });
   },

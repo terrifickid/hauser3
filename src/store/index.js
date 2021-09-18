@@ -61,7 +61,11 @@ export default new Vuex.Store({
             axios.get(process.env.VUE_APP_URI+'wp-json/hauser/v1/master')
           ]);
           console.log('Loaded '+res[0].data.length+' Artworks!');
-          commit('setArtworks', res[0].data);
+          commit('setArtworks', res[0].data.filter((artwork) => {
+            if(artwork.status == 'publish') return true;
+          }));
+      
+
           console.log('Master Data Loaded!');
           commit('setMaster', res[1].data);
 
