@@ -318,7 +318,10 @@ export default{
   },
   mounted: async function() {
       this.slug = this.$route.params.slug;
+      this.id = this.$route.params.id;
+      if(this.id) this.preview = await axios.get(process.env.VUE_APP_URI+'wp-json/wp/v2/hauser_artworks?include[]='+this.id+'&post_status=any');
     console.log(this.slug);
+    console.log(this.id, this.$route.params);
     document.addEventListener('scroll', () => { this.reCalc(); });
     document.addEventListener('fullscreenchange', () => { this.reCalc();  });
   },
@@ -326,6 +329,7 @@ export default{
     $route(to, from) {
       console.log(to,from);
       this.slug = this.$route.params.slug;
+      this.id = this.$route.params.id;
     }
   },
   computed:{
@@ -339,7 +343,9 @@ export default{
       return this.$store.state.artworks;
     },
     artwork (){
+      if(this.preview) return this.preview;
     var filtered = this.artworks.filter((artwork) => {
+      if(artwork.id == this.id) return true;
       if(artwork.slug == this.slug) return true;
       return false;
     });
@@ -358,6 +364,7 @@ export default{
       playAudio: false,
       emailModal: false,
       offOverride: false,
+      preview: false,
       form:{
         firstName: '',
         lastName: '',
