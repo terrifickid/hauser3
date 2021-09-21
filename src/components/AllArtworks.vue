@@ -117,7 +117,8 @@
           <div v-for="(artwork, index) in filteredArtworks" :key="index"  class="col-6 col-md-4   col-xl-3">
             <router-link class="artwork" :to="{ path: '/artwork/'+artwork.slug}">
             <div class="artimg">
-            <img class=" img-fluid mb-4" :src="artwork.acf.hero_image.sizes.medium">
+            <img class=" img-fluid mb-4" :height="artwork.acf.hero_image.sizes.medium_height" :width="artwork.acf.hero_image.sizes.medium_width" :src="artwork.acf.hero_image.sizes.medium">
+
             </div>
             <p class="fbold">{{artwork.artist.name}}</p>
             <div v-html="artwork.title.rendered"></div>

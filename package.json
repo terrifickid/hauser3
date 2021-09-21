@@ -20,6 +20,7 @@
     "vue": "^2.6.11",
     "vue-animate-scroll": "^0.1.5",
     "vue-inner-image-zoom": "^1.1.0",
+    "vue-masonry": "^0.13.0",
     "vue-router": "^3.2.0",
     "vue-sticky": "^3.3.4",
     "vue-sticky-directive": "^0.0.10",
