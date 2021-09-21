@@ -117,7 +117,7 @@
           <div v-for="(artwork, index) in filteredArtworks" :key="index"  class="col-6 col-md-4   col-xl-3">
             <router-link class="artwork" :to="{ path: '/artwork/'+artwork.slug}">
 
-            <img class="img-fluid mb-4" :src="artwork.acf.hero_image.sizes.medium">
+            <img class="artimg img-fluid mb-4" :src="artwork.acf.hero_image.sizes.medium">
             <p class="fbold">{{artwork.artist.name}}</p>
             <div v-html="artwork.title.rendered"></div>
 
@@ -296,5 +296,5 @@ ul.child{margin:0 0 1rem 19px;}
 .artwork{margin-bottom: 1rem; display: block;}
 .fullscreen-modal b.fbold{display: block;}
 .artistScroll{ max-height: 13rem; overflow-y: scroll;}
-
+.artimg{min-height: 12rem;}
 </style>
