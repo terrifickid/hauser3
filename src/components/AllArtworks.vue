@@ -202,6 +202,12 @@ export default {
     },
   },
   mounted: async function() {
+    console.log(location.hash);
+    if(location.hash){
+      document.querySelector(location.hash).scrollIntoView({ 
+        behavior: 'smooth'
+      });
+    }
   },
   props:{
 
