@@ -111,10 +111,11 @@
       </div><!-- end col -->
 
       <div  v-if="artworks.length" class="col">
-        <div class="row">
+
+<div v-masonry="containerId" transition-duration="0.3s" item-selector=".item">
 
           <div v-if="!filteredArtworks.length" class="col-6 col-md-4 col-xl-3"><p>Nothing found.</p></div>
-          <div v-for="(artwork, index) in filteredArtworks" :key="index"  class="col-6 col-md-4   col-xl-3">
+          <div v-masonry-tile v-for="(artwork, index) in filteredArtworks" :key="index"  class="item col-6 col-md-4   col-xl-3">
             <router-link class="artwork" :to="{ path: '/artwork/'+artwork.slug}">
             <div class="artimg">
             <img class=" img-fluid mb-4" :height="artwork.acf.hero_image.sizes.medium_height" :width="artwork.acf.hero_image.sizes.medium_width" :src="artwork.acf.hero_image.sizes.medium">
