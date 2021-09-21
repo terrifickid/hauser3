@@ -304,6 +304,6 @@ ul.child{margin:0 0 1rem 19px;}
 .artwork{margin-bottom: 1rem; display: block;}
 .fullscreen-modal b.fbold{display: block;}
 .artistScroll{ max-height: 13rem; overflow-y: scroll;}
-.artimg{ background-size: contain; background-position: center bottom; background-repeat: no-repeat;}
+.artimg{ background-size: contain; background-position: center center; background-repeat: no-repeat;}
 
 </style>
