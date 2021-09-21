@@ -116,8 +116,8 @@
           <div v-if="!filteredArtworks.length" class="col-6 col-md-4 col-xl-3"><p>Nothing found.</p></div>
           <div v-for="(artwork, index) in filteredArtworks" :key="index"  class="col-6 col-md-4   col-xl-3">
             <router-link class="artwork" :to="{ path: '/artwork/'+artwork.slug}">
-            <div class="artimg">
-            <img class=" img-fluid mb-4" :height="artwork.acf.hero_image.sizes.medium_height" :width="artwork.acf.hero_image.sizes.medium_width" :src="artwork.acf.hero_image.sizes.medium">
+            <div class="artimg mb-4" :style="{backgroundImage: 'url('+artwork.acf.hero_image.sizes.medium+')'}">
+            <img style="width: 100%;" class="mb-4" src="../assets/square.png">
 
             </div>
             <p class="fbold">{{artwork.artist.name}}</p>
@@ -158,7 +158,7 @@
       </div><!-- end col -->
     </div><!-- end row -->
 
-    <div v-if="perPage <= artworks.length" class="row"><div class="col text-center"><a @click="perPage = perPage + 20;" class="btn btn-md btn-outline-dark">Load 20 more</a></div></div><!-- end row -->
+    <div v-if="perPage <= artworks.length" class="row"><div class="col text-center"><a @click="perPage = perPage + 20;" class="mt-4 btn btn-md btn-outline-dark">Load 20 more</a></div></div><!-- end row -->
 
   </div>
   </div><!-- -->
@@ -204,7 +204,7 @@ export default {
   mounted: async function() {
     console.log(location.hash);
     if(location.hash){
-      document.querySelector(location.hash).scrollIntoView({ 
+      document.querySelector(location.hash).scrollIntoView({
         behavior: 'smooth'
       });
     }
@@ -304,5 +304,6 @@ ul.child{margin:0 0 1rem 19px;}
 .artwork{margin-bottom: 1rem; display: block;}
 .fullscreen-modal b.fbold{display: block;}
 .artistScroll{ max-height: 13rem; overflow-y: scroll;}
-.artimg{min-height: 12rem;}
+.artimg{ background-size: contain; background-position: center bottom; background-repeat: no-repeat;}
+
 </style>
