@@ -1,6 +1,6 @@
 <template>
   <div id="Artwork" class="">
-    <Header :mode="1"></Header>
+    <Header ref="heady" :mode="1"></Header>
     <ShareModal v-if="artwork" ref="shareModal" :artwork="artwork"></ShareModal>
     <div v-bind:class="{ 'active': emailModal }" class="fullscreen-modal">
       <div class="container">
@@ -55,7 +55,7 @@
                 </div><!-- enffd col -->
                 <div class="d-none d-lg-block col-lg-3 offset-lg-1 offset-xl-0">
                   <div class="fixed rightCol">
-                    <div  v-ani="{class:'fade-in-bottom', delay: 0}"  v-if="masterOn" class="pt-4"  >
+                    <div  v-ani="{class:'fade-in-bottom', delay: 300}"  v-if="masterOn" class="pt-4"  >
 
                     <h4>{{artwork.artist.name}}</h4>
                     <p v-html="artwork.title.rendered"></p>
@@ -67,12 +67,12 @@
                     <p class="mt-4"><a target="_blank" href="https://wa.me/442072872300?text=Hello+Hauser+%26+Wirth" class="btn btn-block btn-md btn-outline-dark"><img class="btniconfix" src="../assets/whatsapp.svg"> Live Chat</a>
                     <a @click="emailModal = !emailModal" class="btn btn-block btn-md btn-outline-dark">Email Enquiry</a></p>
 
-                    <p class="mt-5"><a href="#details">Details & features <b-icon class="ml-2" icon="arrow-right"/></a></p>
-                    <p><a href="#details">About the artwork <b-icon class="ml-2" icon="arrow-right"/></a></p>
-                    <p><a href="#abouttheartist">About the artist <b-icon class="ml-2" icon="arrow-right"/></a></p>
+                    <p class="mt-5 mb-3"><a href="#details">Details & features <b-icon class="ml-2" icon="arrow-right"/></a></p>
+                    <p class="mb-3"><a href="#details">About the artwork <b-icon class="ml-2" icon="arrow-right"/></a></p>
+                    <p class="mb-3"><a href="#abouttheartist">About the artist <b-icon class="ml-2" icon="arrow-right"/></a></p>
 
-                    <div style="padding-top: 2rem;">
-                      <a @click="toggleFavorite(artwork.id)" class="mr-3 clink bg-subtle-grey"><img v-show="!favorites.includes(artwork.id)" src="../assets/favoriteIcon.svg"><img v-show="favorites.includes(artwork.id)" src="../assets/favoriteIconSel.svg"></a><a class="mr-3 clink bg-subtle-grey" @click="toggleShare()"><img src="../assets/share.svg"></a>
+                    <div style="padding-top: 0rem;">
+                      <a @click="toggleFavorite(artwork.id)" class="mr-1 clink bg-subtle-grey"><img v-show="!favorites.includes(artwork.id)" src="../assets/favoriteIcon.svg"><img v-show="favorites.includes(artwork.id)" src="../assets/favoriteIconSel.svg"></a><a class="mr-3 clink bg-subtle-grey" @click="toggleShare()"><img src="../assets/share.svg"></a>
                     </div>
                   </div>
                 </div>
@@ -137,12 +137,12 @@
 </div>
 
 
-<div style="border: 1px solid transparent;" ref="contentPoint"></div>
+
 
 <div id="details" v-if="artwork.acf.about_the_artwork_description || artwork.acf.details.length" class="container">
   <div class="row pb-5" >
-    <div class="d-none d-md-block col-1" style="border-right: 1px solid black;"></div>
-    <div class="col-md-8 offset-md-1" >
+    <!--<div class="d-none d-md-block col-1" style="border-right: 1px solid black;"></div>-->
+    <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-0 offset-xl-3" >
       <div style="padding: 3rem 0">
       <h3 v-if="artwork.acf.details.length" class="mb-4">Details & features</h3>
       <div class="row mb-2" v-for="detail in artwork.acf.details" :key="detail.title">
@@ -161,7 +161,7 @@
   </div>
 </div>
 
-
+<div style="border: 1px solid transparent;" ref="contentPoint"></div>
 <div style="height: 4rem;"></div>
     <div id="panels" v-for="(panel, index) in artwork.acf.panels" :key="index">
       <a v-if="(index+1) == artwork.acf.panels.length" name="abouttheartist"></a>
@@ -302,9 +302,10 @@ export default{
     reCalc(){
         //console.log('fixMarker',this.$refs.fixMarker.getBoundingClientRect());
       var toggleLottie = this.$refs.breakPoint.getBoundingClientRect().y - window.innerHeight;
-
-        if(toggleLottie < 0 && this.$refs.lottie)this.$refs.lottie.unfix();
-        if(toggleLottie > 0 && this.$refs.lottie)this.$refs.lottie.fix();
+        //if(toggleLottie < 0 && this.$refs.lottie)this.$refs.lottie.unfix();
+        //if(toggleLottie > 0 && this.$refs.lottie)this.$refs.lottie.fix();
+        if(toggleLottie < 0) this.$refs.heady.belowX(true);
+        if(toggleLottie > 0) this.$refs.heady.belowX(false);
       var toggleContent = this.$refs.contentPoint.getBoundingClientRect().y - window.innerHeight;
         if(toggleContent < 0)this.masterOn = false;
         if(toggleContent > 0)this.masterOn= true;
@@ -394,7 +395,7 @@ a, a:hover{color: black}
 
 
 .masterHeight{position: relative;  min-height: 100vh;}
-.scrollHeight{min-height: 3200px !important;}
+.scrollHeight{min-height: 2950px !important;}
 .clink{padding: 0.5rem 0rem; text-align: center; width: 2.5rem; display: inline-block; border-radius: 100px;}
 
 .playBox{
@@ -411,7 +412,7 @@ a, a:hover{color: black}
 .playIcon{
   position: absolute; top: 17px; left: 19px; width: 25px; height: 25px; color: white;
 }
-
+.rightCol{padding-top: 2rem;}
 .sizer{min-height: 75vh;}
 // Extra small devices (portrait phones, less than 576px)
 // No media query since this is the default in Bootstrap

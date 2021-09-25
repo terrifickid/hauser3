@@ -27,6 +27,7 @@ export default {
       duration: 0,
       oldScrollY: 0,
       scrollY: 0,
+      toggle: true,
     }
   },
   methods:{
@@ -38,22 +39,33 @@ export default {
     },
     fix(){
       this.fixed = true;
+      this.toggle = true;
       this.resize();
     },
     unfix(){
+      if(this.toggle){
       this.fixed = false;
       this.$refs.lottie.style.left = 0;
-      this.$refs.lottie.style.top = 2400+'px';
+      var tpos = (window.scrollY + (window.innerHeight / 2) - (this.$refs.lottie.offsetHeight/2));
+      this.$refs.lottie.style.top = tpos+'px';
+      this.toggle = false;
+      }
 
     },
     nextFrame(){
-      if(this.frame >= this.duration) this.frame = this.duration-1;
-      if(this.frame <= 1) this.frame = 1;
-      this.lottie.goToAndStop(this.frame, true);
+      if(this.frame < 2){
+        this.frame = 2;
+      }else if(this.frame > this.duration-1){
+        this.frame = this.duration-1;
+        this.unfix();
+      }else{
+        this.lottie.goToAndStop(this.frame, true);
+        this.fix();
+      }
     },
     resize(){
       console.log('resize');
-      var tpos = (window.innerHeight/2) - (this.$refs.lottie.offsetHeight/2);
+      var tpos = ((window.innerHeight / 2) - (this.$refs.lottie.offsetHeight/2));
       //console.log(this.$refs.heroCont.offsetWidth);
       this.$refs.lottie.style.left = document.getElementById('heroCont').getBoundingClientRect().x+'px';
       this.$refs.lottie.style.top = tpos+'px';
@@ -100,7 +112,9 @@ export default {
 .lot{
   opacity: 0;
   filter: blur(0rem);
-   transition: opacity 0.1s,
+   transition: opacity 0.1;
+
+
  }
  .finalPos{position: absolute; top: 2500px;}
 </style>

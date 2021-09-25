@@ -1,7 +1,9 @@
 
 <template>
   <div tabindex="0" @keydown.esc="videoModal = false" ref="home" class="home" id="top">
-      <Header :mode="0"></Header>
+
+      <Header ref="heady" :mode="0"></Header>
+
     <div id="hauser_home">
 
       <div ref="videoModalRef"   @keydown.esc="videoModal = false" v-bind:class="{ 'active': videoModal }" class="fullscreen-modal menu-modal">
@@ -39,7 +41,7 @@
       </div>
       </div><!-- end hauser-hero -->
     </div><!-- end bg -->
-
+<div style="border: 0px solid red; position: relative; " ref="breakPoint"></div>
 
 
       <FeaturedArtwork></FeaturedArtwork>
@@ -106,6 +108,12 @@ export default {
   mounted: function(){
 
 
+    document.addEventListener('scroll', () => {
+        var toggle = this.$refs.breakPoint.getBoundingClientRect().y;
+
+        if(toggle < 0) this.$refs.heady.belowX(true);
+        if(toggle > 0) this.$refs.heady.belowX(false);
+     });
 
     /*
     //Load Artworks

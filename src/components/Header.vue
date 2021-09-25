@@ -2,7 +2,7 @@
   <div>
     <div v-bind:class="{ 'active': menuModal}" class="fullscreen-modal menu-modal">
       <div class="container">
-        <div class="row pt-5">
+        <div v-bind:class="{ 'wbg': belowFold}" class="row mobile-pad">
           <div class="col"><a href="/"><img style="filter: brightness(0%);" class="img-fluid" src="../assets/hauser-logo.svg"></a></div><!-- end col -->
           <div class="col text-right"><a  @click="menuModal = !menuModal">Close</a></div>
         </div>
@@ -21,9 +21,9 @@
       </div>
     </div>
   <div style="position: fixed; z-index: 2000; width: 100%;" >
-  <div v-bind:class="{invert: mode || belowFold, wbg: belowFold }" v-show="showHeader" id="hauser_header" >
-    <div class="container">
-      <div class="row pt-5">
+  <div v-bind:class="{invert: mode || belowFold, wbg: belowFold }" id="hauser_header" >
+    <div  v-ani="{class:'fade-in-top', delay: 0}" class="container">
+      <div class="row">
         <div class="col">  <router-link :to="{ path: '/'}"><img id="hlogo" class="img-fluid" src="../assets/hauser-logo.svg"></router-link></div><!-- end col -->
         <div class="d-none d-xl-block col-6 text-center">
           <ul  id="desktopMenu">
@@ -65,13 +65,16 @@ export default {
   methods:{
     headerResize(){
       if( window.scrollY > 150 ){
-        this.belowFold = true;
+      //  this.belowFold = true;
       }else{
-        this.belowFold = false;
+        //this.belowFold = false;
       }
       //console.log(window.scrollY, height, this.belowFold)
 
 
+    },
+    belowX(val){
+      this.belowFold = val;
     },
     headerScroll(){
       var mod = 0;
@@ -125,8 +128,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only #hauser_header{position: fixed; width: 100%; z-index: 3000;} s-->
 <style scoped lang="scss">
-#hauser_header{background-color: transparent; position: relative; z-index: 2000; padding-bottom: 2.5rem; }
-.wbg{background-color: white !important;}
+#hauser_header{transition: 1s all ease; background-color: transparent; position: relative; z-index: 2000; padding: 3rem 0 2.5rem 0;   }
+.mobile-pad{
+  padding: 3rem 0 2.5rem 0;
+}
+.wbg{background: white !important; padding: 2rem 0 1.5rem 0 !important;}
 ul{list-style:  none; margin:0; padding:0;}
 li{display: inline-block; margin: 0 2rem;}
 a{color: white;}

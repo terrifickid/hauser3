@@ -114,7 +114,7 @@
         <div class="row">
 
           <div v-if="!filteredArtworks.length" class="col-6 col-md-4 col-xl-3"><p>Nothing found.</p></div>
-          <div v-for="(artwork, index) in filteredArtworks" :key="index"  class="col-6 col-md-4   col-xl-3">
+          <div  v-ani="{class:'fade-in-bottom', delay: (delay(index)*100)+100}" v-for="(artwork, index) in filteredArtworks" :key="index"  class="col-6 col-md-4   col-xl-3">
             <router-link class="artwork" :to="{ path: '/artwork/'+artwork.slug}">
             <div class="artimg mb-4" :style="{backgroundImage: 'url('+artwork.acf.hero_image.sizes.medium+')'}">
             <img style="width: 100%;" class="mb-4" src="../assets/square.png">
@@ -200,6 +200,11 @@ export default {
       else
           a.splice(i,1);
     },
+    delay(index){
+      var page = Math.floor(index/4);
+      console.log(index - (page*4));
+      return index - (page*4);
+    },
   },
   mounted: async function() {
     console.log(location.hash);
@@ -213,6 +218,7 @@ export default {
 
   },
   computed:{
+
     favorites () {
       return this.$store.state.favorites;
     },

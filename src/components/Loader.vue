@@ -1,10 +1,13 @@
 <template>
   <div style="width: 100%; text-align: center;">
-    <div class="spinner">
-      <div class="bounce1"></div>
-      <div class="bounce2"></div>
-      <div class="bounce3"></div>
+
+  <div class="profile-main-loader">
+    <div class="loader">
+      <svg class="circular-loader" viewBox="25 25 50 50" >
+        <circle class="loader-path" cx="50" cy="50" r="20" fill="none" stroke="#000" stroke-width="2" />
+      </svg>
     </div>
+  </div>
   </div>
 </template>
 
@@ -16,46 +19,110 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.spinner {
-  margin: auto;
-  width: 7rem;
-  text-align: center;
+
+
+.profile-main-loader .loader {
+position: relative;
+margin: 0px auto;
+width: 3rem;
+height:3rem;
+}
+.profile-main-loader .loader:before {
+content: '';
+display: block;
+padding-top: 100%;
 }
 
-.spinner > div {
-  width: 0.5rem;
-  height: 0.5rem;
-  margin: 0 0.5rem;
-  background-color: #333;
-
-  border-radius: 100%;
-  display: inline-block;
-  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
-  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+.circular-loader {
+-webkit-animation: rotate 2s linear infinite;
+        animation: rotate 2s linear infinite;
+height: 100%;
+-webkit-transform-origin: center center;
+    -ms-transform-origin: center center;
+        transform-origin: center center;
+width: 100%;
+position: absolute;
+top: 0;
+left: 0;
+margin: auto;
 }
 
-.spinner .bounce1 {
-  -webkit-animation-delay: -0.32s;
-  animation-delay: -0.32s;
+.loader-path {
+stroke-dasharray: 150,200;
+stroke-dashoffset: -10;
+-webkit-animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+        animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+stroke-linecap: round;
 }
 
-.spinner .bounce2 {
-  -webkit-animation-delay: -0.16s;
-  animation-delay: -0.16s;
+@-webkit-keyframes rotate {
+100% {
+  -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+}
 }
 
-@-webkit-keyframes sk-bouncedelay {
-  0%, 80%, 100% { -webkit-transform: scale(0) }
-  40% { -webkit-transform: scale(1.0) }
+@keyframes rotate {
+100% {
+  -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+}
+}
+@-webkit-keyframes dash {
+0% {
+  stroke-dasharray: 1,200;
+  stroke-dashoffset: 0;
+}
+50% {
+  stroke-dasharray: 89,200;
+  stroke-dashoffset: -35;
+}
+100% {
+  stroke-dasharray: 89,200;
+  stroke-dashoffset: -124;
+}
+}
+@keyframes dash {
+0% {
+  stroke-dasharray: 1,200;
+  stroke-dashoffset: 0;
+}
+50% {
+  stroke-dasharray: 89,200;
+  stroke-dashoffset: -35;
+}
+100% {
+  stroke-dasharray: 89,200;
+  stroke-dashoffset: -124;
+}
+}
+@-webkit-keyframes color {
+0% {
+  stroke: #000;
+}
+40% {
+  stroke: #000
+}
+66% {
+  stroke: #000;
+}
+80%, 90% {
+  stroke: #000;
+}
+}
+@keyframes color {
+0% {
+  stroke: #000;
+}
+40% {
+  stroke: #000;
+}
+66% {
+  stroke: #000;
+}
+80%, 90% {
+  stroke: #000;
+}
 }
 
-@keyframes sk-bouncedelay {
-  0%, 80%, 100% {
-    -webkit-transform: scale(0);
-    transform: scale(0);
-  } 40% {
-    -webkit-transform: scale(1.0);
-    transform: scale(1.0);
-  }
-}
 </style>

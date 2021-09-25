@@ -12,7 +12,7 @@
       </div>
 
     </div>
-    <div   class="col d-flex align-items-center text-center">
+    <div style="min-height: 35rem;" class="col d-flex align-items-center text-center">
       <Loader v-show="!show"></Loader>
       <div v-ani="{class:'blur-in-center', delay: 0}" v-show="show">
         <div  ref="lottie"></div>
