@@ -21,16 +21,16 @@
       </div>
     </div>
   <div style="position: fixed; z-index: 2000; width: 100%;" >
-  <div v-bind:class="{invert: mode || belowFold, wbg: belowFold }" id="hauser_header" >
-    <div  v-ani="{class:'fade-in-top', delay: 0}" class="container">
+  <div  v-bind:class="{invert: mode || belowFold, wbg: belowFold }" id="hauser_header" >
+    <div  v-ani="{class:'fade-in-top', delay: 0}"  class="container">
       <div class="row">
         <div class="col">  <router-link :to="{ path: '/'}"><img id="hlogo" class="img-fluid" src="../assets/hauser-logo.svg"></router-link></div><!-- end col -->
         <div class="d-none d-xl-block col-6 text-center">
           <ul  id="desktopMenu">
             <li v-for="(link, index) in master.main_menu" :key="index">
-              <router-link :to="{ path: '/'+link.link_url, params: { userId: 123 }}" @click.native="navigate(link.link_url)">
+              <a @click="navigate(link.link_url)">
                   <span>{{link.title}}</span>
-                </router-link>
+                </a>
             </li>
           </ul>
         </div><!-- end col -->
@@ -97,6 +97,9 @@ export default {
         document.querySelector(t).scrollIntoView({
             behavior: 'smooth'
         });
+      }else{
+        console.log(t);
+        this.$router.push({path: t});
       }
     }
   },

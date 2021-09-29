@@ -1,7 +1,7 @@
 <template>
   <div id="heroArtwork" class="text-center d-flex align-items-center" style=" width: 100%;">
     <Loader v-if="!loaded"></Loader>
-    <div v-bind:class="{showIt: show, fixed: fixed, finalPos: !fixed}" class="lot" ref="lottie"></div>
+    <div style="border: 1px solid blue;" v-bind:class="{showIt: show, fixed: fixed, finalPos: !fixed}" class="lot" ref="lottie"></div>
   </div>
 </template>
 
@@ -46,7 +46,9 @@ export default {
       if(this.toggle){
       this.fixed = false;
       this.$refs.lottie.style.left = 0;
-      var tpos = (window.scrollY + (window.innerHeight / 2) - (this.$refs.lottie.offsetHeight/2));
+      var y = document.getElementById('subtle').getBoundingClientRect().height;
+      var tpos = y - this.$refs.lottie.offsetHeight - ( (window.innerHeight - this.$refs.lottie.offsetHeight)/2);
+
       this.$refs.lottie.style.top = tpos+'px';
       this.toggle = false;
       }
