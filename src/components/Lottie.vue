@@ -1,7 +1,7 @@
 <template>
   <div id="heroArtwork" class="text-center d-flex align-items-center" style=" width: 100%;">
     <Loader v-if="!loaded"></Loader>
-    <div style="border: 1px solid blue;" v-bind:class="{showIt: show, fixed: fixed, finalPos: !fixed}" class="lot" ref="lottie"></div>
+    <div  v-bind:class="{showIt: show, fixed: fixed, finalPos: !fixed}" class="lot" ref="lottie"></div>
   </div>
 </template>
 
