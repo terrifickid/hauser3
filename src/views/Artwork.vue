@@ -55,7 +55,7 @@
                 </div><!-- enffd col -->
                 <div class="d-none d-lg-block col-lg-3 offset-lg-1 offset-xl-0">
                   <div class="fixed rightCol">
-                    <div  v-ani="{class:'fade-in-bottom', delay: 300}"  v-if="masterOn" class="pt-4"  >
+                    <div  v-ani="{class:'fade-in-bottom', delay: 300}"  v-if="masterOn"   >
 
                     <h4>{{artwork.artist.name}}</h4>
                     <p v-html="artwork.title.rendered"></p>
