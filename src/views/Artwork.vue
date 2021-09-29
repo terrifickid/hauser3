@@ -84,8 +84,8 @@
 
 
     <!-- Mobile Text -->
-    <div style="position: fixed; background: white; bottom:0rem; z-index: 1000; width: 100%;" class="d-lg-none ">
-      <div style="padding: 1rem 2rem 0 2rem;">
+    <div style="position: fixed; padding: 1rem 0 0 0; background: white; bottom:0rem; z-index: 1000; width: 100%;" class="d-lg-none ">
+      <div class="container">
     <div class="row ">
       <div class="col-6">
         <p class="fbold mb-1">{{artwork.artist.name}}</p>
