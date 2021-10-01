@@ -15,7 +15,10 @@
     <div style="min-height: 35rem;" class="col d-flex align-items-center text-center">
       <Loader v-show="!show"></Loader>
       <div v-ani="{class:'blur-in-center', delay: 0}" v-show="show">
-        <div  ref="lottie"></div>
+        <div ref="lottie"></div>
+        <div v-if="!this.artwork.acf.hero_3d_" style="padding: 4rem;">
+        <img  :src="artwork.acf.hero_image.url"  class="img-fluid">
+      </div>
       </div>
     </div>
     <div class="col-12" style="height: 1px;" ref="toggler" ></div>
@@ -54,20 +57,24 @@ export default {
     }
   },
   mounted: function(){
-    var lot = window.lottie.loadAnimation({
-      container: this.$refs.lottie, // the dom element that will contain the animation
-      renderer: 'svg',
-      loop: false,
-      autoplay: false,
-      path: this.artwork.acf.hero_3d_// the path to the animation json
-    });
+    if(this.artwork.acf.hero_3d_){
+      var lot = window.lottie.loadAnimation({
+        container: this.$refs.lottie, // the dom element that will contain the animation
+        renderer: 'svg',
+        loop: false,
+        autoplay: false,
+        path: this.artwork.acf.hero_3d_// the path to the animation json
+      });
 
-    lot.addEventListener('DOMLoaded', () => {
-      console.log('DomLoaded!');
-      this.playCheck();
-      document.addEventListener('scroll', () => { this.playCheck(); });
-    });
-    this.lot = lot;
+      lot.addEventListener('DOMLoaded', () => {
+        console.log('DomLoaded!');
+        this.playCheck();
+        document.addEventListener('scroll', () => { this.playCheck(); });
+      });
+      this.lot = lot;
+    }else{
+      this.show = true;
+    }
   }
 }
 </script>
