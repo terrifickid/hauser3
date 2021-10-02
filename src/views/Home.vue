@@ -28,10 +28,10 @@
         <div class="container">
           <div class="row d-flex align-items-center" style=" min-height: 100vh;">
             <div class="col-12 col-md-10 offset-md-1">
-            <h2 v-ani="{class:'fade-in-bottom', delay: 1000}" class="fnormal mb-5">{{master.heading_1}}</h2>
-            <h1 v-ani="{class:'fade-in-bottom', delay: 1200}">{{master.heading_2}}</h1>
-            <h1 v-ani="{class:'fade-in-bottom', delay: 1400}">{{master.heading_3}}</h1>
-            <h2 v-ani="{class:'fade-in-bottom', delay: 2000}">
+            <h2 v-if="master.heading_1" v-ani="{class:'fade-in-bottom', delay: 1000}" class="fnormal mb-5">{{master.heading_1}}</h2>
+            <h1 v-if="master.heading_2" v-ani="{class:'fade-in-bottom', delay: 1200}">{{master.heading_2}}</h1>
+            <h1 v-if="master.heading_3" v-ani="{class:'fade-in-bottom', delay: 1400}">{{master.heading_3}}</h1>
+            <h2 v-show="master.link_text" v-ani="{class:'fade-in-bottom', delay: 2000}">
               <a v-if="master.link_type == 'Video'" @click="videoModalOpen()"><b-icon class="mr-1" icon="play-circle"/> {{master.link_text}}</a>
               <a v-if="master.link_type == 'Anchor'" class="btn btn-md btn-outline-light" @click="scrollTo(master.link_url)">{{master.link_text}}</a>
             </h2>
@@ -98,7 +98,7 @@ export default {
       }
   },
   disableVideoModal(){
-      console.log(this.videoModal);
+
   },
   computed:{
     master () {
@@ -173,10 +173,10 @@ h1{font-size: 5rem;}
 
 
 .pad{padding-top: 2rem;}
-.hauser-hero{transform: scale(0.8);}
+
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
-  .hauser-hero{transform: scale(1);}
+
   .pad{padding-top: 4rem;}
    }
 

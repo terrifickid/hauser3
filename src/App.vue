@@ -47,7 +47,12 @@ export default{
     }
   },
   mounted(){
-    this.$store.dispatch('loadData');
+
+      var p = this.$route.params;
+    
+      this.$store.dispatch('loadData', {param: p});
+
+
   }
 }
 </script>

@@ -50,7 +50,7 @@
                   </div>
                 </div><!-- end col -->
                 <div id="heroCont" class="col-10 offset-1 col-lg-6 offset-lg-0 col-xl-6 offset-xl-1 d-flex align-items-center">
-                  <div v-if="!artwork.acf.hero_3d_"  style="padding: 0 1rem 0rem 1rem; margin: auto;"><img :src="artwork.acf.hero_image.url" style="max-height: 70vh; margin: auto;" class="img-fluid"></div>
+                  <div v-if="!artwork.acf.hero_3d_ && artwork.acf.hero_image"  style="padding: 0 1rem 0rem 1rem; margin: auto;"><img :src="artwork.acf.hero_image.url" style="max-height: 70vh; margin: auto;" class="img-fluid"></div>
                   <Lottie ref="lottie" v-if="artwork.acf.hero_3d_" :url="artwork.acf.hero_3d_"></Lottie>
                 </div><!-- enffd col -->
                 <div class="d-none d-lg-block col-lg-3 offset-lg-1 offset-xl-0">
@@ -80,7 +80,7 @@
         </div>
       </div><!-- end container -->
     </div><!-- end grey -->
-    <div style="border: 0px solid red; position: relative; top: -10rem;" ref="breakPoint"></div>
+    <div style="border: 0px solid red; position: relative; top: 5rem;" ref="breakPoint"></div>
 
 
     <!-- Mobile Text -->
@@ -306,6 +306,7 @@ export default{
         //if(toggleLottie > 0 && this.$refs.lottie)this.$refs.lottie.fix();
         if(toggleLottie < 0) this.$refs.heady.belowX(true);
         if(toggleLottie > 0) this.$refs.heady.belowX(false);
+        console.log(toggleLottie);
       var toggleContent = this.$refs.contentPoint.getBoundingClientRect().y - window.innerHeight;
         if(toggleContent < 0)this.masterOn = false;
         if(toggleContent > 0)this.masterOn= true;

@@ -202,12 +202,12 @@ export default {
     },
     delay(index){
       var page = Math.floor(index/4);
-      console.log(index - (page*4));
+
       return index - (page*4);
     },
   },
   mounted: async function() {
-    console.log(location.hash);
+  
     if(location.hash){
       document.querySelector(location.hash).scrollIntoView({
         behavior: 'smooth'

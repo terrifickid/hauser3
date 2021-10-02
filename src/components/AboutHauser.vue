@@ -1,5 +1,5 @@
 <template>
-  <div id="aboutgallery">
+  <div v-if="master.hauser_title" id="aboutgallery">
     <div class="pad bg-subtle-grey">
       <div class="container" style="position: relative;">
         <div class="d-none d-md-block" v-ani="{class:'grow-in-top', delay: 0}" style="position: absolute; left: 50%; min-height:100%; border-left: 1px solid black;"></div>
@@ -16,7 +16,7 @@
 
   <div id="diaries" class="hero-pad">
     <div  class="container-fluid">
-      <div v-if="master.video.length"  class="row d-flex align-items-top">
+      <div v-if="master.video"  class="row d-flex align-items-top">
         <div  class="col-10 offset-1 col-md-8 offset-md-2">
           <template v-for="(video, index) in master.video" >
               <div  v-ani="{class:'scale-up-center', delay: 0}"  v-show="selVid == index" :key="index">
