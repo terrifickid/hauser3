@@ -56,7 +56,7 @@ export default new Vuex.Store({
   actions: {
     async loadData({ commit }, { param }) {
       var masterURL = 'wp-json/hauser/v1/master';
-      if(param.id) masterURL = '/wp-json/wp/v2/pages?include[]='+param.id;
+      if(param.id) masterURL = 'wp-json/wp/v2/pages?include[]='+param.id;
       //Load data
           var res = await Promise.all([
             axios.get(process.env.VUE_APP_URI+'wp-json/wp/v2/hauser_artworks/?per_page=500'),
