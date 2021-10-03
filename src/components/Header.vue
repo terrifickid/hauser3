@@ -9,7 +9,7 @@
         <div class="row" >
           <div class="col" style="position: relative;">
             <ul style="position: absolute; top: 25vh;">
-            <li v-for="(link, index) in master.main_menu" :key="index">
+            <li v-for="(link, index) in master.links" :key="index">
               <router-link :to="{ path: '/'+link.link_url, params: { userId: 123 }}" @click.native="navigate(link.link_url)">
                   <span class="fbold">{{link.title}}</span>
                 </router-link>
@@ -27,7 +27,7 @@
         <div class="col">  <router-link :to="{ path: '/'}"><img id="hlogo" class="img-fluid" src="../assets/hauser-logo.svg"></router-link></div><!-- end col -->
         <div class="d-none d-xl-block col-6 text-center">
           <ul  id="desktopMenu">
-            <li v-for="(link, index) in master.main_menu" :key="index">
+            <li v-for="(link, index) in master.links" :key="index">
               <a @click="navigate(link.link_url)">
                   <span>{{link.title}}</span>
                 </a>
