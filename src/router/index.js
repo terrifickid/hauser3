@@ -11,6 +11,11 @@ const routes = [
     component: Home
   },
   {
+    path: '/collection/:collection',
+    name: 'Collection',
+    component: Home
+  },
+  {
     path: '/favorites',
     name: 'Favorites',
     component: function () {

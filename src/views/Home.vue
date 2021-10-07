@@ -31,9 +31,11 @@
             <h2 v-if="master.heading_1" v-ani="{class:'fade-in-bottom', delay: 1000}" class="fnormal mb-5">{{master.heading_1}}</h2>
             <h1 v-if="master.heading_2" v-ani="{class:'fade-in-bottom', delay: 1200}">{{master.heading_2}}</h1>
             <h1 v-if="master.heading_3" v-ani="{class:'fade-in-bottom', delay: 1400}">{{master.heading_3}}</h1>
-            <h2 v-show="master.link_text" v-ani="{class:'fade-in-bottom', delay: 2000}">
-              <a v-if="master.link_type == 'Video'" @click="videoModalOpen()"><b-icon class="mr-1" icon="play-circle"/> {{master.link_text}}</a>
-              <a v-if="master.link_type == 'Anchor'" class="btn btn-md btn-outline-light" @click="scrollTo(master.link_url)">{{master.link_text}}</a>
+            <h2 class="d-inline-block mr-3" v-for="(link, index) in master.hauser_links" :key="index" v-show="master.hauser_links.length" v-ani="{class:'fade-in-bottom', delay: 2000}">
+
+              <a v-if="link.type == 'Video'" @click="videoModalOpen()"><b-icon class="mr-1" icon="play-circle"/> {{link.title}}</a>
+              <a v-if="link.type == 'Anchor'" class="btn btn-md btn-outline-light" @click="scrollTo(master.link_url)">{{link.title}}</a>
+              <a v-if="link.type == 'Collection'" class="btn btn-md btn-outline-light" @click="scrollToCollection(link.link)">{{link.title}}</a>
             </h2>
           </div>
           </div>
@@ -46,7 +48,7 @@
 
       <FeaturedArtwork></FeaturedArtwork>
       <FeaturedArtworks></FeaturedArtworks>
-      <AllArtworks></AllArtworks>
+      <AllArtworks ref="alla"></AllArtworks>
       <AboutHauser></AboutHauser>
 
 
@@ -83,6 +85,10 @@ export default {
     }
   },
   methods:{
+    scrollToCollection(id){
+      this.$refs.alla.setCollection(id);
+      this.scrollTo('#allartworks');
+    },
     videoModalOpen(){
       console.log('run!');
       this.videoModal = true;

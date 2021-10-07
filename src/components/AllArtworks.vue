@@ -63,6 +63,12 @@
 
     <div class="row mt-5">
       <div v-ani="{class:'fade-in-bottom', delay: 100}"  class="d-none d-lg-block col-3 col-xl-2">
+        <ul class="child mb-3">
+          <li class="mb-2" v-for="(collection, index) in master.collections" :key="index">
+            <a v-bind:class="{selected: collectionFilter.includes(collection.term_id)}" @click="toggleArrayItem(collectionFilter, collection.term_id)">{{collection.name}}</a>
+          </li>
+        </ul>
+
         <ul>
           <li>
             <a v-b-toggle.p-1 >
@@ -107,7 +113,7 @@
               </ul>
             </b-collapse></li>
         </ul>
-        <a @click="clearFilters()" v-show="priceFilter.length || artistFilter.length || mediumFilter.length"><b-icon  icon="x"/> Clear</a>
+        <a @click="clearFilters()" v-show="priceFilter.length || artistFilter.length || mediumFilter.length || collectionFilter.length"><b-icon  icon="x"/> Clear</a>
       </div><!-- end col -->
 
       <div  v-if="artworks.length" class="col">
@@ -169,10 +175,14 @@
 export default {
   name: 'AllArtworks',
   methods:{
+    setCollection(id){
+      this.collectionFilter = [parseInt(id)];
+    },
     clearFilters(){
       this.priceFilter = [];
       this.artistFilter = [];
       this.mediumFilter = [];
+      this.collectionFilter = [];
       this.searchFilter = '';
       this.p1 = false;
       this.p2 = false;
@@ -207,7 +217,7 @@ export default {
     },
   },
   mounted: async function() {
-  
+
     if(location.hash){
       document.querySelector(location.hash).scrollIntoView({
         behavior: 'smooth'
@@ -241,6 +251,11 @@ export default {
         //Filter medium
         if(!this.mediumFilter.length)return true;
         if(this.mediumFilter.includes(artwork.hauser_mediums[0]))return true;
+        return false;
+      }).filter((artwork) => {
+        //Filter Collection
+        if(!this.collectionFilter.length)return true;
+        if(this.collectionFilter.includes(artwork.hauser_collections[0]))return true;
         return false;
       }).filter((artwork) => {
 
@@ -284,6 +299,7 @@ export default {
       artistFilter: [],
       priceFilter: [],
       mediumFilter: [],
+      collectionFilter: [],
       searchFilter: null,
       sortBy: false,
       p1: true,
