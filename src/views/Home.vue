@@ -29,9 +29,9 @@
           <div class="row d-flex align-items-center" style=" min-height: 100vh;">
             <div class="col-12 col-md-10 offset-md-1">
             <h2 v-if="master.heading_1" v-ani="{class:'fade-in-bottom', delay: 1000}" class="fnormal mb-5">{{master.heading_1}}</h2>
-            <h1 v-if="master.heading_2" v-ani="{class:'fade-in-bottom', delay: 1200}">{{master.heading_2}}</h1>
-            <h1 v-if="master.heading_3" v-ani="{class:'fade-in-bottom', delay: 1400}">{{master.heading_3}}</h1>
-            <h2 class="d-inline-block mr-3" v-for="(link, index) in master.hauser_links" :key="index" v-show="master.hauser_links.length" v-ani="{class:'fade-in-bottom', delay: 2000}">
+            <h1 v-if="master.heading_2" v-ani="{class:'fade-in-bottom', delay: 1100}">{{master.heading_2}}</h1>
+            <h1 v-if="master.heading_3" v-ani="{class:'fade-in-bottom', delay: 1200}">{{master.heading_3}}</h1>
+            <h2 class="d-inline-block mr-3" v-for="(link, index) in master.hauser_links" :key="index" v-show="master.hauser_links.length" v-ani="{class:'fade-in-bottom', delay: 1400+(index*100)}">
 
               <a v-if="link.type == 'Video'" @click="videoModalOpen()"><b-icon class="mr-1" icon="play-circle"/> {{link.title}}</a>
               <a v-if="link.type == 'Anchor'" class="btn btn-md btn-outline-light" @click="scrollTo(master.link_url)">{{link.title}}</a>

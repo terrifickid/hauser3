@@ -65,7 +65,8 @@
                       <template v-if="artwork.acf.price_upon_inquiry">Price upon inquiry</template>
                       <template v-if="!artwork.acf.price_upon_inquiry">{{artwork.acf.price | toCurrency}}</template>
                     </p>
-                    <p class="mt-4"><a target="_blank" href="https://wa.me/442072872300?text=Hello+Hauser+%26+Wirth" class="btn btn-block btn-md btn-outline-dark"><img class="btniconfix" src="../assets/whatsapp.svg"> Live Chat</a>
+                    <p class="mt-4">
+                    <a v-if="master.toggle_live_chat" target="_blank" href="https://wa.me/442072872300?text=Hello+Hauser+%26+Wirth" class="btn btn-block btn-md btn-outline-dark"><img class="btniconfix" src="../assets/whatsapp.svg"> Live Chat</a>
                     <a @click="emailModal = !emailModal" class="btn btn-block btn-md btn-outline-dark">Email Enquiry</a></p>
 
                     <p class="mt-5 mb-3"><a href="#details">Details & features <b-icon class="ml-2" icon="arrow-right"/></a></p>
@@ -340,6 +341,9 @@ export default{
     }
   },
   computed:{
+    master () {
+      return this.$store.state.master;
+    },
     favorites () {
       return this.$store.state.favorites;
     },
