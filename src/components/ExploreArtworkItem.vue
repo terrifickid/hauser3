@@ -1,9 +1,7 @@
 <template>
   <div v-if="artwork" >
     <a class="artwork" :href="'/artwork/'+artwork.slug">
-
-
-        <div class="bgCover mb-4" v-bind:style="{'background-image': 'url('+artwork.acf.hero_image.url+')'}">
+        <div class="bgCover mb-4" v-bind:style="{'background-image': 'url('+artwork.acf.hero_image.sizes.large+')'}">
           <img style="width: 100%;" src="../assets/square.png">
         </div>
      <h4 class="fbold">{{artwork.artist.name}}</h4>

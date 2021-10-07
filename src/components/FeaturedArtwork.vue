@@ -1,6 +1,6 @@
 <template>
   <div  style="padding: 16rem 0">
-    <h1 v-ani="{class:'fade-in-bottom', delay: 0}" class="text-center" ><span >Featured artworks</span></h1>
+    <h1 v-ani="{class:'fade-in-bottom', delay: 0}" class="text-center" ><span>Featured artworks</span></h1>
   </div><!-- -->
 </template>
 

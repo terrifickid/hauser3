@@ -50,7 +50,8 @@
                   </div>
                 </div><!-- end col -->
                 <div id="heroCont" class="col-10 offset-1 col-lg-6 offset-lg-0 col-xl-6 offset-xl-1 d-flex align-items-center">
-                  <div v-if="!artwork.acf.hero_3d_ && artwork.acf.hero_image"  style="padding: 0 1rem 0rem 1rem; margin: auto;"><img :src="artwork.acf.hero_image.url" style="max-height: 70vh; margin: auto;" class="img-fluid"></div>
+
+                  <div v-if="!artwork.acf.hero_3d_ && artwork.acf.hero_image"  style="padding: 0 1rem 0rem 1rem; margin: auto;"><img :src="artwork.acf.hero_image.sizes['large']" style="max-height: 70vh; margin: auto;" class="img-fluid"></div>
                   <Lottie ref="lottie" v-if="artwork.acf.hero_3d_" :url="artwork.acf.hero_3d_"></Lottie>
                 </div><!-- enffd col -->
                 <div class="d-none d-lg-block col-lg-3 offset-lg-1 offset-xl-0">
@@ -119,10 +120,11 @@
 <div class="artwork_images">
   <div class="container">
     <div class=" artwork col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-0 offset-xl-3" v-for="artwork in artwork.acf.artwork_images" :key="artwork.ID">
+
         <inner-image-zoom
           :hasSpacer="false"
-          :src="artwork.url"
-          :zoomSrc="artwork.url"
+          :src="artwork.sizes['large']"
+          :zoomSrc="artwork.sizes['large']"
           :zoomScale="1"
           :hideHint="true"
         />
@@ -166,7 +168,7 @@
     <div id="panels" v-for="(panel, index) in artwork.acf.panels" :key="index">
       <a v-if="(index+1) == artwork.acf.panels.length" name="abouttheartist"></a>
       <template v-if="panel.acf_fc_layout == 'left_image'">
-        <div  class="d-md-none" style="height: 20rem; background-size: cover; background-position: center center;" v-bind:style="{'background-image': 'url('+panel.image.url+')'}"></div>
+        <div  class="d-md-none" style="height: 20rem; background-size: cover; background-position: center center;" v-bind:style="{'background-image': 'url('+panel.image.sizes['large']+')'}"></div>
         <div class="container-fluid">
           <div class="row d-flex align-items-center sizer ">
           <div  class="col-6 d-none d-md-block sizer" style="position: relative; overflow: hidden;"><div v-ani="{class:'kenburns-top', delay: 0}"  style="position: absolute; top: 0; left: 0; right:0; bottom:0; background-size: cover; background-position: center center;" v-bind:style="{'background-image': 'url('+panel.image.url+')'}"></div></div>
@@ -181,7 +183,7 @@
         <div class="d-none d-md-block" style="height: 8rem;"></div>
       </template>
       <template v-if="panel.acf_fc_layout == 'right_image'">
-          <div class="d-md-none" style="height: 20rem;  background-size: cover; background-position: center center;" v-bind:style="{'background-image': 'url('+panel.image.url+')'}"></div>
+          <div class="d-md-none" style="height: 20rem;  background-size: cover; background-position: center center;" v-bind:style="{'background-image': 'url('+panel.image.sizes['large']+')'}"></div>
         <div class="container-fluid">
             <div class="row d-flex align-items-center sizer ">
             <div class="col">

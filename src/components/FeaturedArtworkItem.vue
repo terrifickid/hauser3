@@ -17,7 +17,7 @@
       <div v-ani="{class:'blur-in-center', delay: 0}" v-show="show">
         <div ref="lottie"></div>
         <div v-if="!this.artwork.acf.hero_3d_" style="padding: 4rem;">
-        <img  :src="artwork.acf.hero_image.url"  class="img-fluid">
+        <img  :src="artwork.acf.hero_image.sizes['large']"  class="img-fluid">
       </div>
       </div>
     </div>
