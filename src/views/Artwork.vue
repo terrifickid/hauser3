@@ -121,11 +121,10 @@
 <div class="artwork_images">
   <div class="container">
     <div class=" artwork col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-0 offset-xl-3" v-for="artwork in artwork.acf.artwork_images" :key="artwork.ID">
-
         <inner-image-zoom
           :hasSpacer="false"
           :src="artwork.sizes['large']"
-          :zoomSrc="artwork.sizes['large']"
+          :zoomSrc="artwork.url"
           :zoomScale="1"
           :hideHint="true"
         />
