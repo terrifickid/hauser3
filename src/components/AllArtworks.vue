@@ -7,6 +7,14 @@
           <div class="col">  <h4 class="mb-4">Filters</h4></div>
           <div class="col text-right"><a  @click="filtersModal = !filtersModal">Close</a></div>
           <div class="col-12">
+
+            <ul class="child mb-3">
+              <li class="mb-2" v-for="(collection, index) in master.collections" :key="index">
+                <a v-bind:class="{selected: collectionFilter.includes(collection.term_id)}" @click="toggleArrayItem(collectionFilter, collection.term_id)">{{collection.name}}</a>
+              </li>
+            </ul>
+
+            
             <ul>
               <li>
 
