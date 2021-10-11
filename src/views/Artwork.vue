@@ -1,3 +1,4 @@
+
 <template>
   <div id="Artwork" class="">
     <Header ref="heady" :mode="1"></Header>
@@ -108,10 +109,10 @@
     </div>
   </div>
   <div class="row" style="border-top: 1px solid black; padding: 1rem 0">
-  <div class="col-6 text-center" style="border-right: 1px solid black;">
+  <div v-if="master.toggle_live_chat" class="col text-center" style="border-right: 1px solid black;">
     <a href="https://wa.me/442072872300?text=Hello+Hauser+%26+Wirth" class=""><img class="btniconfix" src="../assets/whatsapp.svg"> Live Chat</a>
   </div>
-  <div class="col-6 text-center">
+  <div class="col text-center">
     <a @click="emailModal = !emailModal" class="">Email Enquiry</a>
   </div>
 </div>
