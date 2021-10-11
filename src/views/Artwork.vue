@@ -68,7 +68,7 @@
                     </p>
                     <p class="mt-4">
                     <a v-if="master.toggle_live_chat" target="_blank" href="https://wa.me/442072872300?text=Hello+Hauser+%26+Wirth" class="btn btn-block btn-md btn-outline-dark"><img class="btniconfix" src="../assets/whatsapp.svg"> Live Chat</a>
-                    <a @click="emailModal = !emailModal" class="btn btn-block btn-md btn-outline-dark">Email Enquiry</a></p>
+                    <a @click="emailModal = !emailModal" class="btn btn-block btn-md btn-outline-dark">Email Inquiry</a></p>
 
                     <p class="mt-5 mb-3"><a href="#details">Details & features <b-icon class="ml-2" icon="arrow-right"/></a></p>
                     <p class="mb-3"><a href="#details">About the artwork <b-icon class="ml-2" icon="arrow-right"/></a></p>
@@ -113,7 +113,7 @@
     <a href="https://wa.me/442072872300?text=Hello+Hauser+%26+Wirth" class=""><img class="btniconfix" src="../assets/whatsapp.svg"> Live Chat</a>
   </div>
   <div class="col text-center">
-    <a @click="emailModal = !emailModal" class="">Email Enquiry</a>
+    <a @click="emailModal = !emailModal" class="">Email Inquiry</a>
   </div>
 </div>
   </div>
