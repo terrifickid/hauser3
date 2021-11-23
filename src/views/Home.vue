@@ -1,76 +1,154 @@
-
 <template>
-  <div tabindex="0" @keydown.esc="videoModal = false" ref="home" class="home" id="top">
-
-      <Header ref="heady" :mode="0"></Header>
+  <div
+    tabindex="0"
+    @keydown.esc="videoModal = false"
+    ref="home"
+    class="home"
+    id="top"
+  >
+    <Header ref="heady" :mode="0"></Header>
 
     <div id="hauser_home">
-
-      <div ref="videoModalRef"   @keydown.esc="videoModal = false" v-bind:class="{ 'active': videoModal }" class="fullscreen-modal menu-modal">
+      <div
+        ref="videoModalRef"
+        @keydown.esc="videoModal = false"
+        v-bind:class="{ active: videoModal }"
+        class="fullscreen-modal menu-modal"
+      >
         <div class="container">
-          <div class="row d-flex align-items-center text-center" style="position: relative; height: 100vh;" >
+          <div
+            class="row d-flex align-items-center text-center"
+            style="position: relative; height: 100vh;"
+          >
             <div style="position: absolute; right:0; top:2rem;">
-              <div class="col"><a  @click="videoModal = !videoModal">Close</a></div>
+              <div class="col">
+                <a @click="videoModal = !videoModal">Close</a>
+              </div>
             </div>
-            <div class="col-12 col-md-10 offset-md-1" style="position: relative;">
+            <div
+              class="col-12 col-md-10 offset-md-1"
+              style="position: relative;"
+            >
               <div class="embed-responsive embed-responsive-16by9">
-                <iframe ref="frm"  v-if="videoModal" class="embed-responsive-item" :src="master.link_url+'&transparent=0'" allowfullscreen></iframe>
+                <iframe
+                  ref="frm"
+                  v-if="videoModal"
+                  class="embed-responsive-item"
+                  :src="master.link_url + '&transparent=0'"
+                  allowfullscreen
+                ></iframe>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div v-ani="{class:'blur-in-center', delay: 0}" v-bind:style="[master.hero_image ? {'background-image': 'url('+master.hero_image.url+')'} : {}]" id="bg">
-      <iframe style="filter: brightness(0.85);" v-if="master.hero_video" border=0 frameborder=0 :src="master.hero_video+'&transparent=0'" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen=""></iframe>
-      <div style=" z-index: 200; position: relative;">
-      <div class="hauser-hero">
-        <div class="container">
-          <div class="row d-flex align-items-center" style=" min-height: 100vh;">
-            <div class="col-12 col-md-10 offset-md-1">
-            <h2 v-if="master.heading_1" v-ani="{class:'fade-in-bottom', delay: 1000}" class="fnormal mb-5">{{master.heading_1}}</h2>
-            <h1 v-if="master.heading_2" v-ani="{class:'fade-in-bottom', delay: 1100}">{{master.heading_2}}</h1>
-            <h1 v-if="master.heading_3" v-ani="{class:'fade-in-bottom', delay: 1200}">{{master.heading_3}}</h1>
-            <h2 class="d-inline-block mr-3" v-for="(link, index) in master.hauser_links" :key="index" v-show="master.hauser_links.length" v-ani="{class:'fade-in-bottom', delay: 1400+(index*100)}">
-
-              <a v-if="link.type == 'Video'" @click="videoModalOpen()"><b-icon class="mr-1" icon="play-circle"/> {{link.title}}</a>
-              <a v-if="link.type == 'Anchor'" class="btn btn-md btn-outline-light" @click="scrollTo(master.link_url)">{{link.title}}</a>
-              <a v-if="link.type == 'Collection'" class="btn btn-md btn-outline-light" @click="scrollToCollection(link.link)">{{link.title}}</a>
-            </h2>
-          </div>
+      <div
+        v-ani="{ class: 'blur-in-center', delay: 0 }"
+        v-bind:style="[
+          master.hero_image
+            ? { 'background-image': 'url(' + master.hero_image.url + ')' }
+            : {}
+        ]"
+        id="bg"
+      >
+        <iframe
+          style="filter: brightness(0.85);"
+          v-if="master.hero_video"
+          border="0"
+          frameborder="0"
+          :src="master.hero_video + '&transparent=0'"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowfullscreen=""
+        ></iframe>
+        <div style=" z-index: 200; position: relative;">
+          <div class="hauser-hero">
+            <div class="container">
+              <div
+                class="row d-flex align-items-center"
+                style=" min-height: 100vh;"
+              >
+                <div class="col-12 col-md-10 offset-md-1">
+                  <h2
+                    v-if="master.heading_1"
+                    v-ani="{ class: 'fade-in-bottom', delay: 1000 }"
+                    class="fnormal mb-5"
+                  >
+                    {{ master.heading_1 }}
+                  </h2>
+                  <h1
+                    v-if="master.heading_2"
+                    v-ani="{ class: 'fade-in-bottom', delay: 1100 }"
+                  >
+                    {{ master.heading_2 }}
+                  </h1>
+                  <h1
+                    v-if="master.heading_3"
+                    v-ani="{ class: 'fade-in-bottom', delay: 1200 }"
+                  >
+                    {{ master.heading_3 }}
+                  </h1>
+                  <h2
+                    class="d-inline-block mr-3"
+                    v-for="(link, index) in master.hauser_links"
+                    :key="index"
+                    v-show="master.hauser_links.length"
+                    v-ani="{
+                      class: 'fade-in-bottom',
+                      delay: 1400 + index * 100
+                    }"
+                  >
+                    <a v-if="link.type == 'Video'" @click="videoModalOpen()"
+                      ><b-icon class="mr-1" icon="play-circle" />
+                      {{ link.title }}</a
+                    >
+                    <a
+                      v-if="link.type == 'Anchor'"
+                      class="btn btn-md btn-outline-light"
+                      @click="scrollTo(link.link)"
+                      >{{ link.title }}</a
+                    >
+                    <a
+                      v-if="link.type == 'Collection'"
+                      class="btn btn-md btn-outline-light"
+                      @click="scrollToCollection(link.link)"
+                      >{{ link.title }}</a
+                    >
+                  </h2>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+        <!-- end hauser-hero -->
       </div>
-      </div><!-- end hauser-hero -->
-    </div><!-- end bg -->
-<div style="border: 0px solid red; position: relative; " ref="breakPoint"></div>
-
+      <!-- end bg -->
+      <div
+        style="border: 0px solid red; position: relative; "
+        ref="breakPoint"
+      ></div>
 
       <FeaturedArtwork></FeaturedArtwork>
       <FeaturedArtworks></FeaturedArtworks>
       <AllArtworks ref="alla"></AllArtworks>
       <AboutHauser></AboutHauser>
 
-
-<Footer></Footer>
-    </div><!-- end hauser_home -->
-
-
+      <Footer></Footer>
+    </div>
+    <!-- end hauser_home -->
   </div>
 </template>
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>
 <script>
 //import axios from 'axios';
-import Header from '@/components/Header.vue';
-import FeaturedArtworks from '@/components/FeaturedArtworks.vue';
-import FeaturedArtwork from '@/components/FeaturedArtwork.vue';
-import AllArtworks from '@/components/AllArtworks.vue';
-import AboutHauser from '@/components/AboutHauser.vue';
-import Footer from '@/components/Footer.vue';
+import Header from "@/components/Header.vue";
+import FeaturedArtworks from "@/components/FeaturedArtworks.vue";
+import FeaturedArtwork from "@/components/FeaturedArtwork.vue";
+import AllArtworks from "@/components/AllArtworks.vue";
+import AboutHauser from "@/components/AboutHauser.vue";
+import Footer from "@/components/Footer.vue";
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
     Header,
     FeaturedArtworks,
@@ -79,47 +157,41 @@ export default {
     AboutHauser,
     Footer
   },
-  data: function(){
-    return{
-      videoModal: false,
-    }
+  data: function() {
+    return {
+      videoModal: false
+    };
   },
-  methods:{
-    scrollToCollection(id){
+  methods: {
+    scrollToCollection(id) {
       this.$refs.alla.setCollection(id);
-      this.scrollTo('#allartworks');
+      this.scrollTo("#allartworks");
     },
-    videoModalOpen(){
-      console.log('run!');
+    videoModalOpen() {
+      console.log("run!");
       this.videoModal = true;
       this.$refs.home.focus();
-
     },
-    scrollTo(t){
-
-        document.querySelector(t).scrollIntoView({
-            behavior: 'smooth'
-        });
-
-      }
+    scrollTo(t) {
+      console.log(t);
+      document.querySelector(t).scrollIntoView({
+        behavior: "smooth"
+      });
+    }
   },
-  disableVideoModal(){
-
-  },
-  computed:{
-    master () {
+  disableVideoModal() {},
+  computed: {
+    master() {
       return this.$store.state.master;
-    },
+    }
   },
-  mounted: function(){
+  mounted: function() {
+    document.addEventListener("scroll", () => {
+      var toggle = this.$refs.breakPoint.getBoundingClientRect().y;
 
-
-    document.addEventListener('scroll', () => {
-        var toggle = this.$refs.breakPoint.getBoundingClientRect().y;
-
-        if(toggle < 0) this.$refs.heady.belowX(true);
-        if(toggle > 0) this.$refs.heady.belowX(false);
-     });
+      if (toggle < 0) this.$refs.heady.belowX(true);
+      if (toggle > 0) this.$refs.heady.belowX(false);
+    });
 
     /*
     //Load Artworks
@@ -142,29 +214,29 @@ export default {
           console.error(err);
       }
       */
-
-
-
-
-
   }
-}
+};
 </script>
 <style scoped lang="scss">
-.hauser-hero{}
-h2{font-size: 1.25rem;}
-h1{font-size: 5rem;}
-  #bg{
-    color: white;
-    background-size: cover;
-    min-height: 100vh;
-    position: relative;
-    width: 100vw;
-    border: 0;
-    overflow: hidden;
-  }
-  #bg iframe{
-    width: 100vw;
+.hauser-hero {
+}
+h2 {
+  font-size: 1.25rem;
+}
+h1 {
+  font-size: 5rem;
+}
+#bg {
+  color: white;
+  background-size: cover;
+  min-height: 100vh;
+  position: relative;
+  width: 100vw;
+  border: 0;
+  overflow: hidden;
+}
+#bg iframe {
+  width: 100vw;
   height: 56.25vw; /* Given a 16:9 aspect ratio, 9/16*100 = 56.25 */
   min-height: 100vh;
   min-width: 220vh; /* Given a 16:9 aspect ratio, 16/9*100 = 177.77 */
@@ -173,18 +245,20 @@ h1{font-size: 5rem;}
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  }
-  a, a:hover{color: white;}
+}
+a,
+a:hover {
+  color: white;
+}
 
-
-
-.pad{padding-top: 2rem;}
+.pad {
+  padding-top: 2rem;
+}
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
-
-  .pad{padding-top: 4rem;}
-   }
-
-
+  .pad {
+    padding-top: 4rem;
+  }
+}
 </style>
