@@ -22,7 +22,6 @@ Vue.use(VueMasonryPlugin);
 import './app.scss';
 
 
-
 //Currency Filter
 Vue.filter('toCurrency', function (value) {
     var formatter = new Intl.NumberFormat('en-US', {

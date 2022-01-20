@@ -16,7 +16,7 @@
 
 
             <ul>
-              <li>
+              <li v-if="!master.hide_artist_name">
 
                   <b class="fbold pb-3">Artist</b>
 
@@ -70,7 +70,7 @@
     </div><!-- end row -->
 
     <div class="row mt-5">
-      <div v-ani="{class:'fade-in-bottom', delay: 100}"  class="d-none d-lg-block col-3 col-xl-2">
+      <div v-ani="{class:'fade-in-bottom', delay: 100}"  class="d-none d-lg-block col-3 col-xl-2" v-if="!master.hide_filters">
         <ul class="child mb-3">
           <li class="mb-2" v-for="(collection, index) in master.collections" :key="index">
             <a v-bind:class="{selected: collectionFilter.includes(collection.term_id)}" @click="toggleArrayItem(collectionFilter, collection.term_id)">{{collection.name}}</a>
@@ -78,7 +78,7 @@
         </ul>
 
         <ul>
-          <li>
+          <li >
             <a v-b-toggle.p-1 >
               <b-icon v-show="!p1" icon="plus"/>
               <b-icon v-show="p1" icon="dash"/>
@@ -134,7 +134,7 @@
             <img style="width: 100%;" class="mb-4" src="../assets/square.png">
 
             </div>
-            <p class="fbold">{{artwork.artist.name}}</p>
+            <p v-if="!master.hide_artist_name" class="fbold">{{artwork.artist.name}}</p>
             <div v-html="artwork.title.rendered"></div>
 
             <div>
