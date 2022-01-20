@@ -117,8 +117,9 @@
       <FeaturedArtworks></FeaturedArtworks>
       <AllArtworks ref="alla"></AllArtworks>
 
-      <div v-if="master.parallax_image" style="height: 70vh; background-size: cover; background-position: center center;" :style="{ 'background-image': 'url(' + master.parallax_image.url + ')' }"></div>
-
+      <div v-if="master.parallax_image" class="hero-pad">
+      <div  style="height: 70vh; background-size: cover; background-position: center center;" :style="{ 'background-image': 'url(' + master.parallax_image.url + ')' }"></div>
+    </div>
 
 
       <AboutHauser></AboutHauser>
