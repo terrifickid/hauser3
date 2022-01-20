@@ -117,7 +117,7 @@
       <FeaturedArtworks></FeaturedArtworks>
       <AllArtworks ref="alla"></AllArtworks>
 
-      <div v-if="master.parallax_image" style="padding: 10vh 0 10vh 0">
+      <div v-if="master.parallax_image" style="padding: 25vh 0 25vh 0">
       <div  style="height: 70vh; background-size: cover; background-position: center center;" :style="{ 'background-image': 'url(' + master.parallax_image.url + ')' }"></div>
     </div>
 
