@@ -37,7 +37,7 @@
                 :key="index"
               >
                 <h2 class="mb-4">{{ video.title }}</h2>
-                <img class="img-fluid" :src="video.video_thumbnail.url" />
+                <img   v-if="!video.video_url" class="img-fluid" :src="video.video_thumbnail.url" />
                 <div
                   v-if="video.video_url"
                   class=" embed-responsive embed-responsive-16by9"
