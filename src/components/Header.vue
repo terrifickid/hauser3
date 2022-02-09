@@ -40,7 +40,7 @@
         v-bind:class="{ invert: mode || belowFold, wbg: belowFold }"
         id="hauser_header"
       >
-        <div v-ani="{ class: 'fade-in-top', delay: 0 }" class="container">
+        <div  class="container">
           <div class="row">
             <div class="col">
               <router-link :to="{ path: '/' }"
