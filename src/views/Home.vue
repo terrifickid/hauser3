@@ -43,11 +43,7 @@
         </div>
       </div>
 
-      <div
-        v-ani="{ class: 'blur-in-center', delay: 0 }"
-        id="bg"
-        class="bg-subtle-grey"
-      >
+      <div id="bg" class="bg-subtle-grey">
         <div
           v-for="(image, index) in master.hero_images"
           :key="index"
