@@ -172,7 +172,7 @@
       </div><!-- end col -->
     </div><!-- end row -->
 
-    <div v-if="perPage <= artworks.length" class="row"><div class="col text-center"><a @click="perPage = perPage + 20;" class="mt-4 btn btn-md btn-outline-dark">Load 20 more</a></div></div><!-- end row -->
+    <div v-if="perPage <= artworks.length" class="row"><div class="col text-center"><a @click="perPage = perPage + 20;" class="mt-4 btn btn-md btn-outline-dark">Load more works</a></div></div><!-- end row -->
 
   </div>
   </div><!-- -->
