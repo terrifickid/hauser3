@@ -8,17 +8,27 @@
   >
     <Header ref="heady" :mode="0"></Header>
 
-
     <div id="hauser_home">
-      <div  ref="videoModalRef" @keydown.esc="videoModal = false" v-bind:class="{ active: videoModal }"  class="fullscreen-modal menu-modal" >
+      <div
+        ref="videoModalRef"
+        @keydown.esc="videoModal = false"
+        v-bind:class="{ active: videoModal }"
+        class="fullscreen-modal menu-modal"
+      >
         <div class="container">
-          <div class="row d-flex align-items-center text-center" style="position: relative; height: 100vh;">
+          <div
+            class="row d-flex align-items-center text-center"
+            style="position: relative; height: 100vh;"
+          >
             <div style="position: absolute; right:0; top:2rem;">
               <div class="col">
                 <a @click="videoModal = !videoModal">Close</a>
               </div>
             </div>
-            <div class="col-12 col-md-10 offset-md-1" style="position: relative;">
+            <div
+              class="col-12 col-md-10 offset-md-1"
+              style="position: relative;"
+            >
               <div class="embed-responsive embed-responsive-16by9">
                 <iframe
                   ref="frm"
@@ -33,9 +43,20 @@
         </div>
       </div>
 
-      <div v-ani="{ class: 'blur-in-center', delay: 0 }" id="bg">
-
-        <div v-for="(image, index) in master.hero_images" :key="index" v-show="index == sliderKey" v-bind:style="{ 'background-image': 'url(' + image.hero_image.url + ')' }" style="position: absolute; top: 0; left: 0; right:0; bottom: 0; background-size: cover; background-position: center center;"></div>
+      <div
+        v-ani="{ class: 'blur-in-center', delay: 0 }"
+        id="bg"
+        class="bg-subtle-grey"
+      >
+        <div
+          v-for="(image, index) in master.hero_images"
+          :key="index"
+          v-show="index == sliderKey"
+          v-bind:style="{
+            'background-image': 'url(' + image.hero_image.url + ')'
+          }"
+          style="position: absolute; top: 0; left: 0; right:0; bottom: 0; background-size: cover; background-position: center center;"
+        ></div>
 
         <iframe
           style="filter: brightness(0.85);"
@@ -117,10 +138,14 @@
       <FeaturedArtworks></FeaturedArtworks>
       <AllArtworks ref="alla"></AllArtworks>
 
-      <div v-if="master.parallax_image" class="hero-pad">
-      <div  style="height: 70vh; background-size: cover; background-position: center center;" :style="{ 'background-image': 'url(' + master.parallax_image.url + ')' }"></div>
-    </div>
-
+      <div v-if="master.parallax_image">
+        <div
+          style="height: 70vh; background-attachment: fixed; background-size: cover; background-position: center center;"
+          :style="{
+            'background-image': 'url(' + master.parallax_image.url + ')'
+          }"
+        ></div>
+      </div>
 
       <AboutHauser></AboutHauser>
 
@@ -155,7 +180,6 @@ export default {
     };
   },
   methods: {
-
     scrollToCollection(id) {
       this.$refs.alla.setCollection(id);
       this.scrollTo("#allartworks");
@@ -177,23 +201,27 @@ export default {
     master() {
       return this.$store.state.master;
     },
-    heroBgStyle(){
-      if(this.master.hero_images.length){
-        return { 'background-image': 'url(' + this.master.hero_images[this.sliderKey].hero_image.url + ')' };
-      }else{
+    heroBgStyle() {
+      if (this.master.hero_images.length) {
+        return {
+          "background-image":
+            "url(" +
+            this.master.hero_images[this.sliderKey].hero_image.url +
+            ")"
+        };
+      } else {
         return {};
       }
-    },
+    }
   },
   mounted: function() {
-
-
     setInterval(() => {
       this.sliderKey++;
-      if(this.sliderKey > this.master.hero_images.length-1) this.sliderKey = 0;
+      if (this.sliderKey > this.master.hero_images.length - 1)
+        this.sliderKey = 0;
     }, 3500);
 
-
+    /*
     document.addEventListener("scroll", () => {
       var toggle = this.$refs.breakPoint.getBoundingClientRect().y;
 
@@ -201,7 +229,7 @@ export default {
       if (toggle > 0) this.$refs.heady.belowX(false);
     });
 
-    /*
+
     //Load Artworks
     try {
           const res = await axios.get(process.env.VUE_APP_URI+'wp-json/wp/v2/hauser_artworks/');
@@ -236,6 +264,7 @@ h1 {
 }
 #bg {
   color: white;
+
   background-size: cover;
   min-height: 100vh;
   position: relative;
@@ -271,18 +300,18 @@ a:hover {
 }
 
 .jarallax {
-    position: relative;
-    z-index: 0;
+  position: relative;
+  z-index: 0;
 }
 .jarallax > .jarallax-img {
-    position: absolute;
-    object-fit: cover;
-    /* support for plugin https://github.com/bfred-it/object-fit-images */
-    font-family: 'object-fit: cover;';
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
+  position: absolute;
+  object-fit: cover;
+  /* support for plugin https://github.com/bfred-it/object-fit-images */
+  font-family: "object-fit: cover;";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
 </style>

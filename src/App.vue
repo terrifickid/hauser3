@@ -1,61 +1,78 @@
 <template>
   <div id="app">
-    <div v-if="!loaded" class="row d-flex align-items-center" style="height: 100vh;">
+    <div
+      v-if="!loaded"
+      class="row d-flex align-items-center"
+      style="height: 100vh;"
+    >
       <Loader></Loader>
     </div>
-    <router-view v-if="loaded"/>
-    <div id="gdpr" v-if="0" style="position: fixed; width: 100%; bottom:0; background: white; padding: 2rem 0;">
-      <div class="container-fluid">
-        <div class="row d-flex align-items-center">
-          <div class="col-8">This site uses cookies to improve user experience. By clicking 'Accept' or by continuing to use this site, you consent to our use of cookies. Click 'Learn more' for information on how we use cookies and how you can control them.</div>
-          <div class="col text-right"><a class="btn btn-md btn-outline-dark " @click="closeGDPR()">Accept</a> <a class="btn btn-md btn-outline-dark " href="https://www.hauserwirth.com/terms-and-conditions" target="_blank">Learn More</a></div>
+    <router-view v-if="testVar" />
 
-        </div>
+    <div
+      id="gdpr"
+      v-if="!testVar"
+      class="d-flex align-items-center justify-content-center"
+      style="position: fixed; top: 0; bottom:0; right:0; left: 0; background: grey url('/blur.png'); background-size:cover; background-position: center center; padding: 2rem 0;"
+    >
+      <div
+        class="col-10  col-md-6"
+        style="border: 1px solid white; padding: 4rem; background: white;"
+      >
+        <form @submit="sendEmail">
+          <h4 style="margin: 0 0 0 0;">Enter email to continue</h4>
+          <input
+            type="text"
+            required
+            placeholder="Enter Email"
+            class="form-control"
+            style="margin: 2rem 0 2.5rem 0"
+          />
+        </form>
+        <a class="btn btn-md btn-outline-dark btn-block " @click="closeGDPR()"
+          >Submit</a
+        >
       </div>
     </div>
   </div>
 </template>
 <script>
-import Loader from '@/components/Loader.vue';
-export default{
-  components:{
+import Loader from "@/components/Loader.vue";
+export default {
+  components: {
     Loader
   },
-  data: function(){
-    return{
-
+  data: function() {
+    return {
+      testVar: true
+    };
+  },
+  methods: {
+    closeGDPR() {
+      this.testVar = true;
+      this.$store.commit("setGDPR", true);
     }
   },
-  methods:{
-    closeGDPR(){
-      this.$store.commit('setGDPR',false);
-    }
-  },
-  computed:{
-    gdpr () {
+  computed: {
+    gdpr() {
       return this.$store.state.gdpr;
     },
-    master () {
+    master() {
       return this.$store.state.master;
     },
-    artworks () {
+    artworks() {
       return this.$store.state.artworks;
     },
-    loaded(){
-      if(this.master && this.artworks) return true;
+    loaded() {
+      if (this.master && this.artworks) return true;
       return false;
     }
   },
-  mounted(){
+  mounted() {
+    var p = this.$route.params;
 
-      var p = this.$route.params;
-    
-      this.$store.dispatch('loadData', {param: p});
-
-
+    this.$store.dispatch("loadData", { param: p });
   }
-}
+};
 </script>
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>

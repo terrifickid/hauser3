@@ -1,16 +1,16 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue";
+import Vuex from "vuex";
 
 Vue.use(Vuex);
-import axios from 'axios';
+import axios from "axios";
 export default new Vuex.Store({
   state: {
     gdpr: true,
     artworks: false,
     master: false,
-    favorites:[],
+    favorites: []
   },
-  getters:{
+  getters: {
     gdpr: state => {
       return state.gdpr;
     },
@@ -26,54 +26,59 @@ export default new Vuex.Store({
   },
   mutations: {
     initialiseStore(state) {
-      if (localStorage.getItem('favorites')) {
-        state.favorites = JSON.parse(localStorage.getItem('favorites'));
+      if (localStorage.getItem("favorites")) {
+        state.favorites = JSON.parse(localStorage.getItem("favorites"));
       }
-      if (localStorage.getItem('gdpr')) {
-        state.gdpr = JSON.parse(localStorage.getItem('gdpr'));
+      if (localStorage.getItem("gdpr")) {
+        state.gdpr = JSON.parse(localStorage.getItem("gdpr"));
       }
     },
-    setGDPR (state, gdpr) {
+    setGDPR(state, gdpr) {
       state.gdpr = gdpr;
-      localStorage.setItem('gdpr', JSON.stringify(state.gdpr));
+      localStorage.setItem("gdpr", JSON.stringify(state.gdpr));
     },
-    setArtworks (state, artworks) {
-      state.artworks = artworks
+    setArtworks(state, artworks) {
+      state.artworks = artworks;
     },
-    setMaster (state, master) {
-      state.master = master
+    setMaster(state, master) {
+      state.master = master;
     },
-    toggleFavorite (state, id) {
+    toggleFavorite(state, id) {
       var i = state.favorites.indexOf(id);
-      if (i === -1){
+      if (i === -1) {
         state.favorites.push(id);
-      }else{
-        state.favorites.splice(i,1);
+      } else {
+        state.favorites.splice(i, 1);
       }
-      localStorage.setItem('favorites', JSON.stringify(state.favorites));
+      localStorage.setItem("favorites", JSON.stringify(state.favorites));
     }
   },
   actions: {
     async loadData({ commit }, { param }) {
-      var masterURL = 'wp-json/hauser/v1/master';
-      if(param.id) masterURL = 'wp-json/wp/v2/pages?include[]='+param.id;
+      var masterURL = "wp-json/hauser/v1/master";
+      if (param.id) masterURL = "wp-json/wp/v2/pages?include[]=" + param.id;
       //Load data
-          var res = await Promise.all([
-            axios.get(process.env.VUE_APP_URI+'wp-json/wp/v2/hauser_artworks/?per_page=500'),
-            axios.get(process.env.VUE_APP_URI+masterURL)
-          ]);
-          console.log('Loaded '+res[0].data.length+' Artworks!');
-          commit('setArtworks', res[0].data.filter((artwork) => {
-            if(artwork.status == 'publish') return true;
-          }));
-          console.log('Master Data Loaded!');
+      var res = await Promise.all([
+        axios.get(
+          process.env.VUE_APP_URI +
+            "wp-json/wp/v2/hauser_artworks/?per_page=500"
+        ),
+        axios.get(process.env.VUE_APP_URI + masterURL)
+      ]);
+      console.log("Loaded " + res[0].data.length + " Artworks!");
+      commit(
+        "setArtworks",
+        res[0].data.filter(artwork => {
+          if (artwork.status == "publish") return true;
+        })
+      );
+      console.log("Master Data Loaded!");
 
-          var masterData = res[1].data;
-          if(param.id) masterData = res[1].data[0];
-          commit('setMaster', masterData);
-          console.log(masterData);
-    },
+      var masterData = res[1].data;
+      if (param.id) masterData = res[1].data[0];
+      commit("setMaster", masterData);
+      console.log(masterData);
+    }
   },
-  modules: {
-  }
-})
+  modules: {}
+});
