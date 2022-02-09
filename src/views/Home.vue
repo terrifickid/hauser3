@@ -136,7 +136,8 @@
 
       <div v-if="master.parallax_image">
         <div
-          style="height: 70vh; background-attachment: fixed; background-size: cover; background-position: center center;"
+        id="h_plax"
+          style=" background-attachment: fixed; background-size: cover; background-position: center center;"
           :style="{
             'background-image': 'url(' + master.parallax_image.url + ')'
           }"
@@ -310,4 +311,22 @@ a:hover {
   height: 100%;
   z-index: -1;
 }
+
+
+// Extra small devices (portrait phones, less than 576px)
+// No media query for `xs` since this is the default in Bootstrap
+
+#h_plax{ height: 20rem; }
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {   }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {   }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {   }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {   }
+
 </style>
