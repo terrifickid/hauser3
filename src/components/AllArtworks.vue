@@ -153,7 +153,9 @@
       <div v-ani="{class:'fade-in-bottom', delay: 100}"  class="d-none d-lg-block col-3 col-xl-2">
 
         <ul>
-        <li><a v-b-toggle.p-sort >
+        <li v-if="!master.hide_sort">
+
+          <a v-b-toggle.p-sort >
           <b-icon v-show="!psort" icon="plus"/>
           <b-icon v-show="psort" icon="dash"/>
           Sort by</a>

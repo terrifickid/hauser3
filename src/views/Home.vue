@@ -84,12 +84,13 @@
                   >
                     {{ master.heading_2 }}
                   </h1>
-                  <h1
+                  <h3
+                  style="font-size: 19px; line-height: 23px; font-weight: 500; margin-bottom: 2rem;"
                     v-if="master.heading_3"
                     v-ani="{ class: 'fade-in-bottom', delay: 1200 }"
                   >
                     {{ master.heading_3 }}
-                  </h1>
+                  </h3>
                   <h2
                     class="d-inline-block mr-3"
                     v-for="(link, index) in master.hauser_links"
@@ -261,7 +262,7 @@ h1 {
 }
 #bg {
   color: white;
-
+  background: black;
   background-size: cover;
   min-height: 100vh;
   position: relative;

@@ -179,9 +179,13 @@
             <div class="d-none d-lg-block col-lg-3 offset-lg-1 offset-xl-0">
               <div class="fixed rightCol">
                 <div
+                style="height: 100vh;"
                   v-ani="{ class: 'fade-in-bottom', delay: 300 }"
                   v-if="masterOn"
+                  class="d-flex align-items-center"
                 >
+                <div>
+
                   <h4>{{ artwork.artist.name }}</h4>
                   <p v-html="artwork.title.rendered"></p>
                   <p v-html="artwork.acf.hero_description"></p>
@@ -240,6 +244,7 @@
                     /></a>
                   </div>
                 </div>
+              </div>
               </div>
             </div>
             <!-- end row -->
@@ -723,7 +728,7 @@ a:hover {
   color: white;
 }
 .rightCol {
-  padding-top: 2rem;
+
 }
 .sizer {
   min-height: 75vh;
@@ -751,7 +756,8 @@ a:hover {
   }
   .fixed.rightCol {
     width: 16rem;
-    top: 6rem;
+    top:0;
+    height: 100vh;
   }
 }
 
