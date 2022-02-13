@@ -85,6 +85,7 @@
                     {{ master.heading_2 }}
                   </h1>
                   <h3
+                  class="fnormal"
                   style="font-size: 19px; line-height: 23px;  margin-bottom: 2rem;"
                     v-if="master.heading_3"
                     v-ani="{ class: 'fade-in-bottom', delay: 1200 }"
