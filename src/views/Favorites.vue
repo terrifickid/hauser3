@@ -17,7 +17,7 @@
               <a class="artwork" :href="'/artwork/'+artwork.slug">
               <img class="img-fluid mb-4" :src="artwork.acf.hero_image.url">
               <p class="fbold">{{artwork.artist.name}}</p>
-              <p>{{artwork.title.rendered}}<br>
+              <p v-html="artwork.title.rendered"><br>
                 <template v-if="artwork.acf.price_upon_inquiry">Price upon inquiry</template>
                 <template v-if="!artwork.acf.price_upon_inquiry">{{artwork.acf.price | toCurrency}}</template>
               </p>

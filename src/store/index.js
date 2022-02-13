@@ -6,7 +6,7 @@ import axios from "axios";
 export default new Vuex.Store({
   state: {
     gdpr: true,
-    artworks: false,
+    artworks: [],
     master: false,
     favorites: []
   },
