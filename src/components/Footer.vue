@@ -19,8 +19,8 @@
       <a v-b-modal.modal-1><img src="../assets/ab/wechat.svg"></a>
       <a href="https://weibo.com/hauserwirth?is_hot=1"><img src="../assets/ab/weibo.svg"></a>
       </div>
-      <p class="text-center">Shopping assistance via <a style="text-decoration: underline;" href="https://wa.me/442072872300?text=Hello+Hauser+%26+Wirth">WhatsApp</a></p>
-      <p class="text-center">The artworks described above are subject to changes in availability and price without prior notice. Prices excl. VAT<br><a href="#">Terms & Conditions</a>   |   &copy; 2021 Hauser & Wirth</p>
+      <p class="text-center">Contact us Via <a style="text-decoration: underline;" href="https://wa.me/442072872300?text=Hello+Hauser+%26+Wirth">WhatsApp</a></p>
+      <p class="text-center">The artworks described above are subject to changes in availability and price without prior notice. Prices excl. VAT<br><a href="#">Terms & Conditions</a>   |   &copy; 2022 Hauser & Wirth</p>
     </div>
 
 
