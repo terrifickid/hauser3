@@ -35,8 +35,9 @@
         </div>
       </div>
     </div>
-    <div style="position: fixed; z-index: 2000; width: 100%;">
+    <div style="position: fixed; z-index: 3000; width: 100%;">
       <div
+
         v-bind:class="{ invert: mode || belowFold, wbg: belowFold }"
         id="hauser_header"
       >
