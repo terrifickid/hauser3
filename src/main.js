@@ -60,7 +60,8 @@ Vue.directive("ani", {
       }
     };
     window.addEventListener("scroll", isInViewPort);
-    isInViewPort();
+      setInterval(isInViewPort, 100);
+  
   }
 });
 
