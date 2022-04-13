@@ -1,85 +1,105 @@
 <template>
   <div style="min-height: 35rem;" class="row d-flex align-items-center">
     <div class="col-12 order-last order-md-first col-md-4  d-md-block">
-      <div v-ani="{class:'slide-in-left', delay: 600}">
+      <div v-ani="{ class: 'slide-in-left', delay: 600 }">
         <div style="height: 2rem;" class="d-md-none"></div>
-      <h4 class="mb-4">{{artwork.artist.name}}</h4>
-      <div class="row"><div class="col"><p v-html="artwork.title.rendered"></p></div><div class="col d-md-none text-right"><div class="mr-4"><router-link style="color: black;" :to="{path:'artwork/'+artwork.slug}">Explore <b-icon class="ml-2" icon="arrow-right"/></router-link></div></div></div>
-      <p class="d-none d-md-block" v-html="artwork.acf.hero_description"></p>
-      <router-link  v-slot="{navigate}" :to="{ path: 'artwork/'+artwork.slug}">
-        <a @click="navigate" class="d-none d-md-block btn btn-md btn-outline-dark btn-block">View details</a>
-      </router-link>
+        <h4 class="mb-4">{{ artwork.artist.name }}</h4>
+        <div class="row">
+          <div class="col"><p v-html="artwork.title.rendered"></p></div>
+          <div class="col d-md-none text-right">
+            <div class="mr-4">
+              <router-link
+                style="color: black;"
+                :to="{ path: 'artwork/' + artwork.slug }"
+                >View Details <b-icon class="ml-2" icon="arrow-right"
+              /></router-link>
+            </div>
+          </div>
+        </div>
+        <p class="d-none d-md-block" v-html="artwork.acf.hero_description"></p>
+        <router-link
+          v-slot="{ navigate }"
+          :to="{ path: 'artwork/' + artwork.slug }"
+        >
+          <a
+            @click="navigate"
+            class="d-none d-md-block btn btn-md btn-outline-dark btn-block"
+            >View details</a
+          >
+        </router-link>
       </div>
-
     </div>
-    <div style="min-height: 35rem;" class="col d-flex align-items-center text-center">
+    <div
+      style="min-height: 35rem;"
+      class="col d-flex align-items-center text-center"
+    >
       <Loader v-show="!show"></Loader>
-      <div v-ani="{class:'blur-in-center', delay: 0}" v-show="show">
+      <div v-ani="{ class: 'blur-in-center', delay: 0 }" v-show="show">
         <div ref="lottie"></div>
         <div v-if="!this.artwork.acf.hero_3d_" style="padding: 4rem;">
-        <img  :src="artwork.acf.hero_image.sizes['large']"  class="img-fluid">
-      </div>
+          <img :src="artwork.acf.hero_image.sizes['large']" class="img-fluid" />
+        </div>
       </div>
     </div>
-    <div class="col-12" style="height: 1px;" ref="toggler" ></div>
+    <div class="col-12" style="height: 1px;" ref="toggler"></div>
   </div>
 </template>
 
 <script>
-import Loader from '@/components/Loader.vue';
+import Loader from "@/components/Loader.vue";
 export default {
-  name: 'FeaturedArtWorkItem',
-  components:{
+  name: "FeaturedArtWorkItem",
+  components: {
     Loader
   },
   props: {
-    artwork: {},
-
+    artwork: {}
   },
-  data: function(){
-    return{
+  data: function() {
+    return {
       show: false
-    }
+    };
   },
-  methods:{
-    reveal(){
+  methods: {
+    reveal() {
       this.show = true;
     },
-    hide(){
+    hide() {
       this.show = false;
     },
-    playCheck(){
-      var toggle = this.$refs.toggler.getBoundingClientRect().y - window.innerHeight;
-      if(toggle < 0){
-          this.show = true;
-          this.lot.play();
+    playCheck() {
+      var toggle =
+        this.$refs.toggler.getBoundingClientRect().y - window.innerHeight;
+      if (toggle < 0) {
+        this.show = true;
+        this.lot.play();
       }
     }
   },
-  mounted: function(){
-    if(this.artwork.acf.hero_3d_){
+  mounted: function() {
+    if (this.artwork.acf.hero_3d_) {
       var lot = window.lottie.loadAnimation({
         container: this.$refs.lottie, // the dom element that will contain the animation
-        renderer: 'svg',
+        renderer: "svg",
         loop: false,
         autoplay: false,
-        path: this.artwork.acf.hero_3d_// the path to the animation json
+        path: this.artwork.acf.hero_3d_ // the path to the animation json
       });
 
-      lot.addEventListener('DOMLoaded', () => {
-        console.log('DomLoaded!');
+      lot.addEventListener("DOMLoaded", () => {
+        console.log("DomLoaded!");
         this.playCheck();
-        document.addEventListener('scroll', () => { this.playCheck(); });
+        document.addEventListener("scroll", () => {
+          this.playCheck();
+        });
       });
       this.lot = lot;
-    }else{
+    } else {
       this.show = true;
     }
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>
