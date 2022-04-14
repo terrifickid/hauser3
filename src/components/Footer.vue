@@ -54,10 +54,6 @@
         <a href="https://www.youtube.com/channel/UCmwkuoCJOD681XWL_3joE5w"
           ><img src="../assets/ab/youtube.svg"
         /></a>
-        <a v-b-modal.modal-1><img src="../assets/ab/wechat.svg"/></a>
-        <a href="https://weibo.com/hauserwirth?is_hot=1"
-          ><img src="../assets/ab/weibo.svg"
-        /></a>
       </div>
       <p class="text-center">
         Contact us Via

@@ -11,7 +11,7 @@
               <router-link
                 style="color: black;"
                 :to="{ path: 'artwork/' + artwork.slug }"
-                >View Details <b-icon class="ml-2" icon="arrow-right"
+                >View details <b-icon class="ml-2" icon="arrow-right"
               /></router-link>
             </div>
           </div>
