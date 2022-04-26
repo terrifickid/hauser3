@@ -165,7 +165,7 @@
         <div class="row py-5">
           <!--<div class="d-none d-md-block col-1" style="border-right: 1px solid black;"></div>-->
           <div
-            class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-0 offset-xl-3"
+            class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3"
           >
             <div style="padding: 3rem 0">
               <h3 v-if="artwork.acf.details.length" class="mb-4">
