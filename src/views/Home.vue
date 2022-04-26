@@ -63,68 +63,6 @@
           allow="autoplay; fullscreen; picture-in-picture"
           allowfullscreen=""
         ></iframe>
-        <div style=" z-index: 200; position: relative;">
-          <div class="hauser-hero">
-            <div class="container">
-              <div
-                class="row d-flex align-items-center"
-                style=" min-height: 100vh;"
-              >
-                <div class="col-12 col-md-10 offset-md-1">
-                  <h2
-                    v-if="master.heading_1"
-                    v-ani="{ class: 'fade-in-bottom', delay: 1000 }"
-                    class="fnormal mb-5"
-                  >
-                    {{ master.heading_1 }}
-                  </h2>
-                  <h1
-                    v-if="master.heading_2"
-                    v-ani="{ class: 'fade-in-bottom', delay: 1100 }"
-                  >
-                    {{ master.heading_2 }}
-                  </h1>
-                  <h3
-                  class="fnormal"
-                  style="font-size: 19px; line-height: 23px;  margin-bottom: 2rem;"
-                    v-if="master.heading_3"
-                    v-ani="{ class: 'fade-in-bottom', delay: 1200 }"
-                  >
-                    {{ master.heading_3 }}
-                  </h3>
-                  <h2
-                    class="d-inline-block mr-3"
-                    v-for="(link, index) in master.hauser_links"
-                    :key="index"
-                    v-show="master.hauser_links.length"
-                    v-ani="{
-                      class: 'fade-in-bottom',
-                      delay: 1400 + index * 100
-                    }"
-                  >
-                    <a v-if="link.type == 'Video'" @click="videoModalOpen()"
-                      ><b-icon class="mr-1" icon="play-circle" />
-                      {{ link.title }}</a
-                    >
-                    <a
-                      v-if="link.type == 'Anchor'"
-                      class="btn btn-md btn-outline-light"
-                      @click="scrollTo(link.link)"
-                      >{{ link.title }}</a
-                    >
-                    <a
-                      v-if="link.type == 'Collection'"
-                      class="btn btn-md btn-outline-light"
-                      @click="scrollToCollection(link.link)"
-                      >{{ link.title }}</a
-                    >
-                  </h2>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- end hauser-hero -->
       </div>
       <!-- end bg -->
       <div
@@ -132,13 +70,65 @@
         ref="breakPoint"
       ></div>
 
-      <FeaturedArtwork></FeaturedArtwork>
-      <FeaturedArtworks></FeaturedArtworks>
+      <div class="container">
+        <div
+          style=" z-index: 200; position: relative; top: -7rem; margin-bottom: -10rem; background: white; padding: 40px 50px 40px 50px"
+          class="col-12 col-lg-8 offset-lg-2"
+          v-ani="{ class: 'fade-in-bottom', delay: 0 }"
+        >
+          <h2
+            v-if="master.heading_1"
+            style="font-size: 16px;"
+            class="fnormal mb-3"
+          >
+            {{ master.heading_1 }}
+          </h2>
+          <h1
+            v-if="master.heading_2"
+            style="font-size: 56px; margin-bottom: 0.5rem;"
+          >
+            {{ master.heading_2 }}
+          </h1>
+          <h3
+            class="fnormal"
+            style="font-size: 16px; line-height: 23px;  margin-bottom: 2rem;"
+            v-if="master.heading_3"
+          >
+            {{ master.heading_3 }}
+          </h3>
+          <!--
+        <h2
+          class="d-inline-block mr-3"
+          v-for="(link, index) in master.hauser_links"
+          :key="index"
+          v-show="master.hauser_links.length"
+        >
+          <a v-if="link.type == 'Video'" @click="videoModalOpen()"
+            ><b-icon class="mr-1" icon="play-circle" /> {{ link.title }}</a
+          >
+          <a
+            v-if="link.type == 'Anchor'"
+            class="btn btn-md btn-outline-light"
+            @click="scrollTo(link.link)"
+            >{{ link.title }}</a
+          >
+          <a
+            v-if="link.type == 'Collection'"
+            class="btn btn-md btn-outline-light"
+            @click="scrollToCollection(link.link)"
+            >{{ link.title }}</a
+          >
+        </h2>
+      -->
+        </div>
+        <!-- end hauser-hero -->
+      </div>
+
       <AllArtworks ref="alla"></AllArtworks>
 
       <div v-if="master.parallax_image">
         <div
-        id="h_plax"
+          id="h_plax"
           style=" background-size: cover; background-position: center center;"
           :style="{
             'background-image': 'url(' + master.parallax_image.url + ')'
@@ -157,17 +147,15 @@
 <script>
 //import axios from 'axios';
 import Header from "@/components/Header.vue";
-import FeaturedArtworks from "@/components/FeaturedArtworks.vue";
-import FeaturedArtwork from "@/components/FeaturedArtwork.vue";
-import AllArtworks from "@/components/AllArtworks.vue";
+
+import AllArtworks from "@/components/AllArtworksB.vue";
 import AboutHauser from "@/components/AboutHauser.vue";
 import Footer from "@/components/Footer.vue";
 export default {
   name: "Home",
   components: {
     Header,
-    FeaturedArtworks,
-    FeaturedArtwork,
+
     AllArtworks,
     AboutHauser,
     Footer
@@ -298,13 +286,13 @@ a:hover {
   }
 }
 
-#h_plax{
+#h_plax {
   height: 70vh;
 }
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
-  #h_plax{
-  background-attachment: fixed;
-}
+  #h_plax {
+    background-attachment: fixed;
+  }
 }
 </style>
