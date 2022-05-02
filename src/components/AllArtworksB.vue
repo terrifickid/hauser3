@@ -188,161 +188,65 @@
         </li>
       </ul>
 
-      <div class="row">
-        <div v-if="artworks.length" class="col">
-          <div class="row">
-            <div
-              v-if="!filteredArtworks.length"
-              class="col-6 col-md-4 col-xl-3"
+      <div
+        v-masonry="containerId"
+        transition-duration="0s"
+        item-selector=".item"
+        column-width=".sizer"
+      >
+        <div
+          v-masonry-tile
+          v-bind:class="{
+            'col-6 col-md-4 sizer': index != 0,
+            'col-12 col-md-8': index == 0
+          }"
+          class="item"
+          v-for="(artwork, index) in filteredArtworks"
+          :key="index"
+        >
+          <div
+            v-ani="{
+              class: 'fade-in-bottom',
+              delay: delay(index) * 100 + 100
+            }"
+            class="sleeve"
+          >
+            <router-link
+              class="artwork"
+              :to="{ path: '/artwork/' + artwork.slug }"
             >
-              <p>Nothing found.</p>
-            </div>
-            <div class="col-8">
-              <div v-for="(artwork, index) in fOne" :key="index">
-                <router-link
-                  class="artwork"
-                  :to="{ path: '/artwork/' + artwork.slug }"
-                >
-                  <div
-                    class="artimg mb-4"
-                    :style="{
-                      backgroundImage:
-                        'url(' + artwork.acf.hero_image.sizes.large + ')'
-                    }"
-                  >
-                    <img
-                      style="width: 100%;"
-                      class="mb-4"
-                      src="../assets/square.png"
-                    />
-                  </div>
-                  <p v-if="!master.hide_artist_name" class="fbold">
-                    {{ artwork.artist.name }}
-                  </p>
-                  <div v-html="artwork.title.rendered"></div>
-
-                  <div>
-                    <template v-if="artwork.acf.price_upon_inquiry"
-                      >Price upon inquiry</template
-                    >
-                    <template v-if="!artwork.acf.price_upon_inquiry">{{
-                      artwork.acf.price | toCurrency
-                    }}</template>
-                  </div>
-                </router-link>
-
-                <p>
-                  <a @click="toggleFavorite(artwork.id)"
-                    ><img
-                      v-show="!favorites.includes(artwork.id)"
-                      src="../assets/favoriteIcon.svg"/><img
-                      v-show="favorites.includes(artwork.id)"
-                      src="../assets/favoriteIconSel.svg"
-                  /></a>
-                </p>
-              </div>
-            </div>
-            <div class="col-4">
-              <div v-for="(artwork, index) in fTwo" :key="index">
-                <router-link
-                  class="artwork"
-                  :to="{ path: '/artwork/' + artwork.slug }"
-                >
-                  <div
-                    class="artimg mb-4"
-                    :style="{
-                      backgroundImage:
-                        'url(' + artwork.acf.hero_image.sizes.large + ')'
-                    }"
-                  >
-                    <img
-                      style="width: 100%;"
-                      class="mb-4"
-                      src="../assets/square.png"
-                    />
-                  </div>
-                  <p v-if="!master.hide_artist_name" class="fbold">
-                    {{ artwork.artist.name }}
-                  </p>
-                  <div v-html="artwork.title.rendered"></div>
-
-                  <div>
-                    <template v-if="artwork.acf.price_upon_inquiry"
-                      >Price upon inquiry</template
-                    >
-                    <template v-if="!artwork.acf.price_upon_inquiry">{{
-                      artwork.acf.price | toCurrency
-                    }}</template>
-                  </div>
-                </router-link>
-
-                <p>
-                  <a @click="toggleFavorite(artwork.id)"
-                    ><img
-                      v-show="!favorites.includes(artwork.id)"
-                      src="../assets/favoriteIcon.svg"/><img
-                      v-show="favorites.includes(artwork.id)"
-                      src="../assets/favoriteIconSel.svg"
-                  /></a>
-                </p>
-              </div>
-            </div>
-            <div
-              v-ani="{
-                class: 'fade-in-bottom',
-                delay: delay(index) * 100 + 100
-              }"
-              v-for="(artwork, index) in filteredArtworks"
-              :key="index"
-              class="col-4"
-              v-bind:class="{ 'd-none': index < 3 }"
-            >
-              <router-link
-                class="artwork"
-                :to="{ path: '/artwork/' + artwork.slug }"
-              >
-                <div
-                  class="artimg mb-4"
-                  :style="{
-                    backgroundImage:
-                      'url(' + artwork.acf.hero_image.sizes.large + ')'
-                  }"
-                >
-                  <img
-                    style="width: 100%;"
-                    class="mb-4"
-                    src="../assets/square.png"
-                  />
-                </div>
-                <p v-if="!master.hide_artist_name" class="fbold">
-                  {{ artwork.artist.name }}
-                </p>
-                <div v-html="artwork.title.rendered"></div>
-
-                <div>
-                  <template v-if="artwork.acf.price_upon_inquiry"
-                    >Price upon inquiry</template
-                  >
-                  <template v-if="!artwork.acf.price_upon_inquiry">{{
-                    artwork.acf.price | toCurrency
-                  }}</template>
-                </div>
-              </router-link>
-
-              <p>
-                <a @click="toggleFavorite(artwork.id)"
-                  ><img
-                    v-show="!favorites.includes(artwork.id)"
-                    src="../assets/favoriteIcon.svg"/><img
-                    v-show="favorites.includes(artwork.id)"
-                    src="../assets/favoriteIconSel.svg"
-                /></a>
+              <img
+                class="mb-4"
+                style="width: 100%"
+                :src="artwork.acf.hero_image.sizes.large"
+              />
+              <p v-if="!master.hide_artist_name" class="fbold">
+                {{ artwork.artist.name }}
               </p>
-            </div>
+              <div v-html="artwork.title.rendered"></div>
+
+              <div>
+                <template v-if="artwork.acf.price == 0"
+                  >Price upon inquiry</template
+                >
+                <template v-if="artwork.acf.price > 0">{{
+                  artwork.acf.price | toCurrency
+                }}</template>
+              </div>
+            </router-link>
+            <p>
+              <a @click="toggleFavorite(artwork.id)"
+                ><img
+                  v-show="!favorites.includes(artwork.id)"
+                  src="../assets/favoriteIcon.svg"/><img
+                  v-show="favorites.includes(artwork.id)"
+                  src="../assets/favoriteIconSel.svg"
+              /></a>
+            </p>
           </div>
         </div>
-        <!-- end col -->
       </div>
+
       <!-- end row -->
 
       <div v-if="perPage <= artworks.length" class="row">
@@ -672,6 +576,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+.featured .sleeve {
+  width: 25.5vw;
+}
+.normal .sleeve {
+  width: 25.5vw;
+}
+
 a.selected {
   text-decoration: underline !important;
 }

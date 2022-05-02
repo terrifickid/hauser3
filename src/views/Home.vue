@@ -253,7 +253,7 @@ h1 {
   color: white;
   background: black;
   background-size: cover;
-  min-height: 100vh;
+  min-height: 75vh;
   position: relative;
   width: 100vw;
   border: 0;

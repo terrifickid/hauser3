@@ -12,13 +12,30 @@
         <div class="container">
           <div class="row" style="min-height: 100vh;">
             <div class="d-none d-lg-flex col-lg-2 align-items-center">
-              <div>
-                <div
-                  class="py-2 px-4"
-                  v-for="artwork in artwork.acf.artwork_images"
-                  :key="artwork.ID"
-                >
-                  <img :src="artwork.sizes['large']" class="img-fluid" />
+              <div style="height: 50vh; overflow: scroll;" class="">
+                <div>
+                  <div class="py-2 px-4">
+                    <img
+                      @click="
+                        gallerySrc = artwork.acf.hero_image.sizes['large']
+                      "
+                      :src="artwork.acf.hero_image.sizes['large']"
+                      class="img-fluid"
+                      style="cursor: pointer;"
+                    />
+                  </div>
+                  <div
+                    class="py-2 px-4"
+                    v-for="artwork in artwork.acf.artwork_images"
+                    :key="artwork.ID"
+                  >
+                    <img
+                      @click="gallerySrc = artwork.sizes['large']"
+                      :src="artwork.sizes['large']"
+                      class="img-fluid"
+                      style="cursor: pointer;"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -27,25 +44,44 @@
             >
               <div
                 v-if="artwork.acf.hero_image"
-                style="padding: 0 1rem 0rem 1rem; margin: auto;"
+                style="padding: 0 1rem 0rem 1rem; margin: auto; "
               >
-                <inner-image-zoom
-                  :hasSpacer="false"
+                <img
+                  :src="galleryImg"
+                  class="img-fluid"
+                  style="max-height: 75vh; cursor: cell;"
+                  @click="zoomModal = true"
+                />
+              </div>
+            </div>
+
+            <div
+              class="d-block offset-1 d-lg-none align-items-center"
+              style="height: 10vh; overflow-x: scroll; overflow-y: hidden; "
+            >
+              <div style="width: 150vw;">
+                <img
+                  @click="gallerySrc = artwork.acf.hero_image.sizes['large']"
                   :src="artwork.acf.hero_image.sizes['large']"
-                  :zoomSrc="artwork.acf.hero_image.sizes['large']"
-                  style="max-height: 70vh; margin: auto;"
-                  :zoomScale="1"
-                  :hideHint="true"
+                  class="img-fluid"
+                  style="cursor: pointer; height: 10vh; margin-right: 0.5rem; margin-bottom: 1rem;"
+                />
+
+                <img
+                  v-for="artwork in artwork.acf.artwork_images"
+                  :key="artwork.ID"
+                  @click="gallerySrc = artwork.sizes['large']"
+                  :src="artwork.sizes['large']"
+                  class="img-fluid"
+                  style="cursor: pointer; height: 10vh; margin-right: 0.5rem; margin-bottom: 1rem;"
                 />
               </div>
             </div>
             <!-- enffd col -->
-            <div class="d-none d-lg-block col-lg-3">
+            <div class="d-none d-lg-flex col-lg-3 align-items-center">
               <div
-                style="height: 100vh;"
                 v-ani="{ class: 'fade-in-bottom', delay: 300 }"
                 v-if="masterOn"
-                class="d-flex align-items-center"
               >
                 <div>
                   <h4>{{ artwork.artist.name }}</h4>
@@ -312,6 +348,14 @@
     </div>
     <div style="height: 6rem"></div>
     <Footer></Footer>
+    <div v-bind:class="{ active: zoomModal }" class="fullscreen-modal">
+      <div
+        @click="zoomModal = false"
+        style="height: 100vh; overflow: scroll; text-align: center; cursor: alias"
+      >
+        <img :src="galleryImg" />
+      </div>
+    </div>
     <ShareModal v-if="artwork" ref="shareModal" :artwork="artwork"></ShareModal>
     <div v-bind:class="{ active: emailModal }" class="fullscreen-modal">
       <div class="container">
@@ -418,7 +462,7 @@
 <script>
 import axios from "axios";
 import Loader from "@/components/Loader.vue";
-import InnerImageZoom from "vue-inner-image-zoom";
+
 //import axios from 'axios';
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
@@ -432,8 +476,7 @@ export default {
     Loader,
     ShareModal,
     //  ArtworkVideo,
-    ExploreArtworkItem,
-    "inner-image-zoom": InnerImageZoom
+    ExploreArtworkItem
   },
   methods: {
     async sendEmail(e) {
@@ -524,6 +567,11 @@ export default {
     }
   },
   computed: {
+    galleryImg() {
+      if (!this.gallerySrc) return this.artwork.acf.hero_image.sizes["large"];
+      if (this.gallerySrc) return this.gallerySrc;
+      return "";
+    },
     master() {
       return this.$store.state.master;
     },
@@ -549,6 +597,8 @@ export default {
   },
   data: function() {
     return {
+      zoomModal: false,
+      gallerySrc: "",
       slug: false,
       lotShow: true,
       oldScrollY: 0,
