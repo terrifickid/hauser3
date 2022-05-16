@@ -190,12 +190,16 @@
                   <p v-html="artwork.title.rendered"></p>
                   <p v-html="artwork.acf.hero_description"></p>
                   <p>
-                    <template v-if="artwork.acf.price_upon_inquiry"
-                      >Price upon inquiry</template
-                    >
-                    <template v-if="!artwork.acf.price_upon_inquiry">{{
-                      artwork.acf.price | toCurrency
-                    }}</template>
+
+
+                      <template v-if="artwork.acf.price == 0"
+                        >Price upon inquiry</template
+                      >
+                      <template v-if="artwork.acf.price > 0">{{
+                        artwork.acf.price | toCurrency
+                      }}</template>
+
+
                   </p>
                   <p class="mt-4">
                     <a
@@ -270,12 +274,18 @@
             </div>
             <div class="col-6 text-right">
               <p class="mb-1">
-                <template v-if="artwork.acf.price_upon_inquiry"
-                  >Price upon inquiry</template
-                >
-                <template v-if="!artwork.acf.price_upon_inquiry">{{
-                  artwork.acf.price | toCurrency
-                }}</template>
+
+
+
+                    <template v-if="artwork.acf.price == 0"
+                      >Price upon inquiry</template
+                    >
+                    <template v-if="artwork.acf.price > 0">{{
+                      artwork.acf.price | toCurrency
+                    }}</template>
+
+
+             
               </p>
             </div>
             <div class="col-12">
