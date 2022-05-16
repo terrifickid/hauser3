@@ -529,8 +529,8 @@ export default {
       if (this.sortBy)
         return filtered.sort((a, b) => {
           var calc = 0;
-          var lastA = a.artist.name.split(" ").pop();
-          var lastB = b.artist.name.split(" ").pop();
+          var lastA = a.artist.slug.split("-").pop();
+          var lastB = b.artist.slug.split("-").pop();
           switch (this.sortBy) {
             case "priceHigh":
               calc = b.acf.price - a.acf.price;
