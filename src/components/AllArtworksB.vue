@@ -216,10 +216,12 @@
               :to="{ path: '/artwork/' + artwork.slug }"
             >
               <img
+                v-if="artwork.acf.hero_image"
                 class="mb-4"
                 style="width: 100%"
                 :src="artwork.acf.hero_image.sizes.large"
               />
+              
               <p v-if="!master.hide_artist_name" class="fbold">
                 {{ artwork.artist.name }}
               </p>
