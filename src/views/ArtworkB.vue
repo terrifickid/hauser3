@@ -67,16 +67,17 @@
                   class="img-fluid"
                   style="cursor: pointer; height: 10vh; margin-right: 0.5rem; margin-bottom: 1rem;"
                 />
-
+                <template v-for="artwork in artwork.acf.artwork_images">
                 <img
-                  v-show="artwork.acf.hero_image.sizes"
-                  v-for="artwork in artwork.acf.artwork_images"
+                  v-if="artwork.sizes"
+
                   :key="artwork.ID"
                   @click="gallerySrc = artwork.sizes['large']"
                   :src="artwork.sizes['large']"
                   class="img-fluid"
                   style="cursor: pointer; height: 10vh; margin-right: 0.5rem; margin-bottom: 1rem;"
                 />
+              </template>
               </div>
             </div>
             <!-- enffd col -->
