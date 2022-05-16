@@ -189,7 +189,7 @@
       </ul>
 
       <div
-        v-masonry="containerId"
+        v-masonry="'containerId'"
         transition-duration="0s"
         item-selector=".item"
         column-width=".sizer"
@@ -461,6 +461,12 @@ export default {
         behavior: "smooth"
       });
     }
+
+    setInterval(() => {
+      this.$redrawVueMasonry('containerId');
+    }, 100);
+
+
   },
   props: {},
   computed: {
