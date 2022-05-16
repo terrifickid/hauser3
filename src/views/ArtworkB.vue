@@ -61,6 +61,7 @@
             >
               <div style="width: 150vw;">
                 <img
+                  v-if="artwork.acf.hero_image.sizes"
                   @click="gallerySrc = artwork.acf.hero_image.sizes['large']"
                   :src="artwork.acf.hero_image.sizes['large']"
                   class="img-fluid"
@@ -68,6 +69,7 @@
                 />
 
                 <img
+                  v-show="artwork.acf.hero_image.sizes"
                   v-for="artwork in artwork.acf.artwork_images"
                   :key="artwork.ID"
                   @click="gallerySrc = artwork.sizes['large']"
@@ -172,7 +174,7 @@
                     }}</template>
 
 
-           
+
               </p>
             </div>
             <div class="col-12">
@@ -252,6 +254,7 @@
         ></a>
         <template v-if="panel.acf_fc_layout == 'left_image'">
           <div
+          v-if="panel.image.sizes"
             class="d-md-none"
             style="height: 20rem; background-size: cover; background-position: center center;"
             v-bind:style="{
@@ -284,6 +287,7 @@
         </template>
         <template v-if="panel.acf_fc_layout == 'right_image'">
           <div
+          v-if="panel.image.sizes"
             class="d-md-none"
             style="height: 20rem;  background-size: cover; background-position: center center;"
             v-bind:style="{
