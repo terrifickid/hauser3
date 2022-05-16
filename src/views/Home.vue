@@ -75,22 +75,25 @@
                     v-if="master.heading_1"
                     v-ani="{ class: 'fade-in-bottom', delay: 1000 }"
                     class="fnormal mb-5"
+                    v-html="master.heading_1"
                   >
-                    {{ master.heading_1 }}
+
                   </h2>
                   <h1
                     v-if="master.heading_2"
                     v-ani="{ class: 'fade-in-bottom', delay: 1100 }"
+                    v-html="master.heading_2 "
                   >
-                    {{ master.heading_2 }}
+
                   </h1>
                   <h3
                   class="fnormal"
                   style="font-size: 19px; line-height: 23px;  margin-bottom: 2rem;"
                     v-if="master.heading_3"
                     v-ani="{ class: 'fade-in-bottom', delay: 1200 }"
+                    v-html="master.heading_3"
                   >
-                    {{ master.heading_3 }}
+
                   </h3>
                   <h2
                     class="d-inline-block mr-3"
