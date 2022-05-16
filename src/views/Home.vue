@@ -80,21 +80,24 @@
             v-if="master.heading_1"
             style="font-size: 16px;"
             class="fnormal mb-3"
+            v-html="master.heading_1"
           >
-            {{ master.heading_1 }}
+
           </h2>
           <h1
             v-if="master.heading_2"
             style="font-size: 56px; margin-bottom: 0.5rem;"
+            v-html="master.heading_2"
           >
-            {{ master.heading_2 }}
+
           </h1>
           <h3
             class="fnormal"
             style="font-size: 16px; line-height: 23px;  margin-bottom: 2rem;"
             v-if="master.heading_3"
+            v-html="master.heading_3"
           >
-            {{ master.heading_3 }}
+
           </h3>
           <!--
         <h2
