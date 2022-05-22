@@ -76,7 +76,7 @@
             >
               <h2
                 v-if="master.heading_1"
-                style="font-size: 16px;"
+                style="font-size: 16px; text-align: center;"
                 class="fnormal mb-3"
                 v-html="master.heading_1"
               ></h2>
