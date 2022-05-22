@@ -66,11 +66,11 @@
 
         <div
           class="d-flex align-items-center"
-          style="position: relative; z-index: 200; padding: 25vh 0 25vh 0; color: black; "
+          style="position: relative; z-index: 200; padding: 25vh 0 25vh 0; "
         >
           <div class="container">
             <div
-              style=" background: white; padding: 40px 50px 40px 50px"
+              style=" padding: 40px 50px 40px 50px"
               class="col-12 col-lg-8 offset-lg-2"
               v-ani="{ class: 'fade-in-bottom', delay: 0 }"
             >
@@ -85,12 +85,7 @@
                 style="font-size: 56px; margin-bottom: 0.5rem; text-align: center;"
                 v-html="master.heading_2"
               ></h1>
-              <h3
-                class="fnormal"
-                style="font-size: 16px; line-height: 23px;  margin-bottom: 2rem; text-align: center"
-                v-if="master.heading_3"
-                v-html="master.heading_3"
-              ></h3>
+
               <!--
           <h2
             class="d-inline-block mr-3"
@@ -125,6 +120,45 @@
         style="border: 0px solid red; position: relative; "
         ref="breakPoint"
       ></div>
+      <div class="container">
+        <div
+          style=" background: white; padding: 40px 50px 40px 50px"
+          class="col-12 col-lg-8 offset-lg-2"
+          v-ani="{ class: 'fade-in-bottom', delay: 0 }"
+        >
+          <h3
+            class="fnormal"
+            style="font-size: 16px; line-height: 23px;  margin-bottom: 2rem;"
+            v-if="master.heading_3"
+            v-html="master.heading_3"
+          ></h3>
+          <!--
+      <h2
+        class="d-inline-block mr-3"
+        v-for="(link, index) in master.hauser_links"
+        :key="index"
+        v-show="master.hauser_links.length"
+      >
+        <a v-if="link.type == 'Video'" @click="videoModalOpen()"
+          ><b-icon class="mr-1" icon="play-circle" /> {{ link.title }}</a
+        >
+        <a
+          v-if="link.type == 'Anchor'"
+          class="btn btn-md btn-outline-light"
+          @click="scrollTo(link.link)"
+          >{{ link.title }}</a
+        >
+        <a
+          v-if="link.type == 'Collection'"
+          class="btn btn-md btn-outline-light"
+          @click="scrollToCollection(link.link)"
+          >{{ link.title }}</a
+        >
+      </h2>
+    -->
+        </div>
+        <!-- end hauser-hero -->
+      </div>
 
       <AllArtworks ref="alla"></AllArtworks>
 
