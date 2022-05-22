@@ -68,16 +68,15 @@
                   style="cursor: pointer; height: 10vh; margin-right: 0.5rem; margin-bottom: 1rem;"
                 />
                 <template v-for="artwork in artwork.acf.artwork_images">
-                <img
-                  v-if="artwork.sizes"
-
-                  :key="artwork.ID"
-                  @click="gallerySrc = artwork.sizes['large']"
-                  :src="artwork.sizes['large']"
-                  class="img-fluid"
-                  style="cursor: pointer; height: 10vh; margin-right: 0.5rem; margin-bottom: 1rem;"
-                />
-              </template>
+                  <img
+                    v-if="artwork.sizes"
+                    :key="artwork.ID"
+                    @click="gallerySrc = artwork.sizes['large']"
+                    :src="artwork.sizes['large']"
+                    class="img-fluid"
+                    style="cursor: pointer; height: 10vh; margin-right: 0.5rem; margin-bottom: 1rem;"
+                  />
+                </template>
               </div>
             </div>
             <!-- enffd col -->
@@ -91,16 +90,12 @@
                   <p v-html="artwork.title.rendered"></p>
                   <p v-html="artwork.acf.hero_description"></p>
                   <p>
-
-
-                      <template v-if="artwork.acf.price == 0"
-                        >Price upon inquiry</template
-                      >
-                      <template v-if="artwork.acf.price > 0">{{
-                        artwork.acf.price | toCurrency
-                      }}</template>
-
-
+                    <template v-if="artwork.acf.price == 0"
+                      >Price upon inquiry</template
+                    >
+                    <template v-if="artwork.acf.price > 0">{{
+                      artwork.acf.price | toCurrency
+                    }}</template>
                   </p>
                   <p class="mt-4">
                     <a
@@ -164,18 +159,12 @@
             </div>
             <div class="col-6 text-right">
               <p class="mb-1">
-
-
-
-                    <template v-if="artwork.acf.price == 0"
-                      >Price upon inquiry</template
-                    >
-                    <template v-if="artwork.acf.price > 0">{{
-                      artwork.acf.price | toCurrency
-                    }}</template>
-
-
-
+                <template v-if="artwork.acf.price == 0"
+                  >Price upon inquiry</template
+                >
+                <template v-if="artwork.acf.price > 0">{{
+                  artwork.acf.price | toCurrency
+                }}</template>
               </p>
             </div>
             <div class="col-12">
@@ -244,6 +233,16 @@
 
       <div style="border: 1px solid transparent;" ref="contentPoint"></div>
       <div style="height: 4rem;"></div>
+
+      <div class="container" style="margin-bottom: 12rem;">
+        <div class=" embed-responsive embed-responsive-16by9">
+          <iframe
+            class="embed-responsive-item"
+            src="https://www.youtube.com/embed/O4t8hAEEKI4"
+          ></iframe>
+        </div>
+      </div>
+
       <div
         id="panels"
         v-for="(panel, index) in artwork.acf.panels"
@@ -255,7 +254,7 @@
         ></a>
         <template v-if="panel.acf_fc_layout == 'left_image'">
           <div
-          v-if="panel.image.sizes"
+            v-if="panel.image.sizes"
             class="d-md-none"
             style="height: 20rem; background-size: cover; background-position: center center;"
             v-bind:style="{
@@ -288,7 +287,7 @@
         </template>
         <template v-if="panel.acf_fc_layout == 'right_image'">
           <div
-          v-if="panel.image.sizes"
+            v-if="panel.image.sizes"
             class="d-md-none"
             style="height: 20rem;  background-size: cover; background-position: center center;"
             v-bind:style="{
