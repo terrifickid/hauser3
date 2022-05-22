@@ -12,7 +12,7 @@
         <div class="container">
           <div class="row" style="min-height: 100vh;">
             <div class="d-none d-lg-flex col-lg-2 align-items-center">
-              <div style="height: 50vh; overflow: scroll;" class="">
+              <div style="height: 50vh; overflow-y: scroll;" class="hscroll">
                 <div>
                   <div class="py-2 px-4">
                     <img
