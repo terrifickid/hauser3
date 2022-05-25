@@ -10,7 +10,7 @@
         v-bind:class="{ scrollHeight: artwork.acf.hero_3d_ }"
       >
         <div class="container">
-          <div class="row" style="min-height: 100vh;">
+          <div class="row" style="min-height: 100vh; ">
             <div class="d-none d-lg-flex col-lg-2 align-items-center">
               <div style="height: 50vh; overflow-y: scroll;" class="hscroll">
                 <div>
@@ -47,6 +47,7 @@
                 style="padding: 0 1rem 0rem 1rem; margin: auto; "
               >
                 <img
+                  v-touch:swipe="swipeHandler"
                   :src="galleryImg"
                   class="img-fluid"
                   style="max-height: 75vh; cursor: cell;"
@@ -55,31 +56,6 @@
               </div>
             </div>
 
-            <div
-              class="d-block offset-1 d-lg-none align-items-center"
-              style="height: 10vh; overflow-x: scroll; overflow-y: hidden; "
-            >
-              <div style="width: 150vw;">
-                <img
-                  v-if="artwork.acf.hero_image.sizes"
-                  @click="gallerySrc = artwork.acf.hero_image.sizes['large']"
-                  :src="artwork.acf.hero_image.sizes['large']"
-                  class="img-fluid"
-                  style="cursor: pointer; height: 10vh; margin-right: 0.5rem; margin-bottom: 1rem;"
-                />
-                <template v-for="artwork in artwork.acf.artwork_images">
-                  <img
-                    v-if="artwork.sizes"
-                    :key="artwork.ID"
-                    @click="gallerySrc = artwork.sizes['large']"
-                    :src="artwork.sizes['large']"
-                    class="img-fluid"
-                    style="cursor: pointer; height: 10vh; margin-right: 0.5rem; margin-bottom: 1rem;"
-                  />
-                </template>
-              </div>
-            </div>
-            <!-- enffd col -->
             <div class="d-none d-lg-flex col-lg-3 align-items-center">
               <div
                 v-ani="{ class: 'fade-in-bottom', delay: 300 }"
@@ -365,8 +341,9 @@
     <div v-bind:class="{ active: zoomModal }" class="fullscreen-modal">
       <div
         @click="zoomModal = false"
-        style="height: 100vh; overflow: scroll; text-align: center; cursor: alias"
+        style="height: 100vh; overflow: scroll; text-align: center; cursor: alias; font-size: 2rem;"
       >
+        <b-icon style="position: absolute; top:1rem; right: 1rem;" icon="x" />
         <img :src="galleryImg" />
       </div>
     </div>
@@ -493,6 +470,9 @@ export default {
     ExploreArtworkItem
   },
   methods: {
+    swipeHandler() {
+      console.log("swipe!");
+    },
     async sendEmail(e) {
       e.preventDefault();
       console.log("ran!");
@@ -582,6 +562,7 @@ export default {
   },
   computed: {
     galleryImg() {
+      if (!this.artwork) return "";
       if (!this.gallerySrc) return this.artwork.acf.hero_image.sizes["large"];
       if (this.gallerySrc) return this.gallerySrc;
       return "";

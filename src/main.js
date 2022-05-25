@@ -21,6 +21,10 @@ Vue.use(VueMasonryPlugin);
 //Custom CSS
 import "./app.scss";
 
+//Swipe Events
+import Vue2TouchEvents from "vue2-touch-events";
+Vue.use(Vue2TouchEvents);
+
 //Currency Filter
 Vue.filter("toCurrency", function(value) {
   var formatter = new Intl.NumberFormat("en-US", {
@@ -60,8 +64,7 @@ Vue.directive("ani", {
       }
     };
     window.addEventListener("scroll", isInViewPort);
-      setInterval(isInViewPort, 100);
-  
+    setInterval(isInViewPort, 100);
   }
 });
 

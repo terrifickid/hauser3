@@ -188,67 +188,67 @@
         </li>
       </ul>
       <div style="min-height: 150vh">
-      <div
-        v-masonry="'containerId'"
-        transition-duration="0s"
-        item-selector=".item"
-        column-width=".sizer"
-      >
         <div
-          v-masonry-tile
-          v-bind:class="{
-            'col-6 col-md-4 sizer': index != 0,
-            'col-12 col-md-8': index == 0
-          }"
-          class="item"
-          v-for="(artwork, index) in filteredArtworks"
-          :key="index"
+          v-masonry="'containerId'"
+          transition-duration="0s"
+          item-selector=".item"
+          column-width=".sizer"
         >
           <div
-            v-ani="{
-              class: 'fade-in-bottom',
-              delay: delay(index) * 100 + 100
+            v-masonry-tile
+            v-bind:class="{
+              'col-6 col-md-4 sizer': !artwork.featured,
+              'col-12 col-md-8': artwork.featured
             }"
-            class="sleeve"
+            class="item"
+            v-for="(artwork, index) in filteredArtworks"
+            :key="index"
           >
-            <router-link
-              class="artwork"
-              :to="{ path: '/artwork/' + artwork.slug }"
+            <div
+              v-ani="{
+                class: 'fade-in-bottom',
+                delay: delay(index) * 100 + 100
+              }"
+              class="sleeve"
             >
-              <img
-                v-if="artwork.acf.hero_image"
-                class="mb-4"
-                style="max-width: 100%;"
-                :src="artwork.acf.hero_image.sizes.large"
-              />
+              <router-link
+                class="artwork"
+                :to="{ path: '/artwork/' + artwork.slug }"
+              >
+                <img
+                  v-if="artwork.acf.hero_image"
+                  class="mb-4"
+                  style="max-width: 100%;"
+                  :src="artwork.acf.hero_image.sizes.large"
+                />
 
-              <p v-if="!master.hide_artist_name" class="fbold">
-                {{ artwork.artist.name }}
+                <p v-if="!master.hide_artist_name" class="fbold">
+                  {{ artwork.artist.name }}
+                </p>
+                <div v-html="artwork.title.rendered"></div>
+
+                <div>
+                  <template v-if="artwork.acf.price == 0"
+                    >Price upon inquiry</template
+                  >
+                  <template v-if="artwork.acf.price > 0">{{
+                    artwork.acf.price | toCurrency
+                  }}</template>
+                </div>
+              </router-link>
+              <p>
+                <a @click="toggleFavorite(artwork.id)"
+                  ><img
+                    v-show="!favorites.includes(artwork.id)"
+                    src="../assets/favoriteIcon.svg"/><img
+                    v-show="favorites.includes(artwork.id)"
+                    src="../assets/favoriteIconSel.svg"
+                /></a>
               </p>
-              <div v-html="artwork.title.rendered"></div>
-
-              <div>
-                <template v-if="artwork.acf.price == 0"
-                  >Price upon inquiry</template
-                >
-                <template v-if="artwork.acf.price > 0">{{
-                  artwork.acf.price | toCurrency
-                }}</template>
-              </div>
-            </router-link>
-            <p>
-              <a @click="toggleFavorite(artwork.id)"
-                ><img
-                  v-show="!favorites.includes(artwork.id)"
-                  src="../assets/favoriteIcon.svg"/><img
-                  v-show="favorites.includes(artwork.id)"
-                  src="../assets/favoriteIconSel.svg"
-              /></a>
-            </p>
+            </div>
           </div>
         </div>
       </div>
-</div>
       <!-- end row -->
 
       <div v-if="perPage <= artworks.length" class="row">
@@ -465,10 +465,8 @@ export default {
     }
 
     setInterval(() => {
-      this.$redrawVueMasonry('containerId');
+      this.$redrawVueMasonry("containerId");
     }, 100);
-
-
   },
   props: {},
   computed: {
