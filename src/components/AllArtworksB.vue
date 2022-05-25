@@ -197,8 +197,8 @@
           <div
             v-masonry-tile
             v-bind:class="{
-              'col-6 col-md-4 sizer': !artwork.featured,
-              'col-12 col-md-8': artwork.featured
+              'col-6 col-md-4 sizer': !artwork.acf.featured,
+              'col-12 col-md-8': artwork.acf.featured
             }"
             class="item"
             v-for="(artwork, index) in filteredArtworks"
