@@ -11,6 +11,13 @@ const routes = [
     component: Home
   },
   {
+    path: "/guide",
+    name: "Guide",
+    component: function() {
+      return import(/* webpackChunkName: "Wishlist" */ "../views/Guide.vue");
+    }
+  },
+  {
     path: "/collection/:collection",
     name: "Collection",
     component: Home

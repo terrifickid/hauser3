@@ -37,11 +37,10 @@
     </div>
     <div style="position: fixed; z-index: 2000; width: 100%;">
       <div
-
         v-bind:class="{ invert: mode || belowFold, wbg: belowFold }"
         id="hauser_header"
       >
-        <div    v-ani="{ class: 'fade-in-top', delay: 0 }" class="container">
+        <div v-ani="{ class: 'fade-in-top', delay: 0 }" class="container">
           <div class="row">
             <div class="col">
               <router-link :to="{ path: '/' }"
@@ -88,7 +87,8 @@
 export default {
   name: "Header",
   props: {
-    mode: Number
+    mode: Number,
+    below: Number
   },
   data: function() {
     return {
@@ -100,15 +100,12 @@ export default {
   },
   methods: {
     headerResize() {
-      if (window.scrollY > 10) {
+      if (window.scrollY > this.below) {
         this.belowFold = true;
       } else {
         this.belowFold = false;
       }
       //console.log(window.scrollY, height, this.belowFold)
-    },
-    belowX(val) {
-      this.belowFold = val;
     },
     headerScroll() {
       var mod = 0;
@@ -163,6 +160,8 @@ export default {
         e.preventDefault();
       });
     });
+
+    this.headerResize();
   }
 };
 </script>

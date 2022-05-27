@@ -1,79 +1,137 @@
 // Define variable defaults
 
-
 $theme-colors: (
   "dark": #000,
-  "subtle-grey": #F8F8F8,
- );
+  "subtle-grey": #f8f8f8
+);
 $border-radius: 0;
 
 // Then import Bootstrap an BootstrapVue SCSS files (order is important)
-@import 'node_modules/bootstrap/scss/bootstrap.scss';
-@import 'node_modules/bootstrap-vue/src/index.scss';
-@import './ani.scss';
-
+@import "node_modules/bootstrap/scss/bootstrap.scss";
+@import "node_modules/bootstrap-vue/src/index.scss";
+@import "./ani.scss";
+@import url("https://use.typekit.net/yms8tfd.css");
 
 //
-html,body{font-size: 15px; font-family: 'newtransport-regular'; width: 100vw; overflow-x: hidden !important;}
-h1,h2,h3,h4,h5{font-family: "newtransport-medium";}
-.fnormal{font-family: 'newtransport-regular';}
-.fbold{font-family: 'newtransport-medium';}
-a{cursor: pointer;}
-.btn{border-radius: 0!important; font-family: 'newtransport-regular' !important; font-weight: normal !important;}
-.btn-md{padding:0.75rem 1rem 0.5rem 1rem;}
-.btn-outline-dark:hover{color: white !important;}
-.btn-outline-dark:hover img{filter: invert(100%);}
-.btniconfix{position: relative; top: -2px;}
+html,
+body {
+  font-size: 15px;
+  font-family: "newtransport-regular";
+  width: 100vw;
+  overflow-x: hidden !important;
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "newtransport-medium";
+}
+.fnormal {
+  font-family: "newtransport-regular";
+}
+.fminion {
+  font-family: minion-pro, serif;
+}
+.fbold {
+  font-family: "newtransport-medium";
+}
+a {
+  cursor: pointer;
+}
+.btn {
+  border-radius: 0 !important;
+  font-family: "newtransport-regular" !important;
+  font-weight: normal !important;
+}
+.btn-md {
+  padding: 0.75rem 1rem 0.5rem 1rem;
+}
+.btn-outline-dark:hover {
+  color: white !important;
+}
+.btn-outline-dark:hover img {
+  filter: invert(100%);
+}
+.btniconfix {
+  position: relative;
+  top: -2px;
+}
 
-.btn-outline-light:hover{color: black !important}
+.btn-outline-light:hover {
+  color: black !important;
+}
 
-h5{font-size: 16px;}
-.hero-pad{padding: 6rem 0;}
-.pad-right{ padding-right: 4rem;}
-.subtle-grey{}
+h5 {
+  font-size: 16px;
+}
+.hero-pad {
+  padding: 6rem 0;
+}
+.pad-right {
+  padding-right: 4rem;
+}
+.subtle-grey {
+}
 
-.fullscreen-modal{
+.fullscreen-modal {
   background: white;
   position: fixed;
-  top:0;
-  left:0;
-  right:0;
-  bottom:0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 3000;
   overflow: hidden;
-  height:0;
+  height: 0;
   visibility: hidden;
-  transition:  height 0.25s ease, visibility 0.25s, opacity 0.25s ease;
+  transition: height 0.25s ease, visibility 0.25s, opacity 0.25s ease;
 }
-.fullscreen-modal.active{visibility: visible; height: 100%; opacity: 1; }
+.fullscreen-modal.active {
+  visibility: visible;
+  height: 100%;
+  opacity: 1;
+}
 
-.circlelink{background: #ececec; border-radius: 200px; padding: 14px 14px 13px 14px; font-size: 16px;}
-.circlelink *{position: relative; top: 2px;}
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+.circlelink {
+  background: #ececec;
+  border-radius: 200px;
+  padding: 14px 14px 13px 14px;
+  font-size: 16px;
+}
+.circlelink * {
+  position: relative;
+  top: 2px;
+}
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: black;
   opacity: 1; /* Firefox */
 }
-input.form-control{border:0; border-bottom: 1px solid black;}
-
+input.form-control {
+  border: 0;
+  border-bottom: 1px solid black;
+}
 
 //Custom Scrollbar
 
 //custom scrollbar
-.hscroll::-webkit-scrollbar, .hscroll::-webkit-scrollbar:horizontal {
+.hscroll::-webkit-scrollbar,
+.hscroll::-webkit-scrollbar:horizontal {
   width: 1px;
   height: 1px;
 }
-.hscroll::-webkit-scrollbar-track, .hscroll::-webkit-scrollbar-track:horizontal {
+.hscroll::-webkit-scrollbar-track,
+.hscroll::-webkit-scrollbar-track:horizontal {
   box-shadow: none;
-  background: #E0E0E0;
-
+  background: #e0e0e0;
 }
 
-.hscroll::-webkit-scrollbar-thumb, .hscroll::-webkit-scrollbar-thumb:horizontal {
+.hscroll::-webkit-scrollbar-thumb,
+.hscroll::-webkit-scrollbar-thumb:horizontal {
   background-color: black;
   outline: 0px solid slategrey;
 }
-
 
 /**
 * Hind Light
@@ -137,7 +195,8 @@ input.form-control{border:0; border-bottom: 1px solid black;}
   font-family: "newtransport-regular";
   font-style: normal;
   font-weight: normal;
-  src: url("assets/fonts/newtransport/newtransport-regular.woff2") format("woff2");
+  src: url("assets/fonts/newtransport/newtransport-regular.woff2")
+    format("woff2");
 }
 
 /**
@@ -147,7 +206,8 @@ input.form-control{border:0; border-bottom: 1px solid black;}
   font-family: "newtransport-medium";
   font-style: normal;
   font-weight: normal;
-  src: url("assets/fonts/newtransport/newtransport-medium.woff2") format("woff2");
+  src: url("assets/fonts/newtransport/newtransport-medium.woff2")
+    format("woff2");
 }
 
 /**
