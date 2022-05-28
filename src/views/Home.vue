@@ -6,7 +6,7 @@
     class="home"
     id="top"
   >
-    <Header ref="heady" :mode="0"></Header>
+    <Header ref="heady" :mode="0" :below="10"></Header>
 
     <div id="hauser_home">
       <div

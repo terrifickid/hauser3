@@ -1,6 +1,6 @@
 <template>
   <div id="Artwork" class="">
-    <Header ref="heady" :mode="1"></Header>
+    <Header ref="heady" :mode="1" :below="10"></Header>
 
     <div v-if="artwork">
       <div

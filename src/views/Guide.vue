@@ -35,22 +35,22 @@
 
     <div class="container map">
       <ul class="row">
-        <li class="col d-flex align-items-center size2">
+        <li class="col-lg-4 col-xl d-flex align-items-center size2 mb-4">
           <span class="bgblue rounded num1 text-white size1"
             ><span>01</span></span
           >Bahnhofstrasse
         </li>
-        <li class="col d-flex align-items-center size2">
+        <li class="col-lg-4 col-xl d-flex align-items-center size2 mb-4">
           <span class="bgblue rounded num1 text-white size1"
             ><span>03</span></span
           >Rämistrasse
         </li>
-        <li class="col d-flex align-items-center size2">
+        <li class="col-lg-4 col-xl d-flex align-items-center size2 mb-4">
           <span class="bgblue rounded num1 text-white size1"
             ><span>02</span></span
           >Limmatstrasse
         </li>
-        <li class="col d-flex align-items-center size2">
+        <li class="col-lg-4 col-xl d-flex align-items-center size2 mb-4">
           <span class="bgblue rounded num1 text-white size1"
             ><span>04</span></span
           >Zürich Main Station
