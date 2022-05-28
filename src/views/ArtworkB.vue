@@ -194,7 +194,7 @@
                 <div class="col" v-html="detail.description"></div>
               </div>
               <!-- end row -->
-              <div v-if="artwork.acf.short_description && 0">
+              <div v-if="artwork.acf.short_description">
                 <h3 class="mb-4 mt-5">About the artwork</h3>
                 <p v-html="artwork.acf.short_description"></p>
                 <p><a v-b-toggle.readmore>Read More +</a></p>
