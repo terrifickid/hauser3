@@ -208,15 +208,13 @@
       </div>
 
       <div style="border: 1px solid transparent;" ref="contentPoint"></div>
-      <div style="height: 4rem;"></div>
 
-      <div class="container" style="margin-bottom: 12rem;">
-        <div class=" embed-responsive embed-responsive-16by9">
-          <iframe
-            class="embed-responsive-item"
-            src="https://www.youtube.com/embed/O4t8hAEEKI4"
-          ></iframe>
-        </div>
+      <div class="container">
+        <template v-for="video in artwork.acf.artwork_videos">
+          <div style="height: 4rem;"></div>
+          <ArtworkVideo :video="video"></ArtworkVideo>
+        </template>
+        <div style="height: 4rem;"></div>
       </div>
 
       <div
@@ -459,14 +457,14 @@ import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 import ShareModal from "@/components/ShareModal.vue";
 import ExploreArtworkItem from "@/components/ExploreArtworkItem.vue";
-//import ArtworkVideo from "@/components/ArtworkVideo.vue";
+import ArtworkVideo from "@/components/ArtworkVideo.vue";
 export default {
   components: {
     Header,
     Footer,
     Loader,
     ShareModal,
-    //  ArtworkVideo,
+    ArtworkVideo,
     ExploreArtworkItem
   },
   methods: {

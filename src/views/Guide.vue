@@ -243,6 +243,19 @@
       </div>
     </div>
 
+    <div
+      style="background: url('divider.png') repeat-y; background-position: center center; height: 15vh;"
+    ></div>
+
+    <div class="container">
+      <div class="col-lg-8 offset-lg-2">
+        <img src="2_1.jpg" style="width: 100%" />
+        <p class="size1 fminion">
+          {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </p>
+      </div>
+    </div>
+
     <img src="ss3.jpg" class="img-fluid" style="margin-top: 4rem;" />
     <div class="container">
       <div
