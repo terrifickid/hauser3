@@ -210,13 +210,10 @@
       <div style="border: 1px solid transparent;" ref="contentPoint"></div>
 
       <div class="container">
-        <template
-          v-for="(video, index) in artwork.acf.artwork_videos"
-          :key="index"
-        >
+        <div v-for="(video, index) in artwork.acf.artwork_videos" :key="index">
           <div style="height: 4rem;"></div>
           <ArtworkVideo :video="video"></ArtworkVideo>
-        </template>
+        </div>
         <div style="height: 4rem;"></div>
       </div>
 
