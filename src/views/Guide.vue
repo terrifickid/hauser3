@@ -39,34 +39,34 @@
     </div>
 
     <div class="container map">
-      <ul class="row">
+      <ul class="row no-gutters">
         <li
           class="col-sm-6 col-lg-4 col-xl d-flex align-items-center size2 mb-4"
         >
           <span class="bgblue rounded num1 text-white size1"
             ><span>01</span></span
-          >Bahnhofstrasse
+          >Bahnhofstrasse <img src="back.svg" class="ml-3 justify-self-end" />
         </li>
         <li
           class="col-sm-6 col-lg-4 col-xl d-flex align-items-center size2 mb-4"
         >
           <span class="bgblue rounded num1 text-white size1"
             ><span>03</span></span
-          >Rämistrasse
+          >Rämistrasse <img src="back.svg" class="ml-3" />
         </li>
         <li
           class="col-sm-6 col-lg-4 col-xl d-flex align-items-center size2 mb-4"
         >
           <span class="bgblue rounded num1 text-white size1"
             ><span>02</span></span
-          >Limmatstrasse
+          >Limmatstrasse <img src="back.svg" class="ml-3" />
         </li>
         <li
           class="col-sm-6 col-lg-4 col-xl d-flex align-items-center size2 mb-4"
         >
           <span class="bgblue rounded num1 text-white size1"
             ><span>04</span></span
-          >Zürich Main Station
+          >Zürich Main Station <img src="back.svg" class="ml-3" />
         </li>
       </ul>
       <p class="text-center">
@@ -216,7 +216,63 @@
       </div>
     </div>
 
-    <h1 class="text-center my-5 d-lg-none">[ swiperjs ]</h1>
+    <carousel
+      class="d-lg-none mt-5"
+      :nav="false"
+      :dots="false"
+      :stagePadding="100"
+      :margin="24"
+      :responsive="{
+        0: { items: 1 },
+        576: { items: 2 }
+      }"
+    >
+      <div>
+        <img src="1_1.png" class="mb-2" />
+        <p class="cblue size1 mb-1">01.</p>
+        <p class="size1 fminion mb-2">
+          {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Commodo orci aliquam turpis tristique et risus. Fames dignissim
+          elementum.
+        </p>
+      </div>
+      <div>
+        <img src="1_2.png" class="mb-2" />
+        <p class="cblue size1 mb-1">02.</p>
+        <p class="size1 fminion mb-2">
+          {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Commodo orci aliquam turpis tristique et risus. Fames dignissim
+          elementum.
+        </p>
+      </div>
+      <div>
+        <img src="1_3.png" class="mb-2" />
+        <p class="cblue size1 mb-1">03.</p>
+        <p class="size1 fminion mb-2">
+          {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Commodo orci aliquam turpis tristique et risus. Fames dignissim
+          elementum.
+        </p>
+      </div>
+      <div>
+        <img src="1_4.png" class="mb-2" />
+        <p class="cblue size1 mb-1">04.</p>
+        <p class="size1 fminion mb-4">
+          {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Commodo orci aliquam turpis tristique et risus. Fames dignissim
+          elementum.
+        </p>
+      </div>
+      <div>
+        <img src="1_5.png" class="mb-2" />
+        <p class="cblue size1 mb-1 mt-2">05.</p>
+        <p class="size1 fminion">
+          {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Commodo orci aliquam turpis tristique et risus. Fames dignissim
+          elementum.
+        </p>
+      </div>
+    </carousel>
 
     <img src="ss2.jpg" class="img-fluid" style="margin-top: 4rem;" />
     <div class="container">
@@ -250,9 +306,158 @@
     <div class="container">
       <div class="col-lg-8 offset-lg-2">
         <img src="2_1.jpg" style="width: 100%" />
-        <p class="size1 fminion">
+        <p class="size1 fminion mt-2 text-center">
           {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         </p>
+      </div>
+    </div>
+
+    <div class="container" style="margin-top:6rem;">
+      <h1 class="text-center fminion size0">
+        About, by or of Marcel Duchamp<br /><i>Setup by fluid editions</i>
+      </h1>
+      <p class="text-center size2">
+        Publishers Headquarters
+      </p>
+    </div>
+
+    <carousel
+      class="d-lg-none mt-5"
+      :nav="false"
+      :dots="false"
+      :stagePadding="100"
+      :margin="24"
+      :responsive="{
+        0: { items: 1 },
+        576: { items: 2 }
+      }"
+    >
+      <div>
+        <img src="2_2.jpg" class="mb-2" />
+        <p class="cblue size1 mb-1">01.</p>
+        <p class="size1 fminion mb-2">
+          {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Commodo orci aliquam turpis tristique et risus. Fames dignissim
+          elementum.
+        </p>
+      </div>
+      <div>
+        <img src="2_3.jpg" class="mb-2" />
+        <p class="cblue size1 mb-1">02.</p>
+        <p class="size1 fminion mb-2">
+          {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Commodo orci aliquam turpis tristique et risus. Fames dignissim
+          elementum.
+        </p>
+      </div>
+      <div>
+        <img src="2_4.jpg" class="mb-2" />
+        <p class="cblue size1 mb-1">03.</p>
+        <p class="size1 fminion mb-2">
+          {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Commodo orci aliquam turpis tristique et risus. Fames dignissim
+          elementum.
+        </p>
+      </div>
+      <div>
+        <img src="2_5.jpg" class="mb-2" />
+        <p class="cblue size1 mb-1">04.</p>
+        <p class="size1 fminion mb-4">
+          {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Commodo orci aliquam turpis tristique et risus. Fames dignissim
+          elementum.
+        </p>
+      </div>
+      <div>
+        <img src="2_6.jpg" class="mb-2" />
+        <p class="cblue size1 mb-1 mt-2">05.</p>
+        <p class="size1 fminion">
+          {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Commodo orci aliquam turpis tristique et risus. Fames dignissim
+          elementum.
+        </p>
+      </div>
+    </carousel>
+
+    <div class="container d-none d-lg-block">
+      <div class="row">
+        <div class="col d-flex justify-content-center">
+          <div class="max">
+            <p class="cblue size1 mb-1">01.</p>
+            <p class="size1 fminion mb-2">
+              {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Commodo orci aliquam turpis tristique et risus. Fames dignissim
+              elementum.
+            </p>
+            <img src="2_2.jpg" class="img-fluid" style="margin-top: 1rem;" />
+          </div>
+        </div>
+        <div class="col d-flex justify-content-center">
+          <div style="padding: 16vw 0 0 0">
+            <img src="2_3.jpg" class="img-fluid" style="margin-bottom: 1rem;" />
+            <div style="padding-left: 10vw">
+              <p class="cblue size1 mb-1">02.</p>
+              <p class="size1 fminion mb-2">
+                {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing
+                elit. Commodo orci aliquam turpis tristique et risus. Fames
+                dignissim elementum.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid d-none d-lg-block">
+      <div
+        class="row no-gutters"
+        style="border-top: 1px solid #E9E9E9; border-bottom: 1px solid #E9E9E9"
+      >
+        <div class="col-7" style="border-right: 1px solid #E9E9E9">
+          <div class="max">
+            <p class="cblue size1 mb-1">03.</p>
+            <p class="size1 fminion mb-4">
+              {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Commodo orci aliquam turpis tristique et risus. Fames dignissim
+              elementum.
+            </p>
+            <img src="2_4.jpg" class="img-fluid" />
+          </div>
+        </div>
+        <div class="col d-flex align-items-center">
+          <div class="max">
+            <img src="2_5.jpg" style="width: 100%; padding-top: 3rem;" />
+
+            <div style="padding: 1rem 0 0rem 0vw;">
+              <p class="cblue size1 mb-1 mt-2">04.</p>
+              <p class="size1 fminion">
+                {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing
+                elit. Commodo orci aliquam turpis tristique et risus. Fames
+                dignissim elementum.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="d-none d-lg-block"
+      style="border-top: 1px solid #E9E9E9; border-bottom: 1px solid #E9E9E9;"
+    >
+      <div class="container">
+        <div class="row">
+          <div class="col-10 offset-1">
+            <div class="max">
+              <p class="cblue size1 mb-1">04.</p>
+              <p class="size1 fminion mb-4" style="max-width: 28rem;">
+                The birth place of Dada featured regular contributions from
+                Sophie Taeuber-Arp and Hans Arp.
+              </p>
+              <img src="2_6.jpg" style="width: 100%" />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -282,14 +487,172 @@
       </div>
     </div>
 
-    <div class="container">
-      <img src="up-icon.svg" class="mr-2" />
-      Scroll to Top
+    <div
+      style="background: url('divider.png') repeat-y; background-position: center center; height: 15vh;"
+    ></div>
+
+    <div>
+      <div class="row no-gutters">
+        <div class="col-5">
+          <div style="margin-left: 6vw">
+            <img src="3_1.jpg" style="width: 100%; margin-top: 19vw;" />
+          </div>
+        </div>
+        <div class="col">
+          <img src="3_2.jpg" style="width: 100%" />
+          <p class="size1 fminion text-center" style="padding: 0.5rem;">
+            {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </p>
+        </div>
+      </div>
     </div>
 
-    <div
-      style="background: #F8F8F8; padding: 5rem 0; margin-top: 5rem; margin-bottom: 5rem;"
+    <div class="container" style="margin-top:6rem; margin-bottom: 6rem;">
+      <h1 class="text-center fminion size0">
+        Sir Frank Bowling<br /><i> Penumbral Light</i>
+      </h1>
+      <p class="text-center size2">
+        Zürich, Limmatstrasse
+      </p>
+    </div>
+
+    <div class="container">
+      <div class="row no-gutters">
+        <div class="col-7">
+          <img src="3_3.jpg" style="width: 100%; margin-top: 7vw;" />
+          <p class="size1 fminion" style="padding: 0.5rem 0">
+            &copy;2022 Jack Whitten, Jack Whitten Estate, Hauser & Wirth, Jeff
+            McLane, John Berens
+          </p>
+        </div>
+        <div class="col"><img src="3_4.jpg" style="width: 100%" /></div>
+      </div>
+    </div>
+
+    <div class="container" style="margin-top:6rem; margin-bottom: 0rem;">
+      <h1 class="text-center fminion size0">
+        Jack Whitten
+      </h1>
+      <p class="text-center size2">
+        Zürich, Limmatstrasse
+      </p>
+    </div>
+
+    <div class="container d-none d-lg-block">
+      <div class="row">
+        <div class="col d-flex justify-content-center">
+          <div class="max">
+            <p class="cblue size1 mb-1">01.</p>
+            <p class="size1 fminion mb-2">
+              {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Commodo orci aliquam turpis tristique et risus. Fames dignissim
+              elementum.
+            </p>
+            <img src="4_1.jpg" class="img-fluid" style="margin-top: 1rem;" />
+          </div>
+        </div>
+        <div class="col d-flex justify-content-center">
+          <div style="padding: 16vw 0 0 0">
+            <img src="4_2.jpg" class="img-fluid" style="margin-bottom: 1rem;" />
+            <div style="padding-left: 10vw">
+              <p class="cblue size1 mb-1">02.</p>
+              <p class="size1 fminion mb-2">
+                {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing
+                elit. Commodo orci aliquam turpis tristique et risus. Fames
+                dignissim elementum.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid d-none d-lg-block">
+      <div
+        class="row no-gutters"
+        style="border-top: 1px solid #E9E9E9; border-bottom: 1px solid #E9E9E9"
+      >
+        <div class="col-7" style="border-right: 1px solid #E9E9E9">
+          <div class="max">
+            <p class="cblue size1 mb-1">03.</p>
+            <p class="size1 fminion mb-4">
+              {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Commodo orci aliquam turpis tristique et risus. Fames dignissim
+              elementum.
+            </p>
+            <img src="4_3.jpg" style="width: 100%; margin-bottom: 2rem;" />
+            <!--
+            <img src="up-icon.svg" class="mr-2" />
+            Scroll to Top -->
+          </div>
+        </div>
+        <div class="col d-flex align-items-center">
+          <div class="max">
+            <img src="4_4.jpg" style="width: 100%; padding-top: 3rem;" />
+
+            <div style="padding: 1rem 0 0rem 0vw;">
+              <p class="cblue size1 mb-1 mt-2">04.</p>
+              <p class="size1 fminion">
+                {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing
+                elit. Commodo orci aliquam turpis tristique et risus. Fames
+                dignissim elementum.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <carousel
+      class="d-lg-none mt-5"
+      :nav="false"
+      :dots="false"
+      :stagePadding="100"
+      :margin="24"
+      :responsive="{
+        0: { items: 1 },
+        576: { items: 2 }
+      }"
     >
+      <div>
+        <img src="4_1.jpg" class="mb-2" />
+        <p class="cblue size1 mb-1">01.</p>
+        <p class="size1 fminion mb-2">
+          {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Commodo orci aliquam turpis tristique et risus. Fames dignissim
+          elementum.
+        </p>
+      </div>
+      <div>
+        <img src="4_2.jpg" class="mb-2" />
+        <p class="cblue size1 mb-1">02.</p>
+        <p class="size1 fminion mb-2">
+          {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Commodo orci aliquam turpis tristique et risus. Fames dignissim
+          elementum.
+        </p>
+      </div>
+      <div>
+        <img src="4_3.jpg" class="mb-2" />
+        <p class="cblue size1 mb-1">03.</p>
+        <p class="size1 fminion mb-2">
+          {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Commodo orci aliquam turpis tristique et risus. Fames dignissim
+          elementum.
+        </p>
+      </div>
+      <div>
+        <img src="4_4.jpg" class="mb-2" />
+        <p class="cblue size1 mb-1">04.</p>
+        <p class="size1 fminion mb-4">
+          {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Commodo orci aliquam turpis tristique et risus. Fames dignissim
+          elementum.
+        </p>
+      </div>
+    </carousel>
+
+    <div style="background: #F8F8F8; padding: 5rem 0;">
       <div class="container">
         <div class="col-10 offset-1">
           <h2 class="size3">Getting Around</h2>
@@ -307,17 +670,114 @@
         </div>
       </div>
     </div>
+
+    <div style="background: #EDFCFF; padding: 10vw; position: relative;">
+      <img src="park.jpg" style="width: 100%" />
+      <div
+        style="position: absolute; top:0; bottom:0; right:0; left:0;"
+        class="d-flex align-items-center justify-content-center text-center text-white"
+      >
+        <div style="padding: 20vw">
+          <p>13 JUNE – 17 JULY, 2022</p>
+          <h1 class="fminion">
+            ‘Art in the Park’ at Baur au Lac presents
+            <i>Camille Henrot</i>
+          </h1>
+          <a
+            href="#"
+            style="color: white; border: 2px solid white; margin-top: 3rem; display: inline-block; padding: 1rem 6rem; text-transform: uppercase; font-size: 14px; border-radius: 0.25rem;"
+            >Learn More</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <div id="diaries" class="hero-pad">
+      <div style="padding: 0 10vw">
+        <div v-if="master.video" class="row d-flex align-items-top">
+          <div class="col-12 col-md-10">
+            <template v-for="(video, index) in master.video">
+              <div
+                v-ani="{ class: 'scale-up-center', delay: 0 }"
+                v-show="selVid == index"
+                :key="index"
+              >
+                <img
+                  v-if="!video.video_url"
+                  class="img-fluid"
+                  :src="video.video_thumbnail.url"
+                />
+                <div
+                  v-if="video.video_url"
+                  class=" embed-responsive embed-responsive-16by9"
+                >
+                  <iframe
+                    class="embed-responsive-item"
+                    :src="
+                      video.video_url + '?controls=0&modestbranding=1&loop=1'
+                    "
+                  ></iframe>
+                </div>
+              </div>
+            </template>
+          </div>
+          <div
+            v-if="master.video.length > 1"
+            class="col-md-2 text-left mt-4 mt-md-0"
+          >
+            <a
+              v-bind:class="{ selected: selVid == index }"
+              @click="selVid = index"
+              v-for="(video, index) in master.video"
+              :key="index"
+              class="mb-2 ml-2"
+              v-bind:style="{
+                'background-image': 'url(' + video.video_thumbnail.url + ')'
+              }"
+              style="background-position: center center; background-size: cover; display: inline-block; height: 75px; width: 100px; background-color: #eee"
+            ></a>
+          </div>
+        </div>
+      </div>
+      <!-- end container -->
+    </div>
+
+    <div class="container text-center" style="margin-bottom: 12rem;">
+      <div class="col-md-10 offset-md-1">
+        <h1>Art Basel</h1>
+        <p class="norm fminion coff">
+          In celebration of Hauser & Wirth’s 30th anniversary, the gallery’s
+          booth will feature one of the most iconic art works of the
+          20th-century, Louise Bourgeois’ ‘Spider’ (1996). The booth has been
+          radically redesigned to house ‘Spider,’ which will be the centrepiece
+          of the presentation. The sculpture will be shown alongside an
+          outstanding selection of modern and contemporary masterpieces by
+          artists including Philip Guston, Mark Bradford, Avery Singer,
+          Christina Quarles, Eduardo Chillida, George Condo, Frank Bowling,
+          Rashid Johnson, Gerhard Richter, Glenn Ligon, Sophie Taeuber-Arp and
+          Maria Lassnig.
+        </p>
+      </div>
+    </div>
+
     <Footer></Footer>
   </div>
 </template>
 <script>
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
+import carousel from "vue-owl-carousel";
 
 export default {
   components: {
     Header,
-    Footer
+    Footer,
+    carousel
+  },
+  data: function() {
+    return {
+      selVid: 0
+    };
   },
   computed: {
     master() {
