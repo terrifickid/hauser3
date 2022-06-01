@@ -39,36 +39,44 @@
     </div>
 
     <div class="container map">
-      <ul class="row no-gutters">
-        <li
+      <div class="row no-gutters" id="links">
+        <a
+          href="#bahnhofstrasse"
+          style="color: black"
           class="col-sm-6 col-lg-4 col-xl d-flex align-items-center size2 mb-4"
         >
           <span class="bgblue rounded num1 text-white size1"
             ><span>01</span></span
           >Bahnhofstrasse <img src="back.svg" class="ml-3 justify-self-end" />
-        </li>
-        <li
-          class="col-sm-6 col-lg-4 col-xl d-flex align-items-center size2 mb-4"
-        >
-          <span class="bgblue rounded num1 text-white size1"
-            ><span>03</span></span
-          >Rämistrasse <img src="back.svg" class="ml-3" />
-        </li>
-        <li
+        </a>
+        <a
+          href="#ramistrasse"
+          style="color: black"
           class="col-sm-6 col-lg-4 col-xl d-flex align-items-center size2 mb-4"
         >
           <span class="bgblue rounded num1 text-white size1"
             ><span>02</span></span
+          >Rämistrasse <img src="back.svg" class="ml-3" />
+        </a>
+        <a
+          href="#limmatstrasse"
+          style="color: black"
+          class="col-sm-6 col-lg-4 col-xl d-flex align-items-center size2 mb-4"
+        >
+          <span class="bgblue rounded num1 text-white size1"
+            ><span>03</span></span
           >Limmatstrasse <img src="back.svg" class="ml-3" />
-        </li>
-        <li
+        </a>
+        <a
+          href="#zurich"
+          style="color: black"
           class="col-sm-6 col-lg-4 col-xl d-flex align-items-center size2 mb-4"
         >
           <span class="bgblue rounded num1 text-white size1"
             ><span>04</span></span
           >Zürich Main Station <img src="back.svg" class="ml-3" />
-        </li>
-      </ul>
+        </a>
+      </div>
       <p class="text-center">
         <a href="#" class="d-block d-md-inline-block bbutton mt-4"
           >open in google maps</a
@@ -77,11 +85,12 @@
     </div>
 
     <hr style="margin: 6rem;" />
-    <img class="img-fluid" src="ss1.png" />
+    <img class="img-fluid" src="cab.jpg" />
     <div class="container">
       <div
         style="padding: 6rem 0; text-align: center"
         class="col-md-10 offset-md-1"
+        id="bahnhofstrasse"
       >
         <span
           style="margin: auto; margin-bottom: 1.25rem;"
@@ -274,8 +283,8 @@
       </div>
     </carousel>
 
-    <img src="ss2.jpg" class="img-fluid" style="margin-top: 4rem;" />
-    <div class="container">
+    <img src="Ramistrasse.jpg" class="img-fluid" style="margin-top: 4rem;" />
+    <div class="container" id="ramistrasse">
       <div
         style="padding: 6rem 0; text-align: center"
         class="col-md-10 offset-md-1"
@@ -461,8 +470,12 @@
       </div>
     </div>
 
-    <img src="ss3.jpg" class="img-fluid" style="margin-top: 4rem;" />
-    <div class="container">
+    <img
+      src="Limatstrasse.jpg"
+      class="img-fluid"
+      style="margin-top: 4rem; background-size: cover; background-position: center center;"
+    />
+    <div class="container" id="limmatstrasse">
       <div
         style="padding: 6rem 0; text-align: center"
         class="col-md-10 offset-md-1"
@@ -653,7 +666,7 @@
     </carousel>
 
     <div style="background: #F8F8F8; padding: 5rem 0;">
-      <div class="container">
+      <div class="container" id="zurich">
         <div class="col-10 offset-1">
           <h2 class="size3">Getting Around</h2>
           <p class="size4 fminion">
@@ -672,12 +685,13 @@
     </div>
 
     <div style="background: #EDFCFF; padding: 10vw; position: relative;">
-      <img src="park.jpg" style="width: 100%" />
       <div
-        style="position: absolute; top:0; bottom:0; right:0; left:0;"
         class="d-flex align-items-center justify-content-center text-center text-white"
       >
-        <div style="padding: 20vw">
+        <div
+          style="padding: 10vw; background: url('park.jpg'); background-position: center center; background-size: cover;"
+        >
+          <div style="height: 6rem;"></div>
           <p>13 JUNE – 17 JULY, 2022</p>
           <h1 class="fminion">
             ‘Art in the Park’ at Baur au Lac presents
@@ -688,6 +702,7 @@
             style="color: white; border: 2px solid white; margin-top: 3rem; display: inline-block; padding: 1rem 6rem; text-transform: uppercase; font-size: 14px; border-radius: 0.25rem;"
             >Learn More</a
           >
+          <div style="height: 6rem;"></div>
         </div>
       </div>
     </div>
@@ -812,6 +827,10 @@ ul {
 
   left: 50%;
   transform: translate(-50%, 0);
+}
+
+#links a:hover {
+  text-decoration: none;
 }
 
 .map ul {
