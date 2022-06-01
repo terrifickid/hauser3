@@ -12,8 +12,11 @@
         <div class="container">
           <div class="row" style="min-height: 100vh; ">
             <div class="d-none d-lg-flex col-lg-2 align-items-center">
-              <div style="height: 50vh; overflow-y: scroll;" class="hscroll" v-if="artwork.acf.artwork_images.length > 1">
-                
+              <div
+                style="height: 50vh; overflow-y: scroll;"
+                class="hscroll"
+                v-if="artwork.acf.artwork_images.length > 1"
+              >
                 <div>
                   <div class="py-2 px-4">
                     <img
@@ -41,19 +44,54 @@
               </div>
             </div>
             <div
-              class="col-10 offset-1 col-lg-7 offset-lg-0  d-flex align-items-center"
+              class="col-10 offset-1 col-lg-7 offset-lg-0  d-flex align-items-center justify-content-center"
             >
               <div
                 v-if="artwork.acf.hero_image"
-                style="padding: 0 1rem 0rem 1rem; margin: auto; "
+                style="padding: 0 1rem 0rem 1rem; margin: auto; text-align: center; position: relative;"
               >
                 <img
-                  v-touch:swipe="swipeHandler"
                   :src="galleryImg"
                   class="img-fluid"
-                  style="max-height: 75vh; cursor: cell;"
+                  style="max-height: 75vh; cursor: cell; margin: auto;"
                   @click="zoomModal = true"
                 />
+
+                <div
+                  style="width: 100%; height: 100px; position: relative; overflow-x: scroll"
+                  class="d-lg-none mt-3"
+                >
+                  <div
+                    style="position: absolute; top:0; left: 0; height: 100px; width: 1000px;  text-align: left;"
+                  >
+                    <div
+                      @click="
+                        gallerySrc = artwork.acf.hero_image.sizes['large']
+                      "
+                      :style="{
+                        'background-image':
+                          'url(' + artwork.acf.hero_image.sizes['large'] + ')'
+                      }"
+                      style="background-position: center center; background-size: cover; width: 100px; height: 100px; display: inline-block; cursor: pointer;"
+                      class="mr-3"
+                    >
+                      &nbsp;
+                    </div>
+                    <div
+                      class="mr-3"
+                      @click="gallerySrc = artwork.sizes['large']"
+                      :style="{
+                        'background-image':
+                          'url(' + artwork.sizes['large'] + ')'
+                      }"
+                      v-for="artwork in artwork.acf.artwork_images"
+                      :key="artwork.ID"
+                      style="background-position: center center; background-size: cover; width: 100px; height: 100px;  cursor: pointer; display: inline-block"
+                    >
+                      &nbsp;
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
