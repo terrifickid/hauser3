@@ -12,7 +12,8 @@
         <div class="container">
           <div class="row" style="min-height: 100vh; ">
             <div class="d-none d-lg-flex col-lg-2 align-items-center">
-              <div style="height: 50vh; overflow-y: scroll;" class="hscroll">
+              <div style="height: 50vh; overflow-y: scroll;" class="hscroll" v-if="artwork.acf.artwork_images.length > 1">
+                
                 <div>
                   <div class="py-2 px-4">
                     <img
