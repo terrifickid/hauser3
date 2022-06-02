@@ -677,8 +677,14 @@
             finibus cursus. Sed bibendum tortor lobortis.
           </p>
           <ul style="font-size: 20px;">
-            <li class="my-5"><img src="tram.svg" class="mr-2" /> By Tram</li>
-            <li class="my-5"><img src="foot.svg" class="mr-2" /> By Foot</li>
+            <li class="my-5">
+              <img src="tram.svg" class="mr-2" /> By Tram
+              <p class="mt-4">{{ master.zurich.by_tram_text }}</p>
+            </li>
+            <li class="my-5">
+              <img src="foot.svg" class="mr-2" /> By Foot
+              <p class="mt-4">{{ master.zurich.by_foot_text }}</p>
+            </li>
           </ul>
         </div>
       </div>
