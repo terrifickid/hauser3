@@ -805,8 +805,8 @@
 
     <div class="container text-center" style="margin-bottom: 12rem;">
       <div class="col-md-10 offset-md-1">
-        <h1 :href="master.zurich.footer_header">Art Basel</h1>
-        <p :href="master.zurich.footer_description" class="norm fminion coff">
+        <h1 :v-html="master.zurich.footer_header">Art Basel</h1>
+        <p :v-html="master.zurich.footer_description" class="norm fminion coff">
           In celebration of Hauser & Wirth’s 30th anniversary, the gallery’s
           booth will feature one of the most iconic art works of the
           20th-century, Louise Bourgeois’ ‘Spider’ (1996). The booth has been
