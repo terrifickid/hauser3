@@ -15,7 +15,7 @@
               <div
                 style="height: 50vh; overflow-y: scroll;"
                 class="hscroll"
-                v-if="artwork.acf.artwork_images.length > 1"
+                v-if="artwork.acf.artwork_images.length > 0"
               >
                 <div>
                   <div class="py-2 px-4">

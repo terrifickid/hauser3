@@ -4,10 +4,10 @@
     <div id="bg" class="bg-subtle-grey">
       <iframe
         style="filter: brightness(0.85);"
-        v-if="master.hero_video"
+        v-if="master.zurich.vimeo_link"
         border="0"
         frameborder="0"
-        :src="master.hero_video + '&transparent=0'"
+        :src="master.zurich.vimeo_link + '&transparent=0'"
         allow="autoplay; fullscreen; picture-in-picture"
         allowfullscreen=""
       ></iframe>
@@ -15,8 +15,13 @@
 
     <div class="container text-center">
       <div class="col-md-10 offset-md-1" style="padding: 6rem 0">
-        <h1>Your Guide to Zürich Exhibitions</h1>
-        <p class="norm fminion coff">
+        <h1 v-html="master.zurich.section_one_heading">
+          Your Guide to Zürich Exhibitions
+        </h1>
+        <p
+          v-html="master.zurich.section_one_description"
+          class="norm fminion coff"
+        >
           'Just a short trip from Basel is the city of Zurich, the place where
           our earliest steps into the art world took place 30 years ago.
           Experience an exceptional range of exhibitions in our three Zurich
@@ -78,7 +83,10 @@
         </a>
       </div>
       <p class="text-center">
-        <a href="#" class="d-block d-md-inline-block bbutton mt-4"
+        <a
+          :href="master.zurich.google_map_link"
+          target="_blank"
+          class="d-block d-md-inline-block bbutton mt-4"
           >open in google maps</a
         >
       </p>
@@ -97,8 +105,13 @@
           class="bgblue rounded num1 text-white size1"
           ><span>01</span></span
         >
-        <h1>Around Bahnhofstrasse</h1>
-        <p class="norm fminion coff">
+        <h1 v-html="master.zurich.section_two_heading">
+          Around Bahnhofstrasse
+        </h1>
+        <p
+          v-html="master.zurich.section_two_description"
+          class="norm fminion coff"
+        >
           Zurich’s Bahnhofstrasse is undoubtably the most famous landmark of the
           historic city center. Centrally located close to Lake Zurich and
           adjacent to the landmark Baur au Lac hotel, visitors of this
@@ -148,7 +161,7 @@
         <div class="col d-flex justify-content-center">
           <div class="max">
             <p class="cblue size1 mb-1">01.</p>
-            <p class="size1 fminion mb-2">
+            <p v-html="master.zurich.i_one_caption" class="size1 fminion mb-2">
               {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Commodo orci aliquam turpis tristique et risus. Fames dignissim
               elementum.
@@ -160,7 +173,7 @@
           <div class="max">
             <img src="1_2.png" class="img-fluid" style="margin-bottom: 1rem;" />
             <p class="cblue size1 mb-1">02.</p>
-            <p class="size1 fminion mb-2">
+            <p v-html="master.zurich.i_two_caption" class="size1 fminion mb-2">
               {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Commodo orci aliquam turpis tristique et risus. Fames dignissim
               elementum.
@@ -184,7 +197,10 @@
           <div class="col d-flex align-items-end">
             <div class="max" style="padding-left: 0;">
               <p class="cblue size1 mb-1">03.</p>
-              <p class="size1 fminion mb-2">
+              <p
+                v-html="master.zurich.i_three_caption"
+                class="size1 fminion mb-2"
+              >
                 {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing
                 elit. Commodo orci aliquam turpis tristique et risus. Fames
                 dignissim elementum.
@@ -200,7 +216,7 @@
         <div class="col" style="border-right: 1px solid #E9E9E9">
           <div class="max">
             <p class="cblue size1 mb-1">04.</p>
-            <p class="size1 fminion mb-4">
+            <p v-html="master.zurich.i_four_caption" class="size1 fminion mb-4">
               {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Commodo orci aliquam turpis tristique et risus. Fames dignissim
               elementum.
@@ -214,7 +230,7 @@
 
             <div style="padding: 1rem 0 0rem 10vw;">
               <p class="cblue size1 mb-1 mt-2">05.</p>
-              <p class="size1 fminion">
+              <p v-html="master.zurich.i_five_caption" class="size1 fminion">
                 {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing
                 elit. Commodo orci aliquam turpis tristique et risus. Fames
                 dignissim elementum.
@@ -239,7 +255,7 @@
       <div>
         <img src="1_1.png" class="mb-2" />
         <p class="cblue size1 mb-1">01.</p>
-        <p class="size1 fminion mb-2">
+        <p v-html="master.zurich.i_one_caption" class="size1 fminion mb-2">
           {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           Commodo orci aliquam turpis tristique et risus. Fames dignissim
           elementum.
@@ -248,7 +264,7 @@
       <div>
         <img src="1_2.png" class="mb-2" />
         <p class="cblue size1 mb-1">02.</p>
-        <p class="size1 fminion mb-2">
+        <p v-html="master.zurich.i_two_caption" class="size1 fminion mb-2">
           {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           Commodo orci aliquam turpis tristique et risus. Fames dignissim
           elementum.
@@ -257,7 +273,7 @@
       <div>
         <img src="1_3.png" class="mb-2" />
         <p class="cblue size1 mb-1">03.</p>
-        <p class="size1 fminion mb-2">
+        <p v-html="master.zurich.i_three_caption" class="size1 fminion mb-2">
           {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           Commodo orci aliquam turpis tristique et risus. Fames dignissim
           elementum.
@@ -266,7 +282,7 @@
       <div>
         <img src="1_4.png" class="mb-2" />
         <p class="cblue size1 mb-1">04.</p>
-        <p class="size1 fminion mb-4">
+        <p v-html="master.zurich.i_four_caption" class="size1 fminion mb-4">
           {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           Commodo orci aliquam turpis tristique et risus. Fames dignissim
           elementum.
@@ -275,7 +291,7 @@
       <div>
         <img src="1_5.png" class="mb-2" />
         <p class="cblue size1 mb-1 mt-2">05.</p>
-        <p class="size1 fminion">
+        <p v-html="master.zurich.i_five_caption" class="size1 fminion">
           {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           Commodo orci aliquam turpis tristique et risus. Fames dignissim
           elementum.
@@ -294,8 +310,11 @@
           class="bgblue rounded num1 text-white size1"
           ><span>02</span></span
         >
-        <h1>Around Rämistrasse</h1>
-        <p class="norm fminion coff">
+        <h1 v-html="master.zurich.section_three_heading">Around Rämistrasse</h1>
+        <p
+          v-html="master.zurich.section_three_description"
+          class="norm fminion coff"
+        >
           The headquarters of Hauser & Wirth Publishers opened in 2019 in the
           historic building that once housed the Swiss publisher Emil and Emmie
           Oprecht. Enjoy a range of art books from the gallery’s imprint
@@ -344,7 +363,7 @@
       <div>
         <img src="2_2.jpg" class="mb-2" />
         <p class="cblue size1 mb-1">01.</p>
-        <p class="size1 fminion mb-2">
+        <p v-html="master.zurich.m_one_caption" class="size1 fminion mb-2">
           {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           Commodo orci aliquam turpis tristique et risus. Fames dignissim
           elementum.
@@ -353,7 +372,7 @@
       <div>
         <img src="2_3.jpg" class="mb-2" />
         <p class="cblue size1 mb-1">02.</p>
-        <p class="size1 fminion mb-2">
+        <p v-html="master.zurich.m_two_caption" class="size1 fminion mb-2">
           {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           Commodo orci aliquam turpis tristique et risus. Fames dignissim
           elementum.
@@ -362,7 +381,7 @@
       <div>
         <img src="2_4.jpg" class="mb-2" />
         <p class="cblue size1 mb-1">03.</p>
-        <p class="size1 fminion mb-2">
+        <p v-html="master.zurich.m_three_caption" class="size1 fminion mb-2">
           {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           Commodo orci aliquam turpis tristique et risus. Fames dignissim
           elementum.
@@ -371,7 +390,7 @@
       <div>
         <img src="2_5.jpg" class="mb-2" />
         <p class="cblue size1 mb-1">04.</p>
-        <p class="size1 fminion mb-4">
+        <p v-html="master.zurich.m_four_caption" class="size1 fminion mb-4">
           {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           Commodo orci aliquam turpis tristique et risus. Fames dignissim
           elementum.
@@ -380,7 +399,7 @@
       <div>
         <img src="2_6.jpg" class="mb-2" />
         <p class="cblue size1 mb-1 mt-2">05.</p>
-        <p class="size1 fminion">
+        <p v-html="master.zurich.m_five_caption" class="size1 fminion">
           {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           Commodo orci aliquam turpis tristique et risus. Fames dignissim
           elementum.
@@ -393,7 +412,7 @@
         <div class="col d-flex justify-content-center">
           <div class="max">
             <p class="cblue size1 mb-1">01.</p>
-            <p class="size1 fminion mb-2">
+            <p v-html="master.zurich.m_one_caption" class="size1 fminion mb-2">
               {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Commodo orci aliquam turpis tristique et risus. Fames dignissim
               elementum.
@@ -406,7 +425,10 @@
             <img src="2_3.jpg" class="img-fluid" style="margin-bottom: 1rem;" />
             <div style="padding-left: 10vw">
               <p class="cblue size1 mb-1">02.</p>
-              <p class="size1 fminion mb-2">
+              <p
+                v-html="master.zurich.m_two_caption"
+                class="size1 fminion mb-2"
+              >
                 {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing
                 elit. Commodo orci aliquam turpis tristique et risus. Fames
                 dignissim elementum.
@@ -425,7 +447,10 @@
         <div class="col-7" style="border-right: 1px solid #E9E9E9">
           <div class="max">
             <p class="cblue size1 mb-1">03.</p>
-            <p class="size1 fminion mb-4">
+            <p
+              v-html="master.zurich.m_three_caption"
+              class="size1 fminion mb-4"
+            >
               {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Commodo orci aliquam turpis tristique et risus. Fames dignissim
               elementum.
@@ -439,7 +464,7 @@
 
             <div style="padding: 1rem 0 0rem 0vw;">
               <p class="cblue size1 mb-1 mt-2">04.</p>
-              <p class="size1 fminion">
+              <p v-html="master.zurich.m_four_caption" class="size1 fminion">
                 {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing
                 elit. Commodo orci aliquam turpis tristique et risus. Fames
                 dignissim elementum.
@@ -458,8 +483,12 @@
         <div class="row">
           <div class="col-10 offset-1">
             <div class="max">
-              <p class="cblue size1 mb-1">04.</p>
-              <p class="size1 fminion mb-4" style="max-width: 28rem;">
+              <p class="cblue size1 mb-1">05.</p>
+              <p
+                v-html="master.zurich.m_five_caption"
+                class="size1 fminion mb-4"
+                style="max-width: 28rem;"
+              >
                 The birth place of Dada featured regular contributions from
                 Sophie Taeuber-Arp and Hans Arp.
               </p>
@@ -485,8 +514,13 @@
           class="bgblue rounded num1 text-white size1"
           ><span>03</span></span
         >
-        <h1>Around Limmatstrasse</h1>
-        <p class="norm fminion coff">
+        <h1 v-html="master.zurich.section_four_heading">
+          Around Limmatstrasse
+        </h1>
+        <p
+          v-html="master.zurich.section_four_description"
+          class="norm fminion coff"
+        >
           Formerly a brewery, the Löwenbräu building is a unique art center in
           the Zürich West district. Where beer was once brewed, there are now
           museums, gallery, publishers, cultural institutions and a restaurant.
@@ -556,7 +590,7 @@
         <div class="col d-flex justify-content-center">
           <div class="max">
             <p class="cblue size1 mb-1">01.</p>
-            <p class="size1 fminion mb-2">
+            <p v-html="master.zurich.b_one_caption" class="size1 fminion mb-2">
               {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Commodo orci aliquam turpis tristique et risus. Fames dignissim
               elementum.
@@ -569,7 +603,10 @@
             <img src="4_2.jpg" class="img-fluid" style="margin-bottom: 1rem;" />
             <div style="padding-left: 10vw">
               <p class="cblue size1 mb-1">02.</p>
-              <p class="size1 fminion mb-2">
+              <p
+                v-html="master.zurich.b_two_caption"
+                class="size1 fminion mb-2"
+              >
                 {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing
                 elit. Commodo orci aliquam turpis tristique et risus. Fames
                 dignissim elementum.
@@ -588,7 +625,10 @@
         <div class="col-7" style="border-right: 1px solid #E9E9E9">
           <div class="max">
             <p class="cblue size1 mb-1">03.</p>
-            <p class="size1 fminion mb-4">
+            <p
+              v-html="master.zurich.b_three_caption"
+              class="size1 fminion mb-4"
+            >
               {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Commodo orci aliquam turpis tristique et risus. Fames dignissim
               elementum.
@@ -605,7 +645,7 @@
 
             <div style="padding: 1rem 0 0rem 0vw;">
               <p class="cblue size1 mb-1 mt-2">04.</p>
-              <p class="size1 fminion">
+              <p v-html="master.zurich.b_four_caption" class="size1 fminion">
                 {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing
                 elit. Commodo orci aliquam turpis tristique et risus. Fames
                 dignissim elementum.
@@ -630,7 +670,7 @@
       <div>
         <img src="4_1.jpg" class="mb-2" />
         <p class="cblue size1 mb-1">01.</p>
-        <p class="size1 fminion mb-2">
+        <p v-html="master.zurich.b_one_caption" class="size1 fminion mb-2">
           {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           Commodo orci aliquam turpis tristique et risus. Fames dignissim
           elementum.
@@ -639,7 +679,7 @@
       <div>
         <img src="4_2.jpg" class="mb-2" />
         <p class="cblue size1 mb-1">02.</p>
-        <p class="size1 fminion mb-2">
+        <p v-html="master.zurich.b_two_caption" class="size1 fminion mb-2">
           {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           Commodo orci aliquam turpis tristique et risus. Fames dignissim
           elementum.
@@ -648,7 +688,7 @@
       <div>
         <img src="4_3.jpg" class="mb-2" />
         <p class="cblue size1 mb-1">03.</p>
-        <p class="size1 fminion mb-2">
+        <p v-html="master.zurich.b_three_caption" class="size1 fminion mb-2">
           {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           Commodo orci aliquam turpis tristique et risus. Fames dignissim
           elementum.
@@ -657,7 +697,7 @@
       <div>
         <img src="4_4.jpg" class="mb-2" />
         <p class="cblue size1 mb-1">04.</p>
-        <p class="size1 fminion mb-4">
+        <p v-html="master.zurich.b_four_caption" class="size1 fminion mb-4">
           {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           Commodo orci aliquam turpis tristique et risus. Fames dignissim
           elementum.
@@ -704,7 +744,7 @@
             <i>Camille Henrot</i>
           </h1>
           <a
-            href="#"
+            :href="master.zurich.cta_link"
             style="color: white; border: 2px solid white; margin-top: 3rem; display: inline-block; padding: 1rem 6rem; text-transform: uppercase; font-size: 14px; border-radius: 0.25rem;"
             >Learn More</a
           >
@@ -715,9 +755,9 @@
 
     <div id="diaries" class="hero-pad">
       <div style="padding: 0 10vw">
-        <div v-if="master.video" class="row d-flex align-items-top">
+        <div v-if="master.zurich.video" class="row d-flex align-items-top">
           <div class="col-12 col-md-10">
-            <template v-for="(video, index) in master.video">
+            <template v-for="(video, index) in master.zurich.video">
               <div
                 v-ani="{ class: 'scale-up-center', delay: 0 }"
                 v-show="selVid == index"
@@ -765,8 +805,8 @@
 
     <div class="container text-center" style="margin-bottom: 12rem;">
       <div class="col-md-10 offset-md-1">
-        <h1>Art Basel</h1>
-        <p class="norm fminion coff">
+        <h1 :href="master.zurich.footer_header">Art Basel</h1>
+        <p :href="master.zurich.footer_description" class="norm fminion coff">
           In celebration of Hauser & Wirth’s 30th anniversary, the gallery’s
           booth will feature one of the most iconic art works of the
           20th-century, Louise Bourgeois’ ‘Spider’ (1996). The booth has been
