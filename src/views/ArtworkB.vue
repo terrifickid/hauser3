@@ -62,7 +62,8 @@
                   class="d-lg-none mt-3"
                 >
                   <div
-                    style="position: absolute; top:0; left: 0; height: 100px; width: 1000px;  text-align: left;"
+                    :style="{ width: scrollWidth + 'px' }"
+                    style="position: absolute; top:0; left: 0; height: 100px; text-align: left;"
                   >
                     <div
                       @click="
@@ -598,6 +599,9 @@ export default {
     }
   },
   computed: {
+    scrollWidth() {
+      return 115 * (this.artwork.acf.artwork_images.length + 1);
+    },
     galleryImg() {
       if (!this.artwork) return "";
       if (!this.gallerySrc) return this.artwork.acf.hero_image.sizes["large"];
