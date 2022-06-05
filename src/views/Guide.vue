@@ -1,7 +1,17 @@
 <template>
   <div class="guide">
     <Header :mode="1" :below="-1"></Header>
-    <div style="height: 100vh; background: blue;"></div>
+    <div style="background: black; height: 100vh;" class=" relative">
+      <video
+        style="width: 100vw; height: 100vh; margin:0; padding:0;  object-fit: cover;"
+        autoplay
+        loop
+        muted
+        playsinline
+      >
+        <source src="zurich.mp4" type="video/mp4" />
+      </video>
+    </div>
     <div class="container text-center">
       <div class="col-md-10 offset-md-1" style="padding: 6rem 0">
         <h1 v-html="master.zurich.section_one_heading">

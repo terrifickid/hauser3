@@ -9,23 +9,34 @@
     <Header ref="heady" :mode="0" :below="10"></Header>
 
     <div id="hauser_home">
-      <div
-        style="background: blue; height: 100vh;"
-        class="d-flex align-items-center justify-content-center"
-      >
-        <div>
-          <h2
-            v-if="master.heading_1"
-            style="font-size: 16px; text-align: center;"
-            class="fnormal mb-3"
-            v-html="master.heading_1"
-          ></h2>
-          <h1
-            v-if="master.heading_2"
-            style="font-size: 56px; margin-bottom: 0.5rem; text-align: center;"
-            v-html="master.heading_2"
-          ></h1>
+      <div style="background: black; height: 100vh;" class=" relative">
+        <div
+          style="position: absolute; top: 0; left:0; right:0; bottom:0; right:0; z-index:2; color: white;"
+          class="d-flex align-items-center justify-content-center"
+        >
+          <div>
+            <h2
+              v-if="master.heading_1"
+              style="font-size: 16px; text-align: center; "
+              class="fnormal mb-3"
+              v-html="master.heading_1"
+            ></h2>
+            <h1
+              v-if="master.heading_2"
+              style="font-size: 56px; margin-bottom: 0.5rem; text-align: center;"
+              v-html="master.heading_2"
+            ></h1>
+          </div>
         </div>
+        <video
+          style="width: 100vw; height: 100vh; margin:0; padding:0;  object-fit: cover; filter: brightness(0.75);"
+          autoplay
+          loop
+          muted
+          playsinline
+        >
+          <source src="basel.mp4" type="video/mp4" />
+        </video>
       </div>
       <div class="container">
         <div
