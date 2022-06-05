@@ -6,7 +6,7 @@
         class="row mb-4 d-flex align-items-top"
       >
         <div class="col-6 col-lg-9 col-xl-10">
-          <h4 style="font-size: 40px;">Exhibiting artworks</h4>
+          <h4 style="font-size: 40px;">Artworks</h4>
         </div>
         <div class="col-6 d-lg-none text-right">
           <a @click="filtersModal = !filtersModal"

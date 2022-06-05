@@ -1,18 +1,7 @@
 <template>
   <div class="guide">
     <Header :mode="1" :below="-1"></Header>
-    <div id="bg" class="bg-subtle-grey">
-      <iframe
-        style="filter: brightness(0.85);"
-        v-if="master.zurich.vimeo_link"
-        border="0"
-        frameborder="0"
-        :src="master.zurich.vimeo_link + '&transparent=0'"
-        allow="autoplay; fullscreen; picture-in-picture"
-        allowfullscreen=""
-      ></iframe>
-    </div>
-
+    <div style="height: 100vh; background: blue;"></div>
     <div class="container text-center">
       <div class="col-md-10 offset-md-1" style="padding: 6rem 0">
         <h1 v-html="master.zurich.section_one_heading">
@@ -93,7 +82,9 @@
     </div>
 
     <hr style="margin: 6rem;" />
-    <img class="img-fluid" src="cab.jpg" />
+    <div
+      style="background: url('Bahnhostrasse.jpg'); height: 60vh; background-size: cover; background-position: top center;"
+    ></div>
     <div class="container">
       <div
         style="padding: 6rem 0; text-align: center"
@@ -131,14 +122,20 @@
     <div class="row no-gutters">
       <div class="col-12 col-sm pr-4 pr-sm-0">
         <img class="img-fluid" src="image124.png" />
-        <p class="d-none d-sm-block caption text-center">
+        <p
+          class="d-none d-sm-block caption text-center"
+          v-html="master.zurich.infinity_caption"
+        >
           {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         </p>
       </div>
       <div class="col-12 col-sm pl-4 pl-sm-0">
         <img class="img-fluid mt-sm-4 mt-md-5" src="image125.png" />
       </div>
-      <div class="col-12 d-sm-none caption mt-1 px-4">
+      <div
+        class="col-12 d-sm-none caption mt-1 px-4"
+        v-html="master.zurich.infinity_caption"
+      >
         {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       </div>
     </div>
@@ -299,8 +296,12 @@
       </div>
     </carousel>
 
-    <img src="Ramistrasse.jpg" class="img-fluid" style="margin-top: 4rem;" />
-    <div class="container" id="ramistrasse">
+    <div
+      style="margin-top: 4rem; background: url('Ramistrasse.jpg'); height: 60vh; background-size: cover; background-position: top center;"
+    ></div>
+
+    <img src="" class="img-fluid" style="" />
+    <div class="contaier" id="ramistrasse">
       <div
         style="padding: 6rem 0; text-align: center"
         class="col-md-10 offset-md-1"
@@ -334,7 +335,10 @@
     <div class="container">
       <div class="col-lg-8 offset-lg-2">
         <img src="2_1.jpg" style="width: 100%" />
-        <p class="size1 fminion mt-2 text-center">
+        <p
+          class="size1 fminion mt-2 text-center"
+          v-html="master.zurich.marcel_caption"
+        >
           {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         </p>
       </div>
@@ -379,7 +383,7 @@
         </p>
       </div>
       <div>
-        <img src="2_4.jpg" class="mb-2" />
+        <img src="rist.jpeg" class="mb-2" />
         <p class="cblue size1 mb-1">03.</p>
         <p v-html="master.zurich.m_three_caption" class="size1 fminion mb-2">
           {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -455,7 +459,7 @@
               Commodo orci aliquam turpis tristique et risus. Fames dignissim
               elementum.
             </p>
-            <img src="2_4.jpg" class="img-fluid" />
+            <img src="rist.jpeg" class="img-fluid" />
           </div>
         </div>
         <div class="col d-flex align-items-center">
@@ -499,11 +503,10 @@
       </div>
     </div>
 
-    <img
-      src="Limatstrasse.jpg"
-      class="img-fluid"
-      style="margin-top: 4rem; background-size: cover; background-position: center center;"
-    />
+    <div
+      style="margin-top: 4rem; background: url('Limatstrasse.jpg'); height: 60vh; background-size: cover; background-position: center center;"
+    ></div>
+
     <div class="container" id="limmatstrasse">
       <div
         style="padding: 6rem 0; text-align: center"
@@ -540,14 +543,18 @@
 
     <div>
       <div class="row no-gutters">
-        <div class="col-5">
-          <div style="margin-left: 6vw">
+        <div class="col-md-5 ml-4 ml-md-0">
+          <div>
             <img src="3_1.jpg" style="width: 100%; margin-top: 19vw;" />
           </div>
         </div>
-        <div class="col">
+        <div class="col-md mr-4 mr-md-0">
           <img src="3_2.jpg" style="width: 100%" />
-          <p class="size1 fminion text-center" style="padding: 0.5rem;">
+          <p
+            class="size1 fminion text-md-center"
+            style="padding: 0.5rem;"
+            v-html="master.zurich.bowling_caption"
+          >
             {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           </p>
         </div>
@@ -563,11 +570,15 @@
       </p>
     </div>
 
-    <div class="container">
+    <div class="container d-md-block">
       <div class="row no-gutters">
         <div class="col-7">
           <img src="3_3.jpg" style="width: 100%; margin-top: 7vw;" />
-          <p class="size1 fminion" style="padding: 0.5rem 0">
+          <p
+            class="size1 fminion"
+            style="padding: 0.5rem 0"
+            v-html="master.zurich.whitten_caption"
+          >
             &copy;2022 Jack Whitten, Jack Whitten Estate, Hauser & Wirth, Jeff
             McLane, John Berens
           </p>
@@ -708,8 +719,13 @@
     <div style="background: #F8F8F8; padding: 5rem 0;">
       <div class="container" id="zurich">
         <div class="col-10 offset-1">
-          <h2 class="size3">Getting Around</h2>
-          <p class="size4 fminion">
+          <h2 class="size3" v-html="master.zurich.directions_title">
+            Getting Around
+          </h2>
+          <p
+            class="size4 fminion"
+            v-html="master.zurich.directions_description"
+          >
             {Short intro - 140 - 280 characters} Lorem ipsum dolor sit amet,
             consectetur adipiscing elit. Vivamus ullamcorper maximus mauris, in
             accumsan velit pharetra scelerisque. Nunc tempus tincidunt nunc
@@ -719,11 +735,11 @@
           <ul style="font-size: 20px;">
             <li class="my-5">
               <img src="tram.svg" class="mr-2" /> By Tram
-              <p class="mt-4">{{ master.zurich.by_tram_text }}</p>
+              <div class="mt-4" v-html="master.zurich.by_tram_text"></div>
             </li>
             <li class="my-5">
               <img src="foot.svg" class="mr-2" /> By Foot
-              <p class="mt-4">{{ master.zurich.by_foot_text }}</p>
+              <div class="mt-4" v-html="master.zurich.by_foot_text"></div>
             </li>
           </ul>
         </div>

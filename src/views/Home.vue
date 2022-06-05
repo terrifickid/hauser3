@@ -10,116 +10,23 @@
 
     <div id="hauser_home">
       <div
-        ref="videoModalRef"
-        @keydown.esc="videoModal = false"
-        v-bind:class="{ active: videoModal }"
-        class="fullscreen-modal menu-modal"
+        style="background: blue; height: 100vh;"
+        class="d-flex align-items-center justify-content-center"
       >
-        <div class="container">
-          <div
-            class="row d-flex align-items-center text-center"
-            style="position: relative; height: 100vh;"
-          >
-            <div style="position: absolute; right:0; top:2rem;">
-              <div class="col">
-                <a @click="videoModal = !videoModal">Close</a>
-              </div>
-            </div>
-            <div
-              class="col-12 col-md-10 offset-md-1"
-              style="position: relative;"
-            >
-              <div class="embed-responsive embed-responsive-16by9">
-                <iframe
-                  ref="frm"
-                  v-if="videoModal"
-                  class="embed-responsive-item"
-                  :src="master.link_url + '&transparent=0'"
-                  allowfullscreen
-                ></iframe>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="bg" class="bg-subtle-grey">
-        <div
-          v-for="(image, index) in master.hero_images"
-          :key="index"
-          v-show="index == sliderKey"
-          v-bind:style="{
-            'background-image': 'url(' + image.hero_image.url + ')'
-          }"
-          style="position: absolute; top: 0; left: 0; right:0; bottom: 0; background-size: cover; background-position: center center;"
-        ></div>
-
-        <iframe
-          style="filter: brightness(0.85);"
-          v-if="master.hero_video"
-          border="0"
-          frameborder="0"
-          :src="master.hero_video + '&transparent=0'"
-          allow="autoplay; fullscreen; picture-in-picture"
-          allowfullscreen=""
-        ></iframe>
-
-        <div
-          class="d-flex align-items-center"
-          style="position: relative; z-index: 200; padding: 25vh 0 25vh 0; "
-        >
-          <div class="container">
-            <div
-              style=" padding: 40px 50px 40px 50px"
-              class="col-12 col-lg-8 offset-lg-2"
-              v-ani="{ class: 'fade-in-bottom', delay: 0 }"
-            >
-              <h2
-                v-if="master.heading_1"
-                style="font-size: 16px; text-align: center;"
-                class="fnormal mb-3"
-                v-html="master.heading_1"
-              ></h2>
-              <h1
-                v-if="master.heading_2"
-                style="font-size: 56px; margin-bottom: 0.5rem; text-align: center;"
-                v-html="master.heading_2"
-              ></h1>
-
-              <!--
+        <div>
           <h2
-            class="d-inline-block mr-3"
-            v-for="(link, index) in master.hauser_links"
-            :key="index"
-            v-show="master.hauser_links.length"
-          >
-            <a v-if="link.type == 'Video'" @click="videoModalOpen()"
-              ><b-icon class="mr-1" icon="play-circle" /> {{ link.title }}</a
-            >
-            <a
-              v-if="link.type == 'Anchor'"
-              class="btn btn-md btn-outline-light"
-              @click="scrollTo(link.link)"
-              >{{ link.title }}</a
-            >
-            <a
-              v-if="link.type == 'Collection'"
-              class="btn btn-md btn-outline-light"
-              @click="scrollToCollection(link.link)"
-              >{{ link.title }}</a
-            >
-          </h2>
-        -->
-            </div>
-            <!-- end hauser-hero -->
-          </div>
+            v-if="master.heading_1"
+            style="font-size: 16px; text-align: center;"
+            class="fnormal mb-3"
+            v-html="master.heading_1"
+          ></h2>
+          <h1
+            v-if="master.heading_2"
+            style="font-size: 56px; margin-bottom: 0.5rem; text-align: center;"
+            v-html="master.heading_2"
+          ></h1>
         </div>
       </div>
-      <!-- end bg -->
-      <div
-        style="border: 0px solid red; position: relative; "
-        ref="breakPoint"
-      ></div>
       <div class="container">
         <div
           style=" background: white; padding: 40px 50px 40px 50px"
