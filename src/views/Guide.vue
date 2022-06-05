@@ -92,9 +92,7 @@
     </div>
 
     <hr style="margin: 6rem;" />
-    <div
-      style="background: url('Bahnhostrasse.jpg'); height: 60vh; background-size: cover; background-position: top center;"
-    ></div>
+    <img src="ban.jpg" class="img-fluid" />
     <div class="container">
       <div
         style="padding: 6rem 0; text-align: center"
@@ -306,11 +304,8 @@
       </div>
     </carousel>
 
-    <div
-      style="margin-top: 4rem; background: url('Ramistrasse.jpg'); height: 60vh; background-size: cover; background-position: top center;"
-    ></div>
+    <img src="ram.jpg" class="img-fluid mt-5" />
 
-    <img src="" class="img-fluid" style="" />
     <div class="contaier" id="ramistrasse">
       <div
         style="padding: 6rem 0; text-align: center"
@@ -513,9 +508,7 @@
       </div>
     </div>
 
-    <div
-      style="margin-top: 4rem; background: url('Limatstrasse.jpg'); height: 60vh; background-size: cover; background-position: center center;"
-    ></div>
+    <img src="lim.jpg" class="img-fluid mt-5" />
 
     <div class="container" id="limmatstrasse">
       <div
