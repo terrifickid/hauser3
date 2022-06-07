@@ -1,5 +1,5 @@
 <template>
-  <div id="allartworks" class="hero-pad">
+  <div id="allartworks" class="mt-5">
     <div class="container">
       <div
         v-ani="{ class: 'fade-in-bottom', delay: 0 }"

@@ -33,12 +33,16 @@
 
     <div class="container">
       <div style="padding: 0 0 4rem 0">
-        <img src="Map.png" class="img-fluid d-none d-lg-block" />
+        <img src="Zurich-Map-Desktop.png" class="img-fluid d-none d-lg-block" />
         <img
           src="map-tablet.jpg"
           class="img-fluid d-none d-md-block d-lg-none"
         />
-        <img src="map-mobile.jpg" class="img-fluid d-md-none" />
+        <img
+          src="Zurich-Map-Mobile.png"
+          style="width: 100%"
+          class="img-fluid d-md-none"
+        />
       </div>
     </div>
 
@@ -51,7 +55,7 @@
         >
           <span class="bgblue rounded num1 text-white size1"
             ><span>01</span></span
-          >Bahnhofstrasse <img src="back.svg" class="ml-3 justify-self-end" />
+          >Bahnhofstrasse 1 <img src="back.svg" class="ml-3 justify-self-end" />
         </a>
         <a
           href="#ramistrasse"
@@ -60,7 +64,7 @@
         >
           <span class="bgblue rounded num1 text-white size1"
             ><span>02</span></span
-          >Rämistrasse <img src="back.svg" class="ml-3" />
+          >Hauser & Wirth Publishers <img src="back.svg" class="ml-3" />
         </a>
         <a
           href="#limmatstrasse"
@@ -78,7 +82,7 @@
         >
           <span class="bgblue rounded num1 text-white size1"
             ><span>04</span></span
-          >Zürich Main Station <img src="back.svg" class="ml-3" />
+          >Zurich Main Station <img src="back.svg" class="ml-3" />
         </a>
       </div>
       <p class="text-center">
@@ -150,14 +154,14 @@
 
     <div class="container" style="margin-top:6rem;">
       <h1 class="text-center fminion size0">
-        Facing Infinity.<br />
+        Facing Infinity<br />
         <i
           >Alberto Giacometti<br />
           & Pablo Picasso</i
         >
       </h1>
       <p class="text-center size2">
-        Zürich, Bahnhofstrasse 1
+        Zurich, Bahnhofstrasse 1
       </p>
     </div>
 
@@ -327,7 +331,7 @@
           alongside the exhibition ‘About, by or of Marcel Duchamp,’ set up by
           fluid editions. At the bottom of Rämistrasse is the legendary ODEON,
           the perfect cafe no matter what time of day. And don’t miss a visit to
-          the internationally renowned Kunsthaus Zürich and its newly opened
+          the internationally renowned Kunsthaus Zurich and its newly opened
           extension, designed by David Chipperfield.
         </p>
       </div>
@@ -406,7 +410,7 @@
         </p>
       </div>
       <div>
-        <img src="2_6.jpg" class="mb-2" />
+        <img src="voltaire.jpg" class="mb-2" />
         <p class="cblue size1 mb-1 mt-2">05.</p>
         <p v-html="master.zurich.m_five_caption" class="size1 fminion">
           {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -501,7 +505,7 @@
                 The birth place of Dada featured regular contributions from
                 Sophie Taeuber-Arp and Hans Arp.
               </p>
-              <img src="2_6.jpg" style="width: 100%" />
+              <img src="voltaire.jpg" style="width: 100%" />
             </div>
           </div>
         </div>
@@ -528,13 +532,13 @@
           class="norm fminion coff"
         >
           Formerly a brewery, the Löwenbräu building is a unique art center in
-          the Zürich West district. Where beer was once brewed, there are now
+          the Zurich West district. Where beer was once brewed, there are now
           museums, gallery, publishers, cultural institutions and a restaurant.
-          In 1996 Hauser & Wirth Zürich, designed by Selldorf Architects, was
+          In 1996 Hauser & Wirth Zurich, designed by Selldorf Architects, was
           launched in this unique setting. Don’t miss our exhibitions of new
           works by British artist Sir Frank Bowling and early works from the
           1960s by Jack Whitten. While at Löwenbräu Kunst, make sure not to miss
-          our neighbors including Kunsthalle Zürich and Migros Museum or
+          our neighbors including Kunsthalle Zurich and Migros Museum or
           Contemporary Art.
         </p>
       </div>
@@ -566,10 +570,10 @@
 
     <div class="container" style="margin-top:6rem; margin-bottom: 6rem;">
       <h1 class="text-center fminion size0">
-        Sir Frank Bowling<br /><i> Penumbral Light</i>
+        Frank Bowling<br /><i> Penumbral Light</i>
       </h1>
       <p class="text-center size2">
-        Zürich, Limmatstrasse
+        Zurich, Limmatstrasse
       </p>
     </div>
 
@@ -595,7 +599,7 @@
         Jack Whitten
       </h1>
       <p class="text-center size2">
-        Zürich, Limmatstrasse
+        Zurich, Limmatstrasse
       </p>
     </div>
 
@@ -726,7 +730,7 @@
             Getting Around
           </h2>
           <p
-            class="size4 fminion"
+            class="size5 fminion"
             v-html="master.zurich.directions_description"
           >
             {Short intro - 140 - 280 characters} Lorem ipsum dolor sit amet,
@@ -735,7 +739,7 @@
             vitae pulvinar. Fusce luctus sapien leo, vitae efficitur orci
             finibus cursus. Sed bibendum tortor lobortis.
           </p>
-          <ul style="font-size: 20px;">
+          <ul class="size4">
             <li class="my-5">
               <img src="tram.svg" class="mr-2" /> By Tram
               <div class="mt-4" v-html="master.zurich.by_tram_text"></div>
@@ -757,7 +761,7 @@
           style="padding: 10vw; background: url('park.jpg'); background-position: center center; background-size: cover;"
         >
           <div style="height: 6rem;"></div>
-          <p>13 JUNE – 17 JULY, 2022</p>
+          <p>13 JUNE – 17 JULY 2022</p>
           <h1 class="fminion">
             ‘Art in the Park’ at Baur au Lac presents
             <i>Camille Henrot</i>
@@ -983,6 +987,10 @@ p.norm {
   margin-right: 1rem;
 }
 
+.size5 {
+  font-size: 20px;
+}
+
 .size0 {
   font-size: 39px;
 }
@@ -1014,9 +1022,11 @@ p.norm {
     font-size: 48px;
   }
 
-  .size4 {
+  .size4,
+  .size5 {
     font-size: 25px;
   }
+
   .num1 {
     display: flex;
     align-items: center;

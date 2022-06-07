@@ -3,12 +3,12 @@ git commit -a -m autocommit
 git push origin basel
 npm run build
 cd ~/hauser-and-wirth
-git checkout dev-basel
+git checkout master
 rm -rf ~/hauser-and-wirth/*.js
 cp -rf ~/hauser3/dist/* ~/hauser-and-wirth
 rm ~/hauser-and-wirth/index.html
 cp ~/hauser3/dist/index.html ~/hauser-and-wirth/wp-content/themes/hauser/index.php
 git add -A
 git commit -a -m autodeploy
-git pull origin dev-basel
-git push origin dev-basel
+git pull origin master
+git push origin master

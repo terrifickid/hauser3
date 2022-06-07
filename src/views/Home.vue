@@ -46,7 +46,7 @@
         >
           <h3
             class="fnormal"
-            style="font-size: 16px; line-height: 23px;  margin-bottom: 2rem;"
+            style="font-size: 16px; line-height: 23px;  margin-bottom: 0rem;"
             v-if="master.heading_3"
             v-html="master.heading_3"
           ></h3>
