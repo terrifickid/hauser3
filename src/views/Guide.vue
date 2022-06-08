@@ -19,7 +19,7 @@
         </h1>
         <p
           v-html="master.zurich.section_one_description"
-          class="norm fminion coff"
+          class="norm fminion coff p-4"
         >
           'Just a short trip from Basel is the city of Zurich, the place where
           our earliest steps into the art world took place 30 years ago.
@@ -51,7 +51,7 @@
         <a
           href="#bahnhofstrasse"
           style="color: black"
-          class="col-sm-6 col-lg-4 col-xl d-flex align-items-center size2 mb-4"
+          class="col-md-6 d-flex align-items-center size2 mb-4"
         >
           <span class="bgblue rounded num1 text-white size1"
             ><span>01</span></span
@@ -60,7 +60,7 @@
         <a
           href="#ramistrasse"
           style="color: black"
-          class="col-sm-6 col-lg-4 col-xl d-flex align-items-center size2 mb-4"
+          class="col-md-6 d-flex align-items-center size2 mb-4"
         >
           <span class="bgblue rounded num1 text-white size1"
             ><span>02</span></span
@@ -69,7 +69,7 @@
         <a
           href="#limmatstrasse"
           style="color: black"
-          class="col-sm-6 col-lg-4 col-xl d-flex align-items-center size2 mb-4"
+          class="col-md-6  d-flex align-items-center size2 mb-4"
         >
           <span class="bgblue rounded num1 text-white size1"
             ><span>03</span></span
@@ -78,7 +78,7 @@
         <a
           href="#zurich"
           style="color: black"
-          class="col-sm-6 col-lg-4 col-xl d-flex align-items-center size2 mb-4"
+          class="col-md-6  d-flex align-items-center size2 mb-4"
         >
           <span class="bgblue rounded num1 text-white size1"
             ><span>04</span></span
@@ -113,7 +113,7 @@
         </h1>
         <p
           v-html="master.zurich.section_two_description"
-          class="norm fminion coff"
+          class="norm fminion coff p-4"
         >
           Zurich’s Bahnhofstrasse is undoubtably the most famous landmark of the
           historic city center. Centrally located close to Lake Zurich and
@@ -135,7 +135,7 @@
       <div class="col-12 col-sm pr-4 pr-sm-0">
         <img class="img-fluid" src="image124.png" />
         <p
-          class="d-none d-sm-block caption text-center"
+          class="d-none d-sm-block caption size1 fminion p-4"
           v-html="master.zurich.infinity_caption"
         >
           {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -145,7 +145,7 @@
         <img class="img-fluid mt-sm-4 mt-md-5" src="image125.png" />
       </div>
       <div
-        class="col-12 d-sm-none caption mt-1 px-4"
+        class="col-12 d-sm-none caption size1 fminion mt-1 px-4"
         v-html="master.zurich.infinity_caption"
       >
         {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -323,7 +323,7 @@
         <h1 v-html="master.zurich.section_three_heading">Around Rämistrasse</h1>
         <p
           v-html="master.zurich.section_three_description"
-          class="norm fminion coff"
+          class="norm fminion coff p-4"
         >
           The headquarters of Hauser & Wirth Publishers opened in 2019 in the
           historic building that once housed the Swiss publisher Emil and Emmie
@@ -344,17 +344,14 @@
     <div class="container">
       <div class="col-lg-8 offset-lg-2">
         <img src="2_1.jpg" style="width: 100%" />
-        <p
-          class="size1 fminion mt-2 text-center"
-          v-html="master.zurich.marcel_caption"
-        >
+        <p class="size1 fminion mt-2 " v-html="master.zurich.marcel_caption">
           {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         </p>
       </div>
     </div>
 
     <div class="container" style="margin-top:6rem;">
-      <h1 class="text-center fminion size0">
+      <h1 class="fminion size0 text-center">
         About, by or of Marcel Duchamp<br /><i>Setup by fluid editions</i>
       </h1>
       <p class="text-center size2">
@@ -545,23 +542,20 @@
     </div>
 
     <div
+      class="d-none d-sm-block"
       style="background: url('divider.png') repeat-y; background-position: center center; height: 15vh;"
     ></div>
 
     <div>
       <div class="row no-gutters">
-        <div class="col-md-5 ml-4 ml-md-0">
+        <div class="col-sm-5 ml-4 ml-sm-0">
           <div>
             <img src="3_1.jpg" style="width: 100%; margin-top: 19vw;" />
           </div>
         </div>
-        <div class="col-md mr-4 mr-md-0">
+        <div class="col-sm mr-4 mr-sm-0">
           <img src="3_2.jpg" style="width: 100%" />
-          <p
-            class="size1 fminion text-md-center"
-            style="padding: 0.5rem;"
-            v-html="master.zurich.bowling_caption"
-          >
+          <p class="size1 fminion p-4" v-html="master.zurich.bowling_caption">
             {Caption} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           </p>
         </div>
