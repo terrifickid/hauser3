@@ -80,7 +80,7 @@
 
       <AllArtworks ref="alla"></AllArtworks>
 
-      <div v-if="master.parallax_image">
+      <div v-if="master.parallax_image" style="margin-top: 12rem;">
         <div
           id="h_plax"
           style=" background-size: cover; background-position: center center;"
