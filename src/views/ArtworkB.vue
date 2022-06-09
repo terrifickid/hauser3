@@ -18,7 +18,7 @@
                 v-if="artwork.acf.artwork_images.length > 0"
               >
                 <div>
-                  <div class="py-2 px-4">
+                  <div class="pb-4 px-4">
                     <img
                       @click="
                         gallerySrc = artwork.acf.hero_image.sizes['large']
@@ -29,9 +29,9 @@
                     />
                   </div>
                   <div
-                    class="py-2 px-4"
-                    v-for="artwork in artwork.acf.artwork_images"
-                    :key="artwork.ID"
+                    class="pb-4 px-4"
+                    v-for="(artwork, index) in artwork.acf.artwork_images"
+                    :key="index"
                   >
                     <img
                       @click="gallerySrc = artwork.sizes['large']"
