@@ -1,14 +1,14 @@
 git add -A
 git commit -a -m autocommit
-git push origin busan
+git push origin seoul
 npm run build
 cd ~/hauser-and-wirth
-git checkout busan
+git checkout seoul
 rm -rf ~/hauser-and-wirth/*.js
 cp -rf ~/hauser3/dist/* ~/hauser-and-wirth
 rm ~/hauser-and-wirth/index.html
 cp ~/hauser3/dist/index.html ~/hauser-and-wirth/wp-content/themes/hauser/index.php
 git add -A
 git commit -a -m autodeploy
-git pull origin busan
-git push origin busan
+git pull origin seoul
+git push origin seoul
