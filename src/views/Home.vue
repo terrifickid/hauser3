@@ -40,8 +40,8 @@
       </div>
       <div class="container">
         <div
-          style=" background: white; padding: 40px 50px 40px 50px"
-          class="col-12 col-lg-8 offset-lg-2"
+          style=" background: white; padding: 5rem 0"
+          class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2"
           v-ani="{ class: 'fade-in-bottom', delay: 0 }"
         >
           <h3
@@ -80,7 +80,7 @@
 
       <AllArtworks ref="alla"></AllArtworks>
 
-      <div v-if="master.parallax_image" style="margin-top: 12rem;">
+      <div v-if="master.parallax_image">
         <div
           id="h_plax"
           style=" background-size: cover; background-position: center center;"
@@ -102,7 +102,7 @@
 //import axios from 'axios';
 import Header from "@/components/Header.vue";
 
-import AllArtworks from "@/components/AllArtworksB.vue";
+import AllArtworks from "@/components/AllArtworksC.vue";
 import AboutHauser from "@/components/AboutHauser.vue";
 import Footer from "@/components/Footer.vue";
 export default {
@@ -246,7 +246,6 @@ a:hover {
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
   #h_plax {
-    background-attachment: fixed;
   }
 }
 </style>

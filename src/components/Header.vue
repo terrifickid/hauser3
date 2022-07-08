@@ -65,9 +65,6 @@
             </div>
             <!-- end col -->
             <div class="col icons text-right">
-              <router-link :to="{ path: '/favorites' }"
-                ><img src="../assets/heart.svg"
-              /></router-link>
               <a @click="menuModal = !menuModal"
                 ><img src="../assets/menu.svg"
               /></a>
