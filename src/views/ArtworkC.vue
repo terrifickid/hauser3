@@ -93,7 +93,7 @@
           <div class="container-fluid">
             <div class="row d-flex align-items-center sizer ">
               <div
-                class="col-6 d-none d-md-block sizer"
+                class="col-8 d-none d-md-block sizer"
                 style="position: relative; overflow: hidden;"
               >
                 <div
@@ -106,13 +106,12 @@
               </div>
               <div class="col">
                 <div class="mt-5 mb-5 col-10 offset-1 ">
-                  <h3>{{ panel.title }}</h3>
                   <div v-html="panel.description"></div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="d-none d-md-block" style="height: 8rem;"></div>
+          <div class="d-none d-md-block" style="height: 3rem;"></div>
         </template>
         <template v-if="panel.acf_fc_layout == 'right_image'">
           <div
@@ -127,12 +126,11 @@
             <div class="row d-flex align-items-center sizer ">
               <div class="col">
                 <div class="mt-5 mb-5 col-10 offset-1">
-                  <h3>{{ panel.title }}</h3>
                   <div v-html="panel.description"></div>
                 </div>
               </div>
               <div
-                class="col-6 d-none d-md-block sizer"
+                class="col-8 d-none d-md-block sizer"
                 style="overflow: hidden;"
               >
                 <div
@@ -145,7 +143,7 @@
               </div>
             </div>
           </div>
-          <div class="d-none d-md-block" style="height: 8rem;"></div>
+          <div class="d-none d-md-block" style="height: 3rem;"></div>
         </template>
         <template v-if="panel.acf_fc_layout == 'quote'">
           <div class="col">

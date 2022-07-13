@@ -11,9 +11,9 @@
       </div>
       <!-- end row -->
 
-      <div style="min-height: 150vh">
+      <div style="padding-bottom: 10rem;">
         <div
-          class="row no-gutters"
+          class="row"
           v-masonry="'containerId'"
           transition-duration="0s"
           item-selector=".item"
@@ -44,7 +44,7 @@
                   v-if="artwork.acf.hero_image"
                   class="mb-4"
                   style="max-width: 100%;"
-                  :src="artwork.acf.hero_image.sizes.large"
+                  :src="artworkImg(artwork)"
                 />
 
                 <p v-if="!master.hide_artist_name" class="fbold mb-1">
@@ -84,9 +84,13 @@
 </template>
 
 <script>
+import _ from "lodash";
 export default {
   name: "AllArtworks",
   methods: {
+    artworkImg(artwork) {
+      return _.get(artwork, 'acf.artwork_images[0].sizes["large"]');
+    },
     setCollection(id) {
       this.collectionFilter = [parseInt(id)];
     },
