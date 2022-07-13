@@ -154,6 +154,108 @@
           </div>
           <div class="d-none d-md-block" style="height: 3rem;"></div>
         </template>
+        <template v-if="panel.acf_fc_layout == 'right_text'">
+          <div
+            v-if="panel.image"
+            class="d-md-none"
+            style="height: 20rem;  background-size: cover; background-position: center center;"
+            v-bind:style="{
+              'background-image': 'url(' + panel.image + ')'
+            }"
+          ></div>
+          <div class="container-fluid">
+            <div class="row d-flex align-items-center sizer ">
+              <div class="col">
+                <div class="mt-5 mb-5 col-10 offset-1">
+                  <h4>{{ panel.title }}</h4>
+                  <div class="mb-3" v-html="panel.description"></div>
+                  <p style="font-weight: bold;" v-if="panel.button_link">
+                    <a :href="panel.button_link"
+                      >{{ panel.button_text }}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        style="width: 1rem; height: 1rem;"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        /></svg
+                    ></a>
+                  </p>
+                </div>
+              </div>
+              <div
+                class="col-8 d-none d-md-block sizer"
+                style="overflow: hidden;"
+              >
+                <div
+                  v-ani="{ class: 'kenburns-top', delay: 0 }"
+                  style="position: absolute; top: 0; left: 0; right:0; bottom:0; background-size: cover; background-position: center center;"
+                  v-bind:style="{
+                    'background-image': 'url(' + panel.image + ')'
+                  }"
+                ></div>
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-md-block" style="height: 3rem;"></div>
+        </template>
+        <template v-if="panel.acf_fc_layout == 'left_text'">
+          <div
+            v-if="panel.image"
+            class="d-md-none"
+            style="height: 20rem;  background-size: cover; background-position: center center;"
+            v-bind:style="{
+              'background-image': 'url(' + panel.image + ')'
+            }"
+          ></div>
+          <div class="container-fluid">
+            <div class="row d-flex align-items-center sizer ">
+              <div
+                class="col-8 d-none d-md-block sizer"
+                style="overflow: hidden;"
+              >
+                <div
+                  v-ani="{ class: 'kenburns-top', delay: 0 }"
+                  style="position: absolute; top: 0; left: 0; right:0; bottom:0; background-size: cover; background-position: center center;"
+                  v-bind:style="{
+                    'background-image': 'url(' + panel.image + ')'
+                  }"
+                ></div>
+              </div>
+              <div class="col">
+                <div class="mt-5 mb-5 col-10 offset-1">
+                  <h4>{{ panel.title }}</h4>
+                  <div class="mb-3" v-html="panel.description"></div>
+                  <p style="font-weight: bold;" v-if="panel.button_link">
+                    <a :href="panel.button_link"
+                      >{{ panel.button_text }}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        style="width: 1rem; height: 1rem;"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        /></svg
+                    ></a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-md-block" style="height: 3rem;"></div>
+        </template>
         <template v-if="panel.acf_fc_layout == 'right_video'">
           <div class="container-fluid">
             <div class="row d-flex align-items-center sizer ">
