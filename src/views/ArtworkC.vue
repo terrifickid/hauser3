@@ -32,35 +32,37 @@
 
       <div class="container" style="margin-bottom: 3rem;">
         <div class="row d-flex align-items-center">
-          <div class="col-4">
-            <h3 class="mb-1" v-html="artwork.title.rendered"></h3>
-            <p>
-              <template v-if="artwork.acf.price == 0"
-                >Price upon inquiry</template
-              >
-              <template v-if="artwork.acf.price > 0">{{
-                artwork.acf.price | toCurrency
-              }}</template>
-            </p>
-            <p v-html="artwork.acf.hero_description"></p>
+          <div class="col-12 col-lg-4">
+            <div style="padding: 2rem 0;">
+              <h3 class="mb-1" v-html="artwork.title.rendered"></h3>
+              <p>
+                <template v-if="artwork.acf.price == 0"
+                  >Price upon inquiry</template
+                >
+                <template v-if="artwork.acf.price > 0">{{
+                  artwork.acf.price | toCurrency
+                }}</template>
+              </p>
+              <p v-html="artwork.acf.hero_description"></p>
 
-            <p class="mt-4">
-              <a
-                v-if="master.toggle_live_chat"
-                target="_blank"
-                href="https://wa.me/442072872300?text=Hello+Hauser+%26+Wirth"
-                class="btn btn-block btn-md btn-outline-dark"
-                ><img class="btniconfix" src="../assets/whatsapp.svg" /> Live
-                Chat</a
-              >
-              <a
-                @click="emailModal = !emailModal"
-                class="btn btn-md btn-outline-dark"
-                >Inquire</a
-              >
-            </p>
+              <p class="mt-4">
+                <a
+                  v-if="master.toggle_live_chat"
+                  target="_blank"
+                  href="https://wa.me/442072872300?text=Hello+Hauser+%26+Wirth"
+                  class="btn btn-block btn-md btn-outline-dark"
+                  ><img class="btniconfix" src="../assets/whatsapp.svg" /> Live
+                  Chat</a
+                >
+                <a
+                  @click="emailModal = !emailModal"
+                  class="btn btn-md btn-outline-dark"
+                  >Inquire</a
+                >
+              </p>
+            </div>
           </div>
-          <div class="col-8">
+          <div class="col-12 col-lg-8">
             <carousel
               v-if="artwork.acf.artwork_images.length > 0"
               :nav="false"
@@ -86,9 +88,9 @@
       </div>
 
       <div
-        id="panels"
         v-for="(panel, index) in artwork.acf.content_panels"
         :key="index"
+        :class="{ [panel.acf_fc_layout]: true }"
       >
         <template v-if="panel.acf_fc_layout == 'left_image'">
           <div
@@ -102,7 +104,7 @@
           <div class="container-fluid">
             <div class="row d-flex align-items-center sizer ">
               <div
-                class="col-8 d-none d-md-block sizer"
+                class="d-none d-md-block col-6 col-lg-8 sizer"
                 style="position: relative; overflow: hidden;"
               >
                 <div
@@ -139,7 +141,7 @@
                 </div>
               </div>
               <div
-                class="col-8 d-none d-md-block sizer"
+                class="d-none d-md-block col-6 col-lg-8 sizer"
                 style="overflow: hidden;"
               >
                 <div
@@ -190,7 +192,7 @@
                 </div>
               </div>
               <div
-                class="col-8 d-none d-md-block sizer"
+                class="d-none d-md-block col-6 col-lg-8 sizer"
                 style="overflow: hidden;"
               >
                 <div
@@ -217,7 +219,7 @@
           <div class="container-fluid">
             <div class="row d-flex align-items-center sizer ">
               <div
-                class="col-8 d-none d-md-block sizer"
+                class="d-none d-md-block col-6 col-lg-8 sizer"
                 style="overflow: hidden;"
               >
                 <div
@@ -293,7 +295,7 @@
                 </div>
               </div>
               <div
-                class="col-8 d-none d-md-block sizer"
+                class="d-none d-md-block col-6 col-lg-8 sizer"
                 style="overflow: hidden;"
               >
                 <div class="embed-responsive embed-responsive-16by9">
@@ -374,14 +376,7 @@
           </div>
           <div style="height: 8rem;"></div>
         </template>
-        <template v-if="panel.acf_fc_layout == 'small_print'">
-          <div class="container">
-            <div class="col">
-              <small>{{ panel.small_print }}</small>
-            </div>
-          </div>
-          <div style="height: 8rem;"></div>
-        </template>
+        <template v-if="panel.acf_fc_layout == 'small_print'"> </template>
       </div>
       <div style="height: 6rem;"></div>
       <div v-if="artwork.acf.other_artworks.length" class="container">
@@ -402,7 +397,7 @@
         </div>
       </div>
     </div>
-    <div style="height: 6rem"></div>
+
     <Footer></Footer>
     <div v-bind:class="{ active: zoomModal }" class="fullscreen-modal">
       <div
