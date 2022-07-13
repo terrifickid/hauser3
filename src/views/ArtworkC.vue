@@ -260,7 +260,7 @@
         </template>
         <template v-if="panel.acf_fc_layout == 'right_video'">
           <div class="container-fluid">
-            <div class="row d-flex align-items-center sizer ">
+            <div class="row d-flex align-items-center ">
               <div class="col-12 d-md-none" style="overflow: hidden;">
                 <div class="embed-responsive embed-responsive-16by9">
                   <iframe
@@ -272,30 +272,32 @@
               </div>
               <div class="col">
                 <div class="mt-5 mb-5 col-10 offset-1">
-                  <h4>{{ panel.title }}</h4>
-                  <div v-html="panel.description" class="mb-2"></div>
-                  <p style="font-weight: bold;" v-if="panel.button_link">
-                    <a :href="panel.button_link"
-                      >{{ panel.button_text }}
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        style="width: 1rem; height: 1rem;"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        stroke-width="2"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M17 8l4 4m0 0l-4 4m4-4H3"
-                        /></svg
-                    ></a>
-                  </p>
+                  <div style="padding: 3rem 0;">
+                    <h4>{{ panel.title }}</h4>
+                    <div v-html="panel.description" class="mb-2"></div>
+                    <p style="font-weight: bold;" v-if="panel.button_link">
+                      <a :href="panel.button_link"
+                        >{{ panel.button_text }}
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          style="width: 1rem; height: 1rem;"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          stroke-width="2"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M17 8l4 4m0 0l-4 4m4-4H3"
+                          /></svg
+                      ></a>
+                    </p>
+                  </div>
                 </div>
               </div>
               <div
-                class="d-none d-md-block col-6 col-lg-8 sizer"
+                class="d-none d-md-block col-6 col-lg-8"
                 style="overflow: hidden;"
               >
                 <div class="embed-responsive embed-responsive-16by9">
@@ -312,7 +314,7 @@
         </template>
         <template v-if="panel.acf_fc_layout == 'left_video'">
           <div class="container-fluid">
-            <div class="row d-flex align-items-center sizer ">
+            <div class="row d-flex align-items-center ">
               <div class="col-12 d-md-none" style="overflow: hidden;">
                 <div class="embed-responsive embed-responsive-16by9">
                   <iframe
@@ -336,26 +338,28 @@
               </div>
               <div class="col">
                 <div class="mt-5 mb-5 col-10 offset-1">
-                  <h4>{{ panel.title }}</h4>
-                  <div v-html="panel.description" class="mb-2"></div>
-                  <p style="font-weight: bold;" v-if="panel.button_link">
-                    <a :href="panel.button_link"
-                      >{{ panel.button_text }}
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        style="width: 1rem; height: 1rem;"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        stroke-width="2"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M17 8l4 4m0 0l-4 4m4-4H3"
-                        /></svg
-                    ></a>
-                  </p>
+                  <div style="padding: 3rem 0;">
+                    <h4>{{ panel.title }}</h4>
+                    <div v-html="panel.description" class="mb-2"></div>
+                    <p style="font-weight: bold;" v-if="panel.button_link">
+                      <a :href="panel.button_link"
+                        >{{ panel.button_text }}
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          style="width: 1rem; height: 1rem;"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          stroke-width="2"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M17 8l4 4m0 0l-4 4m4-4H3"
+                          /></svg
+                      ></a>
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -366,9 +370,12 @@
           <div class="col">
             <div
               v-bind:style="{ 'background-color': panel.background_color }"
-              style="padding: 4rem 4rem 3rem 4rem;  color: white;"
+              style="padding: 4rem 4rem 4rem 4rem;  color: black;"
             >
-              <h3 v-html="panel.description"></h3>
+              <div
+                style="font-weight: normal; font-size: 1.25rem;"
+                v-html="panel.description"
+              ></div>
               <p v-if="panel.author">
                 <b-icon class="ml-2" icon="dash" /> {{ panel.author }}
               </p>
@@ -376,7 +383,14 @@
           </div>
           <div style="height: 8rem;"></div>
         </template>
-        <template v-if="panel.acf_fc_layout == 'small_print'"> </template>
+        <template v-if="panel.acf_fc_layout == 'small_print'">
+          <div class="container">
+            <div class="col">
+              <small v-html="panel.description"></small>
+            </div>
+          </div>
+          <div style="height: 8rem;"></div>
+        </template>
       </div>
       <div style="height: 6rem;"></div>
       <div v-if="artwork.acf.other_artworks.length" class="container">
