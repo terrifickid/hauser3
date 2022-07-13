@@ -1,6 +1,6 @@
 <template>
   <div id="Artwork" class="">
-    <Header ref="heady" :mode="1" :below="10"></Header>
+    <Header ref="heady" :mode="0" :below="10"></Header>
     <div v-if="artwork">
       <div
         style="background: #E9E9E9; height: 100vh; margin-bottom: 3rem;"

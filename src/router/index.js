@@ -11,7 +11,7 @@ const routes = [
     component: Home
   },
   {
-    path: "/visitzurich",
+    path: "/guide",
     name: "Guide",
     component: function() {
       return import(/* webpackChunkName: "Wishlist" */ "../views/Guide.vue");
