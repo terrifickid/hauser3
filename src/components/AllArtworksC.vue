@@ -11,7 +11,7 @@
       </div>
       <!-- end row -->
 
-      <div style="padding-bottom: 10rem;">
+      <div style="padding-bottom: 10rem; min-height: 100vh">
         <div
           class="row"
           v-masonry="'containerId'"

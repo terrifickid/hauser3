@@ -2,7 +2,10 @@
   <div id="Artwork" class="">
     <Header ref="heady" :mode="1" :below="10"></Header>
     <div v-if="artwork">
-      <div style="background: #E9E9E9; height: 100vh;" class=" relative">
+      <div
+        style="background: #E9E9E9; height: 100vh; margin-bottom: 3rem;"
+        class=" relative"
+      >
         <div
           :style="{
             backgroundImage:
@@ -11,16 +14,26 @@
           style="position: absolute; background-position: center center; background-size: cover; top: 0; left:0; right:0; bottom:0; right:0; z-index:2; color: white;"
           class="d-flex align-items-center justify-content-center"
         >
-          <div></div>
+          <div>
+            <h2
+              v-if="artwork.artist.name"
+              style="font-size: 16px; text-align: center; "
+              class="fnormal mb-3"
+              v-html="artwork.artist.name"
+            ></h2>
+            <h1
+              v-if="artwork.title.rendered"
+              style="font-size: 56px; margin-bottom: 0.5rem; text-align: center;"
+              v-html="artwork.title.rendered"
+            ></h1>
+          </div>
         </div>
       </div>
 
-      <div class="container">
-        <div class="row">
-          <div class="col-6">
-            <h4>{{ artwork.artist.name }}</h4>
-            <p v-html="artwork.title.rendered"></p>
-            <p v-html="artwork.acf.hero_description"></p>
+      <div class="container" style="margin-bottom: 3rem;">
+        <div class="row d-flex align-items-center">
+          <div class="col-4">
+            <h3 class="mb-1" v-html="artwork.title.rendered"></h3>
             <p>
               <template v-if="artwork.acf.price == 0"
                 >Price upon inquiry</template
@@ -29,6 +42,8 @@
                 artwork.acf.price | toCurrency
               }}</template>
             </p>
+            <p v-html="artwork.acf.hero_description"></p>
+
             <p class="mt-4">
               <a
                 v-if="master.toggle_live_chat"
@@ -40,12 +55,12 @@
               >
               <a
                 @click="emailModal = !emailModal"
-                class="btn btn-block btn-md btn-outline-dark"
-                >Email Inquiry</a
+                class="btn btn-md btn-outline-dark"
+                >Inquire</a
               >
             </p>
           </div>
-          <div class="col-6">
+          <div class="col-8">
             <carousel
               v-if="artwork.acf.artwork_images.length > 0"
               :nav="false"
@@ -60,13 +75,11 @@
               <div
                 v-for="(artwork, index) in artwork.acf.artwork_images"
                 :key="index"
-              >
-                <img
-                  :src="artwork.sizes['large']"
-                  class="img-fluid"
-                  style="cursor: pointer;"
-                />
-              </div>
+                style="height: 75vh; cursor: pointer; background-size: contain; background-color: #efefef; background-position: center center; background-repeat: no-repeat;"
+                :style="{
+                  backgroundImage: 'url(' + artwork.sizes['large'] + ')'
+                }"
+              ></div>
             </carousel>
           </div>
         </div>
@@ -74,20 +87,16 @@
 
       <div
         id="panels"
-        v-for="(panel, index) in artwork.acf.panels"
+        v-for="(panel, index) in artwork.acf.content_panels"
         :key="index"
       >
-        <a
-          v-if="index + 1 == artwork.acf.panels.length"
-          name="abouttheartist"
-        ></a>
         <template v-if="panel.acf_fc_layout == 'left_image'">
           <div
-            v-if="panel.image.sizes"
+            v-if="panel.image"
             class="d-md-none"
             style="height: 20rem; background-size: cover; background-position: center center;"
             v-bind:style="{
-              'background-image': 'url(' + panel.image.sizes['large'] + ')'
+              'background-image': 'url(' + panel.image + ')'
             }"
           ></div>
           <div class="container-fluid">
@@ -100,7 +109,7 @@
                   v-ani="{ class: 'kenburns-top', delay: 0 }"
                   style="position: absolute; top: 0; left: 0; right:0; bottom:0; background-size: cover; background-position: center center;"
                   v-bind:style="{
-                    'background-image': 'url(' + panel.image.url + ')'
+                    'background-image': 'url(' + panel.image + ')'
                   }"
                 ></div>
               </div>
@@ -115,11 +124,11 @@
         </template>
         <template v-if="panel.acf_fc_layout == 'right_image'">
           <div
-            v-if="panel.image.sizes"
+            v-if="panel.image"
             class="d-md-none"
             style="height: 20rem;  background-size: cover; background-position: center center;"
             v-bind:style="{
-              'background-image': 'url(' + panel.image.sizes['large'] + ')'
+              'background-image': 'url(' + panel.image + ')'
             }"
           ></div>
           <div class="container-fluid">
@@ -137,9 +146,113 @@
                   v-ani="{ class: 'kenburns-top', delay: 0 }"
                   style="position: absolute; top: 0; left: 0; right:0; bottom:0; background-size: cover; background-position: center center;"
                   v-bind:style="{
-                    'background-image': 'url(' + panel.image.url + ')'
+                    'background-image': 'url(' + panel.image + ')'
                   }"
                 ></div>
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-md-block" style="height: 3rem;"></div>
+        </template>
+        <template v-if="panel.acf_fc_layout == 'right_video'">
+          <div class="container-fluid">
+            <div class="row d-flex align-items-center sizer ">
+              <div class="col-12 d-md-none" style="overflow: hidden;">
+                <div class="embed-responsive embed-responsive-16by9">
+                  <iframe
+                    class="embed-responsive-item"
+                    :src="panel.video"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              </div>
+              <div class="col">
+                <div class="mt-5 mb-5 col-10 offset-1">
+                  <h4>{{ panel.title }}</h4>
+                  <div v-html="panel.description" class="mb-2"></div>
+                  <p style="font-weight: bold;" v-if="panel.button_link">
+                    <a :href="panel.button_link"
+                      >{{ panel.button_text }}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        style="width: 1rem; height: 1rem;"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        /></svg
+                    ></a>
+                  </p>
+                </div>
+              </div>
+              <div
+                class="col-8 d-none d-md-block sizer"
+                style="overflow: hidden;"
+              >
+                <div class="embed-responsive embed-responsive-16by9">
+                  <iframe
+                    class="embed-responsive-item"
+                    :src="panel.video"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-md-block" style="height: 3rem;"></div>
+        </template>
+        <template v-if="panel.acf_fc_layout == 'left_video'">
+          <div class="container-fluid">
+            <div class="row d-flex align-items-center sizer ">
+              <div class="col-12 d-md-none" style="overflow: hidden;">
+                <div class="embed-responsive embed-responsive-16by9">
+                  <iframe
+                    class="embed-responsive-item"
+                    :src="panel.video"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              </div>
+              <div
+                class="col-8 d-none d-md-block sizer"
+                style="overflow: hidden;"
+              >
+                <div class="embed-responsive embed-responsive-16by9">
+                  <iframe
+                    class="embed-responsive-item"
+                    :src="panel.video"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              </div>
+              <div class="col">
+                <div class="mt-5 mb-5 col-10 offset-1">
+                  <h4>{{ panel.title }}</h4>
+                  <div v-html="panel.description" class="mb-2"></div>
+                  <p style="font-weight: bold;" v-if="panel.button_link">
+                    <a :href="panel.button_link"
+                      >{{ panel.button_text }}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        style="width: 1rem; height: 1rem;"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        /></svg
+                    ></a>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
