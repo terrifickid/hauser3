@@ -1,106 +1,64 @@
 <template>
   <div>
-    <header>
-      <div
-        class="lax d-flex align-items-center"
-        :style="{ top: distance + 'px' }"
-        style="
-      border: 1px solid red;
-      position: absolute;
-      width: 100vw;
-      height: 100vh;
-      background: url('https://storageapi.fleek.co/terrifickid-team-bucket/GST%20JOS%20468-22.jpg');
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center center;
-    "
-      >
-        {{ distance }}
+    <div class="perspective overflow">
+      <div class="preserve">
+        <div class="parallax" style="transform: translateZ(-1.2px)">
+          z = -1.2
+        </div>
+        <div class="parallax" style="transform: translateZ(-1.0px)">
+          z = -1.0
+        </div>
+        <div class="parallax" style="transform: translateZ(-0.8px)">
+          z = -0.8
+        </div>
+        <div class="parallax" style="transform: translateZ(-0.6px)">
+          z = -0.6
+        </div>
+        <div class="parallax" style="transform: translateZ(-0.4px)">
+          z = -0.4
+        </div>
+        <div class="parallax" style="transform: translateZ(-0.2px)">
+          z = -0.2
+        </div>
+        <div class="parallax" style="transform: translateZ(0px)">z = 0</div>
+        <div class="spacer"></div>
       </div>
-    </header>
-
-    <section>
-      <h3>Cool like you</h3>
-    </section>
-  </div></template
->
+    </div></div
+></template>
 <script>
-export default {
-  data() {
-    return {
-      distance: 0
-    };
-  },
-  methods: {
-    handleScroll() {
-      this.distance = window.scrollY;
-    }
-  },
-  mounted() {
-    window.addEventListener("scroll", this.handleScroll);
-  },
-  beforeDestroy() {
-    window.removeEventListener("scroll", this.handleScroll);
-  }
-};
+export default {};
 </script>
 <style scoped>
-@import url("https://fonts.googleapis.com/css?family=Courgette:400,700&display=swap");
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background: linear-gradient(135deg, #0056a7, #165fa3, #477aaa);
-  font-family: "Courgette", cursive;
-}
-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  position: relative;
+.overflow {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  border: 1px solid black;
+  width: 100vw;
   height: 100vh;
-  color: #eee;
-  z-index: -1;
-  text-align: center;
-}
-section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1;
-  height: 100vh;
-  font-size: 5rem;
-  background: #fcdb6d;
-  color: #0056a7;
-}
-.animate-me {
-  animation: bounceIn 3s ease-in-out;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+.perspective {
+  perspective: 1px;
+  perspective-origin: top left;
 }
 
-@keyframes bounceIn {
-  0% {
-    transform: scale(0.1);
-    opacity: 0;
-  }
-  60% {
-    transform: scale(1.2);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-  }
+.preserve {
+  transform-style: preserve-3d;
+}
+
+.parallax {
+  position: absolute;
+  top: 200px;
+  margin-left: 250px;
+  font-size: 24px;
+}
+
+.spacer {
+  height: 1000px;
+}
+
+.sticky {
+  position: sticky;
+  position: -webkit-sticky;
 }
 </style>
