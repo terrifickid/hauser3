@@ -171,23 +171,12 @@
                 <div class="mt-5 mb-5 col-10 offset-1">
                   <h4>{{ panel.title }}</h4>
                   <div class="mb-3" v-html="panel.description"></div>
-                  <p style="font-weight: bold;" v-if="panel.button_link">
-                    <a :href="panel.button_link"
+                  <p style="margin-top: 2rem;" v-if="panel.button_link">
+                    <a
+                      :href="panel.button_link"
+                      style="background-color: #efefef; padding: 1rem;"
                       >{{ panel.button_text }}
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        style="width: 1rem; height: 1rem;"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        stroke-width="2"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M17 8l4 4m0 0l-4 4m4-4H3"
-                        /></svg
-                    ></a>
+                    </a>
                   </p>
                 </div>
               </div>
@@ -234,23 +223,12 @@
                 <div class="mt-5 mb-5 col-10 offset-1">
                   <h4>{{ panel.title }}</h4>
                   <div class="mb-3" v-html="panel.description"></div>
-                  <p style="font-weight: bold;" v-if="panel.button_link">
-                    <a :href="panel.button_link"
+                  <p style="margin-top: 2rem;" v-if="panel.button_link">
+                    <a
+                      :href="panel.button_link"
+                      style="background-color: #efefef; padding: 1rem;"
                       >{{ panel.button_text }}
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        style="width: 1rem; height: 1rem;"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        stroke-width="2"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M17 8l4 4m0 0l-4 4m4-4H3"
-                        /></svg
-                    ></a>
+                    </a>
                   </p>
                 </div>
               </div>
@@ -275,23 +253,12 @@
                   <div style="padding: 3rem 0;">
                     <h4>{{ panel.title }}</h4>
                     <div v-html="panel.description" class="mb-2"></div>
-                    <p style="font-weight: bold;" v-if="panel.button_link">
-                      <a :href="panel.button_link"
+                    <p style="margin-top: 2rem;" v-if="panel.button_link">
+                      <a
+                        :href="panel.button_link"
+                        style="background-color: #efefef; padding: 1rem;"
                         >{{ panel.button_text }}
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          style="width: 1rem; height: 1rem;"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          stroke-width="2"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M17 8l4 4m0 0l-4 4m4-4H3"
-                          /></svg
-                      ></a>
+                      </a>
                     </p>
                   </div>
                 </div>
@@ -341,23 +308,12 @@
                   <div style="padding: 3rem 0;">
                     <h4>{{ panel.title }}</h4>
                     <div v-html="panel.description" class="mb-2"></div>
-                    <p style="font-weight: bold;" v-if="panel.button_link">
-                      <a :href="panel.button_link"
+                    <p style="margin-top: 2rem;" v-if="panel.button_link">
+                      <a
+                        :href="panel.button_link"
+                        style="background-color: #efefef; padding: 1rem;"
                         >{{ panel.button_text }}
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          style="width: 1rem; height: 1rem;"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          stroke-width="2"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M17 8l4 4m0 0l-4 4m4-4H3"
-                          /></svg
-                      ></a>
+                      </a>
                     </p>
                   </div>
                 </div>
@@ -370,7 +326,7 @@
           <div class="col">
             <div
               v-bind:style="{ 'background-color': panel.background_color }"
-              style="padding: 4rem 4rem 4rem 4rem;  color: black;"
+              style="padding: 4rem 4rem 4rem 4rem;  color: black; text-align: center;"
             >
               <div
                 style="font-weight: normal; font-size: 1.25rem;"
