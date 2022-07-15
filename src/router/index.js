@@ -18,6 +18,13 @@ const routes = [
     }
   },
   {
+    path: "/test",
+    name: "test",
+    component: function() {
+      return import(/* webpackChunkName: "Wishlist" */ "../views/test.vue");
+    }
+  },
+  {
     path: "/collection/:collection",
     name: "Collection",
     component: Home

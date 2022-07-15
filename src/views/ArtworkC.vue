@@ -30,6 +30,15 @@
         </div>
       </div>
 
+      <div style="border: 1px solid blue; height: 100vh">
+        test!
+        <img
+          :src="artwork.acf.hero_image.sizes['large']"
+          style="width: 200px; height:200px;"
+          class="plax"
+        />
+      </div>
+
       <div class="container" style="margin-bottom: 3rem;">
         <div class="row d-flex align-items-center">
           <div class="col-12 col-lg-4">
@@ -77,7 +86,7 @@
               <div
                 v-for="(artwork, index) in artwork.acf.artwork_images"
                 :key="index"
-                style="height: 75vh; cursor: pointer; background-size: contain; background-color: #efefef; background-position: center center; background-repeat: no-repeat;"
+                style="height: 75vh; cursor: pointer; background-size: contain;  background-position: center center; background-repeat: no-repeat;"
                 :style="{
                   backgroundImage: 'url(' + artwork.sizes['large'] + ')'
                 }"
@@ -530,6 +539,7 @@ import axios from "axios";
 import Loader from "@/components/Loader.vue";
 
 //import axios from 'axios';
+
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 import ShareModal from "@/components/ShareModal.vue";
@@ -542,7 +552,6 @@ export default {
     Footer,
     Loader,
     ShareModal,
-
     ExploreArtworkItem,
     carousel
   },
