@@ -92,6 +92,18 @@
 
       <AboutHauser></AboutHauser>
 
+      <div class="container" v-if="master.interstitial_title">
+        <div style="padding-bottom: 12rem;">
+          <h2 style="font-size: 32px; margin-bottom: 1.5rem;">
+            {{ master.interstitial_title }}
+          </h2>
+          <img :src="master.interstitial_image" class="img-fluid" />
+          <p style="margin-top: 1.5rem;">
+            {{ master.interstitial_description }}
+          </p>
+        </div>
+      </div>
+
       <Footer></Footer>
     </div>
     <!-- end hauser_home -->

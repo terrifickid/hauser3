@@ -133,6 +133,35 @@ input.form-control {
   outline: 0px solid slategrey;
 }
 
+.overflow {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  border: 1px solid black;
+  width: 100vw;
+  height: 100vh;
+}
+
+.perspective {
+  perspective: 1px;
+  perspective-origin: top left;
+}
+
+.preserve {
+  transform-style: preserve-3d;
+}
+
+.parallax {
+}
+
+.spacer {
+  height: 1000px;
+}
+
+.sticky {
+  position: sticky;
+  position: -webkit-sticky;
+}
+
 /**
 * Hind Light
 */

@@ -1,480 +1,507 @@
 <template>
   <div id="Artwork" class="">
-    <Header ref="heady" :mode="0" :below="10"></Header>
-    <div v-if="artwork">
-      <div
-        style="background: #E9E9E9; height: 100vh; margin-bottom: 3rem;"
-        class=" relative"
-      >
-        <div
-          :style="{
-            backgroundImage:
-              'url(' + artwork.acf.hero_image.sizes['large'] + ')'
-          }"
-          style="position: absolute; background-position: center center; background-size: cover; top: 0; left:0; right:0; bottom:0; right:0; z-index:2; color: white;"
-          class="d-flex align-items-center justify-content-center"
-        >
-          <div>
-            <h2
-              v-if="artwork.artist.name"
-              style="font-size: 16px; text-align: center; "
-              class="fnormal mb-3"
-              v-html="artwork.artist.name"
-            ></h2>
-            <h1
-              v-if="artwork.title.rendered"
-              style="font-size: 56px; margin-bottom: 0.5rem; text-align: center;"
-              v-html="artwork.title.rendered"
-            ></h1>
-          </div>
-        </div>
-      </div>
+    <div class="perspective overflow">
+      <div class="preserve">
+        <Header ref="heady" :mode="0" :below="10"></Header>
 
-      <div class="container" style="margin-bottom: 3rem;">
-        <div class="row d-flex align-items-center">
-          <div class="col-12 col-lg-4">
-            <div style="padding: 2rem 0;">
-              <h3 class="mb-1" v-html="artwork.title.rendered"></h3>
-              <p>
-                <template v-if="artwork.acf.price == 0"
-                  >Price upon inquiry</template
-                >
-                <template v-if="artwork.acf.price > 0">{{
-                  artwork.acf.price | toCurrency
-                }}</template>
-              </p>
-              <p v-html="artwork.acf.hero_description"></p>
+        <div v-if="artwork" class="preserve">
+          <div class="preserve" style="position: relative; z-index: 3000;">
+            <div class="parallax" style="transform: translateZ(-1.2px)"></div>
+            <div class="parallax" style="transform: translateZ(-1.0px)"></div>
+            <div class="parallax" style="transform: translateZ(-0.8px)">
+              z = -0.8
+            </div>
+            <div class="parallax" style="transform: translateZ(-0.6px)"></div>
+            <div class="parallax" style="transform: translateZ(-0.4px)"></div>
+            <div class="parallax" style="transform: translateZ(-0.2px)"></div>
+            <div class="parallax" style="transform: translateZ(0px)"></div>
+          </div>
 
-              <p class="mt-4">
-                <a
-                  v-if="master.toggle_live_chat"
-                  target="_blank"
-                  href="https://wa.me/442072872300?text=Hello+Hauser+%26+Wirth"
-                  class="btn btn-block btn-md btn-outline-dark"
-                  ><img class="btniconfix" src="../assets/whatsapp.svg" /> Live
-                  Chat</a
-                >
-                <a
-                  @click="emailModal = !emailModal"
-                  class="btn btn-md btn-outline-dark"
-                  >Inquire</a
-                >
-              </p>
-            </div>
-          </div>
-          <div class="col-12 col-lg-8">
-            <carousel
-              v-if="artwork.acf.artwork_images.length > 0"
-              :nav="false"
-              :dots="false"
-              :stagePadding="0"
-              :margin="0"
-              :responsive="{
-                0: { items: 1 },
-                576: { items: 1 }
-              }"
-            >
-              <div
-                v-for="(artwork, index) in artwork.acf.artwork_images"
-                :key="index"
-                style="height: 75vh; cursor: pointer; background-size: contain;  background-position: center center; background-repeat: no-repeat;"
-                :style="{
-                  backgroundImage: 'url(' + artwork.sizes['large'] + ')'
-                }"
-              ></div>
-            </carousel>
-          </div>
-        </div>
-      </div>
-
-      <div
-        v-for="(panel, index) in artwork.acf.content_panels"
-        :key="index"
-        :class="{ [panel.acf_fc_layout]: true }"
-      >
-        <template v-if="panel.acf_fc_layout == 'left_image'">
           <div
-            v-if="panel.image"
-            class="d-md-none"
-            style="height: 20rem; background-size: cover; background-position: center center;"
-            v-bind:style="{
-              'background-image': 'url(' + panel.image + ')'
+            :style="{
+              backgroundImage:
+                'url(' + artwork.acf.hero_image.sizes['large'] + ')'
             }"
+            style="transform: translateZ(-0.1px); position: absolute; top:0; background-position: center center; background-size: cover; width: 110vw; height: 110vh; color: white;"
+            class="d-flex align-items-center justify-content-center"
           ></div>
-          <div class="container-fluid">
-            <div class="row d-flex align-items-center sizer ">
-              <div
-                class="d-none d-md-block col-6 col-lg-8 sizer"
-                style="position: relative; overflow: hidden;"
-              >
-                <div
-                  v-ani="{ class: 'kenburns-top', delay: 0 }"
-                  style="position: absolute; top: 0; left: 0; right:0; bottom:0; background-size: cover; background-position: center center;"
-                  v-bind:style="{
-                    'background-image': 'url(' + panel.image + ')'
-                  }"
-                ></div>
-              </div>
-              <div class="col">
-                <div class="mt-5 mb-5 col-10 offset-1 ">
-                  <div v-html="panel.description"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="d-none d-md-block" style="height: 3rem;"></div>
-        </template>
-        <template v-if="panel.acf_fc_layout == 'right_image'">
           <div
-            v-if="panel.image"
-            class="d-md-none"
-            style="height: 20rem;  background-size: cover; background-position: center center;"
-            v-bind:style="{
-              'background-image': 'url(' + panel.image + ')'
-            }"
-          ></div>
-          <div class="container-fluid">
-            <div class="row d-flex align-items-center sizer ">
-              <div class="col">
-                <div class="mt-5 mb-5 col-10 offset-1">
-                  <div v-html="panel.description"></div>
-                </div>
-              </div>
-              <div
-                class="d-none d-md-block col-6 col-lg-8 sizer"
-                style="overflow: hidden;"
-              >
-                <div
-                  v-ani="{ class: 'kenburns-top', delay: 0 }"
-                  style="position: absolute; top: 0; left: 0; right:0; bottom:0; background-size: cover; background-position: center center;"
-                  v-bind:style="{
-                    'background-image': 'url(' + panel.image + ')'
-                  }"
-                ></div>
-              </div>
-            </div>
-          </div>
-          <div class="d-none d-md-block" style="height: 3rem;"></div>
-        </template>
-        <template v-if="panel.acf_fc_layout == 'right_text'">
-          <div
-            v-if="panel.image"
-            class="d-md-none"
-            style="height: 20rem;  background-size: cover; background-position: center center;"
-            v-bind:style="{
-              'background-image': 'url(' + panel.image + ')'
-            }"
-          ></div>
-          <div class="container-fluid">
-            <div class="row d-flex align-items-center sizer ">
-              <div class="col">
-                <div class="mt-5 mb-5 col-10 offset-1">
-                  <h4>{{ panel.title }}</h4>
-                  <div class="mb-3" v-html="panel.description"></div>
-                  <p style="margin-top: 2rem;" v-if="panel.button_link">
-                    <a
-                      :href="panel.button_link"
-                      style="background-color: #efefef; padding: 1rem;"
-                      >{{ panel.button_text }}
-                    </a>
-                  </p>
-                </div>
-              </div>
-              <div
-                class="d-none d-md-block col-6 col-lg-8 sizer"
-                style="overflow: hidden;"
-              >
-                <div
-                  v-ani="{ class: 'kenburns-top', delay: 0 }"
-                  style="position: absolute; top: 0; left: 0; right:0; bottom:0; background-size: cover; background-position: center center;"
-                  v-bind:style="{
-                    'background-image': 'url(' + panel.image + ')'
-                  }"
-                ></div>
-              </div>
-            </div>
-          </div>
-          <div class="d-none d-md-block" style="height: 3rem;"></div>
-        </template>
-        <template v-if="panel.acf_fc_layout == 'left_text'">
-          <div
-            v-if="panel.image"
-            class="d-md-none"
-            style="height: 20rem;  background-size: cover; background-position: center center;"
-            v-bind:style="{
-              'background-image': 'url(' + panel.image + ')'
-            }"
-          ></div>
-          <div class="container-fluid">
-            <div class="row d-flex align-items-center sizer ">
-              <div
-                class="d-none d-md-block col-6 col-lg-8 sizer"
-                style="overflow: hidden;"
-              >
-                <div
-                  v-ani="{ class: 'kenburns-top', delay: 0 }"
-                  style="position: absolute; top: 0; left: 0; right:0; bottom:0; background-size: cover; background-position: center center;"
-                  v-bind:style="{
-                    'background-image': 'url(' + panel.image + ')'
-                  }"
-                ></div>
-              </div>
-              <div class="col">
-                <div class="mt-5 mb-5 col-10 offset-1">
-                  <h4>{{ panel.title }}</h4>
-                  <div class="mb-3" v-html="panel.description"></div>
-                  <p style="margin-top: 2rem;" v-if="panel.button_link">
-                    <a
-                      :href="panel.button_link"
-                      style="background-color: #efefef; padding: 1rem;"
-                      >{{ panel.button_text }}
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="d-none d-md-block" style="height: 3rem;"></div>
-        </template>
-        <template v-if="panel.acf_fc_layout == 'right_video'">
-          <div class="container-fluid">
-            <div class="row d-flex align-items-center ">
-              <div class="col-12 d-md-none" style="overflow: hidden;">
-                <div class="embed-responsive embed-responsive-16by9">
-                  <iframe
-                    class="embed-responsive-item"
-                    :src="panel.video"
-                    allowfullscreen
-                  ></iframe>
-                </div>
-              </div>
-              <div class="col">
-                <div class="mt-5 mb-5 col-10 offset-1">
-                  <div style="padding: 3rem 0;">
-                    <h4>{{ panel.title }}</h4>
-                    <div v-html="panel.description" class="mb-2"></div>
-                    <p style="margin-top: 2rem;" v-if="panel.button_link">
-                      <a
-                        :href="panel.button_link"
-                        style="background-color: #efefef; padding: 1rem;"
-                        >{{ panel.button_text }}
-                      </a>
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="d-none d-md-block col-6 col-lg-8"
-                style="overflow: hidden;"
-              >
-                <div class="embed-responsive embed-responsive-16by9">
-                  <iframe
-                    class="embed-responsive-item"
-                    :src="panel.video"
-                    allowfullscreen
-                  ></iframe>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="d-none d-md-block" style="height: 3rem;"></div>
-        </template>
-        <template v-if="panel.acf_fc_layout == 'left_video'">
-          <div class="container-fluid">
-            <div class="row d-flex align-items-center ">
-              <div class="col-12 d-md-none" style="overflow: hidden;">
-                <div class="embed-responsive embed-responsive-16by9">
-                  <iframe
-                    class="embed-responsive-item"
-                    :src="panel.video"
-                    allowfullscreen
-                  ></iframe>
-                </div>
-              </div>
-              <div
-                class="col-8 d-none d-md-block sizer"
-                style="overflow: hidden;"
-              >
-                <div class="embed-responsive embed-responsive-16by9">
-                  <iframe
-                    class="embed-responsive-item"
-                    :src="panel.video"
-                    allowfullscreen
-                  ></iframe>
-                </div>
-              </div>
-              <div class="col">
-                <div class="mt-5 mb-5 col-10 offset-1">
-                  <div style="padding: 3rem 0;">
-                    <h4>{{ panel.title }}</h4>
-                    <div v-html="panel.description" class="mb-2"></div>
-                    <p style="margin-top: 2rem;" v-if="panel.button_link">
-                      <a
-                        :href="panel.button_link"
-                        style="background-color: #efefef; padding: 1rem;"
-                        >{{ panel.button_text }}
-                      </a>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="d-none d-md-block" style="height: 3rem;"></div>
-        </template>
-        <template v-if="panel.acf_fc_layout == 'quote'">
-          <div class="col">
-            <div
-              v-bind:style="{ 'background-color': panel.background_color }"
-              style="padding: 4rem 4rem 4rem 4rem;  color: black; text-align: center;"
-            >
-              <div
-                style="font-weight: normal; font-size: 1.25rem;"
-                v-html="panel.description"
-              ></div>
-              <p v-if="panel.author">
-                <b-icon class="ml-2" icon="dash" /> {{ panel.author }}
-              </p>
-            </div>
-          </div>
-          <div style="height: 8rem;"></div>
-        </template>
-        <template v-if="panel.acf_fc_layout == 'small_print'">
-          <div class="container">
-            <div class="col">
-              <small v-html="panel.description"></small>
-            </div>
-          </div>
-          <div style="height: 8rem;"></div>
-        </template>
-      </div>
-      <div style="height: 6rem;"></div>
-      <div v-if="artwork.acf.other_artworks.length" class="container">
-        <div class="row">
-          <div class="col">
-            <h3 class="mb-5">Explore Other Artworks</h3>
-            <div class="row">
-              <div
-                v-for="(artwork, index) in artwork.acf.other_artworks"
-                v-ani="{ class: 'fade-in-bottom', delay: index * 300 }"
-                :key="artwork.ID"
-                class="col-6 col-md-4 mb-5 "
-              >
-                <ExploreArtworkItem :id="artwork.ID"></ExploreArtworkItem>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <Footer></Footer>
-    <div v-bind:class="{ active: zoomModal }" class="fullscreen-modal">
-      <div
-        @click="zoomModal = false"
-        style="height: 100vh; overflow: scroll; text-align: center; cursor: alias; font-size: 2rem;"
-      >
-        <b-icon style="position: absolute; top:1rem; right: 1rem;" icon="x" />
-        <img :src="galleryImg" />
-      </div>
-    </div>
-    <ShareModal v-if="artwork" ref="shareModal" :artwork="artwork"></ShareModal>
-    <div v-bind:class="{ active: emailModal }" class="fullscreen-modal">
-      <div class="container">
-        <div
-          class="row d-flex align-items-center text-left"
-          style="position: relative; height: 100vh"
-        >
-          <div style="position: absolute; right:0; top:2rem;">
-            <div class="col">
-              <a @click="emailModal = !emailModal">Close</a>
-            </div>
-          </div>
-          <div v-if="sending" class="col-12"><Loader></Loader></div>
-          <div
-            class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 text-center"
-            v-if="sent"
+            style="transform: translateZ(-0px); position: absolute; width: 100vw; height: 100vh; top:0;"
+            class="d-flex align-items-center justify-content-center"
           >
-            <h2 class="mb-4">Thanks for contacting us!</h2>
-            <p class="mb-4">We will get in touch with you shortly.</p>
-            <button
-              @click="emailModal = false"
-              class="mt-4 mb-5 btn btn-md btn-outline-dark"
-            >
-              Done
-            </button>
+            <div style="color:white;">
+              <h2
+                v-if="artwork.artist.name"
+                style="font-size: 16px; text-align: center; "
+                class="fnormal mb-3"
+                v-html="artwork.artist.name"
+              ></h2>
+              <h1
+                v-if="artwork.title.rendered"
+                style="font-size: 56px; margin-bottom: 0.5rem; text-align: center;"
+                v-html="artwork.title.rendered"
+              ></h1>
+            </div>
           </div>
+
           <div
-            v-if="!sending && !sent"
-            class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3"
-            style="position: relative;"
+            class="container"
+            style="margin-bottom: 3rem; margin-top: 105vh;"
           >
-            <h4 class="mb-4">Contact us for inquiries</h4>
-            <div class="row">
-              <form @submit="sendEmail">
-                <div class="col-12">
-                  <input
-                    type="text"
-                    required
-                    v-model="form.firstName"
-                    placeholder="First Name"
-                    class="form-control mb-4"
-                  />
-                </div>
-                <!-- end col -->
-                <div class="col-12">
-                  <input
-                    type="text"
-                    required
-                    v-model="form.lastName"
-                    placeholder="Last Name"
-                    class="form-control mb-4"
-                  />
-                </div>
-                <!-- end col -->
-                <div class="col-12">
-                  <input
-                    type="text"
-                    required
-                    v-model="form.emailAddress"
-                    placeholder="Email address"
-                    class="form-control mb-4"
-                  />
-                </div>
-                <!-- end col -->
-                <div class="col-12">
-                  <input
-                    type="text"
-                    required
-                    v-model="form.note"
-                    placeholder="I am interested in learning about this piece."
-                    class="form-control mb-4"
-                  />
-                </div>
-                <!-- end col -->
-                <div class="col-12">
-                  <button
-                    type="submit"
-                    class="mt-4 mb-5 btn btn-md btn-outline-dark btn-block"
-                  >
-                    Submit
-                  </button>
-                </div>
-                <div class="col-12">
+            <div class="row d-flex align-items-center">
+              <div class="col-12 col-lg-4">
+                <div style="padding: 2rem 0;">
+                  <h3 class="mb-1" v-html="artwork.title.rendered"></h3>
                   <p>
-                    <small
-                      >*By submitting your email address, you consent to receive
-                      our Newsletter. Your consent is revocable at any time by
-                      clicking the unsubscribe link in our Newsletter. The
-                      Newsletter is sent in accordance with our Privacy Policy
-                      and to advertise products and services of Hauser & Wirth
-                      Ltd. and its affiliated companies.</small
+                    <template v-if="artwork.acf.price == 0"
+                      >Price upon inquiry</template
+                    >
+                    <template v-if="artwork.acf.price > 0">{{
+                      artwork.acf.price | toCurrency
+                    }}</template>
+                  </p>
+                  <p v-html="artwork.acf.hero_description"></p>
+
+                  <p class="mt-4">
+                    <a
+                      v-if="master.toggle_live_chat"
+                      target="_blank"
+                      href="https://wa.me/442072872300?text=Hello+Hauser+%26+Wirth"
+                      class="btn btn-block btn-md btn-outline-dark"
+                      ><img class="btniconfix" src="../assets/whatsapp.svg" />
+                      Live Chat</a
+                    >
+                    <a
+                      @click="emailModal = !emailModal"
+                      class="btn btn-md btn-outline-dark"
+                      >Inquire</a
                     >
                   </p>
                 </div>
-              </form>
+              </div>
+              <div class="col-12 col-lg-8">
+                <carousel
+                  v-if="artwork.acf.artwork_images.length > 0"
+                  :nav="false"
+                  :dots="false"
+                  :stagePadding="0"
+                  :margin="0"
+                  :responsive="{
+                    0: { items: 1 },
+                    576: { items: 1 }
+                  }"
+                >
+                  <div
+                    v-for="(artwork, index) in artwork.acf.artwork_images"
+                    :key="index"
+                    style="height: 75vh; cursor: pointer; background-size: contain;  background-position: center center; background-repeat: no-repeat;"
+                    :style="{
+                      backgroundImage: 'url(' + artwork.sizes['large'] + ')'
+                    }"
+                  ></div>
+                </carousel>
+              </div>
             </div>
-            <!-- end row -->
+          </div>
+
+          <div
+            v-for="(panel, index) in artwork.acf.content_panels"
+            :key="index"
+            :class="{ [panel.acf_fc_layout]: true }"
+          >
+            <template v-if="panel.acf_fc_layout == 'left_image'">
+              <div
+                v-if="panel.image"
+                class="d-md-none"
+                style="height: 20rem; background-size: cover; background-position: center center;"
+                v-bind:style="{
+                  'background-image': 'url(' + panel.image + ')'
+                }"
+              ></div>
+              <div class="container-fluid">
+                <div class="row d-flex align-items-center sizer ">
+                  <div
+                    class="d-none d-md-block col-6 col-lg-8 sizer"
+                    style="position: relative; overflow: hidden;"
+                  >
+                    <div
+                      v-ani="{ class: 'kenburns-top', delay: 0 }"
+                      style="position: absolute; top: 0; left: 0; right:0; bottom:0; background-size: cover; background-position: center center;"
+                      v-bind:style="{
+                        'background-image': 'url(' + panel.image + ')'
+                      }"
+                    ></div>
+                  </div>
+                  <div class="col">
+                    <div class="mt-5 mb-5 col-10 offset-1 ">
+                      <div v-html="panel.description"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="d-none d-md-block" style="height: 3rem;"></div>
+            </template>
+            <template v-if="panel.acf_fc_layout == 'right_image'">
+              <div
+                v-if="panel.image"
+                class="d-md-none"
+                style="height: 20rem;  background-size: cover; background-position: center center;"
+                v-bind:style="{
+                  'background-image': 'url(' + panel.image + ')'
+                }"
+              ></div>
+              <div class="container-fluid">
+                <div class="row d-flex align-items-center sizer ">
+                  <div class="col">
+                    <div class="mt-5 mb-5 col-10 offset-1">
+                      <div v-html="panel.description"></div>
+                    </div>
+                  </div>
+                  <div
+                    class="d-none d-md-block col-6 col-lg-8 sizer"
+                    style="overflow: hidden;"
+                  >
+                    <div
+                      v-ani="{ class: 'kenburns-top', delay: 0 }"
+                      style="position: absolute; top: 0; left: 0; right:0; bottom:0; background-size: cover; background-position: center center;"
+                      v-bind:style="{
+                        'background-image': 'url(' + panel.image + ')'
+                      }"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+              <div class="d-none d-md-block" style="height: 3rem;"></div>
+            </template>
+            <template v-if="panel.acf_fc_layout == 'right_text'">
+              <div
+                v-if="panel.image"
+                class="d-md-none"
+                style="height: 20rem;  background-size: cover; background-position: center center;"
+                v-bind:style="{
+                  'background-image': 'url(' + panel.image + ')'
+                }"
+              ></div>
+              <div class="container-fluid">
+                <div class="row d-flex align-items-center sizer ">
+                  <div class="col">
+                    <div class="mt-5 mb-5 col-10 offset-1">
+                      <h4>{{ panel.title }}</h4>
+                      <div class="mb-3" v-html="panel.description"></div>
+                      <p style="margin-top: 2rem;" v-if="panel.button_link">
+                        <a
+                          :href="panel.button_link"
+                          style="background-color: #efefef; padding: 1rem;"
+                          >{{ panel.button_text }}
+                        </a>
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="d-none d-md-block col-6 col-lg-8 sizer"
+                    style="overflow: hidden;"
+                  >
+                    <div
+                      v-ani="{ class: 'kenburns-top', delay: 0 }"
+                      style="position: absolute; top: 0; left: 0; right:0; bottom:0; background-size: cover; background-position: center center;"
+                      v-bind:style="{
+                        'background-image': 'url(' + panel.image + ')'
+                      }"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+              <div class="d-none d-md-block" style="height: 3rem;"></div>
+            </template>
+            <template v-if="panel.acf_fc_layout == 'left_text'">
+              <div
+                v-if="panel.image"
+                class="d-md-none"
+                style="height: 20rem;  background-size: cover; background-position: center center;"
+                v-bind:style="{
+                  'background-image': 'url(' + panel.image + ')'
+                }"
+              ></div>
+              <div class="container-fluid">
+                <div class="row d-flex align-items-center sizer ">
+                  <div
+                    class="d-none d-md-block col-6 col-lg-8 sizer"
+                    style="overflow: hidden;"
+                  >
+                    <div
+                      v-ani="{ class: 'kenburns-top', delay: 0 }"
+                      style="position: absolute; top: 0; left: 0; right:0; bottom:0; background-size: cover; background-position: center center;"
+                      v-bind:style="{
+                        'background-image': 'url(' + panel.image + ')'
+                      }"
+                    ></div>
+                  </div>
+                  <div class="col">
+                    <div class="mt-5 mb-5 col-10 offset-1">
+                      <h4>{{ panel.title }}</h4>
+                      <div class="mb-3" v-html="panel.description"></div>
+                      <p style="margin-top: 2rem;" v-if="panel.button_link">
+                        <a
+                          :href="panel.button_link"
+                          style="background-color: #efefef; padding: 1rem;"
+                          >{{ panel.button_text }}
+                        </a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="d-none d-md-block" style="height: 3rem;"></div>
+            </template>
+            <template v-if="panel.acf_fc_layout == 'right_video'">
+              <div class="container-fluid">
+                <div class="row d-flex align-items-center ">
+                  <div class="col-12 d-md-none" style="overflow: hidden;">
+                    <div class="embed-responsive embed-responsive-16by9">
+                      <iframe
+                        class="embed-responsive-item"
+                        :src="panel.video"
+                        allowfullscreen
+                      ></iframe>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="mt-5 mb-5 col-10 offset-1">
+                      <div style="padding: 3rem 0;">
+                        <h4>{{ panel.title }}</h4>
+                        <div v-html="panel.description" class="mb-2"></div>
+                        <p style="margin-top: 2rem;" v-if="panel.button_link">
+                          <a
+                            :href="panel.button_link"
+                            style="background-color: #efefef; padding: 1rem;"
+                            >{{ panel.button_text }}
+                          </a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="d-none d-md-block col-6 col-lg-8"
+                    style="overflow: hidden;"
+                  >
+                    <div class="embed-responsive embed-responsive-16by9">
+                      <iframe
+                        class="embed-responsive-item"
+                        :src="panel.video"
+                        allowfullscreen
+                      ></iframe>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="d-none d-md-block" style="height: 3rem;"></div>
+            </template>
+            <template v-if="panel.acf_fc_layout == 'left_video'">
+              <div class="container-fluid">
+                <div class="row d-flex align-items-center ">
+                  <div class="col-12 d-md-none" style="overflow: hidden;">
+                    <div class="embed-responsive embed-responsive-16by9">
+                      <iframe
+                        class="embed-responsive-item"
+                        :src="panel.video"
+                        allowfullscreen
+                      ></iframe>
+                    </div>
+                  </div>
+                  <div
+                    class="col-8 d-none d-md-block sizer"
+                    style="overflow: hidden;"
+                  >
+                    <div class="embed-responsive embed-responsive-16by9">
+                      <iframe
+                        class="embed-responsive-item"
+                        :src="panel.video"
+                        allowfullscreen
+                      ></iframe>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="mt-5 mb-5 col-10 offset-1">
+                      <div style="padding: 3rem 0;">
+                        <h4>{{ panel.title }}</h4>
+                        <div v-html="panel.description" class="mb-2"></div>
+                        <p style="margin-top: 2rem;" v-if="panel.button_link">
+                          <a
+                            :href="panel.button_link"
+                            style="background-color: #efefef; padding: 1rem;"
+                            >{{ panel.button_text }}
+                          </a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="d-none d-md-block" style="height: 3rem;"></div>
+            </template>
+            <template v-if="panel.acf_fc_layout == 'quote'">
+              <div class="col">
+                <div
+                  v-bind:style="{ 'background-color': panel.background_color }"
+                  style="padding: 4rem 4rem 4rem 4rem;  color: black; text-align: center;"
+                >
+                  <div
+                    style="font-weight: normal; font-size: 1.25rem;"
+                    v-html="panel.description"
+                  ></div>
+                  <p v-if="panel.author">
+                    <b-icon class="ml-2" icon="dash" /> {{ panel.author }}
+                  </p>
+                </div>
+              </div>
+              <div style="height: 8rem;"></div>
+            </template>
+            <template v-if="panel.acf_fc_layout == 'small_print'">
+              <div class="container">
+                <div class="col">
+                  <small v-html="panel.description"></small>
+                </div>
+              </div>
+              <div style="height: 8rem;"></div>
+            </template>
+          </div>
+          <div style="height: 6rem;"></div>
+          <div v-if="artwork.acf.other_artworks.length" class="container">
+            <div class="row">
+              <div class="col">
+                <h3 class="mb-5">Explore Other Artworks</h3>
+                <div class="row">
+                  <div
+                    v-for="(artwork, index) in artwork.acf.other_artworks"
+                    v-ani="{ class: 'fade-in-bottom', delay: index * 300 }"
+                    :key="artwork.ID"
+                    class="col-6 col-md-4 mb-5 "
+                  >
+                    <ExploreArtworkItem :id="artwork.ID"></ExploreArtworkItem>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <Footer></Footer>
+        <div v-bind:class="{ active: zoomModal }" class="fullscreen-modal">
+          <div
+            @click="zoomModal = false"
+            style="height: 100vh; overflow: scroll; text-align: center; cursor: alias; font-size: 2rem;"
+          >
+            <b-icon
+              style="position: absolute; top:1rem; right: 1rem;"
+              icon="x"
+            />
+            <img :src="galleryImg" />
+          </div>
+        </div>
+        <ShareModal
+          v-if="artwork"
+          ref="shareModal"
+          :artwork="artwork"
+        ></ShareModal>
+        <div v-bind:class="{ active: emailModal }" class="fullscreen-modal">
+          <div class="container">
+            <div
+              class="row d-flex align-items-center text-left"
+              style="position: relative; height: 100vh"
+            >
+              <div style="position: absolute; right:0; top:2rem;">
+                <div class="col">
+                  <a @click="emailModal = !emailModal">Close</a>
+                </div>
+              </div>
+              <div v-if="sending" class="col-12"><Loader></Loader></div>
+              <div
+                class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 text-center"
+                v-if="sent"
+              >
+                <h2 class="mb-4">Thanks for contacting us!</h2>
+                <p class="mb-4">We will get in touch with you shortly.</p>
+                <button
+                  @click="emailModal = false"
+                  class="mt-4 mb-5 btn btn-md btn-outline-dark"
+                >
+                  Done
+                </button>
+              </div>
+              <div
+                v-if="!sending && !sent"
+                class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3"
+                style="position: relative;"
+              >
+                <h4 class="mb-4">Contact us for inquiries</h4>
+                <div class="row">
+                  <form @submit="sendEmail">
+                    <div class="col-12">
+                      <input
+                        type="text"
+                        required
+                        v-model="form.firstName"
+                        placeholder="First Name"
+                        class="form-control mb-4"
+                      />
+                    </div>
+                    <!-- end col -->
+                    <div class="col-12">
+                      <input
+                        type="text"
+                        required
+                        v-model="form.lastName"
+                        placeholder="Last Name"
+                        class="form-control mb-4"
+                      />
+                    </div>
+                    <!-- end col -->
+                    <div class="col-12">
+                      <input
+                        type="text"
+                        required
+                        v-model="form.emailAddress"
+                        placeholder="Email address"
+                        class="form-control mb-4"
+                      />
+                    </div>
+                    <!-- end col -->
+                    <div class="col-12">
+                      <input
+                        type="text"
+                        required
+                        v-model="form.note"
+                        placeholder="I am interested in learning about this piece."
+                        class="form-control mb-4"
+                      />
+                    </div>
+                    <!-- end col -->
+                    <div class="col-12">
+                      <button
+                        type="submit"
+                        class="mt-4 mb-5 btn btn-md btn-outline-dark btn-block"
+                      >
+                        Submit
+                      </button>
+                    </div>
+                    <div class="col-12">
+                      <p>
+                        <small
+                          >*By submitting your email address, you consent to
+                          receive our Newsletter. Your consent is revocable at
+                          any time by clicking the unsubscribe link in our
+                          Newsletter. The Newsletter is sent in accordance with
+                          our Privacy Policy and to advertise products and
+                          services of Hauser & Wirth Ltd. and its affiliated
+                          companies.</small
+                        >
+                      </p>
+                    </div>
+                  </form>
+                </div>
+                <!-- end row -->
+              </div>
+            </div>
           </div>
         </div>
       </div>

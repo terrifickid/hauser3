@@ -28,37 +28,4 @@
 <script>
 export default {};
 </script>
-<style scoped>
-.overflow {
-  overflow-y: scroll;
-  overflow-x: hidden;
-  border: 1px solid black;
-  width: 100vw;
-  height: 100vh;
-}
-
-.perspective {
-  perspective: 1px;
-  perspective-origin: top left;
-}
-
-.preserve {
-  transform-style: preserve-3d;
-}
-
-.parallax {
-  position: absolute;
-  top: 200px;
-  margin-left: 250px;
-  font-size: 24px;
-}
-
-.spacer {
-  height: 1000px;
-}
-
-.sticky {
-  position: sticky;
-  position: -webkit-sticky;
-}
-</style>
+<style scoped></style>
