@@ -35,7 +35,7 @@
           muted
           playsinline
         >
-          <source src="basel.mp4" type="video/mp4" />
+          <source src="seoul.mp4" type="video/mp4" />
         </video>
       </div>
       <div class="container">
