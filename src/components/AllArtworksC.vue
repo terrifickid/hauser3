@@ -6,7 +6,7 @@
         class="row mb-4 d-flex align-items-top"
       >
         <div class="col-12">
-          <h4 style="font-size: 40px;">Artworks</h4>
+          <h4 style="font-size: 40px;">{{ master.artwork_display_title }}</h4>
         </div>
       </div>
       <!-- end row -->

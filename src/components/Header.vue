@@ -65,6 +65,8 @@
             </div>
             <!-- end col -->
             <div class="col icons text-right">
+              <button v-if="lang == 'ko'" @click="english()">English</button>
+              <button v-if="lang == 'en'" @click="korean()">한국어</button>
               <a @click="menuModal = !menuModal"
                 ><img src="../assets/menu.svg"
               /></a>
@@ -89,6 +91,7 @@ export default {
   },
   data: function() {
     return {
+      lang: "en",
       menuModal: false,
       oldScrollY: 0,
       showHeader: true,
@@ -96,8 +99,17 @@ export default {
     };
   },
   methods: {
-    headerResize() {
-      if (window.scrollY > this.below) {
+    english() {
+      this.lang = "en";
+      document.getElementById("weglot-language-en").click();
+    },
+    korean() {
+      this.lang = "ko";
+      document.getElementById("weglot-language-ko").click();
+    },
+    headerResize(obj = window.scrollY) {
+      console.log("resize!");
+      if (obj > this.below) {
         this.belowFold = true;
       } else {
         this.belowFold = false;
@@ -148,6 +160,13 @@ export default {
     window.addEventListener("resize", () => {
       this.headerResize();
     });
+
+    if (document.getElementById("scrollerCheck")) {
+      document.getElementById("scrollerCheck").addEventListener("wheel", () => {
+        this.headerResize(document.getElementById("scrollerCheck").scrollTop);
+      });
+    }
+
     document.addEventListener("scroll", () => {
       this.headerScroll();
       this.headerResize();
@@ -214,9 +233,17 @@ a {
 #desktopMenu a:hover {
   color: white;
 }
+
+.icons button {
+  color: white;
+  border: 0;
+  background: none;
+  outline: none;
+}
 .invert #hlogo,
 .invert #desktopMenu a,
-.invert .icons a {
+.invert .icons a,
+.invert .icons button {
   filter: brightness(0%);
 }
 #hauser_header.fade-in-top {

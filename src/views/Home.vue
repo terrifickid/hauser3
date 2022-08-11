@@ -8,7 +8,7 @@
   >
     <Header ref="heady" :mode="0" :below="10"></Header>
 
-    <div id="hauser_home">
+    <div id="hauser_home" v-if="master">
       <div style="background: black; height: 100vh;" class=" relative">
         <div
           style="position: absolute; top: 0; left:0; right:0; bottom:0; right:0; z-index:2; color: white;"
@@ -35,7 +35,7 @@
           muted
           playsinline
         >
-          <source src="seoul.mp4" type="video/mp4" />
+          <source :src="master.hero_video" type="video/mp4" />
         </video>
       </div>
       <div class="container">
@@ -92,15 +92,20 @@
 
       <AboutHauser></AboutHauser>
 
-      <div class="container" v-if="master.interstitial_title">
+      <div
+        :id="master.interstitial_anchor"
+        class="container"
+        v-if="master.interstitial_title"
+      >
         <div style="padding-bottom: 12rem;">
           <h2 style="font-size: 32px; margin-bottom: 1.5rem;">
             {{ master.interstitial_title }}
           </h2>
           <img :src="master.interstitial_image" class="img-fluid" />
-          <p style="margin-top: 1.5rem;">
-            {{ master.interstitial_description }}
-          </p>
+          <p
+            style="margin-top: 1.5rem;"
+            v-html="master.interstitial_description"
+          ></p>
         </div>
       </div>
 
@@ -111,6 +116,7 @@
 </template>
 <style lang="scss"></style>
 <script>
+import _ from "lodash";
 //import axios from 'axios';
 import Header from "@/components/Header.vue";
 
@@ -170,7 +176,7 @@ export default {
   mounted: function() {
     setInterval(() => {
       this.sliderKey++;
-      if (this.sliderKey > this.master.hero_images.length - 1)
+      if (this.sliderKey > _.get(this.master, "hero_images.length") - 1)
         this.sliderKey = 0;
     }, 3500);
 

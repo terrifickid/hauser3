@@ -1,9 +1,8 @@
 <template>
   <div id="Artwork" class="">
-    <div class="perspective overflow">
+    <Header ref="heady" :mode="0" :below="10"></Header>
+    <div class="perspective overflow" id="scrollerCheck">
       <div class="preserve">
-        <Header ref="heady" :mode="0" :below="10"></Header>
-
         <div v-if="artwork" class="preserve">
           <div class="preserve" style="position: relative; z-index: 3000;">
             <div class="parallax" style="transform: translateZ(-1.2px)"></div>
@@ -19,12 +18,16 @@
 
           <div
             :style="{
-              backgroundImage:
-                'url(' + artwork.acf.hero_image.sizes['large'] + ')'
+              backgroundImage: 'url(' + artwork.acf.hero_image.url + ')'
             }"
             style="transform: translateZ(-0.1px); position: absolute; top:0; background-position: center center; background-size: cover; width: 110vw; height: 110vh; color: white;"
             class="d-flex align-items-center justify-content-center"
-          ></div>
+          >
+            <div
+              v-if="artwork.acf.shader"
+              style="background: black; top:0; left:0; right:0; bottom:0; position: absolute; opacity: 0.15"
+            ></div>
+          </div>
           <div
             style="transform: translateZ(-0px); position: absolute; width: 100vw; height: 100vh; top:0;"
             class="d-flex align-items-center justify-content-center"
@@ -254,7 +257,7 @@
               <div class="d-none d-md-block" style="height: 3rem;"></div>
             </template>
             <template v-if="panel.acf_fc_layout == 'right_video'">
-              <div class="container-fluid">
+              <div class="">
                 <div class="row d-flex align-items-center ">
                   <div class="col-12 d-md-none" style="overflow: hidden;">
                     <div class="embed-responsive embed-responsive-16by9">
@@ -268,7 +271,7 @@
                   <div class="col">
                     <div class="mt-5 mb-5 col-10 offset-1">
                       <div style="padding: 3rem 0;">
-                        <h4>{{ panel.title }}</h4>
+                        <h4>{{ panel.title }} R</h4>
                         <div v-html="panel.description" class="mb-2"></div>
                         <p style="margin-top: 2rem;" v-if="panel.button_link">
                           <a
@@ -297,7 +300,7 @@
               <div class="d-none d-md-block" style="height: 3rem;"></div>
             </template>
             <template v-if="panel.acf_fc_layout == 'left_video'">
-              <div class="container-fluid">
+              <div class="">
                 <div class="row d-flex align-items-center ">
                   <div class="col-12 d-md-none" style="overflow: hidden;">
                     <div class="embed-responsive embed-responsive-16by9">
@@ -309,7 +312,7 @@
                     </div>
                   </div>
                   <div
-                    class="col-8 d-none d-md-block sizer"
+                    class="d-none d-md-block col-6 col-lg-8"
                     style="overflow: hidden;"
                   >
                     <div class="embed-responsive embed-responsive-16by9">
@@ -323,7 +326,7 @@
                   <div class="col">
                     <div class="mt-5 mb-5 col-10 offset-1">
                       <div style="padding: 3rem 0;">
-                        <h4>{{ panel.title }}</h4>
+                        <h4>{{ panel.title }} R</h4>
                         <div v-html="panel.description" class="mb-2"></div>
                         <p style="margin-top: 2rem;" v-if="panel.button_link">
                           <a
@@ -666,7 +669,6 @@ a:hover {
   max-width: 30rem;
 }
 #positioner {
-  border: 1px solid blue;
   position: fixed;
   left: 0;
 }
