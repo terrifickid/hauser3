@@ -271,7 +271,7 @@
                   <div class="col">
                     <div class="mt-5 mb-5 col-10 offset-1">
                       <div style="padding: 3rem 0;">
-                        <h4>{{ panel.title }} R</h4>
+                        <h4>{{ panel.title }}</h4>
                         <div v-html="panel.description" class="mb-2"></div>
                         <p style="margin-top: 2rem;" v-if="panel.button_link">
                           <a
@@ -326,7 +326,7 @@
                   <div class="col">
                     <div class="mt-5 mb-5 col-10 offset-1">
                       <div style="padding: 3rem 0;">
-                        <h4>{{ panel.title }} R</h4>
+                        <h4>{{ panel.title }}</h4>
                         <div v-html="panel.description" class="mb-2"></div>
                         <p style="margin-top: 2rem;" v-if="panel.button_link">
                           <a
