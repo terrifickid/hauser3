@@ -165,6 +165,21 @@ input.form-control {
   position: -webkit-sticky;
 }
 
+@font-face {
+  font-family: "Abordage";
+  src: url("assets/abor/Abordage-Regular.woff2") format("woff2"),
+    url("assets/abor/Abordage-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.abr {
+  font-family: "Abordage";
+  font-weight: normal;
+  font-style: normal;
+}
+
 /**
 * Hind Light
 */

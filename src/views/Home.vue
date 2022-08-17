@@ -18,12 +18,13 @@
             <h2
               v-if="master.heading_1"
               style="font-size: 16px; text-align: center; "
-              class="fnormal mb-3"
+              class="fnormal mb-3 "
               v-html="master.heading_1"
             ></h2>
             <h1
               v-if="master.heading_2"
               style="font-size: 56px; margin-bottom: 0.5rem; text-align: center;"
+              class="abr"
               v-html="master.heading_2"
             ></h1>
           </div>
