@@ -106,6 +106,13 @@
             style="margin-top: 1.5rem;"
             v-html="master.interstitial_description"
           ></p>
+          <p v-if="master.interstitial_button_link" class="text-center">
+            <a
+              :href="master.interstitial_button_link"
+              class="btn btn-md btn-outline-dark"
+              >{{ master.interstitial_button_text }}
+            </a>
+          </p>
         </div>
       </div>
 
@@ -241,10 +248,6 @@ h1 {
 
   left: 50%;
   transform: translate(-50%, 0);
-}
-a,
-a:hover {
-  color: white;
 }
 
 .pad {
