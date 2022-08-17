@@ -1,5 +1,105 @@
 <template>
   <div id="Artwork" class="">
+    <div v-bind:class="{ active: emailModal }" class="fullscreen-modal">
+      <div class="container">
+        <div
+          class="row d-flex align-items-center text-left"
+          style="position: relative; height: 100vh"
+        >
+          <div style="position: absolute; right:0; top:2rem;">
+            <div class="col">
+              <a @click="emailModal = !emailModal">Close</a>
+            </div>
+          </div>
+          <div v-if="sending" class="col-12"><Loader></Loader></div>
+          <div
+            class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 text-center"
+            v-if="sent"
+          >
+            <h2 class="mb-4">Thanks for contacting us!</h2>
+            <p class="mb-4">We will get in touch with you shortly.</p>
+            <button
+              @click="emailModal = false"
+              class="mt-4 mb-5 btn btn-md btn-outline-dark"
+            >
+              Done
+            </button>
+          </div>
+          <div
+            v-if="!sending && !sent"
+            class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3"
+            style="position: relative;"
+          >
+            <h4 class="mb-4">Contact us for inquiries</h4>
+            <div class="row">
+              <form @submit="sendEmail">
+                <div class="col-12">
+                  <input
+                    type="text"
+                    required
+                    v-model="form.firstName"
+                    placeholder="First Name"
+                    class="form-control mb-4"
+                  />
+                </div>
+                <!-- end col -->
+                <div class="col-12">
+                  <input
+                    type="text"
+                    required
+                    v-model="form.lastName"
+                    placeholder="Last Name"
+                    class="form-control mb-4"
+                  />
+                </div>
+                <!-- end col -->
+                <div class="col-12">
+                  <input
+                    type="text"
+                    required
+                    v-model="form.emailAddress"
+                    placeholder="Email address"
+                    class="form-control mb-4"
+                  />
+                </div>
+                <!-- end col -->
+                <div class="col-12">
+                  <input
+                    type="text"
+                    required
+                    v-model="form.note"
+                    placeholder="I am interested in learning about this piece."
+                    class="form-control mb-4"
+                  />
+                </div>
+                <!-- end col -->
+                <div class="col-12">
+                  <button
+                    type="submit"
+                    class="mt-4 mb-5 btn btn-md btn-outline-dark btn-block"
+                  >
+                    Submit
+                  </button>
+                </div>
+                <div class="col-12">
+                  <p>
+                    <small
+                      >*By submitting your email address, you consent to receive
+                      our Newsletter. Your consent is revocable at any time by
+                      clicking the unsubscribe link in our Newsletter. The
+                      Newsletter is sent in accordance with our Privacy Policy
+                      and to advertise products and services of Hauser & Wirth
+                      Ltd. and its affiliated companies.</small
+                    >
+                  </p>
+                </div>
+              </form>
+            </div>
+            <!-- end row -->
+          </div>
+        </div>
+      </div>
+    </div>
     <Header ref="heady" :mode="0" :below="10"></Header>
     <div class="perspective overflow" id="scrollerCheck">
       <div class="preserve">
@@ -406,107 +506,6 @@
           ref="shareModal"
           :artwork="artwork"
         ></ShareModal>
-        <div v-bind:class="{ active: emailModal }" class="fullscreen-modal">
-          <div class="container">
-            <div
-              class="row d-flex align-items-center text-left"
-              style="position: relative; height: 100vh"
-            >
-              <div style="position: absolute; right:0; top:2rem;">
-                <div class="col">
-                  <a @click="emailModal = !emailModal">Close</a>
-                </div>
-              </div>
-              <div v-if="sending" class="col-12"><Loader></Loader></div>
-              <div
-                class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 text-center"
-                v-if="sent"
-              >
-                <h2 class="mb-4">Thanks for contacting us!</h2>
-                <p class="mb-4">We will get in touch with you shortly.</p>
-                <button
-                  @click="emailModal = false"
-                  class="mt-4 mb-5 btn btn-md btn-outline-dark"
-                >
-                  Done
-                </button>
-              </div>
-              <div
-                v-if="!sending && !sent"
-                class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3"
-                style="position: relative;"
-              >
-                <h4 class="mb-4">Contact us for inquiries</h4>
-                <div class="row">
-                  <form @submit="sendEmail">
-                    <div class="col-12">
-                      <input
-                        type="text"
-                        required
-                        v-model="form.firstName"
-                        placeholder="First Name"
-                        class="form-control mb-4"
-                      />
-                    </div>
-                    <!-- end col -->
-                    <div class="col-12">
-                      <input
-                        type="text"
-                        required
-                        v-model="form.lastName"
-                        placeholder="Last Name"
-                        class="form-control mb-4"
-                      />
-                    </div>
-                    <!-- end col -->
-                    <div class="col-12">
-                      <input
-                        type="text"
-                        required
-                        v-model="form.emailAddress"
-                        placeholder="Email address"
-                        class="form-control mb-4"
-                      />
-                    </div>
-                    <!-- end col -->
-                    <div class="col-12">
-                      <input
-                        type="text"
-                        required
-                        v-model="form.note"
-                        placeholder="I am interested in learning about this piece."
-                        class="form-control mb-4"
-                      />
-                    </div>
-                    <!-- end col -->
-                    <div class="col-12">
-                      <button
-                        type="submit"
-                        class="mt-4 mb-5 btn btn-md btn-outline-dark btn-block"
-                      >
-                        Submit
-                      </button>
-                    </div>
-                    <div class="col-12">
-                      <p>
-                        <small
-                          >*By submitting your email address, you consent to
-                          receive our Newsletter. Your consent is revocable at
-                          any time by clicking the unsubscribe link in our
-                          Newsletter. The Newsletter is sent in accordance with
-                          our Privacy Policy and to advertise products and
-                          services of Hauser & Wirth Ltd. and its affiliated
-                          companies.</small
-                        >
-                      </p>
-                    </div>
-                  </form>
-                </div>
-                <!-- end row -->
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
