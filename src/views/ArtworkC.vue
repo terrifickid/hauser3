@@ -194,7 +194,7 @@
                       <p style="margin-top: 2rem;" v-if="panel.button_link">
                         <a
                           :href="panel.button_link"
-                          style="background-color: #efefef; padding: 1rem;"
+                          class="btn btn-md btn-outline-dark btn-block"
                           >{{ panel.button_text }}
                         </a>
                       </p>
@@ -246,7 +246,7 @@
                       <p style="margin-top: 2rem;" v-if="panel.button_link">
                         <a
                           :href="panel.button_link"
-                          style="background-color: #efefef; padding: 1rem;"
+                          class="btn btn-md btn-outline-dark btn-block"
                           >{{ panel.button_text }}
                         </a>
                       </p>
@@ -276,7 +276,7 @@
                         <p style="margin-top: 2rem;" v-if="panel.button_link">
                           <a
                             :href="panel.button_link"
-                            style="background-color: #efefef; padding: 1rem;"
+                            class="btn btn-md btn-outline-dark btn-block"
                             >{{ panel.button_text }}
                           </a>
                         </p>
@@ -331,7 +331,7 @@
                         <p style="margin-top: 2rem;" v-if="panel.button_link">
                           <a
                             :href="panel.button_link"
-                            style="background-color: #efefef; padding: 1rem;"
+                            class="btn btn-md btn-outline-dark btn-block"
                             >{{ panel.button_text }}
                           </a>
                         </p>

@@ -64,9 +64,21 @@
               </ul>
             </div>
             <!-- end col -->
-            <div class="col icons text-right">
-              <button v-if="lang == 'ko'" @click="english()">English</button>
-              <button v-if="lang == 'en'" @click="korean()">한국어</button>
+            <div class="col icons text-right no-translate">
+              <button
+                v-if="lang == 'ko'"
+                @click="english()"
+                class="no-translate"
+              >
+                English
+              </button>
+              <button
+                v-if="lang == 'en'"
+                @click="korean()"
+                class="no-translate"
+              >
+                한국어
+              </button>
               <a @click="menuModal = !menuModal"
                 ><img src="../assets/menu.svg"
               /></a>
