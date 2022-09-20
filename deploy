@@ -1,15 +1,15 @@
-git checkout lm22
+git checkout paris22
 git add -A
 git commit -a -m autocommit
-git push origin lm22
+git push origin paris22
 npm run build
 cd ~/hauser-and-wirth
-git checkout lm22
+git checkout paris22
 rm -rf ~/hauser-and-wirth/*.js
 cp -rf ~/hauser3/dist/* ~/hauser-and-wirth
 rm ~/hauser-and-wirth/index.html
 cp ~/hauser3/dist/index.html ~/hauser-and-wirth/wp-content/themes/hauser/index.php
 git add -A
 git commit -a -m autodeploy
-git pull origin lm22
-git push origin lm22
+git pull origin paris22
+git push origin paris22
