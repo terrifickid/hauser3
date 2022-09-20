@@ -255,11 +255,16 @@ export default {
 .sleeve {
 }
 a.selected {
-  text-decoration: underline !important;
+  text-decoration: none !important;
+  font-weight: 900;
 }
 a,
 a:hover {
   color: black;
+  text-decoration: none;
+}
+a:hover {
+  font-weight: 900;
 }
 a.artwork {
   text-decoration: none;
