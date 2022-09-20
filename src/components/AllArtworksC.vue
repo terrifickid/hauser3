@@ -8,31 +8,6 @@
       >
         <div class="col-12">
           <h4 style="font-size: 40px;">{{ master.artwork_display_title }}</h4>
-          <ul class="child mb-3">
-            <li class="d-inline-block mr-3">
-              <a
-                v-bind:class="{
-                  selected: !collectionFilter.length
-                }"
-                @click="collectionFilter = []"
-                >All</a
-              >
-            </li>
-
-            <li
-              class="d-inline-block mr-3"
-              v-for="(collection, index) in master.collections"
-              :key="index"
-            >
-              <a
-                v-bind:class="{
-                  selected: collectionFilter.includes(collection.term_id)
-                }"
-                @click="collectionFilter = [collection.term_id]"
-                >{{ collection.name }}</a
-              >
-            </li>
-          </ul>
         </div>
       </div>
       <!-- end row -->

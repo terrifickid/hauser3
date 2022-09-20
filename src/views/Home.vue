@@ -93,12 +93,8 @@
 
       <div id="about" style="padding: 8rem 0;">
         <AboutSection
-          :title="master.london_title"
-          :description="master.london_description"
-        />
-        <AboutSection
-          :title="master.masters_title"
-          :description="master.masters_description"
+          :title="master.hauser_title"
+          :description="master.hauser_description"
         />
       </div>
 

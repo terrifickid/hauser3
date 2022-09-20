@@ -14,7 +14,6 @@
         :src="artworkImg"
       />
 
-      <p class="fbold">{{ collection }}</p>
       <p v-if="!master.hide_artist_name" class="fbold mb-1">
         {{ artwork.artist.name }}
       </p>
