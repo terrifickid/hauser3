@@ -145,6 +145,7 @@
           </p>
         </div>
       </div>
+      <AboutHauser />
 
       <Footer></Footer>
     </div>
@@ -160,12 +161,15 @@ import Header from "@/components/Header.vue";
 import AllArtworks from "@/components/AllArtworksC.vue";
 
 import AboutSection from "@/components/AboutSection.vue";
+
+import AboutHauser from "@/components/AboutHauser.vue";
 import Footer from "@/components/Footer.vue";
 export default {
   name: "Home",
   components: {
     Header,
     AboutSection,
+    AboutHauser,
     AllArtworks,
     Footer
   },
