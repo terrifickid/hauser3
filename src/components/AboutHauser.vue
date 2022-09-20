@@ -1,8 +1,8 @@
 <template>
-  <div id="diaries" class="hero-pad" style="padding: 6rem 0">
-    <div class="container-fluid">
+  <div id="diaries" class="hero-pad" style="padding: 4rem 0 8rem 0;">
+    <div class="container">
       <div v-if="master.video" class="row d-flex align-items-center">
-        <div class="col-12 col-md-8 offset-md-2">
+        <div class="col-12 col-lg-10">
           <template v-for="(video, index) in master.video">
             <div
               v-ani="{ class: 'scale-up-center', delay: 0 }"
@@ -28,7 +28,7 @@
             </div>
           </template>
         </div>
-        <div v-if="master.video.length > 1" class="col text-left">
+        <div v-if="master.video.length > 1" class="col text-center">
           <a
             v-bind:class="{ selected: selVid == index }"
             @click="selVid = index"

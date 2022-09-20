@@ -103,7 +103,7 @@
         class="container"
         v-if="master.interstitial_title"
       >
-        <div style="padding-bottom: 12rem;">
+        <div style="padding: 4rem 0;">
           <h2 style="font-size: 32px; margin-bottom: 1.5rem;">
             {{ master.interstitial_title }}
           </h2>
@@ -127,7 +127,7 @@
         class="container"
         v-if="master.interstitial2_title"
       >
-        <div style="padding-bottom: 12rem;">
+        <div style="padding: 4rem 0;">
           <h2 style="font-size: 32px; margin-bottom: 1.5rem;">
             {{ master.interstitial2_title }}
           </h2>
