@@ -145,6 +145,7 @@ export default {
       this.showHeader = true;
     },
     navigate(t) {
+      console.log("headernavigate");
       if (this.currentRouteName == "Home") {
         this.menuModal = false;
         document.querySelector(t).scrollIntoView({
@@ -167,7 +168,7 @@ export default {
   mounted() {
     var url = window.location.href;
     var hash = url.split("#");
-    if (hash[1]) this.navigate("#" + hash[1]);
+    //if (hash[1]) this.navigate("#" + hash[1]);
     console.log(hash, url);
 
     window.addEventListener("resize", () => {

@@ -1,5 +1,6 @@
 <template>
-  <div id="allartworks" class="mt-5">
+  <div class="mt-5">
+    <div id="allartworks" style="position: relative; top: -150px;"></div>
     <div class="container">
       <div
         v-ani="{ class: 'fade-in-bottom', delay: 0 }"
@@ -110,8 +111,12 @@ export default {
     }
   },
   mounted: async function() {
-    if (location.hash) {
-      document.querySelector(location.hash).scrollIntoView({
+    console.log("all", location.hash);
+    if (location.hash == "#london" || location.hash == "#masters") {
+      console.log("trigger");
+      if (location.hash == "#london") this.collectionFilter = [114];
+      if (location.hash == "#masters") this.collectionFilter = [115];
+      document.querySelector("#allartworks").scrollIntoView({
         behavior: "smooth"
       });
     }

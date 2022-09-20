@@ -93,12 +93,12 @@
 
       <div id="about" style="padding: 8rem 0;">
         <AboutSection
-          :title="master.hauser_title"
-          :description="master.hauser_description"
+          :title="master.london_title"
+          :description="master.london_description"
         />
         <AboutSection
-          :title="master.hauser_title"
-          :description="master.hauser_description"
+          :title="master.masters_title"
+          :description="master.masters_description"
         />
       </div>
 
@@ -121,6 +121,30 @@
               :href="master.interstitial_button_link"
               class="btn btn-md btn-outline-dark"
               >{{ master.interstitial_button_text }}
+            </a>
+          </p>
+        </div>
+      </div>
+
+      <div
+        :id="master.interstitial2_anchor"
+        class="container"
+        v-if="master.interstitial2_title"
+      >
+        <div style="padding-bottom: 12rem;">
+          <h2 style="font-size: 32px; margin-bottom: 1.5rem;">
+            {{ master.interstitial2_title }}
+          </h2>
+          <img :src="master.interstitial2_image" class="img-fluid" />
+          <p
+            style="margin-top: 1.5rem;"
+            v-html="master.interstitial2_description"
+          ></p>
+          <p v-if="master.interstitial2_button_link" class="text-center">
+            <a
+              :href="master.interstitial2_button_link"
+              class="btn btn-md btn-outline-dark"
+              >{{ master.interstitial2_button_text }}
             </a>
           </p>
         </div>
