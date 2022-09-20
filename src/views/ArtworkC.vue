@@ -108,7 +108,7 @@
             <div class="parallax" style="transform: translateZ(-1.2px)"></div>
             <div class="parallax" style="transform: translateZ(-1.0px)"></div>
             <div class="parallax" style="transform: translateZ(-0.8px)">
-              z = -0.8
+              <span style="visibility: hidden">z = -0.8</span>
             </div>
             <div class="parallax" style="transform: translateZ(-0.6px)"></div>
             <div class="parallax" style="transform: translateZ(-0.4px)"></div>

@@ -6,11 +6,19 @@
         v-ani="{ class: 'fade-in-bottom', delay: 0 }"
         class="row mb-4 d-flex align-items-center"
       >
-        <div class="col-6">
+        <div class="col-12">
           <h4 style="font-size: 40px;">{{ master.artwork_display_title }}</h4>
-        </div>
-        <div class="col-6 text-right">
           <ul class="child mb-3">
+            <li class="d-inline-block mr-3">
+              <a
+                v-bind:class="{
+                  selected: !collectionFilter.length
+                }"
+                @click="collectionFilter = []"
+                >All</a
+              >
+            </li>
+
             <li
               class="d-inline-block mr-3"
               v-for="(collection, index) in master.collections"
@@ -20,7 +28,7 @@
                 v-bind:class="{
                   selected: collectionFilter.includes(collection.term_id)
                 }"
-                @click="toggleArrayItem(collectionFilter, collection.term_id)"
+                @click="collectionFilter = [collection.term_id]"
                 >{{ collection.name }}</a
               >
             </li>
