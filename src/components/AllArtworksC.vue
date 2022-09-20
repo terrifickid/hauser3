@@ -64,7 +64,7 @@
       <div v-if="perPage <= artworks.length" class="row">
         <div class="col text-center">
           <a
-            @click="perPage = perPage + 20"
+            @click="perPage = perPage + 10"
             class="mt-4 btn btn-md btn-outline-dark"
             style="margin-bottom: 5rem;"
             >Load more works</a
@@ -239,7 +239,7 @@ export default {
       p3: false,
       psort: false,
       filtersModal: false,
-      perPage: 20
+      perPage: 10
     };
   }
 };
