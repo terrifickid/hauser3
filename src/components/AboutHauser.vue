@@ -1,6 +1,6 @@
 <template>
   <div v-if="master.hauser_title" id="aboutgallery">
-    <div class="pad bg-subtle-grey" style="padding: 8rem 0;">
+    <div class="pad bg-subtle-grey" style="padding: 4rem 0;">
       <div class="container" style="position: relative;">
         <div
           class="d-none d-md-block"

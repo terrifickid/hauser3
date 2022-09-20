@@ -68,14 +68,14 @@
               <button
                 v-if="lang == 'ko'"
                 @click="english()"
-                class="no-translate"
+                class="no-translate d-none"
               >
                 English
               </button>
               <button
                 v-if="lang == 'en'"
                 @click="korean()"
-                class="no-translate"
+                class="no-translate d-none"
               >
                 한국어
               </button>
@@ -83,6 +83,7 @@
                 ><img src="../assets/menu.svg"
               /></a>
             </div>
+
             <!-- end col -->
           </div>
           <!-- end row -->

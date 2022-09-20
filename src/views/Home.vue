@@ -91,7 +91,16 @@
         ></div>
       </div>
 
-      <AboutHauser></AboutHauser>
+      <div id="about" style="padding: 8rem 0;">
+        <AboutSection
+          :title="master.hauser_title"
+          :description="master.hauser_description"
+        />
+        <AboutSection
+          :title="master.hauser_title"
+          :description="master.hauser_description"
+        />
+      </div>
 
       <div
         :id="master.interstitial_anchor"
@@ -129,15 +138,15 @@ import _ from "lodash";
 import Header from "@/components/Header.vue";
 
 import AllArtworks from "@/components/AllArtworksC.vue";
-import AboutHauser from "@/components/AboutHauser.vue";
+
+import AboutSection from "@/components/AboutSection.vue";
 import Footer from "@/components/Footer.vue";
 export default {
   name: "Home",
   components: {
     Header,
-
+    AboutSection,
     AllArtworks,
-    AboutHauser,
     Footer
   },
   data: function() {

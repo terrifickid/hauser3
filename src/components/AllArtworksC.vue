@@ -3,10 +3,27 @@
     <div class="container">
       <div
         v-ani="{ class: 'fade-in-bottom', delay: 0 }"
-        class="row mb-4 d-flex align-items-top"
+        class="row mb-4 d-flex align-items-center"
       >
-        <div class="col-12">
+        <div class="col-6">
           <h4 style="font-size: 40px;">{{ master.artwork_display_title }}</h4>
+        </div>
+        <div class="col-6 text-right">
+          <ul class="child mb-3">
+            <li
+              class="d-inline-block mr-3"
+              v-for="(collection, index) in master.collections"
+              :key="index"
+            >
+              <a
+                v-bind:class="{
+                  selected: collectionFilter.includes(collection.term_id)
+                }"
+                @click="toggleArrayItem(collectionFilter, collection.term_id)"
+                >{{ collection.name }}</a
+              >
+            </li>
+          </ul>
         </div>
       </div>
       <!-- end row -->
@@ -29,39 +46,7 @@
             v-for="(artwork, index) in filteredArtworks"
             :key="index"
           >
-            <div
-              v-ani="{
-                class: 'fade-in-bottom',
-                delay: delay(index) * 100 + 100
-              }"
-              class="sleeve"
-            >
-              <router-link
-                class="artwork"
-                :to="{ path: '/artwork/' + artwork.slug }"
-              >
-                <img
-                  v-if="artwork.acf.hero_image"
-                  class="mb-4"
-                  style="max-width: 100%;"
-                  :src="artworkImg(artwork)"
-                />
-
-                <p v-if="!master.hide_artist_name" class="fbold mb-1">
-                  {{ artwork.artist.name }}
-                </p>
-                <div v-html="artwork.title.rendered" class="mb-1"></div>
-
-                <div class="pb-4">
-                  <template v-if="artwork.acf.price == 0"
-                    >Price upon inquiry</template
-                  >
-                  <template v-if="artwork.acf.price > 0">{{
-                    artwork.acf.price | toCurrency
-                  }}</template>
-                </div>
-              </router-link>
-            </div>
+            <AllArtworksListItem :artwork="artwork" :index="index" />
           </div>
         </div>
       </div>
@@ -84,13 +69,13 @@
 </template>
 
 <script>
-import _ from "lodash";
+import AllArtworksListItem from "@/components/AllArtworksListItem.vue";
 export default {
   name: "AllArtworks",
+  components: {
+    AllArtworksListItem
+  },
   methods: {
-    artworkImg(artwork) {
-      return _.get(artwork, 'acf.artwork_images[0].sizes["large"]');
-    },
     setCollection(id) {
       this.collectionFilter = [parseInt(id)];
     },
@@ -122,11 +107,6 @@ export default {
       var i = a.indexOf(v);
       if (i === -1) a.push(v);
       else a.splice(i, 1);
-    },
-    delay(index) {
-      var page = Math.floor(index / 4);
-
-      return index - page * 4;
     }
   },
   mounted: async function() {
