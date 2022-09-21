@@ -261,7 +261,7 @@ a.selected {
 a,
 a:hover {
   color: black;
-  text-decoration: none;
+  text-decoration: underline;
 }
 a:hover {
   font-weight: 900;

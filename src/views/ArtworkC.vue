@@ -132,7 +132,7 @@
             style="transform: translateZ(-0px); position: absolute; width: 100vw; height: 100vh; top:0;"
             class="d-flex align-items-center justify-content-center"
           >
-            <div style="color:white;">
+            <div style="color:white; padding: 0 2rem;">
               <h2
                 v-if="artwork.artist.name"
                 style="font-size: 16px; text-align: center; "
