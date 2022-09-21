@@ -1,5 +1,9 @@
 <template>
-  <div id="diaries" class="hero-pad" style="padding: 4rem 0 8rem 0;">
+  <div class="hero-pad" style="padding: 4rem 0 8rem 0;">
+    <div
+      :id="master.video_anchor"
+      style="position: relative; top: -150px;"
+    ></div>
     <div class="container">
       <div v-if="master.video" class="row d-flex align-items-center">
         <div class="col-12 col-lg-10">
@@ -24,7 +28,7 @@
                   :src="video.video_url + '?controls=0&modestbranding=1&loop=1'"
                 ></iframe>
               </div>
-              <p class="pt-4" v-html="video.video_caption"></p>
+              <p class="pt-4 pb-4" v-html="video.video_caption"></p>
             </div>
           </template>
         </div>

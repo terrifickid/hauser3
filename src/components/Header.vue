@@ -68,16 +68,16 @@
               <button
                 v-if="lang == 'ko'"
                 @click="english()"
-                class="no-translate d-none"
+                class="no-translate"
               >
                 English
               </button>
               <button
                 v-if="lang == 'en'"
                 @click="korean()"
-                class="no-translate d-none"
+                class="no-translate"
               >
-                한국어
+                Français
               </button>
               <a @click="menuModal = !menuModal"
                 ><img src="../assets/menu.svg"

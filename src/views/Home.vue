@@ -98,11 +98,11 @@
         />
       </div>
 
-      <div
-        :id="master.interstitial_anchor"
-        class="container"
-        v-if="master.interstitial_title"
-      >
+      <div class="container" v-if="master.interstitial_title">
+        <div
+          :id="master.interstitial_anchor"
+          style="position: relative; top: -100px;"
+        ></div>
         <div style="padding: 4rem 0;">
           <h2 style="font-size: 32px; margin-bottom: 1.5rem;">
             {{ master.interstitial_title }}
@@ -122,11 +122,12 @@
         </div>
       </div>
 
-      <div
-        :id="master.interstitial2_anchor"
-        class="container"
-        v-if="master.interstitial2_title"
-      >
+      <div class="container" v-if="master.interstitial2_title">
+        <div
+          :id="master.interstitial2_anchor"
+          style="position: relative; top: -100px;"
+        ></div>
+
         <div style="padding: 4rem 0;">
           <h2 style="font-size: 32px; margin-bottom: 1.5rem;">
             {{ master.interstitial2_title }}
