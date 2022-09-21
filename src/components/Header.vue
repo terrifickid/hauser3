@@ -66,7 +66,7 @@
             <!-- end col -->
             <div class="col icons text-right no-translate">
               <button
-                v-if="lang == 'ko'"
+                v-if="lang == 'fr'"
                 @click="english()"
                 class="no-translate"
               >
@@ -74,7 +74,7 @@
               </button>
               <button
                 v-if="lang == 'en'"
-                @click="korean()"
+                @click="french()"
                 class="no-translate"
               >
                 Français
@@ -116,9 +116,9 @@ export default {
       this.lang = "en";
       document.getElementById("weglot-language-en").click();
     },
-    korean() {
-      this.lang = "ko";
-      document.getElementById("weglot-language-ko").click();
+    french() {
+      this.lang = "fr";
+      document.getElementById("weglot-language-fr").click();
     },
     headerResize(obj = window.scrollY) {
       console.log("resize!");
