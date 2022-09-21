@@ -264,7 +264,6 @@ a:hover {
   text-decoration: underline;
 }
 a:hover {
-  font-weight: 900;
 }
 a.artwork {
   text-decoration: none;
