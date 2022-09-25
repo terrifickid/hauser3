@@ -1,5 +1,9 @@
 <template>
-  <div class="hero-pad" style="padding: 4rem 0 8rem 0;">
+  <div
+    class="hero-pad"
+    style="padding: 4rem 0 8rem 0;"
+    v-if="master.video_enable"
+  >
     <div
       :id="master.video_anchor"
       style="position: relative; top: -150px;"
