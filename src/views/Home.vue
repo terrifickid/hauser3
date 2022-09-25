@@ -24,7 +24,6 @@
             <h1
               v-if="master.heading_2"
               style="font-size: 56px; margin-bottom: 0.5rem; text-align: center;"
-              class="abr"
               v-html="master.heading_2"
             ></h1>
           </div>
