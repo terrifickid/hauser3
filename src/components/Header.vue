@@ -166,11 +166,6 @@ export default {
     }
   },
   mounted() {
-    var url = window.location.href;
-    var hash = url.split("#");
-    //if (hash[1]) this.navigate("#" + hash[1]);
-    console.log(hash, url);
-
     window.addEventListener("resize", () => {
       this.headerResize();
     });
@@ -179,16 +174,15 @@ export default {
       document.getElementById("scrollerCheck").addEventListener("wheel", () => {
         this.headerResize(document.getElementById("scrollerCheck").scrollTop);
       });
+      document
+        .getElementById("scrollerCheck")
+        .addEventListener("touchmove", () => {
+          this.headerResize(document.getElementById("scrollerCheck").scrollTop);
+        });
     }
 
     document.addEventListener("scroll", () => {
-      this.headerScroll();
       this.headerResize();
-    });
-    document.querySelectorAll('a[href^="/#"]').forEach(anchor => {
-      anchor.addEventListener("click", function(e) {
-        e.preventDefault();
-      });
     });
 
     this.headerResize();
