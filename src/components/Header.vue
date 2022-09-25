@@ -166,10 +166,6 @@ export default {
     }
   },
   mounted() {
-    window.addEventListener("resize", () => {
-      this.headerResize();
-    });
-
     if (document.getElementById("scrollerCheck")) {
       document.getElementById("scrollerCheck").addEventListener("wheel", () => {
         this.headerResize(document.getElementById("scrollerCheck").scrollTop);
