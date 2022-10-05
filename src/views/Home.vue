@@ -29,7 +29,7 @@
           </div>
         </div>
         <video
-          style="width: 100vw; height: 100vh; margin:0; padding:0;  object-fit: cover; filter: brightness(0.75);"
+          style="width: 100vw; height: 100vh; margin:0; padding:0;  object-fit: cover; filter: brightness(0.74);"
           autoplay
           loop
           muted
