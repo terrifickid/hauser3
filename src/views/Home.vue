@@ -34,6 +34,7 @@
           loop
           muted
           playsinline
+          poster="https://upload.wikimedia.org/wikipedia/commons/4/49/A_black_image.jpg"
         >
           <source :src="master.hero_video" type="video/mp4" />
         </video>
