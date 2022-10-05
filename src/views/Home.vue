@@ -90,7 +90,7 @@
         ></div>
       </div>
 
-      <div id="about" style="padding: 8rem 0;">
+      <div id="about" style="padding: 4rem 0;">
         <AboutSection
           :title="master.london_title"
           :description="master.london_description"

@@ -183,26 +183,15 @@
                 </div>
               </div>
               <div class="col-12 col-lg-8">
-                <carousel
-                  v-if="artwork.acf.artwork_images.length > 0"
-                  :nav="false"
-                  :dots="false"
-                  :stagePadding="0"
-                  :margin="0"
-                  :responsive="{
-                    0: { items: 1 },
-                    576: { items: 1 }
+                <div
+                  style="height: 75vh;  background-size: contain;  background-position: center center; background-repeat: no-repeat;"
+                  :style="{
+                    backgroundImage:
+                      'url(' +
+                      artwork.acf.artwork_images[0].sizes['large'] +
+                      ')'
                   }"
-                >
-                  <div
-                    v-for="(artwork, index) in artwork.acf.artwork_images"
-                    :key="index"
-                    style="height: 75vh; cursor: pointer; background-size: contain;  background-position: center center; background-repeat: no-repeat;"
-                    :style="{
-                      backgroundImage: 'url(' + artwork.sizes['large'] + ')'
-                    }"
-                  ></div>
-                </carousel>
+                ></div>
               </div>
             </div>
           </div>
@@ -521,15 +510,13 @@ import Footer from "@/components/Footer.vue";
 import ShareModal from "@/components/ShareModal.vue";
 import ExploreArtworkItem from "@/components/ExploreArtworkItem.vue";
 
-import carousel from "vue-owl-carousel";
 export default {
   components: {
     Header,
     Footer,
     Loader,
     ShareModal,
-    ExploreArtworkItem,
-    carousel
+    ExploreArtworkItem
   },
   methods: {
     swipeHandler() {
