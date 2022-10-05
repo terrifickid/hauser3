@@ -3,12 +3,12 @@ git add -A
 git commit -a -m autocommit
 git push origin lm22
 npm run build
-cd ~/hauser-and-wirth
+cd ~/hsys/hauser-and-wirth
 git checkout master
-rm -rf ~/hauser-and-wirth/*.js
-cp -rf ~/hauser3/dist/* ~/hauser-and-wirth
-rm ~/hauser-and-wirth/index.html
-cp ~/hauser3/dist/index.html ~/hauser-and-wirth/wp-content/themes/hauser/index.php
+rm -rf ~/hsys/hauser-and-wirth/*.js
+cp -rf ~/hauser3/dist/* ~/hsys/hauser-and-wirth
+rm ~/hsys/hauser-and-wirth/index.html
+cp ~/hauser3/dist/index.html ~/hsys/hauser-and-wirth/wp-content/themes/hauser/index.php
 git add -A
 git commit -a -m autodeploy
 git pull origin master
