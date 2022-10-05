@@ -5,10 +5,10 @@ git push origin paris22
 npm run build
 cd ~/paris2
 git checkout master
-rm -rf ~/hauser-and-wirth/*.js
-cp -rf ~/hauser3/dist/* ~/hauser-and-wirth
-rm ~/hauser-and-wirth/index.html
-cp ~/hauser3/dist/index.html ~/hauser-and-wirth/wp-content/themes/hauser/index.php
+rm -rf ~/paris2/*.js
+cp -rf ~/paris2/dist/* ~/paris2
+rm ~/paris2/index.html
+cp ~/hauser3/dist/index.html ~/paris2/wp-content/themes/hauser/index.php
 git add -A
 git commit -a -m autodeploy
 git pull origin master
