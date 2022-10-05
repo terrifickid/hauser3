@@ -6,11 +6,10 @@ npm run build
 cd ~/paris2
 git checkout master
 rm -rf ~/paris2/*.js
-cp -rf ~/paris2/dist/* ~/paris2
+cp -rf ~/hauser3/dist/* ~/paris2
 rm ~/paris2/index.html
 cp ~/hauser3/dist/index.html ~/paris2/wp-content/themes/hauser/index.php
 git add -A
 git commit -a -m autodeploy
 git pull origin master
 git push origin master
-
