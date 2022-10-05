@@ -12,7 +12,7 @@
       </div>
       <!-- end row -->
 
-      <div style="padding-bottom: 10rem; min-height: 100vh">
+      <div style="padding-bottom: 5rem; min-height: 100vh">
         <div
           class="row"
           v-masonry="'containerId'"

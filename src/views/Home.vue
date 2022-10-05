@@ -34,6 +34,7 @@
           loop
           muted
           playsinline
+          poster="https://upload.wikimedia.org/wikipedia/commons/4/49/A_black_image.jpg"
         >
           <source :src="master.hero_video" type="video/mp4" />
         </video>
@@ -90,7 +91,7 @@
         ></div>
       </div>
 
-      <div id="about" style="padding: 8rem 0;">
+      <div id="about" style="padding: 4rem 0;">
         <AboutSection
           :title="master.hauser_title"
           :description="master.hauser_description"
