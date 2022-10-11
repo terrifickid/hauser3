@@ -40,7 +40,7 @@
         <div class="col text-center">
           <a
             @click="perPage = perPage + 10"
-            class="mt-4 btn btn-md btn-outline-dark"
+            class="mt-2 btn btn-md btn-outline-dark"
             style="margin-bottom: 5rem;"
             >Load more works</a
           >

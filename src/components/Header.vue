@@ -51,7 +51,7 @@
               /></router-link>
             </div>
             <!-- end col -->
-            <div class="d-none d-xl-block col-6 text-center">
+            <div class="d-none d-xl-block col-8 text-center">
               <ul id="desktopMenu">
                 <li v-for="(link, index) in master.links" :key="index">
                   <router-link

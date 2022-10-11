@@ -120,7 +120,7 @@
             :style="{
               backgroundImage: 'url(' + artwork.acf.hero_image.url + ')'
             }"
-            style="transform: translateZ(-0.1px); position: absolute; top:0; background-position: center center; background-size: cover; width: 110vw; height: 110vh; color: white;"
+            style="transform: translateZ(-0.1px); position: absolute; top:0; background-position: center center; background-size: cover; width: 110vw; height: 85vh; color: white;"
             class="d-flex align-items-center justify-content-center"
           >
             <div
@@ -129,7 +129,7 @@
             ></div>
           </div>
           <div
-            style="transform: translateZ(-0px); position: absolute; width: 100vw; height: 100vh; top:0;"
+            style="transform: translateZ(-0px); position: absolute; width: 100vw; height: 75vh; top:0;"
             class="d-flex align-items-center justify-content-center"
           >
             <div style="color:white; padding: 0 2rem;">
@@ -147,10 +147,7 @@
             </div>
           </div>
 
-          <div
-            class="container"
-            style="margin-bottom: 3rem; margin-top: 105vh;"
-          >
+          <div class="container" style="margin-bottom: 3rem; margin-top: 85vh;">
             <div class="row d-flex align-items-center">
               <div class="col-12 col-lg-4">
                 <div style="padding: 2rem 0;">

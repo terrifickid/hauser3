@@ -91,7 +91,7 @@
         ></div>
       </div>
 
-      <div id="about" style="padding: 4rem 0;">
+      <div id="about" style="padding: 2rem 0;">
         <AboutSection
           :title="master.hauser_title"
           :description="master.hauser_description"
