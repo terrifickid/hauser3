@@ -16,7 +16,7 @@
             class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 text-center"
             v-if="sent"
           >
-            <h2 class="mb-4">Thanks for contacting us!</h2>
+            <h2 class="mb-4">Thanks for contacting us</h2>
             <p class="mb-4">We will get in touch with you shortly.</p>
             <button
               @click="emailModal = false"
