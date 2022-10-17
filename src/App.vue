@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="d">
     <div
       v-if="!loaded"
       class="row d-flex align-items-center"
